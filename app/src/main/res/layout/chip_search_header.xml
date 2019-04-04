@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="1dp"
+    android:padding="4dp"
+    android:background="@drawable/radius_white_top"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvSn"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_select"
+        app:layout_constraintHorizontal_weight="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvName"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:padding="4dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_service_name"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintTop_toTopOf="@id/tvSn"
+        app:layout_constraintBottom_toBottomOf="@id/tvSn"
+        app:layout_constraintStart_toEndOf="@id/tvSn"
+        app:layout_constraintEnd_toStartOf="@id/tvAddress"
+        android:textSize="16dp"
+        android:padding="4dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_unit"
+        app:layout_constraintHorizontal_weight="1.5"
+        app:layout_constraintTop_toTopOf="@id/tvSn"
+        app:layout_constraintBottom_toBottomOf="@id/tvSn"
+        app:layout_constraintStart_toEndOf="@id/tvName"
+        app:layout_constraintEnd_toStartOf="@id/tvGender"
+        android:textSize="16sp"
+        android:padding="4dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_price"
+        app:layout_constraintHorizontal_weight="1.5"
+        app:layout_constraintTop_toTopOf="@id/tvSn"
+        app:layout_constraintBottom_toBottomOf="@id/tvSn"
+        app:layout_constraintStart_toEndOf="@id/tvAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
+        android:padding="4dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+</android.support.constraint.ConstraintLayout>

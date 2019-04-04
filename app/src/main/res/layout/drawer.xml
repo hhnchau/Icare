@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/frameProfile"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@color/blue"
+        app:layout_constraintBottom_toTopOf="@id/drawerList"
+        app:layout_constraintEnd_toEndOf="@id/guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ptt.vn.icaremobileapp.circle.MyCircle
+            android:id="@+id/imgProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/img_des"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:maxLines="1"
+            android:layout_below="@id/imgProfile"
+            android:gravity="center"
+            android:textColor="@color/wh"
+            android:textSize="@dimen/sp_22"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/drawerList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/dp_24"
+        android:background="@color/bg"
+        android:choiceMode="singleChoice"
+        android:clipToPadding="false"
+        android:divider="@color/bg"
+        android:dividerHeight="@dimen/dp_1"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameProfile" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+
+</android.support.constraint.ConstraintLayout>

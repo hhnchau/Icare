@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_80"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="2:1.45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/boxHeader"
+                android:background="@color/colorMain"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@id/tvName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:layout_weight="1"
+                    android:text="@string/txt_dialog_happening"
+                    android:textColor="@color/wh"
+                    android:textSize="@dimen/sp_18"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btnClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_close"
+                    android:layout_margin="@dimen/dp_8"
+                    android:contentDescription="@string/img_des" />
+
+            </LinearLayout>
+
+
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:hint="Diễn Biến"
+                app:layout_constraintBottom_toTopOf="@id/tvDoctor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/boxHeader"
+                app:layout_constraintVertical_bias="0"
+                app:txt="Hello" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvDoctor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:hint="Ngày"
+                app:layout_constraintBottom_toTopOf="@id/box1"
+                app:layout_constraintEnd_toEndOf="@id/tvName"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                app:layout_constraintVertical_bias="0"
+                app:txt="22/12/2019" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@id/tvDoctor"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintEnd_toStartOf="@id/tvCircuit"
+                app:layout_constraintBottom_toTopOf="@id/tvTemperature"
+                app:txt="Hello"
+                app:hint="Ngày Giờ"
+                />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvCircuit"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toTopOf="@id/tvDate"
+                app:layout_constraintStart_toEndOf="@id/tvDate"
+                app:layout_constraintEnd_toStartOf="@id/tvBlood"
+                app:layout_constraintBottom_toBottomOf="@id/tvDate"
+                app:txt="Hello"
+                app:hint="Mạch"
+                />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvBlood"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toTopOf="@id/tvDate"
+                app:layout_constraintStart_toEndOf="@id/tvCircuit"
+                app:layout_constraintEnd_toEndOf="@id/tvName"
+                app:layout_constraintBottom_toBottomOf="@id/tvDate"
+                app:txt="Hello"
+                app:hint="Huyết Áp"
+                />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvTemperature"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@id/tvDate"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintEnd_toStartOf="@id/tvHeartbeat"
+                app:layout_constraintBottom_toTopOf="@id/btnOk"
+                app:txt="Hello"
+                app:hint="Nhiệt Độ"
+                />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvHeartbeat"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toTopOf="@id/tvTemperature"
+                app:layout_constraintStart_toEndOf="@id/tvTemperature"
+                app:layout_constraintEnd_toStartOf="@id/tvWeight"
+                app:layout_constraintBottom_toBottomOf="@id/tvTemperature"
+                app:txt="Hello"
+                app:hint="Nhịp Tim"
+                />
+
+            <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/tvWeight"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toTopOf="@id/tvTemperature"
+                app:layout_constraintStart_toEndOf="@id/tvHeartbeat"
+                app:layout_constraintEnd_toEndOf="@id/tvName"
+                app:layout_constraintBottom_toBottomOf="@id/tvTemperature"
+                app:txt="Hello"
+                app:hint="Cân Nặng"
+                />
+
+            <ptt.vn.icaremobileapp.custom.MyButton
+                android:id="@+id/btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_32"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTemperature"
+                app:text="@string/btn_save"
+                app:textColor="@color/wh"
+                app:textSize="@dimen/sp_18"
+                app:backgroundColor="@drawable/toggle_background"
+                />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.constraint.ConstraintLayout>

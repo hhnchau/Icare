@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ICareMobileApp</string>
+
+    <string name="img_des"/>
+    <string name="btn_yes">OK</string>
+    <string name="btn_no">No</string>
+    <string name="btn_save">Lưu</string>
+    <string name="txt_not_connect">Không thể kết nối tới server!!!</string>
+
+    <string name="item_menu_edit">Chỉnh sửa</string>
+    <string name="item_menu_copy">Copy</string>
+    <string name="item_menu_delete">Xóa</string>
+
+    <string name="tab_tham_kham">Thăm khám</string>
+    <string name="tab_service_item">Chỉ định</string>
+    <string name="tab_drug_order">Kê đơn</string>
+    <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
+    <string name="tab_diagnose">Chuẩn đoán</string>
+
+    <string name="txt_dialog_happening">Diễn Biến Bệnh</string>
+
+    <string name="txt_morning">Sáng</string>
+    <string name="txt_after">Trưa</string>
+    <string name="txt_dinner">Chiều</string>
+    <string name="txt_evening">Tối</string>
+
+
+    <string name="txt_unit">Đơn vị</string>
+    <string name="txt_price">Đơn giá</string>
+    <string name="txt_service_name">Tên dịch vụ</string>
+    <string name="txt_select">Chọn</string>
+    <string name="txt_happening">Chị Phương Thanh (33 tuổi, TP HCM) năm ngoái phải bỏ việc trông con sốt xuất huyết suốt một tháng ở viện. Bé sốt cao liên tục 3 ngày, đến ngày thứ 4 kêu đau bụng, ói, tay chân lạnh, nhập viện đã bị sốc sâu, huyết áp tụt. Chị suýt té xỉu khi bác sĩ thông báo con bị sốc sốt xuất huyết nặng, phải tiến hành chống sốc, dùng các thuốc vận mạch, hỗ trợ hô hấp, đặt nội khí quản thở máy.</string>
+</resources>
