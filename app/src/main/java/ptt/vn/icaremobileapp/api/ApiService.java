@@ -1,15 +1,16 @@
 package ptt.vn.icaremobileapp.api;
 
 import io.reactivex.Observable;
-import okhttp3.ResponseBody;
-import ptt.vn.icaremobileapp.model.RestResult;
+import ptt.vn.icaremobileapp.model.BaseResult;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -36,9 +37,11 @@ public interface ApiService {
 
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
     @POST()
-    Observable<ResponseBody> saveHappening(@Url String url, @Body HappeningDomain happening);
+    Observable<HappeningSave> saveHappening(@Url String url, @Body HappeningDomain happening);
 
-
+    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
+    @POST()
+    Observable<HappeningSave> deleteHappening(@Url String url, @Body HappeningDomain happening);
 
 
 

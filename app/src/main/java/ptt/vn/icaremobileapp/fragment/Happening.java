@@ -14,11 +14,15 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Callback;
+import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.dialog.DialogNewHappening;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
@@ -29,6 +33,7 @@ import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class Happening extends BaseFragment {
     private View view;
@@ -66,7 +71,10 @@ public class Happening extends BaseFragment {
                         /*
                          * NEW
                          **/
-                        Toast.makeText(getActivity(), "NEW", Toast.LENGTH_SHORT).show();
+                        happening.setActive(Host.ACTIVE);
+                        happening.setSiterf(Host.SITERF);
+                        happening.setIdline(Utils.newGuid());
+                        happening.setIdlinedepartinfolog(Utils.newGuid());
                         happening.setIdlink(inpatient.getIdlink());
                         saveHappening(happening);
                     }
@@ -113,9 +121,8 @@ public class Happening extends BaseFragment {
                         /*
                          * COPY
                          **/
-                        Toast.makeText(getActivity(), "COPY", Toast.LENGTH_SHORT).show();
-                        Gson gson = new Gson();
-                        String json = gson.toJson(happening);
+                        happening.setIdline(Utils.newGuid());
+                        happening.setIdlinedepartinfolog(Utils.newGuid());
                         saveHappening(happening);
                     }
                 });
@@ -129,18 +136,28 @@ public class Happening extends BaseFragment {
                         /*
                          * EDIT
                          **/
-                        Toast.makeText(getActivity(), "EDIT", Toast.LENGTH_SHORT).show();
                         saveHappening(happening);
                     }
                 });
             }
 
             @Override
-            public void onDelete(HappeningDomain happening) {
-                /*
-                 * DELETE
-                 **/
-                Toast.makeText(getActivity(), "DELETE", Toast.LENGTH_SHORT).show();
+            public void onDelete(final HappeningDomain happening) {
+                Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_yes), getString(R.string.btn_no), false, new Alert.OnAlertClickListener() {
+                    @Override
+                    public void onYes() {
+                        /*
+                         * DELETE
+                         **/
+                        happening.setActive(Host.DELETE);
+                        deleteHappening(happening);
+                    }
+
+                    @Override
+                    public void onNo() {
+
+                    }
+                });
             }
         });
     }
@@ -158,6 +175,37 @@ public class Happening extends BaseFragment {
     }
 
     private void saveHappening(HappeningDomain happening) {
-        ApiController.getInstance().saveHappening(getActivity(), happening, null);
+        ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
+            @Override
+            public void response(HappeningDomain happening) {
+                boolean isNew = true;
+                for (int i = 0; i < lstHappening.size(); i++)
+                    if (lstHappening.get(i).getIdline().equals(happening.getIdline())) {
+                        lstHappening.set(i, happening);
+                        adapter.notifyDataSetChanged();
+                        isNew = false;
+                        break;
+                    }
+
+                if (isNew) {
+                    lstHappening.add(happening);
+                    adapter.setItems(lstHappening);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
+
+    private void deleteHappening(HappeningDomain happening) {
+        ApiController.getInstance().deleteHappening(getActivity(), happening, new Callback<HappeningDomain>() {
+            @Override
+            public void response(HappeningDomain happening) {
+                for (int i = 0; i < lstHappening.size(); i++)
+                    if (lstHappening.get(i).getIdline().equals(happening.getIdline())) {
+                        adapter.removeItem(i);
+                        break;
+                    }
+            }
+        });
     }
 }

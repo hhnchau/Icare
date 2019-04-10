@@ -11,13 +11,12 @@ import java.util.Map;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.application.MyApplication;
 import ptt.vn.icaremobileapp.loading.Loading;
 import ptt.vn.icaremobileapp.log.MyLog;
-import ptt.vn.icaremobileapp.model.RestResult;
+import ptt.vn.icaremobileapp.model.BaseResult;
 import ptt.vn.icaremobileapp.model.filter.DataTypeOfValue;
 import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
@@ -26,6 +25,7 @@ import ptt.vn.icaremobileapp.model.filter.Operation;
 import ptt.vn.icaremobileapp.model.filter.Para;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.filter.Service;
@@ -50,34 +50,32 @@ public class ApiController {
         return instance;
     }
 
-    private String ip = "172.16.0.13";
-
     public void getSysApi(final Context context) {
-//        CompositeManager.add(Api.apiService.getSysApi()
-//                .subscribeOn(Schedulers.io())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(new DisposableObserver<SysApiModel>() {
-//                    @Override
-//                    public void onNext(SysApiModel dataModel) {
-//                        List<UrlModel> lst = dataModel.getData();
-//                        Map<String, UrlModel> map = new HashMap<>();
-//                        for (UrlModel i : lst) {
-//                            for (UrlModel u : i.getLstApiValueObject()) {
-//                                map.put(u.getCode(), u);
-//                            }
-//                        }
-//                        ((MyApplication) context).setUrlModelMap(map);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        MyLog.print(context, e.getMessage());
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                    }
-//                }));
+        CompositeManager.add(Api.apiService.getSysApi()
+                .subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<SysApiModel>() {
+                    @Override
+                    public void onNext(SysApiModel dataModel) {
+                        List<UrlModel> lst = dataModel.getData();
+                        Map<String, UrlModel> map = new HashMap<>();
+                        for (UrlModel i : lst) {
+                            for (UrlModel u : i.getLstApiValueObject()) {
+                                map.put(u.getCode(), u);
+                            }
+                        }
+                        ((MyApplication) context).setUrlModelMap(map);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
     }
 
     @SuppressWarnings("unchecked")
@@ -85,10 +83,8 @@ public class ApiController {
         String url = MyApplication.getUrl(Service.INPATIENT);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            //return;
+            return;
         }
-
-        url = "http://"+ip+":7770/InpatientService/";
 
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
@@ -134,10 +130,9 @@ public class ApiController {
         String url = MyApplication.getUrl(Service.PAT);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            //return;
+            return;
         }
 
-        url = "http://"+ip+":7770/PatientService/";
 
         //Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
@@ -231,10 +226,8 @@ public class ApiController {
         String url = MyApplication.getUrl(Service.INPATIENTHAPPENING);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            //return;
+            return;
         }
-
-        url = "http://"+ip+":7770/InpatientHappeningService/";
 
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
@@ -276,29 +269,26 @@ public class ApiController {
     }
 
     @SuppressWarnings("unchecked")
-    public void saveHappening(final Context context, final HappeningDomain happening, final ACallback aCallback) {
+    public void saveHappening(final Context context, final HappeningDomain happening, final Callback callback) {
         String url = MyApplication.getUrl(Service.INPATIENTHAPPENING);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            //return;
+            return;
         }
-
-        url = "http://"+ip+":7770/InpatientHappeningService/";
 
         Loading.getInstance().show(context);
 
         CompositeManager.add(Api.apiService.saveHappening(url, happening)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<ResponseBody>() {
+                .subscribeWith(new DisposableObserver<HappeningSave>() {
 
                     @Override
-                    public void onNext(ResponseBody happeningResponse) {
-                        int i = 0;
-                        //if (happeningResponse.getCode() == 0 && aCallback != null)
-                            //aCallback.response(happeningResponse.getData());
-                        //else
-                            //MyLog.print(context, String.valueOf(happeningResponse.getCode()));
+                    public void onNext(HappeningSave save) {
+                        if (save.getCode() == 0 && callback != null)
+                            callback.response(save.getData());
+                        else
+                            MyLog.print(context, String.valueOf(save.getCode()));
                     }
 
                     @Override
@@ -308,7 +298,7 @@ public class ApiController {
                         connectAgain(context, new OnRetry() {
                             @Override
                             public void request() {
-                                saveHappening(context, happening, aCallback);
+                                saveHappening(context, happening, callback);
                             }
                         });
 
@@ -322,6 +312,50 @@ public class ApiController {
                 }));
     }
 
+
+    @SuppressWarnings("unchecked")
+    public void deleteHappening(final Context context, final HappeningDomain happening, final Callback callback) {
+        String url = MyApplication.getUrl(Service.INPATIENTHAPPENING);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+
+        CompositeManager.add(Api.apiService.saveHappening(url, happening)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<HappeningSave>() {
+
+                    @Override
+                    public void onNext(HappeningSave save) {
+                        if (save.getCode() == 0 && callback != null)
+                            callback.response(happening);
+                        else
+                            MyLog.print(context, String.valueOf(save.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                saveHappening(context, happening, callback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
 
     /**
      * Save

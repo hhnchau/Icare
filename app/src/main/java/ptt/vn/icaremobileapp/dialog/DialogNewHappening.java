@@ -114,15 +114,15 @@ public class DialogNewHappening {
                 public void onClick() {
                     HappeningDomain happen = new HappeningDomain();
                     if (happening != null) happen = happening;
-                    //happen.setHappening(edtHappening.getText().toString());
-                    //happen.setDatecreate(Utils.dateConvert(edtDatetime.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
-                    //happen.setIddoctor(1);
-                    //happen.setNamedoctor(edtDoctor.getText().toString());
-                    //happen.setCircui(Float.parseFloat(edtCircuit.getText().toString()));
-                    //happen.setBlomax(Float.parseFloat(edtBlood.getText().toString()));
-                    //happen.setTemper(Float.parseFloat(edtTemperature.getText().toString()));
-                    //happen.setHeartb(Float.parseFloat(edtHeartbeat.getText().toString()));
-                    //happen.setWeight(Float.parseFloat(edtWeight.getText().toString()));
+                    happen.setHappening(edtHappening.getText().toString());
+                    happen.setDatecreate(Utils.dateConvert(edtDatetime.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
+                    happen.setIddoctor(1);
+                    happen.setNamedoctor(edtDoctor.getText().toString());
+                    happen.setCircui(edtCircuit.getText().toString());
+                    happen.setBlomax(Integer.parseInt(edtBlood.getText().toString()));
+                    happen.setTemper(Float.parseFloat(edtTemperature.getText().toString()));
+                    happen.setHeartb(Integer.parseInt(edtHeartbeat.getText().toString()));
+                    happen.setWeight(Float.parseFloat(edtWeight.getText().toString()));
 
                     if (onClickListener != null)
                         onClickListener.onClickListener(happen);

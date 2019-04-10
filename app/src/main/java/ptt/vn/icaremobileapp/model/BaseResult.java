@@ -1,10 +1,10 @@
 package ptt.vn.icaremobileapp.model;
 
-public class RestResult {
+public class BaseResult<T> {
     private int Code;
-    private Object Data;
+    private T Data;
 
-    public RestResult() {
+    public BaseResult() {
     }
 
     public int getCode() {
@@ -15,11 +15,11 @@ public class RestResult {
         Code = code;
     }
 
-    public Object getData() {
+    public T getData() {
         return Data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         Data = data;
     }
 }

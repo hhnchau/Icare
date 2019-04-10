@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ServiceOrder implements Parcelable {
+    private int siterf;
     private String idline;
     private String idhappening;
     private int idmedexa;
@@ -16,7 +17,6 @@ public class ServiceOrder implements Parcelable {
     private int ishi;
     private String attributes;
     private int active;
-    private int siterf;
     private String usercr;
     private String timecr;
     private String userup;
@@ -27,6 +27,7 @@ public class ServiceOrder implements Parcelable {
     }
 
     protected ServiceOrder(Parcel in) {
+        siterf = in.readInt();
         idline = in.readString();
         idhappening = in.readString();
         idmedexa = in.readInt();
@@ -39,7 +40,6 @@ public class ServiceOrder implements Parcelable {
         ishi = in.readInt();
         attributes = in.readString();
         active = in.readInt();
-        siterf = in.readInt();
         usercr = in.readString();
         timecr = in.readString();
         userup = in.readString();
@@ -58,6 +58,14 @@ public class ServiceOrder implements Parcelable {
             return new ServiceOrder[size];
         }
     };
+
+    public int getSiterf() {
+        return siterf;
+    }
+
+    public void setSiterf(int siterf) {
+        this.siterf = siterf;
+    }
 
     public String getIdline() {
         return idline;
@@ -155,14 +163,6 @@ public class ServiceOrder implements Parcelable {
         this.active = active;
     }
 
-    public int getSiterf() {
-        return siterf;
-    }
-
-    public void setSiterf(int siterf) {
-        this.siterf = siterf;
-    }
-
     public String getUsercr() {
         return usercr;
     }
@@ -210,6 +210,7 @@ public class ServiceOrder implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
         dest.writeString(idline);
         dest.writeString(idhappening);
         dest.writeInt(idmedexa);
@@ -222,7 +223,6 @@ public class ServiceOrder implements Parcelable {
         dest.writeInt(ishi);
         dest.writeString(attributes);
         dest.writeInt(active);
-        dest.writeInt(siterf);
         dest.writeString(usercr);
         dest.writeString(timecr);
         dest.writeString(userup);

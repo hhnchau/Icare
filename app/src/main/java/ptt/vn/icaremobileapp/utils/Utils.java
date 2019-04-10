@@ -24,6 +24,8 @@ import java.util.Locale;
 
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 public class Utils {
     public static final String yyyyMMdd = "yyyy-MM-dd";
     public static final String ddMMyyyy = "dd/MM/yyyy";
@@ -89,6 +91,10 @@ public class Utils {
         }
 
         return SpannableString.valueOf(s);
+    }
+
+    public static String newGuid() {
+        return "00000000-0000-0000-0000-000000000000";
     }
 
     /*

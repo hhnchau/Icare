@@ -1,7 +1,12 @@
 package ptt.vn.icaremobileapp.model.inpatient;
 
-public class InpatientDiagnose {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class InpatientDiagnose implements Parcelable {
+    private int siterf;
     private String idline;
+    private String idlink;
     private int idicd;
     private String nameicdvn;
     private String nameicdeng;
@@ -9,8 +14,52 @@ public class InpatientDiagnose {
     private int primary;
     private String attributes;
     private int active;
+    private String usercr;
+    private String timecr;
+    private String userup;
+    private String timeup;
+    private String computer;
+
 
     public InpatientDiagnose() {
+    }
+
+    protected InpatientDiagnose(Parcel in) {
+        siterf = in.readInt();
+        idline = in.readString();
+        idlink = in.readString();
+        idicd = in.readInt();
+        nameicdvn = in.readString();
+        nameicdeng = in.readString();
+        type = in.readInt();
+        primary = in.readInt();
+        attributes = in.readString();
+        active = in.readInt();
+        usercr = in.readString();
+        timecr = in.readString();
+        userup = in.readString();
+        timeup = in.readString();
+        computer = in.readString();
+    }
+
+    public static final Creator<InpatientDiagnose> CREATOR = new Creator<InpatientDiagnose>() {
+        @Override
+        public InpatientDiagnose createFromParcel(Parcel in) {
+            return new InpatientDiagnose(in);
+        }
+
+        @Override
+        public InpatientDiagnose[] newArray(int size) {
+            return new InpatientDiagnose[size];
+        }
+    };
+
+    public int getSiterf() {
+        return siterf;
+    }
+
+    public void setSiterf(int siterf) {
+        this.siterf = siterf;
     }
 
     public String getIdline() {
@@ -19,6 +68,14 @@ public class InpatientDiagnose {
 
     public void setIdline(String idline) {
         this.idline = idline;
+    }
+
+    public String getIdlink() {
+        return idlink;
+    }
+
+    public void setIdlink(String idlink) {
+        this.idlink = idlink;
     }
 
     public int getIdicd() {
@@ -75,5 +132,69 @@ public class InpatientDiagnose {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getUsercr() {
+        return usercr;
+    }
+
+    public void setUsercr(String usercr) {
+        this.usercr = usercr;
+    }
+
+    public String getTimecr() {
+        return timecr;
+    }
+
+    public void setTimecr(String timecr) {
+        this.timecr = timecr;
+    }
+
+    public String getUserup() {
+        return userup;
+    }
+
+    public void setUserup(String userup) {
+        this.userup = userup;
+    }
+
+    public String getTimeup() {
+        return timeup;
+    }
+
+    public void setTimeup(String timeup) {
+        this.timeup = timeup;
+    }
+
+    public String getComputer() {
+        return computer;
+    }
+
+    public void setComputer(String computer) {
+        this.computer = computer;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
+        dest.writeString(idline);
+        dest.writeString(idlink);
+        dest.writeInt(idicd);
+        dest.writeString(nameicdvn);
+        dest.writeString(nameicdeng);
+        dest.writeInt(type);
+        dest.writeInt(primary);
+        dest.writeString(attributes);
+        dest.writeInt(active);
+        dest.writeString(usercr);
+        dest.writeString(timecr);
+        dest.writeString(userup);
+        dest.writeString(timeup);
+        dest.writeString(computer);
     }
 }

@@ -7,93 +7,96 @@ import android.os.Parcelable;
 import java.util.List;
 
 
-public class HappeningDomain implements Parcelable {
+public class HappeningDomain implements Parcelable, Cloneable {
+    private int siterf;
     private String idline;
     private String idlink;
     private String idlinedepartinfolog;
     private String idtreatment;
-    private String code;
+    private float code;
     private int sort;
     private String datecreate;
-    private int body;
-    private int cyclic;
-    private int respiratory;
-    private int digest;
-    private int kidney;
-    private int nerve;
-    private int muscle;
-    private int nose;
-    private int teeth;
-    private int eye;
-    private int endocrine;
-    private float circui;
-    private float blomin;
-    private float blomax;
-    private float heartb;
+    private String body;
+    private String cyclic;
+    private String respiratory;
+    private String digest;
+    private String kidney;
+    private String nerve;
+    private String muscle;
+    private String nose;
+    private String teeth;
+    private String eye;
+    private String endocrine;
+    private String circui;
+    private int blomin;
+    private int blomax;
+    private int heartb;
     private float temper;
     private float weight;
     private String happening;
     private int iddoctor;
     private String namedoctor;
     private int active;
-    private String typemedicalname;
     private String attributes;
-    private List<DrugOrder> lstInpatientDrugOrder;
-    private List<DrugOrderOutside> lstInpatientDrugOrderOutside;
-    private List<ServiceOrder> lstInpatientServiceOrder;
-    private List<InpatientDiagnose> lstInpatientDiagnose;
-    private int siterf;
     private String usercr;
     private String timecr;
     private String userup;
     private String timeup;
     private String computer;
-    private int ismodify;
+
+    private List<DrugOrder> lstInpatientDrugOrder;
+    private List<DrugOrderOutside> lstInpatientDrugOrderOutside;
+    private List<ServiceOrder> lstInpatientServiceOrder;
+    private List<InpatientDiagnose> lstInpatientDiagnose;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public HappeningDomain() {
     }
 
     protected HappeningDomain(Parcel in) {
+        siterf = in.readInt();
         idline = in.readString();
         idlink = in.readString();
         idlinedepartinfolog = in.readString();
         idtreatment = in.readString();
-        code = in.readString();
+        code = in.readFloat();
         sort = in.readInt();
         datecreate = in.readString();
-        body = in.readInt();
-        cyclic = in.readInt();
-        respiratory = in.readInt();
-        digest = in.readInt();
-        kidney = in.readInt();
-        nerve = in.readInt();
-        muscle = in.readInt();
-        nose = in.readInt();
-        teeth = in.readInt();
-        eye = in.readInt();
-        endocrine = in.readInt();
-        circui = in.readFloat();
-        blomin = in.readFloat();
-        blomax = in.readFloat();
-        heartb = in.readFloat();
+        body = in.readString();
+        cyclic = in.readString();
+        respiratory = in.readString();
+        digest = in.readString();
+        kidney = in.readString();
+        nerve = in.readString();
+        muscle = in.readString();
+        nose = in.readString();
+        teeth = in.readString();
+        eye = in.readString();
+        endocrine = in.readString();
+        circui = in.readString();
+        blomin = in.readInt();
+        blomax = in.readInt();
+        heartb = in.readInt();
         temper = in.readFloat();
         weight = in.readFloat();
         happening = in.readString();
         iddoctor = in.readInt();
         namedoctor = in.readString();
         active = in.readInt();
-        typemedicalname = in.readString();
         attributes = in.readString();
-        lstInpatientDrugOrder = in.createTypedArrayList(DrugOrder.CREATOR);
-        lstInpatientDrugOrderOutside = in.createTypedArrayList(DrugOrderOutside.CREATOR);
-        lstInpatientServiceOrder = in.createTypedArrayList(ServiceOrder.CREATOR);
-        siterf = in.readInt();
         usercr = in.readString();
         timecr = in.readString();
         userup = in.readString();
         timeup = in.readString();
         computer = in.readString();
-        ismodify = in.readInt();
+        lstInpatientDrugOrder = in.createTypedArrayList(DrugOrder.CREATOR);
+        lstInpatientDrugOrderOutside = in.createTypedArrayList(DrugOrderOutside.CREATOR);
+        lstInpatientServiceOrder = in.createTypedArrayList(ServiceOrder.CREATOR);
+        lstInpatientDiagnose = in.createTypedArrayList(InpatientDiagnose.CREATOR);
     }
 
     public static final Creator<HappeningDomain> CREATOR = new Creator<HappeningDomain>() {
@@ -107,6 +110,14 @@ public class HappeningDomain implements Parcelable {
             return new HappeningDomain[size];
         }
     };
+
+    public int getSiterf() {
+        return siterf;
+    }
+
+    public void setSiterf(int siterf) {
+        this.siterf = siterf;
+    }
 
     public String getIdline() {
         return idline;
@@ -140,11 +151,11 @@ public class HappeningDomain implements Parcelable {
         this.idtreatment = idtreatment;
     }
 
-    public String getCode() {
+    public float getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(float code) {
         this.code = code;
     }
 
@@ -164,123 +175,123 @@ public class HappeningDomain implements Parcelable {
         this.datecreate = datecreate;
     }
 
-    public int getBody() {
+    public String getBody() {
         return body;
     }
 
-    public void setBody(int body) {
+    public void setBody(String body) {
         this.body = body;
     }
 
-    public int getCyclic() {
+    public String getCyclic() {
         return cyclic;
     }
 
-    public void setCyclic(int cyclic) {
+    public void setCyclic(String cyclic) {
         this.cyclic = cyclic;
     }
 
-    public int getRespiratory() {
+    public String getRespiratory() {
         return respiratory;
     }
 
-    public void setRespiratory(int respiratory) {
+    public void setRespiratory(String respiratory) {
         this.respiratory = respiratory;
     }
 
-    public int getDigest() {
+    public String getDigest() {
         return digest;
     }
 
-    public void setDigest(int digest) {
+    public void setDigest(String digest) {
         this.digest = digest;
     }
 
-    public int getKidney() {
+    public String getKidney() {
         return kidney;
     }
 
-    public void setKidney(int kidney) {
+    public void setKidney(String kidney) {
         this.kidney = kidney;
     }
 
-    public int getNerve() {
+    public String getNerve() {
         return nerve;
     }
 
-    public void setNerve(int nerve) {
+    public void setNerve(String nerve) {
         this.nerve = nerve;
     }
 
-    public int getMuscle() {
+    public String getMuscle() {
         return muscle;
     }
 
-    public void setMuscle(int muscle) {
+    public void setMuscle(String muscle) {
         this.muscle = muscle;
     }
 
-    public int getNose() {
+    public String getNose() {
         return nose;
     }
 
-    public void setNose(int nose) {
+    public void setNose(String nose) {
         this.nose = nose;
     }
 
-    public int getTeeth() {
+    public String getTeeth() {
         return teeth;
     }
 
-    public void setTeeth(int teeth) {
+    public void setTeeth(String teeth) {
         this.teeth = teeth;
     }
 
-    public int getEye() {
+    public String getEye() {
         return eye;
     }
 
-    public void setEye(int eye) {
+    public void setEye(String eye) {
         this.eye = eye;
     }
 
-    public int getEndocrine() {
+    public String getEndocrine() {
         return endocrine;
     }
 
-    public void setEndocrine(int endocrine) {
+    public void setEndocrine(String endocrine) {
         this.endocrine = endocrine;
     }
 
-    public float getCircui() {
+    public String getCircui() {
         return circui;
     }
 
-    public void setCircui(float circui) {
+    public void setCircui(String circui) {
         this.circui = circui;
     }
 
-    public float getBlomin() {
+    public int getBlomin() {
         return blomin;
     }
 
-    public void setBlomin(float blomin) {
+    public void setBlomin(int blomin) {
         this.blomin = blomin;
     }
 
-    public float getBlomax() {
+    public int getBlomax() {
         return blomax;
     }
 
-    public void setBlomax(float blomax) {
+    public void setBlomax(int blomax) {
         this.blomax = blomax;
     }
 
-    public float getHeartb() {
+    public int getHeartb() {
         return heartb;
     }
 
-    public void setHeartb(float heartb) {
+    public void setHeartb(int heartb) {
         this.heartb = heartb;
     }
 
@@ -332,60 +343,12 @@ public class HappeningDomain implements Parcelable {
         this.active = active;
     }
 
-    public String getTypemedicalname() {
-        return typemedicalname;
-    }
-
-    public void setTypemedicalname(String typemedicalname) {
-        this.typemedicalname = typemedicalname;
-    }
-
     public String getAttributes() {
         return attributes;
     }
 
     public void setAttributes(String attributes) {
         this.attributes = attributes;
-    }
-
-    public List<DrugOrder> getLstInpatientDrugOrder() {
-        return lstInpatientDrugOrder;
-    }
-
-    public void setLstInpatientDrugOrder(List<DrugOrder> lstInpatientDrugOrder) {
-        this.lstInpatientDrugOrder = lstInpatientDrugOrder;
-    }
-
-    public List<DrugOrderOutside> getLstInpatientDrugOrderOutside() {
-        return lstInpatientDrugOrderOutside;
-    }
-
-    public void setLstInpatientDrugOrderOutside(List<DrugOrderOutside> lstInpatientDrugOrderOutside) {
-        this.lstInpatientDrugOrderOutside = lstInpatientDrugOrderOutside;
-    }
-
-    public List<ServiceOrder> getLstInpatientServiceOrder() {
-        return lstInpatientServiceOrder;
-    }
-
-    public void setLstInpatientServiceOrder(List<ServiceOrder> lstInpatientServiceOrder) {
-        this.lstInpatientServiceOrder = lstInpatientServiceOrder;
-    }
-
-    public List<InpatientDiagnose> getLstInpatientDiagnose() {
-        return lstInpatientDiagnose;
-    }
-
-    public void setLstInpatientDiagnose(List<InpatientDiagnose> lstInpatientDiagnose) {
-        this.lstInpatientDiagnose = lstInpatientDiagnose;
-    }
-
-    public int getSiterf() {
-        return siterf;
-    }
-
-    public void setSiterf(int siterf) {
-        this.siterf = siterf;
     }
 
     public String getUsercr() {
@@ -428,12 +391,36 @@ public class HappeningDomain implements Parcelable {
         this.computer = computer;
     }
 
-    public int getIsmodify() {
-        return ismodify;
+    public List<DrugOrder> getLstInpatientDrugOrder() {
+        return lstInpatientDrugOrder;
     }
 
-    public void setIsmodify(int ismodify) {
-        this.ismodify = ismodify;
+    public void setLstInpatientDrugOrder(List<DrugOrder> lstInpatientDrugOrder) {
+        this.lstInpatientDrugOrder = lstInpatientDrugOrder;
+    }
+
+    public List<DrugOrderOutside> getLstInpatientDrugOrderOutside() {
+        return lstInpatientDrugOrderOutside;
+    }
+
+    public void setLstInpatientDrugOrderOutside(List<DrugOrderOutside> lstInpatientDrugOrderOutside) {
+        this.lstInpatientDrugOrderOutside = lstInpatientDrugOrderOutside;
+    }
+
+    public List<ServiceOrder> getLstInpatientServiceOrder() {
+        return lstInpatientServiceOrder;
+    }
+
+    public void setLstInpatientServiceOrder(List<ServiceOrder> lstInpatientServiceOrder) {
+        this.lstInpatientServiceOrder = lstInpatientServiceOrder;
+    }
+
+    public List<InpatientDiagnose> getLstInpatientDiagnose() {
+        return lstInpatientDiagnose;
+    }
+
+    public void setLstInpatientDiagnose(List<InpatientDiagnose> lstInpatientDiagnose) {
+        this.lstInpatientDiagnose = lstInpatientDiagnose;
     }
 
     @Override
@@ -443,45 +430,44 @@ public class HappeningDomain implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
         dest.writeString(idline);
         dest.writeString(idlink);
         dest.writeString(idlinedepartinfolog);
         dest.writeString(idtreatment);
-        dest.writeString(code);
+        dest.writeFloat(code);
         dest.writeInt(sort);
         dest.writeString(datecreate);
-        dest.writeInt(body);
-        dest.writeInt(cyclic);
-        dest.writeInt(respiratory);
-        dest.writeInt(digest);
-        dest.writeInt(kidney);
-        dest.writeInt(nerve);
-        dest.writeInt(muscle);
-        dest.writeInt(nose);
-        dest.writeInt(teeth);
-        dest.writeInt(eye);
-        dest.writeInt(endocrine);
-        dest.writeFloat(circui);
-        dest.writeFloat(blomin);
-        dest.writeFloat(blomax);
-        dest.writeFloat(heartb);
+        dest.writeString(body);
+        dest.writeString(cyclic);
+        dest.writeString(respiratory);
+        dest.writeString(digest);
+        dest.writeString(kidney);
+        dest.writeString(nerve);
+        dest.writeString(muscle);
+        dest.writeString(nose);
+        dest.writeString(teeth);
+        dest.writeString(eye);
+        dest.writeString(endocrine);
+        dest.writeString(circui);
+        dest.writeInt(blomin);
+        dest.writeInt(blomax);
+        dest.writeInt(heartb);
         dest.writeFloat(temper);
         dest.writeFloat(weight);
         dest.writeString(happening);
         dest.writeInt(iddoctor);
         dest.writeString(namedoctor);
         dest.writeInt(active);
-        dest.writeString(typemedicalname);
         dest.writeString(attributes);
-        dest.writeTypedList(lstInpatientDrugOrder);
-        dest.writeTypedList(lstInpatientDrugOrderOutside);
-        dest.writeTypedList(lstInpatientServiceOrder);
-        dest.writeInt(siterf);
         dest.writeString(usercr);
         dest.writeString(timecr);
         dest.writeString(userup);
         dest.writeString(timeup);
         dest.writeString(computer);
-        dest.writeInt(ismodify);
+        dest.writeTypedList(lstInpatientDrugOrder);
+        dest.writeTypedList(lstInpatientDrugOrderOutside);
+        dest.writeTypedList(lstInpatientServiceOrder);
+        dest.writeTypedList(lstInpatientDiagnose);
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.fragment.Happening;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
@@ -77,7 +78,13 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
         holder.icCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClick != null) onItemClick.onCopy(lists.get(holder.getAdapterPosition()));
+                HappeningDomain happening = null;
+                try {
+                    happening = (HappeningDomain) lists.get(holder.getAdapterPosition()).clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+                if (onItemClick != null && happening != null) onItemClick.onCopy(happening);
             }
         });
 
@@ -146,6 +153,12 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
         for (int i = 0; i < this.lists.size(); i++) {
             expand.add(0);
         }
+    }
+
+    public void removeItem(int position) {
+        this.lists.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, this.lists.size());
     }
 
     public interface OnItemClick {

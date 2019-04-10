@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DrugOrder implements Parcelable {
+    private int siterf;
     private String idline;
     private String idhappening;
     private int iddrug;
@@ -21,22 +22,18 @@ public class DrugOrder implements Parcelable {
     private float total;
     private String usage;
     private String desc;
-    private float qtymor;
-    private float qtydin;
-    private float qtyaft;
-    private float qtynig;
-    private float qtyday;
-    private int insurance;
-    private int type;
+    private String qtymor;
+    private String qtydin;
+    private String qtyaft;
+    private String qtynig;
+    private int qtyday;
+    private int idstore;
     private String attributes;
     private String mmyy;
     private String year;
-    private int idstore;
-    private String namestore;
+    private int insurance;
+    private int type;
     private int active;
-    private String date;
-    private String code;
-    private int siterf;
     private String usercr;
     private String timecr;
     private String userup;
@@ -47,6 +44,7 @@ public class DrugOrder implements Parcelable {
     }
 
     protected DrugOrder(Parcel in) {
+        siterf = in.readInt();
         idline = in.readString();
         idhappening = in.readString();
         iddrug = in.readInt();
@@ -64,22 +62,18 @@ public class DrugOrder implements Parcelable {
         total = in.readFloat();
         usage = in.readString();
         desc = in.readString();
-        qtymor = in.readFloat();
-        qtydin = in.readFloat();
-        qtyaft = in.readFloat();
-        qtynig = in.readFloat();
-        qtyday = in.readFloat();
-        insurance = in.readInt();
-        type = in.readInt();
+        qtymor = in.readString();
+        qtydin = in.readString();
+        qtyaft = in.readString();
+        qtynig = in.readString();
+        qtyday = in.readInt();
+        idstore = in.readInt();
         attributes = in.readString();
         mmyy = in.readString();
         year = in.readString();
-        idstore = in.readInt();
-        namestore = in.readString();
+        insurance = in.readInt();
+        type = in.readInt();
         active = in.readInt();
-        date = in.readString();
-        code = in.readString();
-        siterf = in.readInt();
         usercr = in.readString();
         timecr = in.readString();
         userup = in.readString();
@@ -98,6 +92,14 @@ public class DrugOrder implements Parcelable {
             return new DrugOrder[size];
         }
     };
+
+    public int getSiterf() {
+        return siterf;
+    }
+
+    public void setSiterf(int siterf) {
+        this.siterf = siterf;
+    }
 
     public String getIdline() {
         return idline;
@@ -235,60 +237,52 @@ public class DrugOrder implements Parcelable {
         this.desc = desc;
     }
 
-    public float getQtymor() {
+    public String getQtymor() {
         return qtymor;
     }
 
-    public void setQtymor(float qtymor) {
+    public void setQtymor(String qtymor) {
         this.qtymor = qtymor;
     }
 
-    public float getQtydin() {
+    public String getQtydin() {
         return qtydin;
     }
 
-    public void setQtydin(float qtydin) {
+    public void setQtydin(String qtydin) {
         this.qtydin = qtydin;
     }
 
-    public float getQtyaft() {
+    public String getQtyaft() {
         return qtyaft;
     }
 
-    public void setQtyaft(float qtyaft) {
+    public void setQtyaft(String qtyaft) {
         this.qtyaft = qtyaft;
     }
 
-    public float getQtynig() {
+    public String getQtynig() {
         return qtynig;
     }
 
-    public void setQtynig(float qtynig) {
+    public void setQtynig(String qtynig) {
         this.qtynig = qtynig;
     }
 
-    public float getQtyday() {
+    public int getQtyday() {
         return qtyday;
     }
 
-    public void setQtyday(float qtyday) {
+    public void setQtyday(int qtyday) {
         this.qtyday = qtyday;
     }
 
-    public int getInsurance() {
-        return insurance;
+    public int getIdstore() {
+        return idstore;
     }
 
-    public void setInsurance(int insurance) {
-        this.insurance = insurance;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
+    public void setIdstore(int idstore) {
+        this.idstore = idstore;
     }
 
     public String getAttributes() {
@@ -315,20 +309,20 @@ public class DrugOrder implements Parcelable {
         this.year = year;
     }
 
-    public int getIdstore() {
-        return idstore;
+    public int getInsurance() {
+        return insurance;
     }
 
-    public void setIdstore(int idstore) {
-        this.idstore = idstore;
+    public void setInsurance(int insurance) {
+        this.insurance = insurance;
     }
 
-    public String getNamestore() {
-        return namestore;
+    public int getType() {
+        return type;
     }
 
-    public void setNamestore(String namestore) {
-        this.namestore = namestore;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getActive() {
@@ -337,30 +331,6 @@ public class DrugOrder implements Parcelable {
 
     public void setActive(int active) {
         this.active = active;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public int getSiterf() {
-        return siterf;
-    }
-
-    public void setSiterf(int siterf) {
-        this.siterf = siterf;
     }
 
     public String getUsercr() {
@@ -410,6 +380,7 @@ public class DrugOrder implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
         dest.writeString(idline);
         dest.writeString(idhappening);
         dest.writeInt(iddrug);
@@ -427,22 +398,18 @@ public class DrugOrder implements Parcelable {
         dest.writeFloat(total);
         dest.writeString(usage);
         dest.writeString(desc);
-        dest.writeFloat(qtymor);
-        dest.writeFloat(qtydin);
-        dest.writeFloat(qtyaft);
-        dest.writeFloat(qtynig);
-        dest.writeFloat(qtyday);
-        dest.writeInt(insurance);
-        dest.writeInt(type);
+        dest.writeString(qtymor);
+        dest.writeString(qtydin);
+        dest.writeString(qtyaft);
+        dest.writeString(qtynig);
+        dest.writeInt(qtyday);
+        dest.writeInt(idstore);
         dest.writeString(attributes);
         dest.writeString(mmyy);
         dest.writeString(year);
-        dest.writeInt(idstore);
-        dest.writeString(namestore);
+        dest.writeInt(insurance);
+        dest.writeInt(type);
         dest.writeInt(active);
-        dest.writeString(date);
-        dest.writeString(code);
-        dest.writeInt(siterf);
         dest.writeString(usercr);
         dest.writeString(timecr);
         dest.writeString(userup);
