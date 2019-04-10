@@ -1,8 +1,13 @@
 package ptt.vn.icaremobileapp.model.inpatient;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class InpatientDomain {
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
+
+public class InpatientDomain implements Parcelable {
     private String idlink; /*Id liên kết (toàn đợt nội trú)*/
     private String medicalcode; /*Mã y tế*/
     private String year; /*Năm*/
@@ -22,9 +27,56 @@ public class InpatientDomain {
     private int active; /*Đang sử dụng*/
     private List<InpatientDiagnose> lstInpatientDiagnose;
     private List<InpatientDepartment> lstInpatientDepartment;
+    private int actioninpatient;
+
+    private String computer;
+    private int siterf;
+    private String usercr;
+    private int idstatusprofile;
+    private String treatmentresults;
+
+    private PatientDomain patient;
 
     public InpatientDomain() {
     }
+
+    protected InpatientDomain(Parcel in) {
+        idlink = in.readString();
+        medicalcode = in.readString();
+        year = in.readString();
+        patid = in.readString();
+        idobject = in.readInt();
+        hospitalizationdate = in.readString();
+        reasonhospitalization = in.readString();
+        idhospitalizationtype = in.readInt();
+        idplaceintro = in.readInt();
+        iddoctor = in.readInt();
+        idexporttype = in.readInt();
+        iddisfrohostype = in.readInt();
+        disfrohosdate = in.readString();
+        idhostrantype = in.readInt();
+        idhostranto = in.readInt();
+        attributes = in.readString();
+        active = in.readInt();
+        actioninpatient = in.readInt();
+        computer = in.readString();
+        siterf = in.readInt();
+        usercr = in.readString();
+        idstatusprofile = in.readInt();
+        treatmentresults = in.readString();
+    }
+
+    public static final Creator<InpatientDomain> CREATOR = new Creator<InpatientDomain>() {
+        @Override
+        public InpatientDomain createFromParcel(Parcel in) {
+            return new InpatientDomain(in);
+        }
+
+        @Override
+        public InpatientDomain[] newArray(int size) {
+            return new InpatientDomain[size];
+        }
+    };
 
     public String getIdlink() {
         return idlink;
@@ -176,5 +228,93 @@ public class InpatientDomain {
 
     public void setLstInpatientDepartment(List<InpatientDepartment> lstInpatientDepartment) {
         this.lstInpatientDepartment = lstInpatientDepartment;
+    }
+
+    public int getActioninpatient() {
+        return actioninpatient;
+    }
+
+    public void setActioninpatient(int actioninpatient) {
+        this.actioninpatient = actioninpatient;
+    }
+
+    public String getComputer() {
+        return computer;
+    }
+
+    public void setComputer(String computer) {
+        this.computer = computer;
+    }
+
+    public int getSiterf() {
+        return siterf;
+    }
+
+    public void setSiterf(int siterf) {
+        this.siterf = siterf;
+    }
+
+    public String getUsercr() {
+        return usercr;
+    }
+
+    public void setUsercr(String usercr) {
+        this.usercr = usercr;
+    }
+
+    public int getIdstatusprofile() {
+        return idstatusprofile;
+    }
+
+    public void setIdstatusprofile(int idstatusprofile) {
+        this.idstatusprofile = idstatusprofile;
+    }
+
+    public String getTreatmentresults() {
+        return treatmentresults;
+    }
+
+    public void setTreatmentresults(String treatmentresults) {
+        this.treatmentresults = treatmentresults;
+    }
+
+    public PatientDomain getPatient() {
+        return patient;
+    }
+
+    public void setPatient(PatientDomain patient) {
+        this.patient = patient;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idlink);
+        dest.writeString(medicalcode);
+        dest.writeString(year);
+        dest.writeString(patid);
+        dest.writeInt(idobject);
+        dest.writeString(hospitalizationdate);
+        dest.writeString(reasonhospitalization);
+        dest.writeInt(idhospitalizationtype);
+        dest.writeInt(idplaceintro);
+        dest.writeInt(iddoctor);
+        dest.writeInt(idexporttype);
+        dest.writeInt(iddisfrohostype);
+        dest.writeString(disfrohosdate);
+        dest.writeInt(idhostrantype);
+        dest.writeInt(idhostranto);
+        dest.writeString(attributes);
+        dest.writeInt(active);
+        dest.writeInt(actioninpatient);
+        dest.writeString(computer);
+        dest.writeInt(siterf);
+        dest.writeString(usercr);
+        dest.writeInt(idstatusprofile);
+        dest.writeString(treatmentresults);
     }
 }

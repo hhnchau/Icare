@@ -9,6 +9,7 @@ import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.inputmethod.EditorInfo;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
@@ -18,6 +19,7 @@ public class MyInputText extends CardView {
     private TextInputLayout textInputLayout;
     private MyAutoCompleteTextView myAutoCompleteTextView;
     private CharSequence hint, text;
+    private int inputType;
 
     public MyInputText(@NonNull Context context) {
         super(context);
@@ -40,6 +42,7 @@ public class MyInputText extends CardView {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyInputText);
         hint = typedArray.getString(R.styleable.MyInputText_hint);
         text = typedArray.getString(R.styleable.MyInputText_txt);
+        inputType = typedArray.getInt(R.styleable.MyInputText_android_inputType, EditorInfo.TYPE_NULL);
         typedArray.recycle();
     }
 
@@ -53,6 +56,8 @@ public class MyInputText extends CardView {
 
             if (!TextUtils.isEmpty(hint)) textInputLayout.setHint(hint);
             if (!TextUtils.isEmpty(text)) myAutoCompleteTextView.setText(text);
+            if (inputType != EditorInfo.TYPE_NULL) myAutoCompleteTextView.setInputType(inputType);
+
         }
     }
 
@@ -62,7 +67,11 @@ public class MyInputText extends CardView {
         myAutoCompleteTextView.setEnabled(selected);
     }
 
-    public CharSequence getText(){
+    public void setText(@NonNull CharSequence charSequence) {
+        myAutoCompleteTextView.setText(charSequence);
+    }
+
+    public CharSequence getText() {
         return myAutoCompleteTextView.getText();
     }
 

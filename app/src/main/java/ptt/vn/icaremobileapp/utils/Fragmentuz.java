@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.utils;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -17,8 +18,10 @@ import ptt.vn.icaremobileapp.fragment.ServiceItem;
 import ptt.vn.icaremobileapp.fragment.ThamKham;
 
 public class Fragmentuz {
+    public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
+    public static final String BUNDLE_KEY_HAPPENING = "HAPPENING";
 
-    public static void addMainFrame(FragmentManager fragmentManager, Fragmentez fzg, int frame, Directionez direction) {
+    public static void addMainFrame(FragmentManager fragmentManager, Bundle bundle, Fragmentez fzg, int frame, Directionez direction) {
 
         Fragment frg = null;
         String name = null;
@@ -61,6 +64,9 @@ public class Fragmentuz {
                 stack = Fragmentez.DASHBOARD.name();
                 break;
         }
+
+        if (frg != null && bundle != null)
+            frg.setArguments(bundle);
 
         if (fragmentManager != null && frg != null)
             fragmentManager

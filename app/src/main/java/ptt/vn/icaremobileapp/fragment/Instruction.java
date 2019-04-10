@@ -13,11 +13,13 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
 import ptt.vn.icaremobileapp.expandcardview.ExpandableCardView;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.togglebutton.MyTabButton;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
 public class Instruction extends BaseFragment {
     private View view;
+    private HappeningDomain happening;
     private FragmentManager fragmentManager;
 
 
@@ -25,6 +27,12 @@ public class Instruction extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.instruction, container, false);
+        if (getArguments() != null)
+            happening = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
+
+
+
+
         if (getActivity() != null)
             fragmentManager = getActivity().getSupportFragmentManager();
 

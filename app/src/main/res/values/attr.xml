@@ -25,6 +25,7 @@
     <declare-styleable name="MyInputText">
         <attr name="txt" format="string" />
         <attr name="hint" format="string" />
+        <attr name="android:inputType"/>
     </declare-styleable>
 
 </resources>

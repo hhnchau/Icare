@@ -49,7 +49,7 @@
                     app:layout_constraintVertical_bias="0" />
 
                 <TextView
-                    android:id="@+id/tvPrice"
+                    android:id="@+id/edtDoctor"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -64,17 +64,14 @@
                     app:layout_constraintVertical_bias="0" />
 
 
-                <ImageView
+                <View
                     android:id="@+id/icCheck"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:contentDescription="@string/img_des"
-                    android:padding="@dimen/dp_20"
-                    android:src="@mipmap/ic_copy"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guide"
-                    app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                    app:layout_constraintTop_toBottomOf="@id/edtDoctor"
                     app:layout_constraintVertical_bias="1" />
 
 
@@ -99,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/img_des"
                     android:padding="@dimen/dp_20"
-                    android:src="@mipmap/ic_copy"
+                    android:src="@mipmap/ic_edit"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/icDelete"
                     app:layout_constraintStart_toEndOf="@id/icCopy"
@@ -159,24 +156,27 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/boxDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Bác Sĩ"
+                    app:label="@string/txt_doctor"
                     app:value="Nguyễn Văn Bác Sĩ" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvCircui"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Mạch"
+                    app:label="@string/txt_circuit"
                     app:value="120" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/edtBlood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Huyết Áp"
+                    app:label="@string/txt_blomin"
                     app:value="39" />
 
             </LinearLayout>
@@ -189,24 +189,27 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvTemper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Nhiệt Độ"
+                    app:label="@string/txt_temper"
                     app:value="160" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvHeartb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Nhịp Tim"
+                    app:label="@string/txt_heartb"
                     app:value="60" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/edtWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Cân Nặng"
+                    app:label="@string/txt_weight"
                     app:value="60" />
             </LinearLayout>
 

@@ -11,12 +11,16 @@ import android.widget.TextView;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class InpatientListAdapter extends RecyclerView.Adapter<InpatientListAdapter.MyViewHolder> {
 
-    private List<String> lists;
+    private List<InpatientDomain> lists;
 
-    public InpatientListAdapter(List<String> lists) {
+    public InpatientListAdapter(List<InpatientDomain> lists) {
         this.lists = lists;
     }
 
@@ -30,17 +34,29 @@ public class InpatientListAdapter extends RecyclerView.Adapter<InpatientListAdap
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-//        holder.name.setText(lists.get(position));
-//        holder.age.setText(lists.get(position) + position);
-//
-        holder.cv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClick != null)
-                    onItemClick.onClick(holder.getAdapterPosition());
-            }
-        });
+        InpatientDomain inpatientDomain = lists.get(position);
+        if (inpatientDomain != null) {
+            PatientDomain patientDomain = inpatientDomain.getPatient();
 
+            if (patientDomain != null) {
+                holder.tvName.setText(patientDomain.getPATIENTNAME());
+                holder.tvBirthday.setValues(Utils.dateConvert(patientDomain.getBirthday(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyy));
+                holder.tvGender.setValues(patientDomain.getGender());
+            }
+
+            holder.tvCode.setValues(inpatientDomain.getPatid());
+            //holder.tvRoom.setValues(inpatientDomain.getPatid());
+            holder.tvDate.setValues("");
+            //holder.tvBed.setValues(inpatientDomain.getPatid());
+
+            holder.cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClick != null)
+                        onItemClick.onClick(holder.getAdapterPosition());
+                }
+            });
+        }
     }
 
     @Override
@@ -49,14 +65,31 @@ public class InpatientListAdapter extends RecyclerView.Adapter<InpatientListAdap
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
+        private CardView cv;
+        private TextView tvName;
+        private MyTextView tvCode;
+        private MyTextView tvBirthday;
+        private MyTextView tvRoom;
+        private MyTextView tvDate;
+        private MyTextView tvGender;
+        private MyTextView tvBed;
 
         MyViewHolder(View itemView) {
             super(itemView);
-
             cv = itemView.findViewById(R.id.cv);
+            tvName = itemView.findViewById(R.id.edtHappening);
+            tvCode = itemView.findViewById(R.id.tvCode);
+            tvBirthday = itemView.findViewById(R.id.tvBirthday);
+            tvRoom = itemView.findViewById(R.id.tvRoom);
+            tvDate = itemView.findViewById(R.id.edtDoctor);
+            tvGender = itemView.findViewById(R.id.tvGender);
+            tvBed = itemView.findViewById(R.id.tvBed);
 
         }
+    }
+
+    public void setItems(List<InpatientDomain> lists) {
+        this.lists = lists;
     }
 
     public interface OnItemClick {

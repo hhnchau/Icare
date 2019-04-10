@@ -7,12 +7,12 @@
     android:orientation="vertical">
 
     <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvPatientAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_16"
-        app:label="Địa Chỉ"
-        app:value="481A Bờ Bao Tân Thắng - Phường Sơn Kỳ - Quận Tân Phú - Hồ Chí Minh" />
+        app:label="@string/txt__patient_address" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,25 +28,25 @@
             android:orientation="horizontal">
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Mã Bệnh Nhân"
-                app:value="01234568789" />
+                app:label="@string/txt_patient_code" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Ngày Sinh"
-                app:value="12/06/1987" />
+                app:label="@string/txt__patient_birthday" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientSex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Giới Tính"
-                app:value="Nam" />
+                app:label="@string/txt__patient_sex" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,25 +56,25 @@
             android:orientation="horizontal">
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientNation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Dân tộc"
-                app:value="Kinh" />
+                app:label="@string/txt__patient_nation" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvpPatientPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Số ĐT"
-                app:value="0909123456" />
+                app:label="@string/txt__patient_phone" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientJob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Nghề Nghiệp"
-                app:value="Developer" />
+                app:label="@string/txt__patient_job" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,25 +84,25 @@
             android:orientation="horizontal">
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientRelative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Người Thân"
-                app:value="Mẹ" />
+                app:label="@string/txt__patient_relative" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvPatientObject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Đối Tượng"
-                app:value="Dịch vụ" />
+                app:label="@string/txt__patient_object" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvInsuranceCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Số BHYT"
-                app:value="GD 4797932547411" />
+                app:label="@string/txt__insurance_code" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,27 +112,25 @@
             android:orientation="horizontal">
 
             <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvInsuranceStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Từ Ngày"
-                app:value="01/01/2019" />
+                app:label="@string/txt__insurance_start" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
-                android:id="@+id/birthday"
+                android:id="@+id/tvInsuranceEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Đến Ngày"
-                app:value="31/12/2020" />
+                app:label="@string/txt__insurance_end" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
-                android:id="@+id/gender"
+                android:id="@+id/tvInsuranceInit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:label="Nơi ĐK.KCB.BĐ"
-                app:value="BV.Chợ Rẫy" />
+                app:label="@string/txt__insurance_init" />
         </LinearLayout>
 
     </LinearLayout>

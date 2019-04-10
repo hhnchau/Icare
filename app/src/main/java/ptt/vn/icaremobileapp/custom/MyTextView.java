@@ -64,4 +64,11 @@ public class MyTextView extends LinearLayout {
         txtValue.setText(value);
     }
 
+    public void setValues(@NonNull CharSequence value) {
+        txtValue.setText(value);
+    }
+
+    public void setLabel(@NonNull CharSequence label) {
+        txtLabel.setText(label);
+    }
 }

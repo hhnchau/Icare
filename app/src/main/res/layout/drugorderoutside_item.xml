@@ -38,7 +38,7 @@
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/edtDoctor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -58,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_drop_down"
                 android:layout_margin="@dimen/dp_8"
-                app:layout_constraintStart_toEndOf="@id/tvPrice"
-                app:layout_constraintBottom_toBottomOf="@id/tvPrice"
+                app:layout_constraintStart_toEndOf="@id/edtDoctor"
+                app:layout_constraintBottom_toBottomOf="@id/edtDoctor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvPrice"
+                app:layout_constraintTop_toTopOf="@id/edtDoctor"
                 android:contentDescription="@string/img_des" />
 
 
@@ -75,7 +75,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guide"
-                app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                app:layout_constraintTop_toBottomOf="@id/edtDoctor"
                 app:layout_constraintVertical_bias="1" />
 
 

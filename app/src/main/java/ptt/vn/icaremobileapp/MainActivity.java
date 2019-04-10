@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Fragmentuz.addMainFrame(fragmentManager, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
+        Fragmentuz.addMainFrame(fragmentManager,null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
 
 
 //        MyAutoCompleteTextView myAutoCompleteTextView = findViewById(R.id.autocomplete);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 //        AutoCompleteTextViewAdapter adapter = new AutoCompleteTextViewAdapter(this, lst);
 //        myAutoCompleteTextView.setAdapter(adapter);
 
-        //getInpatient();
+
 
 
     }
@@ -140,14 +140,14 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (lstDrawer.get(position).getFzg()){
                             case INPATIENT_LIST:
-                                Fragmentuz.addMainFrame(fragmentManager, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
+                                Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
                                 //fragmentManager.popBackStack("DASHBOARD", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
 
                                 break;
                             case DASHBOARD:
-                                Fragmentuz.addMainFrame(fragmentManager, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
+                                Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
                                 //fragmentManager.popBackStack("INPATIENT_LIST", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                                 break;
                         }
@@ -184,33 +184,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @SuppressWarnings("unchecked")
-    private void getInpatient() {
-        final List<Para> lstPara = new ArrayList<>();
-        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, 1));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, 1));
-        lstPara.add(new Para(FieldName.idmedexa, Operation.Equals, DataTypeOfValue.Int64, 14));
-        ApiController.getInstance().getFilter(this, 0, 100, Method.GetInpatientInDepartment, lstPara, new ACallback() {
-            @Override
-            public void response(List<Object> lstObj) {
-                if (lstObj != null && lstObj.size() > 0)
-                    lstInpatientDomain = (List<InpatientDomain>) (Object) lstObj;
-
-
-//                ApiController.getInstance().getTest(MainActivity.this, 0, 100, Method.GetInpatientInDepartment, lstPara, new ACallback() {
-//                    @Override
-//                    public void response(List<InpatientDomain> lstObj) {
-//
-//                    }
-//                });
-
-            }
-        });
-    }
-
-
     private void saveInpatient(InpatientDomain inpatientDomain) {
-        ApiController.getInstance().save(this, inpatientDomain, new ACallback() {
+        ApiController.getInstance().save(this, inpatientDomain, new ACallback<Object>() {
             @Override
             public void response(List<Object> lstObj) {
 

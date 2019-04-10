@@ -1,21 +1,39 @@
 package ptt.vn.icaremobileapp.api;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.alert.Alert;
+import ptt.vn.icaremobileapp.application.MyApplication;
 import ptt.vn.icaremobileapp.loading.Loading;
 import ptt.vn.icaremobileapp.log.MyLog;
+import ptt.vn.icaremobileapp.model.RestResult;
+import ptt.vn.icaremobileapp.model.filter.DataTypeOfValue;
+import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.filter.Method;
+import ptt.vn.icaremobileapp.model.filter.Operation;
 import ptt.vn.icaremobileapp.model.filter.Para;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
-import ptt.vn.icaremobileapp.model.inpatient.ResultInpatient;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
+import ptt.vn.icaremobileapp.model.filter.Service;
+import ptt.vn.icaremobileapp.model.patient.PatientResponse;
+import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
+import ptt.vn.icaremobileapp.model.sysapi.UrlModel;
+
+import static ptt.vn.icaremobileapp.model.filter.Method.GetListPatient;
 
 
 /**
@@ -32,21 +50,62 @@ public class ApiController {
         return instance;
     }
 
+    private String ip = "172.16.0.13";
+
+    public void getSysApi(final Context context) {
+//        CompositeManager.add(Api.apiService.getSysApi()
+//                .subscribeOn(Schedulers.io())
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(new DisposableObserver<SysApiModel>() {
+//                    @Override
+//                    public void onNext(SysApiModel dataModel) {
+//                        List<UrlModel> lst = dataModel.getData();
+//                        Map<String, UrlModel> map = new HashMap<>();
+//                        for (UrlModel i : lst) {
+//                            for (UrlModel u : i.getLstApiValueObject()) {
+//                                map.put(u.getCode(), u);
+//                            }
+//                        }
+//                        ((MyApplication) context).setUrlModelMap(map);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        MyLog.print(context, e.getMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                    }
+//                }));
+    }
+
     @SuppressWarnings("unchecked")
-    public void getFilter(final Context context, final int _offset, final int _limit, final Method method, final List<Para> lstPara, final ACallback aCallback) {
+    public void getInpatient(final Context context, final int _offset, final int _limit, final Method method, final int idmedexa, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.INPATIENT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            //return;
+        }
+
+        url = "http://"+ip+":7770/InpatientService/";
+
         Loading.getInstance().show(context);
-        CompositeManager.add(Api.apiService.getFilter(new FilterModel(_offset, _limit, method, lstPara).toString())
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.idmedexa, Operation.Equals, DataTypeOfValue.Int64, idmedexa));
+        CompositeManager.add(Api.apiService.getInpatient(url + "filter", new FilterModel(_offset, _limit, method, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<ResultInpatient>() {
+                .subscribeWith(new DisposableObserver<InpatientResponse>() {
 
                     @Override
-                    public void onNext(ResultInpatient result) {
-                        if (result != null)
-                            if (result.getCode() == 0 && aCallback != null)
-                                aCallback.response((List<Object>) (List) result.getData());
-                            else
-                                MyLog.print(context, String.valueOf(result.getCode()));
+                    public void onNext(InpatientResponse inpatientModel) {
+                        if (inpatientModel.getCode() == 0 && aCallback != null)
+                            aCallback.response(inpatientModel.getData());
+                        else
+                            MyLog.print(context, String.valueOf(inpatientModel.getCode()));
                     }
 
                     @Override
@@ -56,7 +115,200 @@ public class ApiController {
                         connectAgain(context, new OnRetry() {
                             @Override
                             public void request() {
-                                getFilter(context, _offset, _limit, method, lstPara, aCallback);
+                                getInpatient(context, _offset, _limit, method, idmedexa, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getPatientByPatId(final Context context, final List<InpatientDomain> lstInpatient, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.PAT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            //return;
+        }
+
+        url = "http://"+ip+":7770/PatientService/";
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        for (InpatientDomain item : lstInpatient)
+            lstPara.add(new Para(FieldName.patid, Operation.Equals, DataTypeOfValue.Guid, item.getPatid()));
+        CompositeManager.add(Api.apiService.getPatientByPatId(url + "filter", new FilterModel(0, 10000, GetListPatient, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<PatientResponse>() {
+
+                    @Override
+                    public void onNext(PatientResponse patientModel) {
+                        if (patientModel.getCode() == 0 && aCallback != null)
+                            aCallback.response(patientModel.getData());
+                        else
+                            MyLog.print(context, String.valueOf(patientModel.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getPatientByPatId(context, lstInpatient, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getRegisterByIdLink(final Context context, final int _offset, final int _limit, final Method method, final int idmedexa, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.REG);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.idmedexa, Operation.Equals, DataTypeOfValue.Int64, idmedexa));
+        CompositeManager.add(Api.apiService.getInpatient(url + "filter", new FilterModel(_offset, _limit, method, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InpatientResponse>() {
+
+                    @Override
+                    public void onNext(InpatientResponse inpatientModel) {
+                        if (inpatientModel.getCode() == 0 && aCallback != null)
+                            aCallback.response(inpatientModel.getData());
+                        else
+                            MyLog.print(context, String.valueOf(inpatientModel.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getInpatient(context, _offset, _limit, method, idmedexa, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getHappening(final Context context, final int _offset, final int _limit, final Method method, final String idlink, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.INPATIENTHAPPENING);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            //return;
+        }
+
+        url = "http://"+ip+":7770/InpatientHappeningService/";
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.idlink, Operation.Equals, DataTypeOfValue.Guid, idlink));
+        CompositeManager.add(Api.apiService.getHappening(url + "filter", new FilterModel(_offset, _limit, method, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<HappeningResponse>() {
+
+                    @Override
+                    public void onNext(HappeningResponse happeningResponse) {
+                        if (happeningResponse.getCode() == 0 && aCallback != null)
+                            aCallback.response(happeningResponse.getData());
+                        else
+                            MyLog.print(context, String.valueOf(happeningResponse.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getHappening(context, _offset, _limit, method, idlink, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void saveHappening(final Context context, final HappeningDomain happening, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.INPATIENTHAPPENING);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            //return;
+        }
+
+        url = "http://"+ip+":7770/InpatientHappeningService/";
+
+        Loading.getInstance().show(context);
+
+        CompositeManager.add(Api.apiService.saveHappening(url, happening)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ResponseBody>() {
+
+                    @Override
+                    public void onNext(ResponseBody happeningResponse) {
+                        int i = 0;
+                        //if (happeningResponse.getCode() == 0 && aCallback != null)
+                            //aCallback.response(happeningResponse.getData());
+                        //else
+                            //MyLog.print(context, String.valueOf(happeningResponse.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                saveHappening(context, happening, aCallback);
                             }
                         });
 

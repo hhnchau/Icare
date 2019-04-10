@@ -52,7 +52,7 @@ public class ChipViewAdapter extends ChipAdapter{
                 cb.setImageResource(R.drawable.ic_uncheck);
             }
 
-            TextView tvService = view.findViewById(R.id.tvName);
+            TextView tvService = view.findViewById(R.id.edtHappening);
             tvService.setText(Utils.spannable(data.getName(), chr));
 
             TextView tvUnit = view.findViewById(R.id.tvAddress);

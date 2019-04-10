@@ -35,6 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:label="Mã Bệnh Nhân"
@@ -42,6 +43,7 @@
 
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvBirthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
@@ -50,6 +52,7 @@
                     app:value="20/12/1988" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvRoom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:label="Số Phòng"
@@ -72,6 +75,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/edtDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:label="Ngày Vào Khoa"
@@ -79,6 +83,7 @@
 
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
@@ -88,6 +93,7 @@
 
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvBed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:label="Số Giường"
@@ -114,14 +120,14 @@
         app:layout_constraintTop_toTopOf="@id/cv">
 
         <TextView
-            android:id="@+id/header1"
+            android:id="@+id/edtHappening"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_16"
             android:gravity="center"
+            android:text="Nguyễn Văn BS"
             android:padding="@dimen/dp_8"
-            android:text="Nguyễn Văn A"
             android:textColor="@color/wh"
             android:textSize="@dimen/sp_20"
             android:textStyle="bold" />

@@ -78,7 +78,7 @@ public class ServiceItem extends BaseFragment {
                 Toast.makeText(getActivity(), "" + p, Toast.LENGTH_SHORT).show();
 
                 if (getActivity() != null) {
-                    Fragmentuz.addMainFrame(getActivity().getSupportFragmentManager(), Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
+                    Fragmentuz.addMainFrame(getActivity().getSupportFragmentManager(), null, Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
                 }
             }
         });

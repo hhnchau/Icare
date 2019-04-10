@@ -4,6 +4,6 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 
-public interface ACallback {
-    void response(List<Object> lstObj);
+public interface ACallback<T> {
+    void response(List<T> list);
 }

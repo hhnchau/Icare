@@ -17,14 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvName"
+        app:layout_constraintEnd_toStartOf="@id/edtHappening"
         android:scaleType="centerInside"
         android:textSize="16dp"
         android:padding="4dp"
         android:contentDescription="@string/img_des" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/edtHappening"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/txt_service_name"
@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_weight="1.5"
         app:layout_constraintTop_toTopOf="@id/tvSn"
         app:layout_constraintBottom_toBottomOf="@id/tvSn"
-        app:layout_constraintStart_toEndOf="@id/tvName"
+        app:layout_constraintStart_toEndOf="@id/edtHappening"
         app:layout_constraintEnd_toStartOf="@id/tvGender"
         android:textSize="16dp"
         android:padding="4dp" />

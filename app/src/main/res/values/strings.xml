@@ -1,11 +1,39 @@
 <resources>
     <string name="app_name">ICareMobileApp</string>
 
-    <string name="img_des"/>
+    <string name="img_des" />
     <string name="btn_yes">OK</string>
     <string name="btn_no">No</string>
     <string name="btn_save">Lưu</string>
+    <string name="txt_service_not_found">Service Not Found</string>
     <string name="txt_not_connect">Không thể kết nối tới server!!!</string>
+
+    <string name="txt__patient_address">Địa Chỉ</string>
+    <string name="txt_patient_code">Mã Bệnh Nhân</string>
+    <string name="txt__patient_birthday">Ngày Sinh</string>
+    <string name="txt__patient_sex">Giới Tính</string>
+    <string name="txt__patient_nation">Dân Tộc</string>
+    <string name="txt__patient_phone">Số ĐT</string>
+    <string name="txt__patient_job">Nghề Nghiệp</string>
+    <string name="txt__patient_relative">Thân Nhân</string>
+    <string name="txt__patient_object">Đối Tượng</string>
+    <string name="txt__insurance_code">Số BHYT</string>
+    <string name="txt__insurance_start">Từ Ngày</string>
+    <string name="txt__insurance_end">Đến Ngày</string>
+    <string name="txt__insurance_init">Mã ĐK.KCBBĐ</string>
+
+    <string name="txt_doctor">Bác Sĩ</string>
+    <string name="txt_circuit">Mạch</string>
+    <string name="txt_blomin">Huyết Áp</string>
+    <string name="txt_temper">Nhiệt Độ</string>
+    <string name="txt_heartb">Nhịp Tim</string>
+    <string name="txt_weight">Cân Nặng</string>
+
+    <string name="txt_dialog_happening">Diễn Biến Bệnh</string>
+    <string name="txt_happening">Diễn Biến</string>
+    <string name="txt_datetime">Ngày Giờ</string>
+
+
 
     <string name="item_menu_edit">Chỉnh sửa</string>
     <string name="item_menu_copy">Copy</string>
@@ -17,7 +45,7 @@
     <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
     <string name="tab_diagnose">Chuẩn đoán</string>
 
-    <string name="txt_dialog_happening">Diễn Biến Bệnh</string>
+
 
     <string name="txt_morning">Sáng</string>
     <string name="txt_after">Trưa</string>
@@ -29,5 +57,4 @@
     <string name="txt_price">Đơn giá</string>
     <string name="txt_service_name">Tên dịch vụ</string>
     <string name="txt_select">Chọn</string>
-    <string name="txt_happening">Chị Phương Thanh (33 tuổi, TP HCM) năm ngoái phải bỏ việc trông con sốt xuất huyết suốt một tháng ở viện. Bé sốt cao liên tục 3 ngày, đến ngày thứ 4 kêu đau bụng, ói, tay chân lạnh, nhập viện đã bị sốc sâu, huyết áp tụt. Chị suýt té xỉu khi bác sĩ thông báo con bị sốc sốt xuất huyết nặng, phải tiến hành chống sốc, dùng các thuốc vận mạch, hỗ trợ hô hấp, đặt nội khí quản thở máy.</string>
 </resources>

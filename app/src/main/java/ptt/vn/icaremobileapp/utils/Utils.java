@@ -27,17 +27,14 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 public class Utils {
     public static final String yyyyMMdd = "yyyy-MM-dd";
     public static final String ddMMyyyy = "dd/MM/yyyy";
+    public static final String ddMMyyyyHHmm = "dd/MM/yyyy HH:mm";
+    public static final String ddMMyyyyTHHmmss = "yyyy-MM-dd'T'HH:mm:ss";
 
-    public static String formatCurrency(int currency) {
-        DecimalFormat formatter = new DecimalFormat("#,###");
-        String current = formatter.format(currency);
-        return current.replaceAll(",", ".");
-    }
 
-    public static String dateConvert(String date) {
+    public static String dateConvert(String date, String requestFormat, String responseFormat) {
         if (date != null) {
-            SimpleDateFormat response = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            SimpleDateFormat request = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            SimpleDateFormat response = new SimpleDateFormat(responseFormat, Locale.ENGLISH);
+            SimpleDateFormat request = new SimpleDateFormat(requestFormat, Locale.ENGLISH);
 
             try {
                 Date d = request.parse(date);
@@ -49,11 +46,10 @@ public class Utils {
         return "";
     }
 
-
-    public static Calendar dateStringConvert(String date){
+    public static Calendar dateStringConvert(String date, String requestFormat) {
         Calendar cal = Calendar.getInstance();
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            SimpleDateFormat sdf = new SimpleDateFormat(requestFormat, Locale.ENGLISH);
             cal.setTime(sdf.parse(date));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -61,15 +57,21 @@ public class Utils {
         return cal;
     }
 
-    public static String dateFormat(Calendar calendar, @NonNull String format) {
-        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.ENGLISH);
+    public static String getCurrentDate(String responseFormat) {
+        Calendar calendar = Calendar.getInstance();
+        return dateFormat(calendar, responseFormat);
+    }
+
+    public static String dateFormat(Calendar calendar, @NonNull String responseFormat) {
+        SimpleDateFormat sdf = new SimpleDateFormat(responseFormat, Locale.ENGLISH);
 
         return sdf.format(calendar.getTime());
     }
 
-    public static String getCurrentDate(String dateFormat) {
-        Calendar calendar = Calendar.getInstance();
-        return dateFormat(calendar, dateFormat);
+    public static String formatCurrency(int currency) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String current = formatter.format(currency);
+        return current.replaceAll(",", ".");
     }
 
     public static SpannableString spannable(String s, String character) {

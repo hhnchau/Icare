@@ -14,7 +14,7 @@ public class Toolbaruz {
             if (name.equals(Fragmentez.INPATIENT_LIST.name())) {
                 toolbarTile.setText("DS Noi Tru");
                 toolbarLeft.setImageResource(R.drawable.ic_menu);
-                toolbarRight.setImageResource(0);
+                toolbarRight.setImageResource(R.drawable.ic_uncheck);
             } else if (name.equals(Fragmentez.HAPPENING.name())) {
                 toolbarTile.setText("Dien Bien");
                 toolbarLeft.setImageResource(R.drawable.ic_back);

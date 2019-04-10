@@ -1,8 +1,14 @@
 package ptt.vn.icaremobileapp.api;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import ptt.vn.icaremobileapp.model.RestResult;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
-import ptt.vn.icaremobileapp.model.inpatient.ResultInpatient;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
+import ptt.vn.icaremobileapp.model.patient.PatientResponse;
+import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -16,13 +22,32 @@ import retrofit2.http.Url;
 
 public interface ApiService {
 
-    @GET("/InpatientService/filter")
-    Observable<ResultInpatient> getFilter(@Header("Content") String filterModel);
+    @GET("/SysApiConfigService/1/0/0")
+    Observable<SysApiModel> getSysApi();
+
+    @GET()
+    Observable<InpatientResponse> getInpatient(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<PatientResponse> getPatientByPatId(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<HappeningResponse> getHappening(@Url String url, @Header("Content") String filterModel);
+
+    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
+    @POST()
+    Observable<ResponseBody> saveHappening(@Url String url, @Body HappeningDomain happening);
+
+
+
+
+
+
+
 
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
     @POST()
     Observable<Object> save(@Url String url, @Body InpatientDomain form);
-
 
 
     @GET("/InpatientService/filter")

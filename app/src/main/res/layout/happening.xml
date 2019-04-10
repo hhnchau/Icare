@@ -6,7 +6,7 @@
     android:background="@color/bg">
 
     <ptt.vn.icaremobileapp.expandcardview.ExpandableCardView
-        android:id="@+id/epCardInfo"
+        android:id="@+id/expPatientInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_8"
@@ -20,8 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0"
-        app:title="Nguyễn Văn A" />
+        app:layout_constraintVertical_bias="0"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -31,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/epCardInfo" />
+        app:layout_constraintTop_toBottomOf="@id/expPatientInfo" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAdd"
