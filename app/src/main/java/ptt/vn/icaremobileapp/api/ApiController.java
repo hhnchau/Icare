@@ -312,7 +312,6 @@ public class ApiController {
                 }));
     }
 
-
     @SuppressWarnings("unchecked")
     public void deleteHappening(final Context context, final HappeningDomain happening, final Callback callback) {
         String url = MyApplication.getUrl(Service.INPATIENTHAPPENING);
@@ -357,21 +356,30 @@ public class ApiController {
                 }));
     }
 
-    /**
-     * Save
-     */
-    public void save(final Context context, final InpatientDomain obj, final ACallback aCallback) {
-        String url = Host.URL + "/InpatientService/";
+    @SuppressWarnings("unchecked")
+    public void getServiceItem(final Context context, final int _offset, final int _limit, final Method method, final int idmedexa, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.SERVITEM);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Loading.getInstance().show(context);
-        CompositeManager.add(Api.apiService.save(url, obj)
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.idmedexa, Operation.Equals, DataTypeOfValue.Int64, idmedexa));
+        CompositeManager.add(Api.apiService.getInpatient(url + "filter", new FilterModel(_offset, _limit, method, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Object>() {
+                .subscribeWith(new DisposableObserver<InpatientResponse>() {
 
                     @Override
-                    public void onNext(Object result) {
-                        if (result != null) ;
-
+                    public void onNext(InpatientResponse inpatientModel) {
+                        if (inpatientModel.getCode() == 0 && aCallback != null)
+                            aCallback.response(inpatientModel.getData());
+                        else
+                            MyLog.print(context, String.valueOf(inpatientModel.getCode()));
                     }
 
                     @Override
@@ -381,7 +389,7 @@ public class ApiController {
                         connectAgain(context, new OnRetry() {
                             @Override
                             public void request() {
-
+                                getInpatient(context, _offset, _limit, method, idmedexa, aCallback);
                             }
                         });
 
@@ -393,8 +401,8 @@ public class ApiController {
                         Loading.getInstance().hide();
                     }
                 }));
-
     }
+
 
     private void connectAgain(Context context, final OnRetry onRetry) {
         Alert.getInstance().show(context, context.getString(R.string.txt_not_connect), context.getString(R.string.btn_yes), null, false, new Alert.OnAlertClickListener() {

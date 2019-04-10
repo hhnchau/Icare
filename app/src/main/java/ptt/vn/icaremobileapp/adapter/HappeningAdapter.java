@@ -18,7 +18,6 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
-import ptt.vn.icaremobileapp.fragment.Happening;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
@@ -136,8 +135,8 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDate = itemView.findViewById(R.id.edtDoctor);
             detailView = itemView.findViewById(R.id.detailView);
-            tvDoctor = itemView.findViewById(R.id.boxDate);
-            tvCircui = itemView.findViewById(R.id.tvCircui);
+            tvDoctor = itemView.findViewById(R.id.tvDoctor);
+            tvCircui = itemView.findViewById(R.id.tvCircuit);
             tvBlood = itemView.findViewById(R.id.edtBlood);
             tvTemper = itemView.findViewById(R.id.tvTemper);
             tvHeartb = itemView.findViewById(R.id.tvHeartb);

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg">
 
-    <ptt.vn.icaremobileapp.expandcardview.ExpandableCardView
+    <ptt.vn.icaremobileapp.expand.ExpandableHappening
         android:id="@+id/expPatientInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

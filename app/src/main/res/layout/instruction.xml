@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/bg">
 
-    <ptt.vn.icaremobileapp.expandcardview.ExpandableCardView
-        android:id="@+id/epCardInfo"
+    <ptt.vn.icaremobileapp.expand.ExpandableInstruction
+        android:id="@+id/epxInstructionInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_8"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/epCardInfo">
+        app:layout_constraintTop_toBottomOf="@id/epxInstructionInfo">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -156,28 +156,25 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/boxDate"
+                    android:id="@+id/tvDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="@string/txt_doctor"
-                    app:value="Nguyễn Văn Bác Sĩ" />
+                    app:label="@string/txt_doctor" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvCircui"
+                    android:id="@+id/tvCircuit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="@string/txt_circuit"
-                    app:value="120" />
+                    app:label="@string/txt_circuit" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/edtBlood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="@string/txt_blomin"
-                    app:value="39" />
+                    app:label="@string/txt_blomin" />
 
             </LinearLayout>
 
@@ -193,24 +190,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="@string/txt_temper"
-                    app:value="160" />
+                    app:label="@string/txt_temper" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvHeartb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="@string/txt_heartb"
-                    app:value="60" />
+                    app:label="@string/txt_heartb" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/edtWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="@string/txt_weight"
-                    app:value="60" />
+                    app:label="@string/txt_weight" />
             </LinearLayout>
 
         </LinearLayout>

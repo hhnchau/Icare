@@ -1,4 +1,4 @@
-package ptt.vn.icaremobileapp.expandcardview;
+package ptt.vn.icaremobileapp.expand;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -19,13 +19,12 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
-import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientAdrr;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientHi;
 import ptt.vn.icaremobileapp.utils.Utils;
 
-public class ExpandableCardView extends LinearLayout {
+public class ExpandableHappening extends LinearLayout {
     private View childrenView;
     private ViewGroup containerView;
     private int innerViewRes;
@@ -50,18 +49,18 @@ public class ExpandableCardView extends LinearLayout {
     private String title;
 
 
-    public ExpandableCardView(Context context) {
+    public ExpandableHappening(Context context) {
         super(context);
     }
 
-    public ExpandableCardView(Context context, AttributeSet attrs) {
+    public ExpandableHappening(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         initAttributes(context, attrs);
         initView(context);
     }
 
-    public ExpandableCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ExpandableHappening(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         initAttributes(context, attrs);
@@ -116,9 +115,9 @@ public class ExpandableCardView extends LinearLayout {
     }
 
     private void initAttributes(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableCardView);
-        title = typedArray.getString(R.styleable.ExpandableCardView_title);
-        innerViewRes = typedArray.getResourceId(R.styleable.ExpandableCardView_children_view, View.NO_ID);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableHappening);
+        title = typedArray.getString(R.styleable.ExpandableHappening_title);
+        innerViewRes = typedArray.getResourceId(R.styleable.ExpandableHappening_children_view, View.NO_ID);
         typedArray.recycle();
     }
 

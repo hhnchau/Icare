@@ -8,13 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
@@ -26,7 +22,7 @@ import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.dialog.DialogNewHappening;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.expandcardview.ExpandableCardView;
+import ptt.vn.icaremobileapp.expand.ExpandableHappening;
 import ptt.vn.icaremobileapp.adapter.HappeningAdapter;
 import ptt.vn.icaremobileapp.model.filter.Method;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
@@ -53,7 +49,7 @@ public class Happening extends BaseFragment {
         if (inpatient != null) {
             initView();
             PatientDomain patient = inpatient.getPatient();
-            if (patient != null) setupExpandableCardView(patient);
+            if (patient != null) setupExpandablePatientInfo(patient);
             setupExpandableRecyclerView();
 
             getHappening(offset, limit, Method.GetHappeningInDepartment, inpatient.getIdlink());
@@ -83,8 +79,8 @@ public class Happening extends BaseFragment {
         });
     }
 
-    private void setupExpandableCardView(PatientDomain patient) {
-        final ExpandableCardView expPatientInfo = view.findViewById(R.id.expPatientInfo);
+    private void setupExpandablePatientInfo(PatientDomain patient) {
+        final ExpandableHappening expPatientInfo = view.findViewById(R.id.expPatientInfo);
         expPatientInfo.setChildrenView(patient);
 
         expPatientInfo.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +103,12 @@ public class Happening extends BaseFragment {
         adapter.setOnItemClick(new HappeningAdapter.OnItemClick() {
             @Override
             public void onItem(HappeningDomain happening) {
+                /*
+                 * GOTO
+                 **/
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING, happening);
+                bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
                 if (getActivity() != null)
                     Fragmentuz.addMainFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
             }

@@ -12,14 +12,17 @@ import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.expandcardview.ExpandableCardView;
+import ptt.vn.icaremobileapp.expand.ExpandableInstruction;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.togglebutton.MyTabButton;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
 public class Instruction extends BaseFragment {
     private View view;
     private HappeningDomain happening;
+    private PatientDomain patient;
     private FragmentManager fragmentManager;
 
 
@@ -27,17 +30,36 @@ public class Instruction extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.instruction, container, false);
-        if (getArguments() != null)
+        if (getArguments() != null) {
             happening = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
+            InpatientDomain inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
+            if (inpatient != null)
+                patient = inpatient.getPatient();
+            if (patient != null) setupExpandableInstructionInfo(patient, happening);
+        }
 
-
-
-
-        if (getActivity() != null)
+        if (getActivity() != null) {
             fragmentManager = getActivity().getSupportFragmentManager();
+            setupTabButton(fragmentManager);
+        }
+        return view;
+    }
 
-        setupExpandableCardView();
+    private void setupExpandableInstructionInfo(PatientDomain patient, HappeningDomain happening) {
+        final ExpandableInstruction expandableInstruction = view.findViewById(R.id.epxInstructionInfo);
+        expandableInstruction.setChildrenView(patient, happening);
+        expandableInstruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (expandableInstruction.isExpanded())
+                    expandableInstruction.collapse();
+                else expandableInstruction.expand();
+            }
+        });
 
+    }
+
+    private void setupTabButton(final FragmentManager fragmentManager) {
         MyTabButton myTabButton = view.findViewById(R.id.toggle);
         myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
             @Override
@@ -63,23 +85,5 @@ public class Instruction extends BaseFragment {
                 }
             }
         });
-
-
-        return view;
-    }
-
-    private void setupExpandableCardView() {
-        final ExpandableCardView expandableCardViewInfo = view.findViewById(R.id.epCardInfo);
-        //expandableCardViewInfo.setChildrenView("Demo");
-
-        expandableCardViewInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (expandableCardViewInfo.isExpanded())
-                    expandableCardViewInfo.collapse();
-                else expandableCardViewInfo.expand();
-            }
-        });
-
     }
 }

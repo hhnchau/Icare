@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ExpandableCardView">
+    <declare-styleable name="ExpandableHappening">
         <attr name="children_view" format="reference" />
         <attr name="title" format="string" />
     </declare-styleable>

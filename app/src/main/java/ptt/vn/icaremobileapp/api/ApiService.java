@@ -8,6 +8,7 @@ import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
+import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -39,9 +40,8 @@ public interface ApiService {
     @POST()
     Observable<HappeningSave> saveHappening(@Url String url, @Body HappeningDomain happening);
 
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST()
-    Observable<HappeningSave> deleteHappening(@Url String url, @Body HappeningDomain happening);
+    @GET()
+    Observable<ServiceItemDomain> getServiceItem(@Url String url, @Header("Content") String filterModel);
 
 
 

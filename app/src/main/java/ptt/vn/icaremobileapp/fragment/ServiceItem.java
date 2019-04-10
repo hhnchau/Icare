@@ -85,4 +85,8 @@ public class ServiceItem extends BaseFragment {
 
         return view;
     }
+
+    private void getServiceItem(){
+
+    }
 }
