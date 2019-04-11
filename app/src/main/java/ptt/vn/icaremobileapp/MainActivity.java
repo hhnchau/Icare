@@ -183,16 +183,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    private void saveInpatient(InpatientDomain inpatientDomain) {
-        ApiController.getInstance().save(this, inpatientDomain, new ACallback<Object>() {
-            @Override
-            public void response(List<Object> lstObj) {
-
-            }
-        });
-
-    }
-
-
 }

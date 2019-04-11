@@ -52,7 +52,7 @@ public class Happening extends BaseFragment {
             if (patient != null) setupExpandablePatientInfo(patient);
             setupExpandableRecyclerView();
 
-            getHappening(offset, limit, Method.GetHappeningInDepartment, inpatient.getIdlink());
+            getHappening(offset, limit, inpatient.getIdlink());
         }
         return view;
     }
@@ -162,8 +162,8 @@ public class Happening extends BaseFragment {
         });
     }
 
-    private void getHappening(int _offset, int _limit, Method _method, @NonNull String _idLink) {
-        ApiController.getInstance().getHappening(getActivity(), _offset, _limit, _method, _idLink, new ACallback<HappeningDomain>() {
+    private void getHappening(int _offset, int _limit, @NonNull String _idLink) {
+        ApiController.getInstance().getHappening(getActivity(), _offset, _limit, _idLink, new ACallback<HappeningDomain>() {
             @Override
             public void response(List<HappeningDomain> listHappening) {
                 lstHappening = listHappening;

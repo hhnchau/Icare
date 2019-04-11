@@ -43,7 +43,7 @@ public class InpatientList extends BaseFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                getInpatient(offset, limit, Method.GetInpatientInDepartment, 1);
+                getInpatient(offset, limit, 1);
             }
         }, 2000);
 
@@ -75,8 +75,8 @@ public class InpatientList extends BaseFragment {
     }
 
     @SuppressWarnings("unchecked")
-    private void getInpatient(int _offset, int _limit, Method _method, int _idmedexa) {
-        ApiController.getInstance().getInpatient(getActivity(), _offset, _limit, _method, _idmedexa, new ACallback<InpatientDomain>() {
+    private void getInpatient(int _offset, int _limit, int _idmedexa) {
+        ApiController.getInstance().getInpatient(getActivity(), _offset, _limit,  _idmedexa, new ACallback<InpatientDomain>() {
             @Override
             public void response(List<InpatientDomain> listInpatient) {
                 lstInpatient = listInpatient;

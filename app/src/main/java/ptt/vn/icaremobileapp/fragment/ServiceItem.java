@@ -18,15 +18,22 @@ import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.InpatientListAdapter;
 import ptt.vn.icaremobileapp.adapter.ServiceItemAdapter;
+import ptt.vn.icaremobileapp.api.ACallback;
+import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.CompleteObject;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
 public class ServiceItem extends BaseFragment {
     private View view;
+    private int offset = 0;
+    private int limit = 1000;
+
+
     private List<String> lstInpatient;
 
     @Nullable
@@ -86,7 +93,12 @@ public class ServiceItem extends BaseFragment {
         return view;
     }
 
-    private void getServiceItem(){
-
+    private void getServiceItem(int _offset, int _limit) {
+        ApiController.getInstance().getServiceItem(getActivity(), _offset, _limit, new ACallback<ServiceItemDomain>() {
+            @Override
+            public void response(List<ServiceItemDomain> listServiceItem) {
+                int i = 0;
+            }
+        });
     }
 }

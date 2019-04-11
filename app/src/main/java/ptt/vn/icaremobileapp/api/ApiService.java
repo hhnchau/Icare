@@ -1,17 +1,16 @@
 package ptt.vn.icaremobileapp.api;
 
 import io.reactivex.Observable;
-import ptt.vn.icaremobileapp.model.BaseResult;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
-import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
+import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -41,8 +40,10 @@ public interface ApiService {
     Observable<HappeningSave> saveHappening(@Url String url, @Body HappeningDomain happening);
 
     @GET()
-    Observable<ServiceItemDomain> getServiceItem(@Url String url, @Header("Content") String filterModel);
+    Observable<ServiceItemResponse> getServiceItem(@Url String url, @Header("Content") String filterModel);
 
+    @GET()
+    Observable<PhaInventoryResponse> getPhainventory(@Url String url, @Header("Content") String filterModel);
 
 
 
