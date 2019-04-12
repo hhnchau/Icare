@@ -4,30 +4,36 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/dp_8"
-    app:cardElevation="@dimen/dp_4">
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/dp_4"
+    >
 
     <LinearLayout
         android:id="@+id/viewContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_16"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            >
+
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@android:color/primary_text_light"
-                android:textSize="@dimen/sp_22"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/sp_28"
+                />
 
             <ImageView
                 android:id="@+id/arrow"
@@ -35,7 +41,8 @@
                 android:layout_height="50dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_arrow_drop_down"
-                android:contentDescription="@string/img_des" />
+                android:contentDescription="@string/img_des"
+                />
 
         </LinearLayout>
 

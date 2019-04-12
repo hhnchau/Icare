@@ -10,14 +10,16 @@
         android:id="@+id/tvPatientAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_0"
+        android:layout_marginEnd="@dimen/dp_0"
+        android:layout_marginTop="@dimen/dp_8"
         app:label="@string/txt__patient_address" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_0"
+        android:layout_marginEnd="@dimen/dp_0"
         android:layout_marginBottom="@dimen/dp_24"
         android:orientation="vertical">
 
@@ -31,6 +33,7 @@
                 android:id="@+id/tvPatientCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt_patient_code" />
 
@@ -38,6 +41,8 @@
                 android:id="@+id/tvPatientBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_birthday" />
 
@@ -45,6 +50,7 @@
                 android:id="@+id/tvPatientSex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_sex" />
         </LinearLayout>
@@ -59,6 +65,7 @@
                 android:id="@+id/tvPatientNation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_nation" />
 
@@ -66,6 +73,8 @@
                 android:id="@+id/tvpPatientPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_phone" />
 
@@ -73,6 +82,7 @@
                 android:id="@+id/tvPatientJob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_job" />
         </LinearLayout>
@@ -87,6 +97,7 @@
                 android:id="@+id/tvPatientRelative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_relative" />
 
@@ -94,6 +105,8 @@
                 android:id="@+id/tvPatientObject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_object" />
 
@@ -101,6 +114,7 @@
                 android:id="@+id/tvInsuranceCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
                 app:label="@string/txt__insurance_code" />
         </LinearLayout>
@@ -115,6 +129,7 @@
                 android:id="@+id/tvInsuranceStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__insurance_start" />
 
@@ -122,6 +137,8 @@
                 android:id="@+id/tvInsuranceEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__insurance_end" />
 
@@ -129,6 +146,7 @@
                 android:id="@+id/tvInsuranceInit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
                 app:label="@string/txt__insurance_init" />
         </LinearLayout>

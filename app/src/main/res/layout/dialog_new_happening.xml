@@ -35,15 +35,19 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tvName"
+                    android:id="@+id/tvTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
                     android:layout_weight="1"
                     android:padding="@dimen/dp_12"
                     android:text="@string/txt_dialog_happening"
                     android:textColor="@color/wh"
                     android:textSize="@dimen/sp_18"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:drawableStart="@drawable/ic_add"
+                    android:drawablePadding="@dimen/dp_16"
+                    />
 
                 <ImageView
                     android:id="@+id/btnClose"
@@ -76,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@id/tvTotal"
+                app:layout_constraintBottom_toTopOf="@id/edtDoctor"
                 app:layout_constraintEnd_toEndOf="@id/edtHappening"
                 app:layout_constraintStart_toStartOf="@id/edtHappening"
                 app:layout_constraintTop_toBottomOf="@id/edtHappening"
@@ -95,9 +99,9 @@
 
                 <ImageView
                     android:id="@+id/icDate"
-                    android:layout_width="@dimen/dp_52"
-                    android:layout_height="@dimen/dp_52"
-                    android:layout_marginEnd="@dimen/dp_24"
+                    android:layout_width="@dimen/dp_48"
+                    android:layout_height="@dimen/dp_48"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:contentDescription="@string/img_des"
                     android:padding="@dimen/dp_8"
                     android:src="@mipmap/ic_date" />
@@ -105,7 +109,7 @@
             </LinearLayout>
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvTotal"
+                android:id="@+id/edtDoctor"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
                 app:hint="@string/txt_doctor"
@@ -118,37 +122,37 @@
                 android:id="@+id/edtCircuit"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
-                app:hint="@string/txt_circuit"
                 android:layout_marginStart="@dimen/dp_24"
                 android:layout_marginEnd="@dimen/dp_24"
                 android:inputType="numberDecimal"
-                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
+                app:hint="@string/txt_circuit"
+                app:layout_constraintBottom_toBottomOf="@id/edtDoctor"
                 app:layout_constraintEnd_toStartOf="@id/edtBlood"
-                app:layout_constraintStart_toEndOf="@id/tvTotal"
-                app:layout_constraintTop_toTopOf="@id/tvTotal" />
+                app:layout_constraintStart_toEndOf="@id/edtDoctor"
+                app:layout_constraintTop_toTopOf="@id/edtDoctor" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:id="@+id/edtBlood"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
-                app:hint="@string/txt_blomin"
                 android:inputType="numberDecimal"
-                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
+                app:hint="@string/txt_blomin"
+                app:layout_constraintBottom_toBottomOf="@id/edtDoctor"
                 app:layout_constraintEnd_toEndOf="@id/edtHappening"
                 app:layout_constraintStart_toEndOf="@id/edtCircuit"
-                app:layout_constraintTop_toTopOf="@id/tvTotal" />
+                app:layout_constraintTop_toTopOf="@id/edtDoctor" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:id="@+id/edtTemperature"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
                 android:layout_marginTop="@dimen/dp_24"
-                app:hint="@string/txt_temper"
                 android:inputType="numberDecimal"
+                app:hint="@string/txt_temper"
                 app:layout_constraintBottom_toTopOf="@id/btnOk"
                 app:layout_constraintEnd_toStartOf="@id/edtHeartbeat"
                 app:layout_constraintStart_toStartOf="@id/edtHappening"
-                app:layout_constraintTop_toBottomOf="@id/tvTotal" />
+                app:layout_constraintTop_toBottomOf="@id/edtDoctor" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:id="@+id/edtHeartbeat"
@@ -156,8 +160,8 @@
                 android:layout_height="@dimen/dp_52"
                 android:layout_marginStart="@dimen/dp_24"
                 android:layout_marginEnd="@dimen/dp_24"
-                app:hint="@string/txt_heartb"
                 android:inputType="numberDecimal"
+                app:hint="@string/txt_heartb"
                 app:layout_constraintBottom_toBottomOf="@id/edtTemperature"
                 app:layout_constraintEnd_toStartOf="@id/edtWeight"
                 app:layout_constraintStart_toEndOf="@id/edtTemperature"
@@ -167,8 +171,8 @@
                 android:id="@+id/edtWeight"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
-                app:hint="@string/txt_weight"
                 android:inputType="numberDecimal"
+                app:hint="@string/txt_weight"
                 app:layout_constraintBottom_toBottomOf="@id/edtTemperature"
                 app:layout_constraintEnd_toEndOf="@id/edtHappening"
                 app:layout_constraintStart_toEndOf="@id/edtHeartbeat"
@@ -176,18 +180,19 @@
 
             <ptt.vn.icaremobileapp.custom.MyButton
                 android:id="@+id/btnOk"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_32"
+                android:layout_margin="@dimen/dp_24"
                 app:backgroundColor="@drawable/button_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edtTemperature"
+                app:padding="@dimen/dp_8"
                 app:text="@string/btn_save"
                 app:textColor="@color/wh"
-                app:textSize="@dimen/sp_18"
-                app:padding="@dimen/dp_4"/>
+                app:textSize="@dimen/sp_12"
+                />
 
 
         </android.support.constraint.ConstraintLayout>

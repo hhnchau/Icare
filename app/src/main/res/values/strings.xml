@@ -4,7 +4,8 @@
     <string name="img_des" />
     <string name="btn_yes">OK</string>
     <string name="btn_no">No</string>
-    <string name="btn_save">Lưu</string>
+    <string name="btn_save">LƯU</string>
+    <string name="btn_login">ĐĂNG NHẬP</string>
     <string name="txt_service_not_found">Service Not Found</string>
     <string name="txt_not_connect">Không thể kết nối tới server!!!</string>
 

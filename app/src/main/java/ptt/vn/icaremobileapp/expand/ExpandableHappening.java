@@ -126,7 +126,7 @@ public class ExpandableHappening extends LinearLayout {
         super.onFinishInflate();
 
         icArrow = findViewById(R.id.arrow);
-        tvTitle = findViewById(R.id.tvName);
+        tvTitle = findViewById(R.id.tvTitle);
         //Set Text Title
         if (!TextUtils.isEmpty(title)) tvTitle.setText(title);
 
