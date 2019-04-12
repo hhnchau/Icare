@@ -103,8 +103,8 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
         });
 
 
-        holder.tvTitle.setText(lists.get(position).getHappening());
-        holder.tvDate.setText(Utils.dateConvert(lists.get(position).getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
+        holder.tvName.setText(lists.get(position).getHappening());
+        holder.tvTotal.setText(Utils.dateConvert(lists.get(position).getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
         holder.tvDoctor.setValues("");
         holder.tvCircui.setValues(lists.get(position).getCircui() + "");
         holder.tvBlood.setValues(lists.get(position).getBlomax() + lists.get(position).getBlomin() + "");
@@ -122,7 +122,7 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
     class MyViewHolder extends RecyclerView.ViewHolder {
         private CardView cv;
         private ImageView btnNext;
-        private TextView tvTitle, tvDate;
+        private TextView tvName, tvTotal;
         private LinearLayout detailView;
         private MyTextView tvDoctor, tvCircui, tvBlood, tvTemper, tvHeartb, tvWeight;
         private ImageView icCopy, icEdit, icDelete;
@@ -132,8 +132,8 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
             super(itemView);
             cv = itemView.findViewById(R.id.cardView);
             btnNext = itemView.findViewById(R.id.btnNext);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvDate = itemView.findViewById(R.id.edtDoctor);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
             detailView = itemView.findViewById(R.id.detailView);
             tvDoctor = itemView.findViewById(R.id.tvDoctor);
             tvCircui = itemView.findViewById(R.id.tvCircuit);

@@ -43,7 +43,7 @@ public class InpatientList extends BaseFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                getInpatient(offset, limit, Method.GetInpatientInDepartment, 1);
+                getInpatient(offset, limit, Method.GetInpatientInDepartment, 2);
             }
         }, 2000);
 

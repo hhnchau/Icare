@@ -4,16 +4,15 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/dp_8"
+    android:layout_marginStart="@dimen/dp_4"
     android:layout_marginTop="@dimen/dp_4"
-    android:layout_marginEnd="@dimen/dp_8"
+    android:layout_marginEnd="@dimen/dp_4"
     android:layout_marginBottom="@dimen/dp_4"
     app:cardCornerRadius="@dimen/dp_4">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/sp_24"
         android:orientation="vertical">
 
         <!--Header-->
@@ -21,11 +20,12 @@
             android:id="@+id/linearLayoutHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_8"
             android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_20"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/dp_4">
+    >
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
@@ -33,9 +33,11 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/tvTitle"
+                    android:id="@+id/tvName"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_84"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:lines="2"
@@ -49,7 +51,7 @@
                     app:layout_constraintVertical_bias="0" />
 
                 <TextView
-                    android:id="@+id/edtDoctor"
+                    android:id="@+id/tvTotal"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -71,45 +73,45 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guide"
-                    app:layout_constraintTop_toBottomOf="@id/edtDoctor"
+                    app:layout_constraintTop_toBottomOf="@id/tvTotal"
                     app:layout_constraintVertical_bias="1" />
 
 
                 <ImageView
                     android:id="@+id/icCopy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_0"
+                    android:layout_marginStart="@dimen/dp_24"
                     android:contentDescription="@string/img_des"
-                    android:padding="@dimen/dp_20"
                     android:src="@mipmap/ic_copy"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/icEdit"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitle"
-                    app:layout_constraintVertical_bias="1" />
+                    app:layout_constraintTop_toBottomOf="@id/tvName"
+                    />
 
                 <ImageView
                     android:id="@+id/icEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_0"
+                    android:layout_marginStart="@dimen/dp_24"
                     android:contentDescription="@string/img_des"
-                    android:padding="@dimen/dp_20"
                     android:src="@mipmap/ic_edit"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/icCopy"
                     app:layout_constraintEnd_toStartOf="@id/icDelete"
                     app:layout_constraintStart_toEndOf="@id/icCopy"
                     app:layout_constraintTop_toTopOf="@id/icCopy" />
 
                 <ImageView
                     android:id="@+id/icDelete"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dp_40"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
                     android:contentDescription="@string/img_des"
-                    android:padding="@dimen/dp_20"
                     android:src="@mipmap/ic_delete"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/icCopy"
                     app:layout_constraintEnd_toEndOf="@id/guide"
                     app:layout_constraintStart_toEndOf="@id/icEdit"
                     app:layout_constraintTop_toTopOf="@id/icCopy" />
@@ -128,6 +130,7 @@
                 android:id="@+id/btnNext"
                 android:layout_width="40dp"
                 android:layout_height="60dp"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:background="@drawable/ic_next"
                 android:contentDescription="@string/img_des"
                 android:padding="32dp" />
@@ -159,6 +162,8 @@
                     android:id="@+id/tvDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_doctor" />
 
@@ -166,6 +171,8 @@
                     android:id="@+id/tvCircuit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_circuit" />
 
@@ -173,6 +180,7 @@
                     android:id="@+id/edtBlood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
                     android:layout_weight="1"
                     app:label="@string/txt_blomin" />
 
@@ -189,6 +197,8 @@
                     android:id="@+id/tvTemper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_temper" />
 
@@ -196,6 +206,8 @@
                     android:id="@+id/tvHeartb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_heartb" />
 
@@ -203,6 +215,7 @@
                     android:id="@+id/edtWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
                     android:layout_weight="1"
                     app:label="@string/txt_weight" />
             </LinearLayout>
