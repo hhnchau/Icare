@@ -7,5 +7,6 @@ public class Service {
     public static final String INPATIENTHAPPENING = "INPATIENTHAPPENING";
     public static final String SERVITEM = "SERVITEM";
     public static final String OCLINIC = "OCLINIC";
+    public static final String ICD = "ICD";
 }
 

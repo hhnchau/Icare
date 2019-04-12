@@ -19,12 +19,12 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientAdrr;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
-import ptt.vn.icaremobileapp.model.patient.PatientHi;
 import ptt.vn.icaremobileapp.utils.Utils;
 
-public class ExpandableHappening extends LinearLayout {
+public class ExpandableInstruction extends LinearLayout {
     private View childrenView;
     private ViewGroup containerView;
     private int innerViewRes;
@@ -41,33 +41,31 @@ public class ExpandableHappening extends LinearLayout {
     private TextView tvTitle;
 
     private MyTextView tvPatientAddress, tvPatientCode, tvPatientBirthday,
-            tvPatientSex, tvPatientNation, tvpPatientPhone, tvPatientJob,
-            tvPatientRelative, tvPatientObject, tvInsuranceCode, tvInsuranceStart,
-            tvInsuranceEnd, tvInsuranceInit;
+            tvPatientSex, tvHappening, tvDoctor, tvCircuit, tvBlood, tvTemper, tvHeartb, tvWeight;
 
 
     private String title;
 
 
-    public ExpandableHappening(Context context) {
+    public ExpandableInstruction(Context context) {
         super(context);
     }
 
-    public ExpandableHappening(Context context, AttributeSet attrs) {
+    public ExpandableInstruction(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         initAttributes(context, attrs);
         initView(context);
     }
 
-    public ExpandableHappening(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ExpandableInstruction(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         initAttributes(context, attrs);
         initView(context);
     }
 
-    public void setChildrenView(@NonNull PatientDomain patient) {
+    public void setChildrenView(@NonNull PatientDomain patient, @NonNull HappeningDomain happening) {
 
         tvTitle.setText(patient.getPATIENTNAME());
 
@@ -85,25 +83,20 @@ public class ExpandableHappening extends LinearLayout {
 
         tvPatientSex.setValues(patient.getGender());
 
-        tvPatientNation.setValues(patient.getNamenation());
+        tvHappening.setValues(happening.getHappening());
 
-        tvpPatientPhone.setValues(patient.getPhone());
+        tvDoctor.setValues(happening.getNamedoctor());
 
-        tvPatientJob.setValues(patient.getNamejob());
+        tvCircuit.setValues(happening.getCircui());
 
-        tvPatientRelative.setValues(patient.getFaname());
+        tvBlood.setValues(happening.getBlomax() + "");
 
-        tvPatientObject.setValues("");
+        tvTemper.setValues(happening.getTemper() + "");
 
-        List<PatientHi> lstHi = patient.getLstPatientHi();
-        if (lstHi != null && lstHi.size() > 0)
-            for (PatientHi hi : lstHi) {
-                tvInsuranceCode.setValues(hi.getNohi());
-                tvInsuranceStart.setValues(Utils.dateConvert(hi.getStrday(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyy));
-                tvInsuranceEnd.setValues(Utils.dateConvert(hi.getEndday(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyy));
-                tvInsuranceInit.setValues(hi.getHospitalcode());
-                break;
-            }
+        tvHeartb.setValues(happening.getHeartb() + "");
+
+        tvWeight.setValues(happening.getWeight() + "");
+
 
     }
 
@@ -141,16 +134,13 @@ public class ExpandableHappening extends LinearLayout {
             tvPatientCode = childrenView.findViewById(R.id.tvPatientCode);
             tvPatientBirthday = childrenView.findViewById(R.id.tvPatientBirthday);
             tvPatientSex = childrenView.findViewById(R.id.tvPatientSex);
-            tvPatientNation = childrenView.findViewById(R.id.tvPatientNation);
-            tvpPatientPhone = childrenView.findViewById(R.id.tvpPatientPhone);
-            tvPatientJob = childrenView.findViewById(R.id.tvPatientJob);
-            tvPatientRelative = childrenView.findViewById(R.id.tvPatientRelative);
-            tvPatientObject = childrenView.findViewById(R.id.tvPatientObject);
-            tvInsuranceCode = childrenView.findViewById(R.id.tvInsuranceCode);
-            tvInsuranceStart = childrenView.findViewById(R.id.tvInsuranceStart);
-            tvInsuranceEnd = childrenView.findViewById(R.id.tvInsuranceEnd);
-            tvInsuranceInit = childrenView.findViewById(R.id.tvInsuranceInit);
-
+            tvHappening = childrenView.findViewById(R.id.tvHappening);
+            tvDoctor = childrenView.findViewById(R.id.tvDoctor);
+            tvCircuit = childrenView.findViewById(R.id.tvCircuit);
+            tvBlood = childrenView.findViewById(R.id.tvBlood);
+            tvTemper = childrenView.findViewById(R.id.tvTemper);
+            tvHeartb = childrenView.findViewById(R.id.tvHeartb);
+            tvWeight = childrenView.findViewById(R.id.tvWeight);
         }
     }
 

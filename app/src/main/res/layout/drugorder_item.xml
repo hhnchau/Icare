@@ -22,7 +22,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:ellipsize="end"
@@ -31,14 +31,14 @@
                 android:text="@string/txt_happening"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/icCopy"
+                app:layout_constraintBottom_toTopOf="@id/icEdit"
                 app:layout_constraintEnd_toEndOf="@id/guide"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/edtDoctor"
+                android:id="@+id/tvTotal"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -58,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_drop_down"
                 android:layout_margin="@dimen/dp_8"
-                app:layout_constraintStart_toEndOf="@id/edtDoctor"
-                app:layout_constraintBottom_toBottomOf="@id/edtDoctor"
+                app:layout_constraintStart_toEndOf="@id/tvTotal"
+                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/edtDoctor"
+                app:layout_constraintTop_toTopOf="@id/tvTotal"
                 android:contentDescription="@string/img_des" />
 
 
@@ -75,27 +75,27 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guide"
-                app:layout_constraintTop_toBottomOf="@id/edtDoctor"
+                app:layout_constraintTop_toBottomOf="@id/tvTotal"
                 app:layout_constraintVertical_bias="1" />
 
 
             <ImageView
-                android:id="@+id/icCopy"
+                android:id="@+id/icEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
                 android:padding="@dimen/dp_20"
                 android:src="@mipmap/ic_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/icEdit"
+                app:layout_constraintEnd_toStartOf="@id/icDelete"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
                 app:layout_constraintVertical_bias="1" />
 
             <ImageView
-                android:id="@+id/icEdit"
+                android:id="@+id/icDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/img_des"
@@ -103,8 +103,8 @@
                 android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide"
-                app:layout_constraintStart_toEndOf="@id/icCopy"
-                app:layout_constraintTop_toTopOf="@id/icCopy" />
+                app:layout_constraintStart_toEndOf="@id/icEdit"
+                app:layout_constraintTop_toTopOf="@id/icEdit" />
 
 
             <android.support.constraint.Guideline

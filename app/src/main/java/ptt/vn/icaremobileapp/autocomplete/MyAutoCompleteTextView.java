@@ -14,25 +14,31 @@ import ptt.vn.icaremobileapp.R;
 /**
  * Created by kingpes on 9/11/18.
  * How to use
- *
+ * <p>
  * xml:    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
- *         android:id="@+id/autocomplete"
- *         android:layout_width="match_parent"
- *         android:layout_height="wrap_content"
- *         android:background="@color/transparent"
- *         android:gravity="center_vertical"
- *         android:inputType="text"
- *         android:hint="Hello Auto Complete"
- *         android:completionThreshold="1"
- *         android:maxLines="1"/>
- *
+ * android:id="@+id/autocomplete"
+ * android:layout_width="match_parent"
+ * android:layout_height="wrap_content"
+ * android:background="@color/transparent"
+ * android:gravity="center_vertical"
+ * android:inputType="text"
+ * android:hint="Hello Auto Complete"
+ * android:completionThreshold="1"
+ * android:maxLines="1"/>
+ * <p>
  * activity: MyAutoCompleteTextView myAutoCompleteTextView = findViewById(R.id.edtNationality);
- *          List<CompleteObject> lst = new ArrayList<>();
- *          lst.addMainFrame(new CompleteObject("Android"));
- *          lst.addMainFrame(new CompleteObject("Ios"));
- *          AutoCompleteTextViewAdapter adapter = new AutoCompleteTextViewAdapter(this, lst);
- *          myAutoCompleteTextView.setAdapter(adapter);
+ * List<CompleteObject> lst = new ArrayList<>();
+ * lst.addMainFrame(new CompleteObject("Android"));
+ * lst.addMainFrame(new CompleteObject("Ios"));
+ * AutoCompleteTextViewServiceItemAdapter adapter = new AutoCompleteTextViewServiceItemAdapter(this, lst);
+ * myAutoCompleteTextView.setAdapter(adapter);
+ * myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
  *
+ * @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+ * CompleteObject additional = (CompleteObject) parent.getItemAtPosition(position);
+ * String a = additional.getName();
+ * }
+ * });
  */
 
 public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {

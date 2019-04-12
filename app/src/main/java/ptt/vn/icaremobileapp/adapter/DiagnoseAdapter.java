@@ -10,17 +10,20 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
 
 public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
-    private List<String> lists;
+    private List<InpatientDiagnose> lists;
 
-    public DiagnoseAdapter(List<String> lists) {
+    public DiagnoseAdapter(List<InpatientDiagnose> lists) {
         this.lists = lists;
 
         for (int i = 0; i < lists.size(); i++) {
@@ -57,18 +60,34 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
+        holder.icEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        holder.name.setText(lists.get(position));
-//        holder.age.setText(lists.get(position) + position);
-//
-//        holder.cv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onItemClick != null)
-//                    onItemClick.onClick(holder.getAdapterPosition());
-//            }
-//        });
+            }
+        });
 
+        holder.icDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.icCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lists.get(position).setPrimary(1);
+            }
+        });
+
+        holder.tvIcdVn.setText(lists.get(position).getNameicdvn());
+        holder.tvIcdCode.setValues(lists.get(position).getCode());
+        holder.tvIcdEn.setValues(lists.get(position).getNameicdeng());
+
+        if (lists.get(position).getPrimary() == 0)
+            holder.icCheck.setImageResource(R.mipmap.ic_uncheck);
+        else holder.icCheck.setImageResource(R.mipmap.ic_checked);
     }
 
     @Override
@@ -81,13 +100,36 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         private LinearLayout detailView;
         private ImageView icArrow;
 
+        private TextView tvIcdVn;
+        private ImageView icEdit, icDelete, icCheck;
+        private MyTextView tvIcdCode, tvIcdEn;
+
         MyViewHolder(View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cardView);
             detailView = itemView.findViewById(R.id.detailView);
             icArrow = itemView.findViewById(R.id.ic_expand);
 
+            tvIcdVn = itemView.findViewById(R.id.tvName);
+            icEdit = itemView.findViewById(R.id.icEdit);
+            icDelete = itemView.findViewById(R.id.icDelete);
+            icCheck = itemView.findViewById(R.id.icCheck);
+            tvIcdCode = itemView.findViewById(R.id.tvIcdCode);
+            tvIcdEn = itemView.findViewById(R.id.tvIcdEn);
         }
+    }
+
+    public void setItems(List<InpatientDiagnose> lists) {
+        this.lists = lists;
+        for (int i = 0; i < this.lists.size(); i++) {
+            expand.add(0);
+        }
+    }
+
+    public void removeItem(int position) {
+        this.lists.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, this.lists.size());
     }
 
     public interface OnItemClick {

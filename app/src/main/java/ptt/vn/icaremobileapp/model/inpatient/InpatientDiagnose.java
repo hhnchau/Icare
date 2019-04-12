@@ -14,11 +14,8 @@ public class InpatientDiagnose implements Parcelable {
     private int primary;
     private String attributes;
     private int active;
-    private String usercr;
-    private String timecr;
-    private String userup;
-    private String timeup;
-    private String computer;
+
+    private String code;
 
 
     public InpatientDiagnose() {
@@ -35,11 +32,7 @@ public class InpatientDiagnose implements Parcelable {
         primary = in.readInt();
         attributes = in.readString();
         active = in.readInt();
-        usercr = in.readString();
-        timecr = in.readString();
-        userup = in.readString();
-        timeup = in.readString();
-        computer = in.readString();
+        code = in.readString();
     }
 
     public static final Creator<InpatientDiagnose> CREATOR = new Creator<InpatientDiagnose>() {
@@ -134,45 +127,14 @@ public class InpatientDiagnose implements Parcelable {
         this.active = active;
     }
 
-    public String getUsercr() {
-        return usercr;
+    public String getCode() {
+        return code;
     }
 
-    public void setUsercr(String usercr) {
-        this.usercr = usercr;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getTimecr() {
-        return timecr;
-    }
-
-    public void setTimecr(String timecr) {
-        this.timecr = timecr;
-    }
-
-    public String getUserup() {
-        return userup;
-    }
-
-    public void setUserup(String userup) {
-        this.userup = userup;
-    }
-
-    public String getTimeup() {
-        return timeup;
-    }
-
-    public void setTimeup(String timeup) {
-        this.timeup = timeup;
-    }
-
-    public String getComputer() {
-        return computer;
-    }
-
-    public void setComputer(String computer) {
-        this.computer = computer;
-    }
 
     @Override
     public int describeContents() {
@@ -191,10 +153,6 @@ public class InpatientDiagnose implements Parcelable {
         dest.writeInt(primary);
         dest.writeString(attributes);
         dest.writeInt(active);
-        dest.writeString(usercr);
-        dest.writeString(timecr);
-        dest.writeString(userup);
-        dest.writeString(timeup);
-        dest.writeString(computer);
+        dest.writeString(code);
     }
 }

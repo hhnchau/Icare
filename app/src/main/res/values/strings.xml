@@ -34,6 +34,16 @@
     <string name="txt_datetime">Ngày Giờ</string>
     <string name="txt_delete_happening">Xóa Diễn Biến Bệnh</string>
 
+    <string name="txt_serviceitem_code">Mã Chỉ Định</string>
+    <string name="txt_serviceitem_select">Chọn Chỉ Định</string>
+    <string name="txt_unit">Đơn Vị Tính</string>
+    <string name="txt_number">Số Lượng</string>
+    <string name="txt_price">Đơn giá</string>
+    <string name="txt_price_insurance">Giá BHYT</string>
+    <string name="txt_diagnose">Chuẩn đoán</string>
+    <string name="txt_diagnose_code">Mã ICD 10</string>
+    <string name="txt_diagnose_name_en">Tên Tiếng Anh</string>
+
 
 
     <string name="item_menu_edit">Chỉnh sửa</string>
@@ -54,8 +64,8 @@
     <string name="txt_evening">Tối</string>
 
 
-    <string name="txt_unit">Đơn vị</string>
-    <string name="txt_price">Đơn giá</string>
+
+
     <string name="txt_service_name">Tên dịch vụ</string>
     <string name="txt_select">Chọn</string>
 </resources>

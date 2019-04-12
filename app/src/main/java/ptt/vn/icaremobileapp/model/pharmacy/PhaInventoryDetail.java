@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class PhaInventoryDetail implements Parcelable {
     private String year;
     private int idstore;
-    private int idfollow;
+    private String idfollow;
     private float qtyt;
     private float qtyimp;
     private float qtyexp;
@@ -34,7 +34,7 @@ public class PhaInventoryDetail implements Parcelable {
     protected PhaInventoryDetail(Parcel in) {
         year = in.readString();
         idstore = in.readInt();
-        idfollow = in.readInt();
+        idfollow = in.readString();
         qtyt = in.readFloat();
         qtyimp = in.readFloat();
         qtyexp = in.readFloat();
@@ -85,11 +85,11 @@ public class PhaInventoryDetail implements Parcelable {
         this.idstore = idstore;
     }
 
-    public int getIdfollow() {
+    public String getIdfollow() {
         return idfollow;
     }
 
-    public void setIdfollow(int idfollow) {
+    public void setIdfollow(String idfollow) {
         this.idfollow = idfollow;
     }
 
@@ -262,7 +262,7 @@ public class PhaInventoryDetail implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(year);
         dest.writeInt(idstore);
-        dest.writeInt(idfollow);
+        dest.writeString(idfollow);
         dest.writeFloat(qtyt);
         dest.writeFloat(qtyimp);
         dest.writeFloat(qtyexp);

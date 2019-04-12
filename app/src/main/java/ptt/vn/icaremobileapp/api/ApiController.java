@@ -23,6 +23,7 @@ import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.filter.Method;
 import ptt.vn.icaremobileapp.model.filter.Operation;
 import ptt.vn.icaremobileapp.model.filter.Para;
+import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
@@ -30,7 +31,9 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.filter.Service;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
+import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
+import ptt.vn.icaremobileapp.model.pharmacy.ResultResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import ptt.vn.icaremobileapp.model.sysapi.UrlModel;
@@ -54,6 +57,7 @@ public class ApiController {
         }
         return instance;
     }
+
 
     public void getSysApi(final Context context) {
         CompositeManager.add(Api.apiService.getSysApi()
@@ -373,7 +377,7 @@ public class ApiController {
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
         lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        CompositeManager.add(Api.apiService.getServiceItem(url + "filter", new FilterModel(_offset, _limit, null, lstPara).toString())
+        CompositeManager.add(Api.apiService.getServiceItem(url + "filter", new FilterModel(_offset, _limit, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<ServiceItemResponse>() {
@@ -408,27 +412,34 @@ public class ApiController {
     }
 
     @SuppressWarnings("unchecked")
-    public void getPhaInventory(final Context context, final int _offset, final int _limit, int _idStore, int _isHi, final ACallback aCallback) {
+    public void getPhaInventory(final Context context, final int _offset, final int _limit, final int _idStore, final int _isHi, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.OCLINIC);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
             return;
         }
 
+
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
         lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        CompositeManager.add(Api.apiService.getPhainventory(url + "filter", new FilterModel(_offset, _limit, GetInvDrug, lstPara).toString())
+        lstPara.add(new Para(FieldName.idstore, Operation.Equals, DataTypeOfValue.Int64, _idStore));
+        lstPara.add(new Para(FieldName.ishi, Operation.Equals, DataTypeOfValue.Int64, _isHi));
+        CompositeManager.add(Api.apiService.getPhaInventory(url + "filter", new FilterModel(_offset, _limit, GetInvDrug, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<PhaInventoryResponse>() {
 
                     @Override
                     public void onNext(PhaInventoryResponse response) {
-                        if (response.getCode() == 0 && aCallback != null)
-                            aCallback.response(response.getData());
-                        else
+                        if (response.getCode() == 0 && aCallback != null) {
+                            List<ResultResponse> resultResponse = response.getData();
+                            if (resultResponse != null && resultResponse.size() > 0)
+                                aCallback.response(resultResponse.get(0).getResult());
+                            else
+                                MyLog.print(context, String.valueOf(response.getCode()));
+                        } else
                             MyLog.print(context, String.valueOf(response.getCode()));
                     }
 
@@ -439,7 +450,7 @@ public class ApiController {
                         connectAgain(context, new OnRetry() {
                             @Override
                             public void request() {
-                                getServiceItem(context, _offset, _limit, aCallback);
+                                getPhaInventory(context, _offset, _limit, _idStore, _isHi, aCallback);
                             }
                         });
 
@@ -453,6 +464,52 @@ public class ApiController {
                 }));
     }
 
+
+    @SuppressWarnings("unchecked")
+    public void getIcd(final Context context, final int _offset, final int _limit, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.ICD);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        CompositeManager.add(Api.apiService.getIcd(url + "filter", new FilterModel(_offset, _limit, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<IcdResponse>() {
+
+                    @Override
+                    public void onNext(IcdResponse response) {
+                        if (response.getCode() == 0 && aCallback != null)
+                            aCallback.response(response.getData());
+                        else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getIcd(context, _offset, _limit, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
 
     private void connectAgain(Context context, final OnRetry onRetry) {
         Alert.getInstance().show(context, context.getString(R.string.txt_not_connect), context.getString(R.string.btn_yes), null, false, new Alert.OnAlertClickListener() {

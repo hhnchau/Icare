@@ -16,7 +16,8 @@
             android:id="@+id/btn1"
             style="@style/MyToggleButton"
             android:gravity="center"
-            android:text="@string/tab_tham_kham" />
+            android:text="@string/tab_tham_kham"
+            android:visibility="gone" />
 
         <View
             android:layout_width="1dp"
@@ -49,7 +50,8 @@
             android:id="@+id/btn4"
             style="@style/MyToggleButton"
             android:gravity="center"
-            android:text="@string/tab_drug_order_outside" />
+            android:text="@string/tab_drug_order_outside"
+            android:visibility="gone" />
 
         <View
             android:layout_width="1dp"

@@ -22,7 +22,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:ellipsize="end"
@@ -31,14 +31,14 @@
                 android:text="@string/txt_happening"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/icCopy"
+                app:layout_constraintBottom_toTopOf="@id/icEdit"
                 app:layout_constraintEnd_toEndOf="@id/guide"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/edtDoctor"
+                android:id="@+id/tvTotal"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -46,6 +46,7 @@
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sp_22"
                 android:textStyle="bold"
+                android:lines="1"
                 app:layout_constraintBottom_toTopOf="@id/icCheck"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
@@ -56,13 +57,13 @@
                 android:id="@+id/ic_expand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_drop_down"
                 android:layout_margin="@dimen/dp_8"
-                app:layout_constraintStart_toEndOf="@id/edtDoctor"
-                app:layout_constraintBottom_toBottomOf="@id/edtDoctor"
+                android:contentDescription="@string/img_des"
+                android:src="@drawable/ic_arrow_drop_down"
+                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/edtDoctor"
-                android:contentDescription="@string/img_des" />
+                app:layout_constraintStart_toEndOf="@id/tvTotal"
+                app:layout_constraintTop_toTopOf="@id/tvTotal" />
 
 
             <ImageView
@@ -75,27 +76,27 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guide"
-                app:layout_constraintTop_toBottomOf="@id/edtDoctor"
+                app:layout_constraintTop_toBottomOf="@id/tvTotal"
                 app:layout_constraintVertical_bias="1" />
 
 
             <ImageView
-                android:id="@+id/icCopy"
+                android:id="@+id/icEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
                 android:padding="@dimen/dp_20"
-                android:src="@mipmap/ic_edit"
+                android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/icEdit"
+                app:layout_constraintEnd_toStartOf="@id/icDelete"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
                 app:layout_constraintVertical_bias="1" />
 
             <ImageView
-                android:id="@+id/icEdit"
+                android:id="@+id/icDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/img_des"
@@ -103,8 +104,8 @@
                 android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide"
-                app:layout_constraintStart_toEndOf="@id/icCopy"
-                app:layout_constraintTop_toTopOf="@id/icCopy" />
+                app:layout_constraintStart_toEndOf="@id/icEdit"
+                app:layout_constraintTop_toTopOf="@id/icEdit" />
 
 
             <android.support.constraint.Guideline
@@ -139,25 +140,25 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvItemCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Bác Sĩ"
-                    app:value="Nguyễn Văn Bác Sĩ" />
+                    app:label="@string/txt_serviceitem_code" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvUnit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Mạch"
-                    app:value="120" />
+                    app:label="@string/txt_unit" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Huyết Áp"
-                    app:value="39" />
+                    app:label="@string/txt_number" />
 
             </LinearLayout>
 
@@ -169,25 +170,25 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Nhiệt Độ"
-                    app:value="160" />
+                    app:label="@string/txt_doctor" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Nhịp Tim"
-                    app:value="60" />
+                    app:label="@string/txt_price" />
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvPriceInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:label="Cân Nặng"
-                    app:value="60" />
+                    app:label="@string/txt_price_insurance" />
             </LinearLayout>
 
         </LinearLayout>

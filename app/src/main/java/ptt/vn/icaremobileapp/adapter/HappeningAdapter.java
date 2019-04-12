@@ -103,7 +103,7 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
         });
 
 
-        holder.tvTitle.setText(lists.get(position).getHappening());
+        holder.tvName.setText(lists.get(position).getHappening());
         holder.tvDate.setText(Utils.dateConvert(lists.get(position).getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
         holder.tvDoctor.setValues("");
         holder.tvCircui.setValues(lists.get(position).getCircui() + "");
@@ -122,7 +122,7 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
     class MyViewHolder extends RecyclerView.ViewHolder {
         private CardView cv;
         private ImageView btnNext;
-        private TextView tvTitle, tvDate;
+        private TextView tvName, tvDate;
         private LinearLayout detailView;
         private MyTextView tvDoctor, tvCircui, tvBlood, tvTemper, tvHeartb, tvWeight;
         private ImageView icCopy, icEdit, icDelete;
@@ -132,8 +132,8 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
             super(itemView);
             cv = itemView.findViewById(R.id.cardView);
             btnNext = itemView.findViewById(R.id.btnNext);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvDate = itemView.findViewById(R.id.edtDoctor);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvDate = itemView.findViewById(R.id.tvTotal);
             detailView = itemView.findViewById(R.id.detailView);
             tvDoctor = itemView.findViewById(R.id.tvDoctor);
             tvCircui = itemView.findViewById(R.id.tvCircuit);
@@ -142,8 +142,8 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
             tvHeartb = itemView.findViewById(R.id.tvHeartb);
             tvWeight = itemView.findViewById(R.id.edtWeight);
             icCopy = itemView.findViewById(R.id.icCopy);
-            icEdit = itemView.findViewById(R.id.icEdit);
-            icDelete = itemView.findViewById(R.id.icDelete);
+            icEdit = itemView.findViewById(R.id.icDelete);
+            icDelete = itemView.findViewById(R.id.icEdit);
         }
     }
 

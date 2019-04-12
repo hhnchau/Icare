@@ -5,5 +5,7 @@ public enum  FieldName {
     active,
     idmedexa,
     patid,
-    idlink
+    idlink,
+    idstore,
+    ishi
 }

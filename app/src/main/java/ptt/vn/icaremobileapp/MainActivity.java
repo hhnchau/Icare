@@ -90,14 +90,6 @@ public class MainActivity extends AppCompatActivity {
         Fragmentuz.addMainFrame(fragmentManager,null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
 
 
-//        MyAutoCompleteTextView myAutoCompleteTextView = findViewById(R.id.autocomplete);
-//        List<CompleteObject> lst = new ArrayList<>();
-//        lst.addMainFrame(new CompleteObject("Android"));
-//        lst.addMainFrame(new CompleteObject("Ios"));
-//        AutoCompleteTextViewAdapter adapter = new AutoCompleteTextViewAdapter(this, lst);
-//        myAutoCompleteTextView.setAdapter(adapter);
-
-
 
 
     }

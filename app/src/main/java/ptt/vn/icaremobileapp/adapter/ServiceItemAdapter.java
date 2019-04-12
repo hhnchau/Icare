@@ -10,17 +10,20 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.model.inpatient.ServiceOrder;
 
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
-    private List<String> lists;
+    private List<ServiceOrder> lists;
 
-    public ServiceItemAdapter(List<String> lists) {
+    public ServiceItemAdapter(List<ServiceOrder> lists) {
         this.lists = lists;
 
         for (int i = 0; i < lists.size(); i++) {
@@ -57,18 +60,22 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             }
         });
 
+        holder.icDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClick != null)
+                    onItemClick.onClick(holder.getAdapterPosition());
+            }
+        });
 
-//        holder.name.setText(lists.get(position));
-//        holder.age.setText(lists.get(position) + position);
-//
-//        holder.cv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onItemClick != null)
-//                    onItemClick.onClick(holder.getAdapterPosition());
-//            }
-//        });
-
+        holder.tvName.setText(lists.get(position).getDocoder());
+        holder.tvTotal.setText(lists.get(position).getDocoder());
+        holder.tvItemCode.setValues("1");
+        holder.tvUnit.setValues("2");
+        holder.tvNumber.setValues("2");
+        holder.tvDoctor.setValues("3");
+        holder.tvPrice.setValues("5");
+        holder.tvPriceInsurance.setValues("2");
     }
 
     @Override
@@ -81,13 +88,39 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         private LinearLayout detailView;
         private ImageView icArrow;
 
+        private TextView tvName, tvTotal;
+        private ImageView icDelete;
+        private MyTextView tvItemCode, tvUnit, tvNumber, tvDoctor, tvPrice, tvPriceInsurance;
+
         MyViewHolder(View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cardView);
             detailView = itemView.findViewById(R.id.detailView);
             icArrow = itemView.findViewById(R.id.ic_expand);
 
+            tvName = itemView.findViewById(R.id.tvName);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
+            icDelete = itemView.findViewById(R.id.icEdit);
+            tvItemCode = itemView.findViewById(R.id.tvItemCode);
+            tvUnit = itemView.findViewById(R.id.tvUnit);
+            tvNumber = itemView.findViewById(R.id.tvNumber);
+            tvDoctor = itemView.findViewById(R.id.tvDoctor);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvPriceInsurance = itemView.findViewById(R.id.tvPriceInsurance);
         }
+    }
+
+    public void setItems(List<ServiceOrder> lists) {
+        this.lists = lists;
+        for (int i = 0; i < this.lists.size(); i++) {
+            expand.add(0);
+        }
+    }
+
+    public void removeItem(int position) {
+        this.lists.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, this.lists.size());
     }
 
     public interface OnItemClick {

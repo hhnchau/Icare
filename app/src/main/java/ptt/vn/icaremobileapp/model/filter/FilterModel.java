@@ -19,6 +19,12 @@ public class FilterModel {
         lstPara = _lstPara;
     }
 
+    public FilterModel(int _offset, int _limit, List<Para> _lstPara) {
+        offset = _offset;
+        limit = _limit;
+        lstPara = _lstPara;
+    }
+
     @NonNull
     @Override
     public String toString() {

@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -70,7 +69,7 @@ public class DialogNewHappening {
 
             final MyInputText edtHappening = dialog.findViewById(R.id.edtHappening);
             final MyInputText edtDatetime = dialog.findViewById(R.id.edtDatetime);
-            final MyInputText edtDoctor = dialog.findViewById(R.id.edtDoctor);
+            final MyInputText edtDoctor = dialog.findViewById(R.id.tvTotal);
             final MyInputText edtCircuit = dialog.findViewById(R.id.edtCircuit);
             final MyInputText edtBlood = dialog.findViewById(R.id.edtBlood);
             final MyInputText edtTemperature = dialog.findViewById(R.id.edtTemperature);

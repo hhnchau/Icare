@@ -18,14 +18,10 @@ public class ServiceItemDomain implements Parcelable {
     private int sort;
     private int selectquick;
     private int active;
-    private String usercr;
-    private String timecr;
-    private String userup;
-    private String timeup;
-    private String computer;
 
     public ServiceItemDomain() {
     }
+
 
     protected ServiceItemDomain(Parcel in) {
         siterf = in.readInt();
@@ -42,11 +38,6 @@ public class ServiceItemDomain implements Parcelable {
         sort = in.readInt();
         selectquick = in.readInt();
         active = in.readInt();
-        usercr = in.readString();
-        timecr = in.readString();
-        userup = in.readString();
-        timeup = in.readString();
-        computer = in.readString();
     }
 
     public static final Creator<ServiceItemDomain> CREATOR = new Creator<ServiceItemDomain>() {
@@ -173,45 +164,6 @@ public class ServiceItemDomain implements Parcelable {
         this.active = active;
     }
 
-    public String getUsercr() {
-        return usercr;
-    }
-
-    public void setUsercr(String usercr) {
-        this.usercr = usercr;
-    }
-
-    public String getTimecr() {
-        return timecr;
-    }
-
-    public void setTimecr(String timecr) {
-        this.timecr = timecr;
-    }
-
-    public String getUserup() {
-        return userup;
-    }
-
-    public void setUserup(String userup) {
-        this.userup = userup;
-    }
-
-    public String getTimeup() {
-        return timeup;
-    }
-
-    public void setTimeup(String timeup) {
-        this.timeup = timeup;
-    }
-
-    public String getComputer() {
-        return computer;
-    }
-
-    public void setComputer(String computer) {
-        this.computer = computer;
-    }
 
     @Override
     public int describeContents() {
@@ -234,10 +186,5 @@ public class ServiceItemDomain implements Parcelable {
         dest.writeInt(sort);
         dest.writeInt(selectquick);
         dest.writeInt(active);
-        dest.writeString(usercr);
-        dest.writeString(timecr);
-        dest.writeString(userup);
-        dest.writeString(timeup);
-        dest.writeString(computer);
     }
 }

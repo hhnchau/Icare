@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.model.icd.IcdDomain;
+import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 
@@ -21,11 +23,11 @@ import ptt.vn.icaremobileapp.utils.Utils;
  * Created by kingpes on 9/7/18.
  */
 
-public class AutoCompleteTextViewAdapter extends ArrayAdapter<CompleteObject> {
-    private List<CompleteObject> lists;
+public class AutoCompleteTextViewDiagnoseAdapter extends ArrayAdapter<IcdDomain> {
+    private List<IcdDomain> lists;
     private String chr = "";
 
-    public AutoCompleteTextViewAdapter(@NonNull Context context, @NonNull List<CompleteObject> lists) {
+    public AutoCompleteTextViewDiagnoseAdapter(@NonNull Context context, @NonNull List<IcdDomain> lists) {
         super(context, 0, lists);
         this.lists = new ArrayList<>(lists);
     }
@@ -44,9 +46,9 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<CompleteObject> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.autocompleteitem, parent, false);
         }
 
-        TextView txt = convertView.findViewById(R.id.tvTitle);
+        TextView txt = convertView.findViewById(R.id.tvName);
 
-        final CompleteObject complete = getItem(position);
+        final IcdDomain complete = getItem(position);
 
         if (complete != null) {
             txt.setText(Utils.spannable(complete.getName(), chr));
@@ -59,15 +61,16 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<CompleteObject> {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-            List<CompleteObject> suggestions = new ArrayList<>();
+            List<IcdDomain> suggestions = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 suggestions.addAll(lists);
             } else {
                 chr = constraint.toString().toLowerCase();
 
-                for (CompleteObject item : lists) {
-                    if (item.getName().toLowerCase().contains(chr)) {
+                for (IcdDomain item : lists) {
+                    if (item.getName().toLowerCase().contains(chr) ||
+                            item.getCode().toLowerCase().contains(chr)) {
                         suggestions.add(item);
                     }
                 }
@@ -91,7 +94,11 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<CompleteObject> {
 
         @Override
         public CharSequence convertResultToString(Object resultValue) {
-            return ((CompleteObject) resultValue).getName();
+            return ((IcdDomain) resultValue).getName();
         }
     };
+
+    public void setItems(List<IcdDomain> lists) {
+        this.lists = lists;
+    }
 }

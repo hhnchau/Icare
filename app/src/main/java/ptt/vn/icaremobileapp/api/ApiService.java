@@ -1,6 +1,7 @@
 package ptt.vn.icaremobileapp.api;
 
 import io.reactivex.Observable;
+import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
@@ -43,7 +44,10 @@ public interface ApiService {
     Observable<ServiceItemResponse> getServiceItem(@Url String url, @Header("Content") String filterModel);
 
     @GET()
-    Observable<PhaInventoryResponse> getPhainventory(@Url String url, @Header("Content") String filterModel);
+    Observable<PhaInventoryResponse> getPhaInventory(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<IcdResponse> getIcd(@Url String url, @Header("Content") String filterModel);
 
 
 
