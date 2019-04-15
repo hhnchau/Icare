@@ -3,10 +3,14 @@ package ptt.vn.icaremobileapp.fragment.inpatient;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
@@ -21,9 +25,8 @@ import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
 public class Instruction extends BaseFragment {
     private View view;
-    private HappeningDomain happening;
     private PatientDomain patient;
-    private FragmentManager fragmentManager;
+
 
 
     @Nullable
@@ -31,7 +34,7 @@ public class Instruction extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.instruction, container, false);
         if (getArguments() != null) {
-            happening = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
+            HappeningDomain happening = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
             InpatientDomain inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
             if (inpatient != null)
                 patient = inpatient.getPatient();
@@ -39,8 +42,12 @@ public class Instruction extends BaseFragment {
         }
 
         if (getActivity() != null) {
-            fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             setupTabButton(fragmentManager);
+
+
+            //Default
+            Fragmentuz.addFrame(fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
         }
         return view;
     }
@@ -56,7 +63,6 @@ public class Instruction extends BaseFragment {
                 else expandableInstruction.expand();
             }
         });
-
     }
 
     private void setupTabButton(final FragmentManager fragmentManager) {
@@ -67,19 +73,19 @@ public class Instruction extends BaseFragment {
                 if (getActivity() != null) {
                     switch (fzg) {
                         case THAM_KHAM:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame( fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
                             break;
                         case SERVICE_ITEM:
                             Fragmentuz.addFrame(fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
                             break;
                         case DRUG_ORDER:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame( fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
                             break;
                         case DRUG_ORDER_OUTSIDE:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame( fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
                             break;
                         case DIAGNOSE:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame( fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
                             break;
                     }
                 }

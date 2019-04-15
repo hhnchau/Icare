@@ -22,7 +22,6 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.drawer.DrawerAdapter;
 import ptt.vn.icaremobileapp.drawer.DrawerModel;
-import ptt.vn.icaremobileapp.drawer.DrawerTitle;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
 import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
@@ -69,21 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 int position = fragmentManager.getBackStackEntryCount();
                 if (position > 0) {
                     FragmentManager.BackStackEntry backEntry = fragmentManager.getBackStackEntryAt(position - 1);
-                    Toolbaruz.setToolbar(backEntry, toolbarTitle, toolbarLeft, toolbarRight);
+                    Toolbaruz.setToolbar(MainActivity.this, backEntry, toolbarTitle, toolbarLeft, toolbarRight);
                 }
-
             }
         });
 
         //Default
-        Fragmentuz.addMainFrame(fragmentManager,null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
+        Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
 
     }
 
     private void setupDrawer() {
         final List<DrawerModel> lstDrawer = new ArrayList<>();
-        lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_checked, DrawerTitle.DASHBOARD));
-        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_checked, DrawerTitle.INPATIENT_LIST));
+        lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_checked, getString(R.string.screen_dashboard)));
+        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_checked, getString(R.string.screen_inpatient)));
 
         drawerList = findViewById(R.id.drawerList);
         drawerAdapter = new DrawerAdapter(this, lstDrawer);
@@ -93,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         drawer = findViewById(R.id.drawer);
-
 
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -105,15 +102,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        for (Fragment fragment: fragmentManager.getFragments()) {
+                        for (Fragment fragment : fragmentManager.getFragments()) {
                             if (fragment instanceof InpatientList || fragment instanceof Dashboard) {
-                            }
-                            else {
+                            } else {
                                 getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                             }
                         }
 
-                        switch (lstDrawer.get(position).getFzg()){
+                        switch (lstDrawer.get(position).getFzg()) {
                             case INPATIENT_LIST:
                                 Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
                                 //fragmentManager.popBackStack("DASHBOARD", FragmentManager.POP_BACK_STACK_INCLUSIVE);

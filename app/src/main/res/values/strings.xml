@@ -65,15 +65,25 @@
     <string name="btn_drug_add">THÊM</string>
 
 
-    <string name="item_menu_edit">Chỉnh sửa</string>
-    <string name="item_menu_copy">Copy</string>
-    <string name="item_menu_delete">Xóa</string>
 
+    <string name="screen_dashboard">DASHBOARD</string>
+    <string name="screen_inpatient">NỘI TRÚ</string>
+    <string name="screen_inpatient_list">DS NỘI TRÚ</string>
+    <string name="screen_inpatient_happening">DIỄN BIẾN</string>
+    <string name="screen_inpatient_instruction">Y LỆNH</string>
     <string name="tab_tham_kham">Thăm khám</string>
     <string name="tab_service_item">Chỉ định</string>
     <string name="tab_drug_order">Kê đơn</string>
     <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
-    <string name="tab_diagnose">Chuẩn đoán</string>
+    <string name="tab_diagnose">Chẩn đoán</string>
+
+
+
+    <string name="item_menu_edit">Chỉnh sửa</string>
+    <string name="item_menu_copy">Copy</string>
+    <string name="item_menu_delete">Xóa</string>
+
+
 
 
     <string name="txt_service_name">Tên dịch vụ</string>

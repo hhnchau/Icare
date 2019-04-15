@@ -3,7 +3,12 @@ package ptt.vn.icaremobileapp.utils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
+import java.util.List;
+import java.util.Objects;
+
+import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
@@ -91,6 +96,30 @@ public class Fragmentuz {
             exit = R.anim.exit_to_right;
         }
 
+//        boolean isExist = false;
+//        for (Fragmentez frgez : lstFragmentez) {
+//            if (frgez == fzg) {
+//                isExist = true;
+//                break;
+//            }
+//        }
+//
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//
+//        if (isExist) {
+//            //Hide
+//            for (int i = 0; i < lstFragment.size(); i++) {
+//                transaction.hide(lstFragment.get(i));
+//            }
+//            transaction.setCustomAnimations(enter, exit);
+//            transaction.show(getFragment(fzg, lstFragment, lstFragmentez));
+//            transaction.commit();
+//
+//            //Show
+//        } else {
+//            //Add New
+//        }
+
         switch (fzg) {
 
             case THAM_KHAM:
@@ -115,12 +144,32 @@ public class Fragmentuz {
                 break;
         }
 
+//        fragmentManager.beginTransaction()
+//                .setCustomAnimations(enter, exit)
+//                .show(frg)
+//                .commit();
+//
+//        fragmentManager.beginTransaction()
+//                .hide(frg)
+//                .setCustomAnimations(enter, exit)
+//                .show(frg)
+//                .commit();
+
         if (fragmentManager != null && frg != null)
             fragmentManager
                     .beginTransaction()
                     .setCustomAnimations(enter, exit)
-                    .replace(frame, frg, name)
+                    .add(frame, frg, name)
                     .commit();
+    }
+
+    private static BaseFragment getFragment(Fragmentez fzg, List<BaseFragment> lstFragment, List<Fragmentez> lstFragmentez) {
+        for (int i = 0; i < lstFragmentez.size(); i++) {
+            if (fzg == lstFragmentez.get(i)) {
+                return lstFragment.get(i);
+            }
+        }
+        return null;
     }
 
     public static void clearPopBackStack(FragmentManager fragmentManager) {
