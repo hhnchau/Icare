@@ -7,15 +7,15 @@ import android.support.v4.app.FragmentManager;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.fragment.Dashboard;
-import ptt.vn.icaremobileapp.fragment.Diagnose;
-import ptt.vn.icaremobileapp.fragment.DrugOrder;
-import ptt.vn.icaremobileapp.fragment.DrugOrderOutside;
-import ptt.vn.icaremobileapp.fragment.Happening;
-import ptt.vn.icaremobileapp.fragment.InpatientList;
-import ptt.vn.icaremobileapp.fragment.Instruction;
-import ptt.vn.icaremobileapp.fragment.ServiceItem;
-import ptt.vn.icaremobileapp.fragment.ThamKham;
+import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
+import ptt.vn.icaremobileapp.fragment.inpatient.Diagnose;
+import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrder;
+import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrderOutside;
+import ptt.vn.icaremobileapp.fragment.inpatient.Happening;
+import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
+import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
+import ptt.vn.icaremobileapp.fragment.inpatient.ServiceItem;
+import ptt.vn.icaremobileapp.fragment.inpatient.ThamKham;
 
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";

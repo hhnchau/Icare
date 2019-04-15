@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp_4">
+
+    <TextView
+        android:id="@+id/revenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DOANH THU"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frameProgressBar"
+        app:layout_constraintVertical_bias="0"/>
+
+    <include
+        android:id="@+id/frameProgressBar"
+        layout="@layout/circle_progress_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/revenue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/revenueToday"/>
+
+    <TextView
+        android:id="@+id/revenueToday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Doanh thu trong ngày"
+        android:textSize="@dimen/sp_14"
+        android:maxLines="1"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/frameProgressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/revenueTodayNumber"/>
+
+    <TextView
+        android:id="@+id/revenueTodayNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/sp_17"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:text="350.000.000"
+        app:layout_constraintTop_toBottomOf="@id/revenueToday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/target"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mục tiêu"
+        android:textSize="@dimen/sp_14"
+        android:maxLines="1"
+        android:gravity="center"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/average"
+        app:layout_constraintTop_toBottomOf="@id/revenueTodayNumber"
+        app:layout_constraintBottom_toTopOf="@id/targetNumber" />
+
+    <TextView
+        android:id="@+id/targetNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/sp_17"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:text="500.000.000"
+        app:layout_constraintTop_toBottomOf="@id/target"
+        app:layout_constraintStart_toStartOf="@id/target"
+        app:layout_constraintEnd_toEndOf="@id/target"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/average"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bình quân/tuần"
+        android:textSize="@dimen/sp_14"
+        android:maxLines="1"
+        android:gravity="center"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/target"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/revenueTodayNumber"
+        app:layout_constraintBottom_toTopOf="@id/averageNumber" />
+
+    <TextView
+        android:id="@+id/averageNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/sp_17"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:text="200.000.000"
+        app:layout_constraintTop_toBottomOf="@id/average"
+        app:layout_constraintStart_toStartOf="@id/average"
+        app:layout_constraintEnd_toEndOf="@id/average"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -20,20 +20,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.api.ACallback;
-import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.drawer.DrawerAdapter;
 import ptt.vn.icaremobileapp.drawer.DrawerModel;
+import ptt.vn.icaremobileapp.drawer.DrawerTitle;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.fragment.Dashboard;
-import ptt.vn.icaremobileapp.fragment.InpatientList;
-import ptt.vn.icaremobileapp.model.filter.DataTypeOfValue;
-import ptt.vn.icaremobileapp.model.filter.FieldName;
-import ptt.vn.icaremobileapp.model.filter.Method;
-import ptt.vn.icaremobileapp.model.filter.Operation;
-import ptt.vn.icaremobileapp.model.filter.Para;
-import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
+import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
+import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 import ptt.vn.icaremobileapp.utils.Toolbaruz;
 
@@ -47,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView toolbarRight, toolbarLeft;
     private TextView toolbarTitle;
 
-
-    private List<InpatientDomain> lstInpatientDomain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,32 +75,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-        Fragmentuz.addMainFrame(fragmentManager,null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
-
-
-
+        //Default
+        Fragmentuz.addMainFrame(fragmentManager,null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
 
     }
 
     private void setupDrawer() {
         final List<DrawerModel> lstDrawer = new ArrayList<>();
-        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_checked, "DS BENH NHAN"));
-        lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_checked, "DASHBOARD"));
-
+        lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_checked, DrawerTitle.DASHBOARD));
+        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_checked, DrawerTitle.INPATIENT_LIST));
 
         drawerList = findViewById(R.id.drawerList);
         drawerAdapter = new DrawerAdapter(this, lstDrawer);
         drawerList.setAdapter(drawerAdapter);
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         drawer = findViewById(R.id.drawer);
-
-
 
 
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
                             case INPATIENT_LIST:
                                 Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
                                 //fragmentManager.popBackStack("DASHBOARD", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
-
 
                                 break;
                             case DASHBOARD:

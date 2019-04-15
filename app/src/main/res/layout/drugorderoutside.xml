@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@id/cv3">
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvMorning"
+                android:id="@+id/edtDrugMorning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
@@ -84,7 +84,7 @@
                 android:layout_weight="1" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvAfter"
+                android:id="@+id/edtDrugAfter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
@@ -94,7 +94,7 @@
                 android:layout_weight="1" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvDinner"
+                android:id="@+id/edtDrugDinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
@@ -104,7 +104,7 @@
                 android:layout_weight="1" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvEvening"
+                android:id="@+id/edtDrugEvening"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"

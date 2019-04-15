@@ -44,9 +44,9 @@ public class HappeningDomain implements Parcelable, Cloneable {
     private String timeup;
     private String computer;
 
-    private List<DrugOrder> lstInpatientDrugOrder;
-    private List<DrugOrderOutside> lstInpatientDrugOrderOutside;
-    private List<ServiceOrder> lstInpatientServiceOrder;
+    private List<InpatientDrugOrder> lstInpatientDrugOrder;
+    private List<InpatientDrugOrderOutside> lstInpatientDrugOrderOutside;
+    private List<InpatientServiceOrder> lstInpatientServiceOrder;
     private List<InpatientDiagnose> lstInpatientDiagnose;
 
     @Override
@@ -93,9 +93,9 @@ public class HappeningDomain implements Parcelable, Cloneable {
         userup = in.readString();
         timeup = in.readString();
         computer = in.readString();
-        lstInpatientDrugOrder = in.createTypedArrayList(DrugOrder.CREATOR);
-        lstInpatientDrugOrderOutside = in.createTypedArrayList(DrugOrderOutside.CREATOR);
-        lstInpatientServiceOrder = in.createTypedArrayList(ServiceOrder.CREATOR);
+        lstInpatientDrugOrder = in.createTypedArrayList(InpatientDrugOrder.CREATOR);
+        lstInpatientDrugOrderOutside = in.createTypedArrayList(InpatientDrugOrderOutside.CREATOR);
+        lstInpatientServiceOrder = in.createTypedArrayList(InpatientServiceOrder.CREATOR);
         lstInpatientDiagnose = in.createTypedArrayList(InpatientDiagnose.CREATOR);
     }
 
@@ -391,27 +391,27 @@ public class HappeningDomain implements Parcelable, Cloneable {
         this.computer = computer;
     }
 
-    public List<DrugOrder> getLstInpatientDrugOrder() {
+    public List<InpatientDrugOrder> getLstInpatientDrugOrder() {
         return lstInpatientDrugOrder;
     }
 
-    public void setLstInpatientDrugOrder(List<DrugOrder> lstInpatientDrugOrder) {
+    public void setLstInpatientDrugOrder(List<InpatientDrugOrder> lstInpatientDrugOrder) {
         this.lstInpatientDrugOrder = lstInpatientDrugOrder;
     }
 
-    public List<DrugOrderOutside> getLstInpatientDrugOrderOutside() {
+    public List<InpatientDrugOrderOutside> getLstInpatientDrugOrderOutside() {
         return lstInpatientDrugOrderOutside;
     }
 
-    public void setLstInpatientDrugOrderOutside(List<DrugOrderOutside> lstInpatientDrugOrderOutside) {
+    public void setLstInpatientDrugOrderOutside(List<InpatientDrugOrderOutside> lstInpatientDrugOrderOutside) {
         this.lstInpatientDrugOrderOutside = lstInpatientDrugOrderOutside;
     }
 
-    public List<ServiceOrder> getLstInpatientServiceOrder() {
+    public List<InpatientServiceOrder> getLstInpatientServiceOrder() {
         return lstInpatientServiceOrder;
     }
 
-    public void setLstInpatientServiceOrder(List<ServiceOrder> lstInpatientServiceOrder) {
+    public void setLstInpatientServiceOrder(List<InpatientServiceOrder> lstInpatientServiceOrder) {
         this.lstInpatientServiceOrder = lstInpatientServiceOrder;
     }
 

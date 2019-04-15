@@ -16,7 +16,7 @@ public class MyLog {
         if (log) {
             Log.d(TAG, s);
         }
-        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 }
 

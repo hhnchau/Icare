@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp_4">
+
+
+    <ImageView
+        android:id="@+id/ic1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/img_des"
+        android:src="@drawable/ic_hospitalization"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/line1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mainText"/>
+
+    <TextView
+        android:id="@+id/mainText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_50"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/dashboard_text"
+        android:text="15"
+        app:layout_constraintTop_toTopOf="@id/ic1"
+        app:layout_constraintStart_toEndOf="@id/ic1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/subText" />
+
+    <TextView
+        android:id="@+id/subText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bệnh nhân"
+        android:gravity="center"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintBottom_toBottomOf="@id/ic1"
+        app:layout_constraintStart_toEndOf="@id/ic1"
+        app:layout_constraintTop_toBottomOf="@id/mainText"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/bg"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:layout_marginStart="@dimen/dp_4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ic2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_hour_glass"
+        android:contentDescription="@string/img_des"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+       />
+
+
+    <TextView
+        android:id="@+id/patientNumber"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_32"
+        android:text="3499"
+        android:maxLength="4"
+        android:maxLines="1"
+        android:textColor="@color/dashboard_frame4"
+
+        app:layout_constraintStart_toStartOf="@id/line2"
+        app:layout_constraintEnd_toStartOf="@id/patient"
+        app:layout_constraintBottom_toTopOf="@id/line2"/>
+
+    <TextView
+        android:id="@+id/patient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_18"
+        android:text="Bệnh nhân"
+        app:layout_constraintStart_toEndOf="@id/patientNumber"
+        app:layout_constraintTop_toTopOf="@id/patientNumber"
+        app:layout_constraintBottom_toBottomOf="@id/patientNumber" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/bg"
+        app:layout_constraintTop_toTopOf="@id/ic2"
+        app:layout_constraintBottom_toBottomOf="@id/ic2"
+        app:layout_constraintEnd_toStartOf="@id/ic2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        />
+
+    <TextView
+        android:id="@+id/hourNumber"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_32"
+        android:textColor="@color/dashboard_frame4"
+        android:text="24"
+
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        app:layout_constraintStart_toStartOf="@id/line2"
+        app:layout_constraintEnd_toStartOf="@id/hour"/>
+
+    <TextView
+        android:id="@+id/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_18"
+        android:text="Giờ"
+        app:layout_constraintTop_toTopOf="@id/hourNumber"
+        app:layout_constraintBottom_toBottomOf="@id/hourNumber"
+        app:layout_constraintStart_toEndOf="@id/patientNumber"
+     />
+
+
+
+</android.support.constraint.ConstraintLayout>

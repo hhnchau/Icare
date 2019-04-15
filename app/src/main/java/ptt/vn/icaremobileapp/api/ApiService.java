@@ -49,7 +49,9 @@ public interface ApiService {
     @GET()
     Observable<IcdResponse> getIcd(@Url String url, @Header("Content") String filterModel);
 
-
+    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
+    @POST()
+    Observable<Object> login(@Url String url, @Body Object login);
 
 
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textInputLayout"
+    style="@style/MyTextInput"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/txt_drug_name">
+
+    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+        android:id="@+id/myAutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:completionThreshold="1"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:padding="@dimen/dp_12" />
+</android.support.design.widget.TextInputLayout>

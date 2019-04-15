@@ -28,12 +28,13 @@
         >
 
         <EditText
+            android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_36"
             android:layout_marginStart="@dimen/dp_72"
             android:layout_marginEnd="@dimen/dp_72"
-            android:background="@drawable/boder_radius_16"
+            android:background="@drawable/boder_white_text"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="@dimen/dp_20"
             android:paddingStart="@dimen/dp_32"
@@ -45,12 +46,13 @@
             />
 
         <EditText
+            android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_36"
             android:layout_marginStart="@dimen/dp_72"
             android:layout_marginEnd="@dimen/dp_72"
-            android:background="@drawable/boder_radius_16"
+            android:background="@drawable/boder_white_text"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="@dimen/dp_20"
             android:paddingStart="@dimen/dp_32"

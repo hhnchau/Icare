@@ -10,11 +10,13 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ptt.vn.icaremobileapp.R;
 
-public class MyButton extends CardView {
+//public class MyButton extends CardView {
+public class MyButton extends LinearLayout {
     private TextView txt;
     private CharSequence text;
     private int textSize;

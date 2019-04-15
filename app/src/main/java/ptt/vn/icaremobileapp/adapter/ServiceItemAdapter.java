@@ -17,13 +17,13 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
-import ptt.vn.icaremobileapp.model.inpatient.ServiceOrder;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
-    private List<ServiceOrder> lists;
+    private List<InpatientServiceOrder> lists;
 
-    public ServiceItemAdapter(List<ServiceOrder> lists) {
+    public ServiceItemAdapter(List<InpatientServiceOrder> lists) {
         this.lists = lists;
 
         for (int i = 0; i < lists.size(); i++) {
@@ -99,7 +99,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             icArrow = itemView.findViewById(R.id.ic_expand);
 
             tvName = itemView.findViewById(R.id.tvName);
-            tvTotal = itemView.findViewById(R.id.tvTotal);
+            tvTotal = itemView.findViewById(R.id.tvNumber);
             icDelete = itemView.findViewById(R.id.icEdit);
             tvItemCode = itemView.findViewById(R.id.tvItemCode);
             tvUnit = itemView.findViewById(R.id.tvUnit);
@@ -110,7 +110,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         }
     }
 
-    public void setItems(List<ServiceOrder> lists) {
+    public void setItems(List<InpatientServiceOrder> lists) {
         this.lists = lists;
         for (int i = 0; i < this.lists.size(); i++) {
             expand.add(0);

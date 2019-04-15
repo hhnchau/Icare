@@ -18,6 +18,7 @@
     <color name="blue">#00BCD4</color>
     <color name="green">#5EA477</color>
     <color name="red">#f50404</color>
+    <color name="yellow">#ffdd00</color>
 
 
     <!--TEXT-->
@@ -32,4 +33,11 @@
     <color name="toggle_normal_off">#bb00ff</color>
     <color name="toggle_text">#fff</color>
 
+    <!--DASHBOARD-->
+    <color name="dashboard_frame1">#00bcd4</color>
+    <color name="dashboard_frame2">#7bc228</color>
+    <color name="dashboard_frame3">#ff9800</color>
+    <color name="dashboard_frame4">#fb6d9d</color>
+    <color name="dashboard_black">#757575</color>
+    <color name="dashboard_text">#212121</color>
 </resources>

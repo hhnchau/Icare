@@ -17,21 +17,35 @@
         app:layout_constraintVertical_bias="0">
 
 
-        <ptt.vn.icaremobileapp.custom.MyInputText
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/cv1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_16"
+            style="@style/MyTextInput"
+            android:hint="@string/txt_drug_name"
             app:layout_constraintBottom_toTopOf="@id/cv3"
             app:layout_constraintEnd_toStartOf="@id/cv2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ptt.vn.icaremobileapp.custom.MyInputText
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acDiagnose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:id="@+id/cv2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_16"
+            app:hint="@string/txt_drug_activeingre"
             app:layout_constraintBottom_toBottomOf="@id/cv1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cv1"
@@ -58,7 +72,7 @@
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="1"
-                app:hint="Loại" />
+                app:hint="@string/txt_drug_type" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:layout_width="0dp"
@@ -68,7 +82,7 @@
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="0.5"
-                app:hint="Đường Dùng" />
+                app:hint="@string/txt_drug_route" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:layout_width="0dp"
@@ -78,7 +92,7 @@
                 android:layout_marginEnd="@dimen/dp_4"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="0.5"
-                app:hint="Đơn Vị Tính" />
+                app:hint="@string/txt_drug_unit" />
 
         </LinearLayout>
 
@@ -95,44 +109,48 @@
             app:layout_constraintTop_toBottomOf="@id/cv3">
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvMorning"
+                android:id="@+id/edtDrugMorning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_16"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:hint="@string/txt_drug_morning" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvAfter"
+                android:id="@+id/edtDrugAfter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_16"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:hint="@string/txt_drug_after" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvDinner"
+                android:id="@+id/edtDrugDinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_16"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:hint="@string/txt_drug_dinner" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
-                android:id="@+id/tvEvening"
+                android:id="@+id/edtDrugEvening"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_16"
                 android:layout_marginBottom="@dimen/dp_16"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:hint="@string/txt_drug_evening" />
 
         </LinearLayout>
 
@@ -149,6 +167,7 @@
             app:layout_constraintTop_toBottomOf="@id/box">
 
             <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/edtDrugNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
@@ -156,29 +175,29 @@
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_8"
                 android:layout_weight="0.5"
-                app:hint="Số Ngày" />
+                app:hint="@string/txt_drug_number" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/edtDrugTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_8"
-
                 android:layout_weight="0.5"
-                app:hint="Tổng Cộng" />
+                app:hint="@string/txt_drug_total" />
 
             <ptt.vn.icaremobileapp.custom.MyInputText
+                android:id="@+id/edtDrugReason"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginEnd="@dimen/dp_16"
                 android:layout_marginBottom="@dimen/dp_8"
-
                 android:layout_weight="1"
-                app:hint="Lý Do" />
+                app:hint="@string/txt_drug_reason" />
 
         </LinearLayout>
 
@@ -194,10 +213,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/box1"
             app:padding="@dimen/dp_8"
-            app:text="Thêm"
-            app:textSize="@dimen/sp_12"
-            app:textColor="@color/wh" />
-
+            app:text="@string/btn_drug_add"
+            app:textColor="@color/wh"
+            app:textSize="@dimen/sp_12" />
 
     </android.support.constraint.ConstraintLayout>
 

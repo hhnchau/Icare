@@ -38,15 +38,14 @@
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/tvTotal"
+                android:id="@+id/tvNumber"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:text="100.000"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sp_22"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/icCheck"
+                app:layout_constraintBottom_toBottomOf="@id/tvName"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
                 app:layout_constraintTop_toTopOf="parent"
@@ -56,27 +55,13 @@
                 android:id="@+id/ic_expand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_drop_down"
                 android:layout_margin="@dimen/dp_8"
-                app:layout_constraintStart_toEndOf="@id/tvTotal"
-                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvTotal"
-                android:contentDescription="@string/img_des" />
-
-
-            <ImageView
-                android:id="@+id/icCheck"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
-                android:padding="@dimen/dp_20"
-                android:src="@mipmap/ic_checked"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_arrow_drop_down"
+                app:layout_constraintBottom_toBottomOf="@id/tvNumber"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/guide"
-                app:layout_constraintTop_toBottomOf="@id/tvTotal"
-                app:layout_constraintVertical_bias="1" />
+                app:layout_constraintStart_toEndOf="@id/tvNumber"
+                app:layout_constraintTop_toTopOf="@id/tvNumber" />
 
 
             <ImageView
@@ -132,63 +117,28 @@
                 android:layout_height="1dp"
                 android:background="@color/bg" />
 
-            <LinearLayout
+
+            <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvDrugCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                app:label="@string/txt_drugorder_code" />
 
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="Bác Sĩ"
-                    app:value="Nguyễn Văn Bác Sĩ" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="Mạch"
-                    app:value="120" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="Huyết Áp"
-                    app:value="39" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvDrugActiveingre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
-                android:layout_marginBottom="@dimen/dp_16"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                app:label="@string/txt_drugorder_activeingre" />
 
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="Nhiệt Độ"
-                    app:value="160" />
+            <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvDrugUse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:label="@string/txt_drugorder_use" />
 
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="Nhịp Tim"
-                    app:value="60" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="Cân Nặng"
-                    app:value="60" />
-            </LinearLayout>
 
         </LinearLayout>
 
