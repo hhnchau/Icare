@@ -4,16 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.CardView
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/rcv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0">
+    <android.support.constraint.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/cv1"
@@ -72,7 +77,7 @@
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="1"
-                app:hint="@string/txt_drug_type">
+                android:hint="@string/txt_drug_type">
 
                 <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
                     android:id="@+id/acDrugtype"
@@ -93,7 +98,7 @@
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="1"
-                app:hint="@string/txt_drug_route">
+                android:hint="@string/txt_drug_route">
 
                 <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
                     android:id="@+id/acDrugRoute"
@@ -233,6 +238,7 @@
             app:textSize="@dimen/sp_12" />
 
     </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv"
