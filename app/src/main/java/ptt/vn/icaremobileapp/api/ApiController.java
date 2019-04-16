@@ -464,7 +464,6 @@ public class ApiController {
                 }));
     }
 
-
     @SuppressWarnings("unchecked")
     public void getIcd(final Context context, final int _offset, final int _limit, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.ICD);
@@ -498,6 +497,50 @@ public class ApiController {
                             @Override
                             public void request() {
                                 getIcd(context, _offset, _limit, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public void login(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.ICD);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        CompositeManager.add(Api.apiService.login(url + "filter", null)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Object>() {
+
+                    @Override
+                    public void onNext(Object response) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                login(context, aCallback);
                             }
                         });
 

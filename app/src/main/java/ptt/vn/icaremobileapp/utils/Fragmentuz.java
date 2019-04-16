@@ -3,19 +3,24 @@ package ptt.vn.icaremobileapp.utils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
+import java.util.List;
+import java.util.Objects;
+
+import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.fragment.Dashboard;
-import ptt.vn.icaremobileapp.fragment.Diagnose;
-import ptt.vn.icaremobileapp.fragment.DrugOrder;
-import ptt.vn.icaremobileapp.fragment.DrugOrderOutside;
-import ptt.vn.icaremobileapp.fragment.Happening;
-import ptt.vn.icaremobileapp.fragment.InpatientList;
-import ptt.vn.icaremobileapp.fragment.Instruction;
-import ptt.vn.icaremobileapp.fragment.ServiceItem;
-import ptt.vn.icaremobileapp.fragment.ThamKham;
+import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
+import ptt.vn.icaremobileapp.fragment.inpatient.Diagnose;
+import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrder;
+import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrderOutside;
+import ptt.vn.icaremobileapp.fragment.inpatient.Happening;
+import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
+import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
+import ptt.vn.icaremobileapp.fragment.inpatient.ServiceItem;
+import ptt.vn.icaremobileapp.fragment.inpatient.ThamKham;
 
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
@@ -91,6 +96,30 @@ public class Fragmentuz {
             exit = R.anim.exit_to_right;
         }
 
+//        boolean isExist = false;
+//        for (Fragmentez frgez : lstFragmentez) {
+//            if (frgez == fzg) {
+//                isExist = true;
+//                break;
+//            }
+//        }
+//
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//
+//        if (isExist) {
+//            //Hide
+//            for (int i = 0; i < lstFragment.size(); i++) {
+//                transaction.hide(lstFragment.get(i));
+//            }
+//            transaction.setCustomAnimations(enter, exit);
+//            transaction.show(getFragment(fzg, lstFragment, lstFragmentez));
+//            transaction.commit();
+//
+//            //Show
+//        } else {
+//            //Add New
+//        }
+
         switch (fzg) {
 
             case THAM_KHAM:
@@ -115,12 +144,32 @@ public class Fragmentuz {
                 break;
         }
 
+//        fragmentManager.beginTransaction()
+//                .setCustomAnimations(enter, exit)
+//                .show(frg)
+//                .commit();
+//
+//        fragmentManager.beginTransaction()
+//                .hide(frg)
+//                .setCustomAnimations(enter, exit)
+//                .show(frg)
+//                .commit();
+
         if (fragmentManager != null && frg != null)
             fragmentManager
                     .beginTransaction()
                     .setCustomAnimations(enter, exit)
-                    .replace(frame, frg, name)
+                    .add(frame, frg, name)
                     .commit();
+    }
+
+    private static BaseFragment getFragment(Fragmentez fzg, List<BaseFragment> lstFragment, List<Fragmentez> lstFragmentez) {
+        for (int i = 0; i < lstFragmentez.size(); i++) {
+            if (fzg == lstFragmentez.get(i)) {
+                return lstFragment.get(i);
+            }
+        }
+        return null;
     }
 
     public static void clearPopBackStack(FragmentManager fragmentManager) {
