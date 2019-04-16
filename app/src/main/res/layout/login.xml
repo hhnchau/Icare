@@ -7,14 +7,18 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_giaan"
+        android:layout_marginStart="@dimen/dp_36"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guide"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        android:contentDescription="@string/img_des" />
 
     <LinearLayout
         android:id="@+id/box"
@@ -24,63 +28,59 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon"
-        >
+        app:layout_constraintTop_toBottomOf="@id/icon">
 
         <EditText
             android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_36"
             android:layout_marginStart="@dimen/dp_72"
+            android:layout_marginTop="@dimen/dp_84"
             android:layout_marginEnd="@dimen/dp_72"
             android:background="@drawable/boder_white_text"
             android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="@dimen/dp_20"
+            android:drawablePadding="@dimen/dp_16"
+            android:hint="TÊN ĐĂNG NHẬP"
             android:paddingStart="@dimen/dp_32"
             android:paddingTop="@dimen/dp_24"
             android:paddingBottom="@dimen/dp_24"
-            android:hint="TÊN ĐĂNG NHẬP"
             android:textColorHint="@color/gr"
-            android:textSize="@dimen/sp_16"
-            />
+            android:textSize="@dimen/sp_16" />
 
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_36"
             android:layout_marginStart="@dimen/dp_72"
+            android:layout_marginTop="@dimen/dp_36"
             android:layout_marginEnd="@dimen/dp_72"
             android:background="@drawable/boder_white_text"
             android:drawableStart="@drawable/ic_lock"
-            android:drawablePadding="@dimen/dp_20"
+            android:drawablePadding="@dimen/dp_16"
+            android:hint="MẬT KHẨU"
             android:paddingStart="@dimen/dp_32"
             android:paddingTop="@dimen/dp_24"
             android:paddingBottom="@dimen/dp_24"
-            android:hint="MẬT KHẨU"
-            android:textColorHint="@color/gr"
             android:textColor="#123"
-            android:textSize="@dimen/sp_16"
-            />
+            android:textColorHint="@color/gr"
+            android:textSize="@dimen/sp_16" />
 
         <ptt.vn.icaremobileapp.custom.MyButton
             android:id="@+id/btnOk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_36"
             android:layout_marginStart="@dimen/dp_72"
+            android:layout_marginTop="@dimen/dp_36"
             android:layout_marginEnd="@dimen/dp_72"
             app:backgroundColor="@drawable/button_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edtTemperature"
-            app:padding="@dimen/dp_12"
+            app:padding="@dimen/dp_16"
             app:text="@string/btn_login"
             app:textColor="@color/wh"
-            app:textSize="@dimen/sp_10"
-            />
+            app:textSize="@dimen/sp_12" />
 
     </LinearLayout>
 

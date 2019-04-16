@@ -17,6 +17,7 @@ import java.util.Calendar;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputText;
+import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
@@ -67,14 +68,14 @@ public class DialogNewHappening {
                 }
             });
 
-            final MyInputText edtHappening = dialog.findViewById(R.id.edtHappening);
-            final MyInputText edtDatetime = dialog.findViewById(R.id.edtDatetime);
-            final MyInputText edtDoctor = dialog.findViewById(R.id.edtDoctor);
-            final MyInputText edtCircuit = dialog.findViewById(R.id.edtCircuit);
-            final MyInputText edtBlood = dialog.findViewById(R.id.edtBlood);
-            final MyInputText edtTemperature = dialog.findViewById(R.id.edtTemperature);
-            final MyInputText edtHeartbeat = dialog.findViewById(R.id.edtHeartbeat);
-            final MyInputText edtWeight = dialog.findViewById(R.id.edtWeight);
+            final MyInputTextOutline edtHappening = dialog.findViewById(R.id.edtHappening);
+            final MyInputTextOutline edtDatetime = dialog.findViewById(R.id.edtDatetime);
+            final MyInputTextOutline edtDoctor = dialog.findViewById(R.id.edtDoctor);
+            final MyInputTextOutline edtCircuit = dialog.findViewById(R.id.edtCircuit);
+            final MyInputTextOutline edtBlood = dialog.findViewById(R.id.edtBlood);
+            final MyInputTextOutline edtTemperature = dialog.findViewById(R.id.edtTemperature);
+            final MyInputTextOutline edtHeartbeat = dialog.findViewById(R.id.edtHeartbeat);
+            final MyInputTextOutline edtWeight = dialog.findViewById(R.id.edtWeight);
             ImageView icDatetime = dialog.findViewById(R.id.icDate);
             icDatetime.setOnClickListener(new View.OnClickListener() {
                 @Override

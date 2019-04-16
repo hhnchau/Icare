@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dp_8"
+    android:layout_margin="@dimen/dp_0"
     android:orientation="vertical">
 
     <ptt.vn.icaremobileapp.custom.MyTextView
         android:id="@+id/tvPatientAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_0"
+        android:layout_marginEnd="@dimen/dp_0"
         app:label="@string/txt__patient_address" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_0"
         android:layout_marginBottom="@dimen/dp_24"
         android:orientation="vertical">
 

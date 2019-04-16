@@ -28,7 +28,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:lines="2"
-                android:text="@string/txt_happening"
+                android:text="CHẨN ĐOÁN"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/icEdit"
