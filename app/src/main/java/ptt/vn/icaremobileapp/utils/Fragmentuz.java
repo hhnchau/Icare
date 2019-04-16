@@ -159,7 +159,7 @@ public class Fragmentuz {
             fragmentManager
                     .beginTransaction()
                     .setCustomAnimations(enter, exit)
-                    .add(frame, frg, name)
+                    .replace(frame, frg, name)
                     .commit();
     }
 

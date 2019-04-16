@@ -67,25 +67,26 @@ public class Instruction extends BaseFragment {
 
     private void setupTabButton(final FragmentManager fragmentManager) {
         MyTabButton myTabButton = view.findViewById(R.id.toggle);
+        myTabButton.setActive(MyTabButton.TAB2);
         myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
             @Override
             public void onToggled(Fragmentez fzg) {
                 if (getActivity() != null) {
                     switch (fzg) {
                         case THAM_KHAM:
-                            Fragmentuz.addFrame( fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
                             break;
                         case SERVICE_ITEM:
                             Fragmentuz.addFrame(fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
                             break;
                         case DRUG_ORDER:
-                            Fragmentuz.addFrame( fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
                             break;
                         case DRUG_ORDER_OUTSIDE:
-                            Fragmentuz.addFrame( fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
                             break;
                         case DIAGNOSE:
-                            Fragmentuz.addFrame( fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
                             break;
                     }
                 }

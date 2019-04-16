@@ -69,7 +69,7 @@ public class DialogNewHappening {
 
             final MyInputText edtHappening = dialog.findViewById(R.id.edtHappening);
             final MyInputText edtDatetime = dialog.findViewById(R.id.edtDatetime);
-            final MyInputText edtDoctor = dialog.findViewById(R.id.tvNumber);
+            final MyInputText edtDoctor = dialog.findViewById(R.id.edtDoctor);
             final MyInputText edtCircuit = dialog.findViewById(R.id.edtCircuit);
             final MyInputText edtBlood = dialog.findViewById(R.id.edtBlood);
             final MyInputText edtTemperature = dialog.findViewById(R.id.edtTemperature);
@@ -97,9 +97,9 @@ public class DialogNewHappening {
             if (happening != null) {
                 edtHappening.setText(happening.getHappening());
                 edtDatetime.setText(Utils.dateConvert(happening.getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
-                edtDoctor.setText(happening.getNamedoctor());
+                if (happening.getNamedoctor() != null) edtDoctor.setText(happening.getNamedoctor());
                 edtCircuit.setText(String.valueOf(happening.getCircui()));
-                edtBlood.setText(happening.getBlomax()+"");// + " / " + happening.getBlomin());
+                edtBlood.setText(happening.getBlomax() + "");// + " / " + happening.getBlomin());
                 edtTemperature.setText(String.valueOf(happening.getTemper()));
                 edtHeartbeat.setText(String.valueOf(happening.getHeartb()));
                 edtWeight.setText(String.valueOf(happening.getWeight()));

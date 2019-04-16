@@ -142,8 +142,8 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
             tvHeartb = itemView.findViewById(R.id.tvHeartb);
             tvWeight = itemView.findViewById(R.id.edtWeight);
             icCopy = itemView.findViewById(R.id.icCopy);
-            icEdit = itemView.findViewById(R.id.icDelete);
-            icDelete = itemView.findViewById(R.id.icEdit);
+            icEdit = itemView.findViewById(R.id.icEdit);
+            icDelete = itemView.findViewById(R.id.icDelete);
         }
     }
 
