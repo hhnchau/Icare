@@ -46,8 +46,12 @@
 
 
     <style name="MyTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">#1203da</item>
-        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeColor">#747383</item>
+        <item name="boxStrokeWidth">1dip</item>
+        <item name="boxCornerRadiusBottomStart">84dp</item>
+        <item name="boxCornerRadiusBottomEnd">84dp</item>
+        <item name="boxCornerRadiusTopStart">84dp</item>
+        <item name="boxCornerRadiusTopEnd">84dp</item>
     </style>
 
 </resources>

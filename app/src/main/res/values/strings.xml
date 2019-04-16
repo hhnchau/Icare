@@ -45,6 +45,24 @@
     <string name="txt_diagnose_code">Mã ICD 10</string>
     <string name="txt_diagnose_name_en">Tên Tiếng Anh</string>
 
+    <string name="txt_drugorder_code">Mã Biệt Dược</string>
+    <string name="txt_drugorder_activeingre">Hoạt Chất</string>
+    <string name="txt_drugorder_use">Cách Dùng</string>
+
+
+    <string name="txt_drug_name">Tên Thuốc</string>
+    <string name="txt_drug_activeingre">Hoạt Chất</string>
+    <string name="txt_drug_type">Loại</string>
+    <string name="txt_drug_route">Đường Dùng</string>
+    <string name="txt_drug_unit">ĐVT</string>
+    <string name="txt_drug_morning">Sáng</string>
+    <string name="txt_drug_after">Trưa</string>
+    <string name="txt_drug_dinner">Chiều</string>
+    <string name="txt_drug_evening">Tối</string>
+    <string name="txt_drug_number">Số Ngày</string>
+    <string name="txt_drug_total">Tổng Cộng</string>
+    <string name="txt_drug_reason">Lý Do</string>
+    <string name="btn_drug_add">THÊM</string>
 
 
     <string name="item_menu_edit">Chỉnh sửa</string>
@@ -56,15 +74,6 @@
     <string name="tab_drug_order">Kê đơn</string>
     <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
     <string name="tab_diagnose">Chuẩn đoán</string>
-
-
-
-    <string name="txt_morning">Sáng</string>
-    <string name="txt_after">Trưa</string>
-    <string name="txt_dinner">Chiều</string>
-    <string name="txt_evening">Tối</string>
-
-
 
 
     <string name="txt_service_name">Tên dịch vụ</string>

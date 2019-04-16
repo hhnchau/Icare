@@ -3,20 +3,23 @@ package ptt.vn.icaremobileapp.model.inpatient;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class DrugOrderOutside implements Parcelable {
+public class InpatientDrugOrder implements Parcelable {
     private int siterf;
     private String idline;
     private String idhappening;
     private int iddrug;
     private String codedrug;
     private String namedrug;
+    private String activename;
     private float qty;
     private int idunit;
     private String idunitname;
     private int idunituse;
     private String unitusename;
-    private int idunitroute;
-    private String unitroutename;
+    private int idroute;
+    private String routename;
+    private float price;
+    private float total;
     private String usage;
     private String desc;
     private String qtymor;
@@ -24,9 +27,12 @@ public class DrugOrderOutside implements Parcelable {
     private String qtyaft;
     private String qtynig;
     private int qtyday;
+    private int idstore;
     private String attributes;
     private String mmyy;
     private String year;
+    private int insurance;
+    private int type;
     private int active;
     private String usercr;
     private String timecr;
@@ -34,24 +40,26 @@ public class DrugOrderOutside implements Parcelable {
     private String timeup;
     private String computer;
 
-
-    public DrugOrderOutside() {
+    public InpatientDrugOrder() {
     }
 
-    protected DrugOrderOutside(Parcel in) {
+    protected InpatientDrugOrder(Parcel in) {
         siterf = in.readInt();
         idline = in.readString();
         idhappening = in.readString();
         iddrug = in.readInt();
         codedrug = in.readString();
         namedrug = in.readString();
+        activename = in.readString();
         qty = in.readFloat();
         idunit = in.readInt();
         idunitname = in.readString();
         idunituse = in.readInt();
         unitusename = in.readString();
-        idunitroute = in.readInt();
-        unitroutename = in.readString();
+        idroute = in.readInt();
+        routename = in.readString();
+        price = in.readFloat();
+        total = in.readFloat();
         usage = in.readString();
         desc = in.readString();
         qtymor = in.readString();
@@ -59,9 +67,12 @@ public class DrugOrderOutside implements Parcelable {
         qtyaft = in.readString();
         qtynig = in.readString();
         qtyday = in.readInt();
+        idstore = in.readInt();
         attributes = in.readString();
         mmyy = in.readString();
         year = in.readString();
+        insurance = in.readInt();
+        type = in.readInt();
         active = in.readInt();
         usercr = in.readString();
         timecr = in.readString();
@@ -70,15 +81,15 @@ public class DrugOrderOutside implements Parcelable {
         computer = in.readString();
     }
 
-    public static final Creator<DrugOrderOutside> CREATOR = new Creator<DrugOrderOutside>() {
+    public static final Creator<InpatientDrugOrder> CREATOR = new Creator<InpatientDrugOrder>() {
         @Override
-        public DrugOrderOutside createFromParcel(Parcel in) {
-            return new DrugOrderOutside(in);
+        public InpatientDrugOrder createFromParcel(Parcel in) {
+            return new InpatientDrugOrder(in);
         }
 
         @Override
-        public DrugOrderOutside[] newArray(int size) {
-            return new DrugOrderOutside[size];
+        public InpatientDrugOrder[] newArray(int size) {
+            return new InpatientDrugOrder[size];
         }
     };
 
@@ -130,6 +141,14 @@ public class DrugOrderOutside implements Parcelable {
         this.namedrug = namedrug;
     }
 
+    public String getActivename() {
+        return activename;
+    }
+
+    public void setActivename(String activename) {
+        this.activename = activename;
+    }
+
     public float getQty() {
         return qty;
     }
@@ -170,20 +189,36 @@ public class DrugOrderOutside implements Parcelable {
         this.unitusename = unitusename;
     }
 
-    public int getIdunitroute() {
-        return idunitroute;
+    public int getIdroute() {
+        return idroute;
     }
 
-    public void setIdunitroute(int idunitroute) {
-        this.idunitroute = idunitroute;
+    public void setIdroute(int idroute) {
+        this.idroute = idroute;
     }
 
-    public String getUnitroutename() {
-        return unitroutename;
+    public String getRoutename() {
+        return routename;
     }
 
-    public void setUnitroutename(String unitroutename) {
-        this.unitroutename = unitroutename;
+    public void setRoutename(String routename) {
+        this.routename = routename;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
 
     public String getUsage() {
@@ -242,6 +277,14 @@ public class DrugOrderOutside implements Parcelable {
         this.qtyday = qtyday;
     }
 
+    public int getIdstore() {
+        return idstore;
+    }
+
+    public void setIdstore(int idstore) {
+        this.idstore = idstore;
+    }
+
     public String getAttributes() {
         return attributes;
     }
@@ -264,6 +307,22 @@ public class DrugOrderOutside implements Parcelable {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public int getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(int insurance) {
+        this.insurance = insurance;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getActive() {
@@ -327,13 +386,16 @@ public class DrugOrderOutside implements Parcelable {
         dest.writeInt(iddrug);
         dest.writeString(codedrug);
         dest.writeString(namedrug);
+        dest.writeString(activename);
         dest.writeFloat(qty);
         dest.writeInt(idunit);
         dest.writeString(idunitname);
         dest.writeInt(idunituse);
         dest.writeString(unitusename);
-        dest.writeInt(idunitroute);
-        dest.writeString(unitroutename);
+        dest.writeInt(idroute);
+        dest.writeString(routename);
+        dest.writeFloat(price);
+        dest.writeFloat(total);
         dest.writeString(usage);
         dest.writeString(desc);
         dest.writeString(qtymor);
@@ -341,9 +403,12 @@ public class DrugOrderOutside implements Parcelable {
         dest.writeString(qtyaft);
         dest.writeString(qtynig);
         dest.writeInt(qtyday);
+        dest.writeInt(idstore);
         dest.writeString(attributes);
         dest.writeString(mmyy);
         dest.writeString(year);
+        dest.writeInt(insurance);
+        dest.writeInt(type);
         dest.writeInt(active);
         dest.writeString(usercr);
         dest.writeString(timecr);

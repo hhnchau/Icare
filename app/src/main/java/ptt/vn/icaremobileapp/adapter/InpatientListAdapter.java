@@ -81,7 +81,7 @@ public class InpatientListAdapter extends RecyclerView.Adapter<InpatientListAdap
             tvCode = itemView.findViewById(R.id.tvCode);
             tvBirthday = itemView.findViewById(R.id.tvBirthday);
             tvRoom = itemView.findViewById(R.id.tvRoom);
-            tvDate = itemView.findViewById(R.id.tvTotal);
+            tvDate = itemView.findViewById(R.id.tvNumber);
             tvGender = itemView.findViewById(R.id.tvGender);
             tvBed = itemView.findViewById(R.id.tvBed);
 

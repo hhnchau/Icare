@@ -20,7 +20,7 @@ import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
-import ptt.vn.icaremobileapp.model.inpatient.ServiceOrder;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 
@@ -28,7 +28,7 @@ public class ServiceItem extends BaseFragment {
     private View view;
     private List<ServiceItemDomain> lstAuto;
     private AutoCompleteTextViewServiceItemAdapter adapterAuto;
-    private List<ServiceOrder> lstServiceItem;
+    private List<InpatientServiceOrder> lstServiceItem;
     private ServiceItemAdapter adapterServiceItem;
     private int offset = 0;
     private int limit = 1000;
@@ -59,11 +59,11 @@ public class ServiceItem extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ServiceItemDomain serviceItemDomain = (ServiceItemDomain) parent.getItemAtPosition(position);
-                    ServiceOrder serviceOrder = new ServiceOrder();
+                    InpatientServiceOrder serviceOrder = new InpatientServiceOrder();
                     serviceOrder.setDocoder(serviceItemDomain.getNamehosp());
 
                     int exist = 0;
-                    for (ServiceOrder item : lstServiceItem)
+                    for (InpatientServiceOrder item : lstServiceItem)
                         if (item.getDocoder().equals(serviceOrder.getDocoder())) {
                             exist++;
                             break;

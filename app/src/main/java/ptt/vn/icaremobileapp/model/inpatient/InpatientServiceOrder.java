@@ -3,7 +3,7 @@ package ptt.vn.icaremobileapp.model.inpatient;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ServiceOrder implements Parcelable {
+public class InpatientServiceOrder implements Parcelable {
     private int siterf;
     private String idline;
     private String idhappening;
@@ -23,10 +23,10 @@ public class ServiceOrder implements Parcelable {
     private String timeup;
     private String computer;
 
-    public ServiceOrder() {
+    public InpatientServiceOrder() {
     }
 
-    protected ServiceOrder(Parcel in) {
+    protected InpatientServiceOrder(Parcel in) {
         siterf = in.readInt();
         idline = in.readString();
         idhappening = in.readString();
@@ -47,15 +47,15 @@ public class ServiceOrder implements Parcelable {
         computer = in.readString();
     }
 
-    public static final Creator<ServiceOrder> CREATOR = new Creator<ServiceOrder>() {
+    public static final Creator<InpatientServiceOrder> CREATOR = new Creator<InpatientServiceOrder>() {
         @Override
-        public ServiceOrder createFromParcel(Parcel in) {
-            return new ServiceOrder(in);
+        public InpatientServiceOrder createFromParcel(Parcel in) {
+            return new InpatientServiceOrder(in);
         }
 
         @Override
-        public ServiceOrder[] newArray(int size) {
-            return new ServiceOrder[size];
+        public InpatientServiceOrder[] newArray(int size) {
+            return new InpatientServiceOrder[size];
         }
     };
 
