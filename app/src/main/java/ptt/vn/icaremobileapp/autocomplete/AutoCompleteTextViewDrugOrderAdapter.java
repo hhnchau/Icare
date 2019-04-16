@@ -14,20 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.model.icd.IcdDomain;
-import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
-
-/**
- * Created by kingpes on 9/7/18.
- */
-
-public class AutoCompleteTextViewDiagnoseAdapter extends ArrayAdapter<IcdDomain> {
-    private List<IcdDomain> lists;
+public class AutoCompleteTextViewDrugOrderAdapter extends ArrayAdapter<PhaInventoryDomain> {
+    private List<PhaInventoryDomain> lists;
     private String chr = "";
 
-    public AutoCompleteTextViewDiagnoseAdapter(@NonNull Context context, @NonNull List<IcdDomain> lists) {
+    public AutoCompleteTextViewDrugOrderAdapter(@NonNull Context context, @NonNull List<PhaInventoryDomain> lists) {
         super(context, 0, lists);
         this.lists = new ArrayList<>(lists);
     }
@@ -48,7 +42,7 @@ public class AutoCompleteTextViewDiagnoseAdapter extends ArrayAdapter<IcdDomain>
 
         TextView txt = convertView.findViewById(R.id.tvName);
 
-        final IcdDomain complete = getItem(position);
+        final PhaInventoryDomain complete = getItem(position);
 
         if (complete != null) {
             txt.setText(Utils.spannable(complete.getName(), chr));
@@ -61,14 +55,14 @@ public class AutoCompleteTextViewDiagnoseAdapter extends ArrayAdapter<IcdDomain>
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-            List<IcdDomain> suggestions = new ArrayList<>();
+            List<PhaInventoryDomain> suggestions = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 suggestions.addAll(lists);
             } else {
                 chr = constraint.toString().toLowerCase();
 
-                for (IcdDomain item : lists) {
+                for (PhaInventoryDomain item : lists) {
                     if (item.getName().toLowerCase().contains(chr) ||
                             item.getCode().toLowerCase().contains(chr)) {
                         suggestions.add(item);
@@ -94,11 +88,11 @@ public class AutoCompleteTextViewDiagnoseAdapter extends ArrayAdapter<IcdDomain>
 
         @Override
         public CharSequence convertResultToString(Object resultValue) {
-            return ((IcdDomain) resultValue).getName();
+            return ((PhaInventoryDomain) resultValue).getName();
         }
     };
 
-    public void setItems(List<IcdDomain> lists) {
+    public void setItems(List<PhaInventoryDomain> lists) {
         this.lists = lists;
     }
 }

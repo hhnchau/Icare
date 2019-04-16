@@ -19,7 +19,6 @@ import ptt.vn.icaremobileapp.adapter.DiagnoseAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDiagnoseAdapter;
-import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.model.icd.IcdDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;

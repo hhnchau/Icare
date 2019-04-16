@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,16 +17,24 @@ import java.util.List;
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DrugOrderAdapter;
-import ptt.vn.icaremobileapp.custom.MyInputText;
+import ptt.vn.icaremobileapp.api.ACallback;
+import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
+import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
+import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
+import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 
 public class DrugOrder extends BaseFragment {
     private View view;
+    private List<PhaInventoryDomain> lstAuto;
+    private AutoCompleteTextViewDrugOrderAdapter adapterAuto;
     private List<InpatientDrugOrder> lstDrugOrder;
     private DrugOrderAdapter adapterDrugOrder;
+    private int offset = 0;
+    private int limit = 1000;
 
-    private MyInputText tvMorning, tvAfter, tvDinner, tvEvening, tvCv1;
-
+    private MyInputTextOutline tvMorning, tvAfter, tvDinner, tvEvening, tvCv1;
 
 
     @Nullable
@@ -33,9 +42,15 @@ public class DrugOrder extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.drugorder, container, false);
 
+        setupDrugOrder();
         setupListDrugOrder();
+        getPhaInventory(offset, limit, 1, 0);
 
-//        tvMorning = view.findViewById(R.id.tvMorning);
+        return view;
+    }
+
+    private void setupView() {
+        //        tvMorning = view.findViewById(R.id.tvMorning);
 //        tvMorning.setCustomView(getString(R.string.txt_morning) + "  (viên)", null, true);
 //        tvAfter = view.findViewById(R.id.tvAfter);
 //        tvAfter.setCustomView(getString(R.string.txt_after) + "  (viên)", null, true);
@@ -47,12 +62,45 @@ public class DrugOrder extends BaseFragment {
 //        tvCv1 = view.findViewById(R.id.cv1);
 //        tvCv1.setCustomView(getString(R.string.txt_morning) + "  (viên)", null, true);
 //        tvCv1.setEnabled(false);
-
-
-        return view;
     }
 
-    private void setupView(){
+    private void setupDrugOrder() {
+        if (getActivity() != null) {
+            final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDrug);
+
+            lstAuto = new ArrayList<>();
+            adapterAuto = new AutoCompleteTextViewDrugOrderAdapter(getActivity(), lstAuto);
+            myAutoCompleteTextView.setAdapter(adapterAuto);
+            myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    PhaInventoryDomain phaInventory = (PhaInventoryDomain) parent.getItemAtPosition(position);
+                    InpatientDrugOrder drugOrder = new InpatientDrugOrder();
+                    drugOrder.setActivename(phaInventory.getCode());
+
+                    boolean exist = false;
+                    for (InpatientDrugOrder item : lstDrugOrder)
+                        if (item.getIddrug() == phaInventory.getIddrug()) {
+                            exist = true;
+                            //add
+                            break;
+                        }
+
+                    if (!exist) {
+                        lstDrugOrder.add(drugOrder);
+                        adapterDrugOrder.setItems(lstDrugOrder);
+                        adapterDrugOrder.notifyDataSetChanged();
+                    }
+                }
+            });
+
+            myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myAutoCompleteTextView.showDropDown();
+                }
+            });
+        }
 
     }
 
@@ -71,4 +119,17 @@ public class DrugOrder extends BaseFragment {
             }
         });
     }
+
+    private void getPhaInventory(int _offset, int _limit, int _idStore, int _isHi) {
+        ApiController.getInstance().getPhaInventory(getActivity(), _offset, _limit, _idStore, _isHi,
+                new ACallback<PhaInventoryDomain>() {
+                    @Override
+                    public void response(List<PhaInventoryDomain> listInventory) {
+                        lstAuto = listInventory;
+                        adapterAuto.setItems(lstAuto);
+                        adapterAuto.notifyDataSetChanged();
+                    }
+                });
+    }
+
 }
