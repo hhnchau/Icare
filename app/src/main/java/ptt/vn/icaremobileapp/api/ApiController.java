@@ -1,6 +1,7 @@
 package ptt.vn.icaremobileapp.api;
 
 import android.content.Context;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import ptt.vn.icaremobileapp.application.MyApplication;
 import ptt.vn.icaremobileapp.loading.Loading;
 import ptt.vn.icaremobileapp.log.MyLog;
 import ptt.vn.icaremobileapp.model.BaseResult;
+import ptt.vn.icaremobileapp.model.common.CateShareResponse;
+import ptt.vn.icaremobileapp.model.common.CateSharehDomain;
 import ptt.vn.icaremobileapp.model.filter.DataTypeOfValue;
 import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
@@ -98,7 +101,7 @@ public class ApiController {
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         lstPara.add(new Para(FieldName.idmedexa, Operation.Equals, DataTypeOfValue.Int64, idmedexa));
         CompositeManager.add(Api.apiService.getInpatient(url + "filter", new FilterModel(_offset, _limit, GetInpatientInDepartment, lstPara).toString())
                 .subscribeOn(Schedulers.io())
@@ -146,7 +149,7 @@ public class ApiController {
         //Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         for (InpatientDomain item : lstInpatient)
             lstPara.add(new Para(FieldName.patid, Operation.Equals, DataTypeOfValue.Guid, item.getPatid()));
         CompositeManager.add(Api.apiService.getPatientByPatId(url + "filter", new FilterModel(0, 10000, GetListPatient, lstPara).toString())
@@ -194,7 +197,7 @@ public class ApiController {
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         lstPara.add(new Para(FieldName.idmedexa, Operation.Equals, DataTypeOfValue.Int64, idmedexa));
         CompositeManager.add(Api.apiService.getInpatient(url + "filter", new FilterModel(_offset, _limit, null, lstPara).toString())
                 .subscribeOn(Schedulers.io())
@@ -241,7 +244,7 @@ public class ApiController {
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         lstPara.add(new Para(FieldName.idlink, Operation.Equals, DataTypeOfValue.Guid, idlink));
         CompositeManager.add(Api.apiService.getHappening(url + "filter", new FilterModel(_offset, _limit, GetHappeningInDepartment, lstPara).toString())
                 .subscribeOn(Schedulers.io())
@@ -376,7 +379,7 @@ public class ApiController {
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         CompositeManager.add(Api.apiService.getServiceItem(url + "filter", new FilterModel(_offset, _limit, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -423,7 +426,7 @@ public class ApiController {
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         lstPara.add(new Para(FieldName.idstore, Operation.Equals, DataTypeOfValue.Int64, _idStore));
         lstPara.add(new Para(FieldName.ishi, Operation.Equals, DataTypeOfValue.Int64, _isHi));
         CompositeManager.add(Api.apiService.getPhaInventory(url + "filter", new FilterModel(_offset, _limit, GetInvDrug, lstPara).toString())
@@ -475,7 +478,7 @@ public class ApiController {
         Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
-        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
         CompositeManager.add(Api.apiService.getIcd(url + "filter", new FilterModel(_offset, _limit, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -506,6 +509,105 @@ public class ApiController {
                     @Override
                     public void onComplete() {
                         Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getDrugRoute(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.CATE);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
+        lstPara.add(new Para(FieldName.routedrug, Operation.Equals, DataTypeOfValue.String, null));
+        CompositeManager.add(Api.apiService.getDrugRoute(url + "filter", new FilterModel(lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<CateShareResponse>() {
+
+                    @Override
+                    public void onNext(CateShareResponse response) {
+                        if (response.getCode() == 0 && aCallback != null) {
+                            List<CateSharehDomain> lstCateShareh = response.getData();
+                            if (lstCateShareh != null && lstCateShareh.size() > 0)
+                                aCallback.response(lstCateShareh.get(0).getLstCateShareDetail());
+                        } else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getDrugRoute(context, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public void getHappeningType(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.CATE);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
+        lstPara.add(new Para(FieldName.typemedicalchart, Operation.Equals, DataTypeOfValue.String, null));
+        CompositeManager.add(Api.apiService.getHappeningType(url + "filter", new FilterModel(lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<CateShareResponse>() {
+
+                    @Override
+                    public void onNext(CateShareResponse response) {
+                        if (response.getCode() == 0 && aCallback != null) {
+                            List<CateSharehDomain> lstCateShareh = response.getData();
+                            if (lstCateShareh != null && lstCateShareh.size() > 0)
+                                aCallback.response(lstCateShareh.get(0).getLstCateShareDetail());
+                        } else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getDrugRoute(context, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
                     }
                 }));
     }

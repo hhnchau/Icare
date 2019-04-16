@@ -38,7 +38,7 @@
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/tvNumber"
+                android:id="@+id/tvTotal"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -58,10 +58,10 @@
                 android:layout_margin="@dimen/dp_8"
                 android:contentDescription="@string/img_des"
                 android:src="@drawable/ic_arrow_drop_down"
-                app:layout_constraintBottom_toBottomOf="@id/tvNumber"
+                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvNumber"
-                app:layout_constraintTop_toTopOf="@id/tvNumber" />
+                app:layout_constraintStart_toEndOf="@id/tvTotal"
+                app:layout_constraintTop_toTopOf="@id/tvTotal" />
 
 
             <ImageView

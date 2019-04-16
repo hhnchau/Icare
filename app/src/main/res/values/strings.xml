@@ -64,8 +64,6 @@
     <string name="txt_drug_reason">Lý Do</string>
     <string name="btn_drug_add">THÊM</string>
 
-
-
     <string name="screen_dashboard">DASHBOARD</string>
     <string name="screen_inpatient">NỘI TRÚ</string>
     <string name="screen_inpatient_list">DS NỘI TRÚ</string>
@@ -77,15 +75,11 @@
     <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
     <string name="tab_diagnose">Chẩn đoán</string>
 
-
-
     <string name="item_menu_edit">Chỉnh sửa</string>
     <string name="item_menu_copy">Copy</string>
     <string name="item_menu_delete">Xóa</string>
 
-
-
-
     <string name="txt_service_name">Tên dịch vụ</string>
     <string name="txt_select">Chọn</string>
+
 </resources>

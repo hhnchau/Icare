@@ -20,7 +20,7 @@
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cv2"
+        app:layout_constraintEnd_toStartOf="@id/edtActiveingre"
         app:layout_constraintBottom_toTopOf="@id/cv3">
 
 
@@ -33,7 +33,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv2"
+        android:id="@+id/edtActiveingre"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardCornerRadius="@dimen/dp_8"
@@ -174,10 +174,10 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/dp_4"
         app:cardElevation="@dimen/dp_8"
-        app:layout_constraintStart_toStartOf="@id/cv2"
-        app:layout_constraintEnd_toEndOf="@id/cv2"
-        app:layout_constraintTop_toTopOf="@id/cv2"
-        app:layout_constraintBottom_toTopOf="@id/cv2"
+        app:layout_constraintStart_toStartOf="@id/edtActiveingre"
+        app:layout_constraintEnd_toEndOf="@id/edtActiveingre"
+        app:layout_constraintTop_toTopOf="@id/edtActiveingre"
+        app:layout_constraintBottom_toTopOf="@id/edtActiveingre"
         app:cardBackgroundColor="@color/dashboard_frame2">
 
         <TextView

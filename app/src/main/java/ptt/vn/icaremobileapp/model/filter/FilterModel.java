@@ -25,6 +25,10 @@ public class FilterModel {
         lstPara = _lstPara;
     }
 
+    public FilterModel(List<Para> _lstPara) {
+        lstPara = _lstPara;
+    }
+
     @NonNull
     @Override
     public String toString() {

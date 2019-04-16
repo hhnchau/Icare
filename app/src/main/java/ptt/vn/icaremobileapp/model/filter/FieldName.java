@@ -7,5 +7,7 @@ public enum  FieldName {
     patid,
     idlink,
     idstore,
-    ishi
+    ishi,
+    routedrug,
+    typemedicalchart
 }

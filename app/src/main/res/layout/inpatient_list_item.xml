@@ -81,7 +81,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvNumber"
+                    android:id="@+id/tvTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:label="Ngày Vào Khoa"

@@ -99,7 +99,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             icArrow = itemView.findViewById(R.id.ic_expand);
 
             tvName = itemView.findViewById(R.id.tvName);
-            tvTotal = itemView.findViewById(R.id.tvNumber);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
             icDelete = itemView.findViewById(R.id.icEdit);
             tvItemCode = itemView.findViewById(R.id.tvItemCode);
             tvUnit = itemView.findViewById(R.id.tvUnit);

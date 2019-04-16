@@ -62,14 +62,14 @@ public class ServiceItem extends BaseFragment {
                     InpatientServiceOrder serviceOrder = new InpatientServiceOrder();
                     serviceOrder.setDocoder(serviceItemDomain.getNamehosp());
 
-                    int exist = 0;
+                    boolean exist = false;
                     for (InpatientServiceOrder item : lstServiceItem)
                         if (item.getDocoder().equals(serviceOrder.getDocoder())) {
-                            exist++;
+                            exist = true;
                             break;
                         }
 
-                    if (exist == 0) {
+                    if (!exist) {
                         lstServiceItem.add(serviceOrder);
                         adapterServiceItem.setItems(lstServiceItem);
                         adapterServiceItem.notifyDataSetChanged();
@@ -117,13 +117,4 @@ public class ServiceItem extends BaseFragment {
                 });
     }
 
-    private void getPhaInventory(int _offset, int _limit, int _idStore, int _isHi) {
-        ApiController.getInstance().getPhaInventory(getActivity(), _offset, _limit, _idStore, _isHi,
-                new ACallback<PhaInventoryDomain>() {
-                    @Override
-                    public void response(List<PhaInventoryDomain> listInventory) {
-                        int i = 0;
-                    }
-                });
-    }
 }

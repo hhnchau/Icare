@@ -101,7 +101,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
             detailView = itemView.findViewById(R.id.detailView);
             icArrow = itemView.findViewById(R.id.ic_expand);
             tvName = itemView.findViewById(R.id.tvName);
-            tvNumber = itemView.findViewById(R.id.tvNumber);
+            tvNumber = itemView.findViewById(R.id.tvTotal);
             tvDrugCode = itemView.findViewById(R.id.tvDrugCode);
             tvDrugActiveingre = itemView.findViewById(R.id.tvDrugActiveingre);
             tvDrugUse = itemView.findViewById(R.id.tvDrugUse);
@@ -124,7 +124,9 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
     }
 
     public interface OnItemClick {
-        void onClick(int p);
+        void onClick(InpatientDrugOrder inpatientDrugOrder);
+        void onEdit(InpatientDrugOrder inpatientDrugOrder);
+        void onDelete(InpatientDrugOrder inpatientDrugOrder);
     }
 
     private OnItemClick onItemClick;

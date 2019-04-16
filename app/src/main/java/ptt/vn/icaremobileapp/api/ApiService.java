@@ -1,6 +1,7 @@
 package ptt.vn.icaremobileapp.api;
 
 import io.reactivex.Observable;
+import ptt.vn.icaremobileapp.model.common.CateShareResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
@@ -48,6 +49,22 @@ public interface ApiService {
 
     @GET()
     Observable<IcdResponse> getIcd(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<CateShareResponse> getDrugRoute(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<CateShareResponse> getHappeningType(@Url String url, @Header("Content") String filterModel);
+
+
+
+
+
+
+
+
+
+
 
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
     @POST()

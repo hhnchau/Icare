@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +18,12 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DrugOrderAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
+import ptt.vn.icaremobileapp.model.common.AutoComplete;
+import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 
@@ -29,12 +31,16 @@ public class DrugOrder extends BaseFragment {
     private View view;
     private List<PhaInventoryDomain> lstAuto;
     private AutoCompleteTextViewDrugOrderAdapter adapterAuto;
+    private List<AutoComplete> lstAutoDrugType;
+    private AutoCompleteTextViewAdapter adapterAutoHappeningType;
+    private List<AutoComplete> lstAutoHappeningRoute;
+    private AutoCompleteTextViewAdapter adapterAutoDrugRoute;
     private List<InpatientDrugOrder> lstDrugOrder;
     private DrugOrderAdapter adapterDrugOrder;
     private int offset = 0;
     private int limit = 1000;
 
-    private MyInputTextOutline tvMorning, tvAfter, tvDinner, tvEvening, tvCv1;
+    private MyInputTextOutline edtActiveIngre, edtDrugMorning, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
 
 
     @Nullable
@@ -42,26 +48,40 @@ public class DrugOrder extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.drugorder, container, false);
 
+        setupView();
         setupDrugOrder();
+        setupDrugType();
+        setupDrugRoute();
         setupListDrugOrder();
+        getDrugRoute();
+        getHappeningType();
         getPhaInventory(offset, limit, 1, 0);
 
         return view;
     }
 
     private void setupView() {
-        //        tvMorning = view.findViewById(R.id.tvMorning);
-//        tvMorning.setCustomView(getString(R.string.txt_morning) + "  (viên)", null, true);
-//        tvAfter = view.findViewById(R.id.tvAfter);
-//        tvAfter.setCustomView(getString(R.string.txt_after) + "  (viên)", null, true);
-//        tvDinner = view.findViewById(R.id.tvDinner);
-//        tvDinner.setCustomView(getString(R.string.txt_dinner) + "  (viên)", null, true);
-//        tvEvening = view.findViewById(R.id.tvEvening);
-//        tvEvening.setCustomView(getString(R.string.txt_evening) + "  (viên)", null, true);
-//
-//        tvCv1 = view.findViewById(R.id.cv1);
-//        tvCv1.setCustomView(getString(R.string.txt_morning) + "  (viên)", null, true);
-//        tvCv1.setEnabled(false);
+        edtActiveIngre = view.findViewById(R.id.edtActiveIngre);
+        edtDrugMorning = view.findViewById(R.id.edtDrugMorning);
+        edtDrugAfter = view.findViewById(R.id.edtDrugAfter);
+        edtDrugDinner = view.findViewById(R.id.edtDrugDinner);
+        edtDrugEvening = view.findViewById(R.id.edtDrugEvening);
+        edtDrugNumber = view.findViewById(R.id.edtDrugNumber);
+        edtDrugTotal = view.findViewById(R.id.edtDrugTotal);
+        edtDrugReason = view.findViewById(R.id.edtDrugReason);
+    }
+
+    private void setView(InpatientDrugOrder inpatientDrugOrder) {
+        if (inpatientDrugOrder != null) {
+            edtActiveIngre.setValue(inpatientDrugOrder.getActivename());
+            edtDrugMorning.setValue(inpatientDrugOrder.getQtymor());
+            edtDrugAfter.setValue(inpatientDrugOrder.getQtyaft());
+            edtDrugDinner.setValue(inpatientDrugOrder.getQtydin());
+            edtDrugEvening.setValue(inpatientDrugOrder.getQtynig());
+            edtDrugNumber.setValue(String.valueOf(inpatientDrugOrder.getQtyday()));
+            edtDrugTotal.setValue(String.valueOf(inpatientDrugOrder.getQty()));
+            edtDrugReason.setValue(inpatientDrugOrder.getDesc());
+        }
     }
 
     private void setupDrugOrder() {
@@ -101,7 +121,52 @@ public class DrugOrder extends BaseFragment {
                 }
             });
         }
+    }
 
+    private void setupDrugType() {
+        if (getActivity() != null) {
+            final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDrugtype);
+
+            lstAutoDrugType = new ArrayList<>();
+            adapterAutoHappeningType = new AutoCompleteTextViewAdapter(getActivity(), lstAutoDrugType);
+            myAutoCompleteTextView.setAdapter(adapterAutoHappeningType);
+            myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    AutoComplete autoComplete = (AutoComplete) parent.getItemAtPosition(position);
+                }
+            });
+
+            myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myAutoCompleteTextView.showDropDown();
+                }
+            });
+        }
+    }
+
+    private void setupDrugRoute() {
+        if (getActivity() != null) {
+            final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDrugRoute);
+
+            lstAutoHappeningRoute = new ArrayList<>();
+            adapterAutoDrugRoute = new AutoCompleteTextViewAdapter(getActivity(), lstAutoHappeningRoute);
+            myAutoCompleteTextView.setAdapter(adapterAutoDrugRoute);
+            myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    AutoComplete autoComplete = (AutoComplete) parent.getItemAtPosition(position);
+                }
+            });
+
+            myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myAutoCompleteTextView.showDropDown();
+                }
+            });
+        }
     }
 
     private void setupListDrugOrder() {
@@ -114,8 +179,18 @@ public class DrugOrder extends BaseFragment {
         rcv.setAdapter(adapterDrugOrder);
         adapterDrugOrder.setOnItemClick(new DrugOrderAdapter.OnItemClick() {
             @Override
-            public void onClick(int p) {
-                Toast.makeText(getActivity(), "" + p, Toast.LENGTH_SHORT).show();
+            public void onClick(InpatientDrugOrder inpatientDrugOrder) {
+                setView(inpatientDrugOrder);
+            }
+
+            @Override
+            public void onEdit(InpatientDrugOrder inpatientDrugOrder) {
+
+            }
+
+            @Override
+            public void onDelete(InpatientDrugOrder inpatientDrugOrder) {
+
             }
         });
     }
@@ -131,5 +206,34 @@ public class DrugOrder extends BaseFragment {
                     }
                 });
     }
+
+    private void getDrugRoute() {
+        ApiController.getInstance().getDrugRoute(getActivity(),
+                new ACallback<CateSharelDomain>() {
+                    @Override
+                    public void response(List<CateSharelDomain> list) {
+                        for (CateSharelDomain item: list){
+                            lstAutoHappeningRoute.add(new AutoComplete(item.getIdline(), item.getName()));
+                        }
+                        adapterAutoDrugRoute.setItems(lstAutoHappeningRoute);
+                        adapterAutoDrugRoute.notifyDataSetChanged();
+                    }
+                });
+    }
+
+    private void getHappeningType() {
+        ApiController.getInstance().getHappeningType(getActivity(),
+                new ACallback<CateSharelDomain>() {
+                    @Override
+                    public void response(List<CateSharelDomain> list) {
+                        for (CateSharelDomain item: list){
+                            lstAutoDrugType.add(new AutoComplete(item.getIdline(), item.getName()));
+                        }
+                        adapterAutoHappeningType.setItems(lstAutoDrugType);
+                        adapterAutoHappeningType.notifyDataSetChanged();
+                    }
+                });
+    }
+
 
 }

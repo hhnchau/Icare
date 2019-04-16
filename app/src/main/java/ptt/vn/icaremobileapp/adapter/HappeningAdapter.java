@@ -133,7 +133,7 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
             cv = itemView.findViewById(R.id.cardView);
             btnNext = itemView.findViewById(R.id.btnNext);
             tvName = itemView.findViewById(R.id.tvName);
-            tvDate = itemView.findViewById(R.id.tvNumber);
+            tvDate = itemView.findViewById(R.id.tvTotal);
             detailView = itemView.findViewById(R.id.detailView);
             tvDoctor = itemView.findViewById(R.id.tvDoctor);
             tvCircui = itemView.findViewById(R.id.tvCircuit);
