@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.model.common.AutoComplete;
+import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
-public class AutoCompleteTextViewAdapter extends ArrayAdapter<AutoComplete> {
-    private List<AutoComplete> lists;
+public class AutoCompleteTextViewAdapter extends ArrayAdapter<CateSharelDomain> {
+    private List<CateSharelDomain> lists;
     private String chr = "";
 
-    public AutoCompleteTextViewAdapter(@NonNull Context context, @NonNull List<AutoComplete> lists) {
+    public AutoCompleteTextViewAdapter(@NonNull Context context, @NonNull List<CateSharelDomain> lists) {
         super(context, 0, lists);
         this.lists = new ArrayList<>(lists);
     }
@@ -42,7 +42,7 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<AutoComplete> {
 
         TextView txt = convertView.findViewById(R.id.tvName);
 
-        final AutoComplete complete = getItem(position);
+        final CateSharelDomain complete = getItem(position);
 
         if (complete != null) {
             txt.setText(Utils.spannable(complete.getName(), chr));
@@ -55,14 +55,14 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<AutoComplete> {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-            List<AutoComplete> suggestions = new ArrayList<>();
+            List<CateSharelDomain> suggestions = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 suggestions.addAll(lists);
             } else {
                 chr = constraint.toString().toLowerCase();
 
-                for (AutoComplete item : lists) {
+                for (CateSharelDomain item : lists) {
                     if (item.getName().toLowerCase().contains(chr)) {
                         suggestions.add(item);
                     }
@@ -87,11 +87,11 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<AutoComplete> {
 
         @Override
         public CharSequence convertResultToString(Object resultValue) {
-            return ((AutoComplete) resultValue).getName();
+            return ((CateSharelDomain) resultValue).getName();
         }
     };
 
-    public void setItems(List<AutoComplete> lists) {
+    public void setItems(List<CateSharelDomain> lists) {
         this.lists = lists;
     }
 }

@@ -1,7 +1,6 @@
 package ptt.vn.icaremobileapp.fragment.inpatient;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,6 @@ import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.model.filter.Method;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
@@ -61,7 +58,7 @@ public class InpatientList extends BaseFragment {
                 if (getActivity() != null) {
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, lstInpatient.get(p));
-                    Fragmentuz.addMainFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
+                    Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
                 }
             }
         });

@@ -64,8 +64,10 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         holder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClick != null)
-                    onItemClick.onClick(holder.getAdapterPosition());
+                if (onItemClick != null) {
+                    onItemClick.onClick(lists.get(position));
+                    removeItem(position);
+                }
             }
         });
 
@@ -125,7 +127,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
     }
 
     public interface OnItemClick {
-        void onClick(int p);
+        void onClick(ServiceItemDomain serviceItemDomain);
     }
 
     private OnItemClick onItemClick;

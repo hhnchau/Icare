@@ -25,7 +25,6 @@ import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
-import ptt.vn.icaremobileapp.model.common.AutoComplete;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
@@ -34,14 +33,19 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private View view;
     private List<PhaInventoryDomain> lstAuto;
     private AutoCompleteTextViewDrugOrderAdapter adapterAuto;
-    private List<AutoComplete> lstAutoHappeningType;
+
+    private List<CateSharelDomain> lstAutoHappeningType;
     private AutoCompleteTextViewAdapter adapterAutoHappeningType;
-    private List<AutoComplete> lstAutoDrugRoute;
+
+    private List<CateSharelDomain> lstAutoDrugRoute;
     private AutoCompleteTextViewAdapter adapterAutoDrugRoute;
+
     private List<InpatientDrugOrder> lstDrugOrder;
     private DrugOrderAdapter adapterDrugOrder;
 
-    private InpatientDrugOrder drugOrder = new InpatientDrugOrder();
+    private PhaInventoryDomain phaInventoryDomain;
+    private CateSharelDomain happeningType;
+    private CateSharelDomain drugRoute;
 
     private int offset = 0;
     private int limit = 1000;
@@ -102,26 +106,12 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpDrug.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    PhaInventoryDomain phaInventory = (PhaInventoryDomain) parent.getItemAtPosition(position);
+                    phaInventoryDomain = (PhaInventoryDomain) parent.getItemAtPosition(position);
 
-                    /*
-                     * Add to Domain
-                     **/
-                    if (drugOrder != null) {
-                        drugOrder.setIddrug(phaInventory.getIddrug());
-                        drugOrder.setActivename(phaInventory.getCode());
-                    }
+                    edtActiveIngre.setText(phaInventoryDomain.getNameactiveingre(), false);
 
-                    /*
-                     * Add to ActiveIngre
-                     */
-                    edtActiveIngre.setText(phaInventory.getNameactiveingre(), false);
-
-                    /*
-                     * Add to Route
-                     **/
                     for (int i = 0; i < lstAutoDrugRoute.size(); i++)
-                        if (phaInventory.getIdroute() == lstAutoDrugRoute.get(i).getId()) {
+                        if (phaInventoryDomain.getIdroute() == lstAutoDrugRoute.get(i).getIdline()) {
                             acpDrugRoute.setText(lstAutoDrugRoute.get(i).getName());
                             break;
                         }
@@ -148,14 +138,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpHappeningType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    AutoComplete autoComplete = (AutoComplete) parent.getItemAtPosition(position);
-                    /*
-                     * Add to Domain
-                     **/
-                    if (drugOrder != null) {
-
-                    }
-
+                    happeningType = (CateSharelDomain) parent.getItemAtPosition(position);
                 }
             });
 
@@ -178,9 +161,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpDrugRoute.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    AutoComplete autoComplete = (AutoComplete) parent.getItemAtPosition(position);
-
-                    Toast.makeText(getActivity(), autoComplete.getName(), Toast.LENGTH_SHORT).show();
+                    drugRoute = (CateSharelDomain) parent.getItemAtPosition(position);
                 }
             });
 
@@ -239,9 +220,8 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(List<CateSharelDomain> list) {
-                        for (CateSharelDomain item : list) {
-                            lstAutoDrugRoute.add(new AutoComplete(item.getIdline(), item.getName()));
-                        }
+
+                        lstAutoDrugRoute = list;
                         adapterAutoDrugRoute.setItems(lstAutoDrugRoute);
                         adapterAutoDrugRoute.notifyDataSetChanged();
                     }
@@ -253,9 +233,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(List<CateSharelDomain> list) {
-                        for (CateSharelDomain item : list) {
-                            lstAutoHappeningType.add(new AutoComplete(item.getIdline(), item.getName()));
-                        }
+                        lstAutoHappeningType = list;
                         adapterAutoHappeningType.setItems(lstAutoHappeningType);
                         adapterAutoHappeningType.notifyDataSetChanged();
                     }
@@ -288,7 +266,29 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         /*
          * Check Exist
          */
+        boolean exist = false;
+        for (InpatientDrugOrder item : lstDrugOrder)
+            if (phaInventoryDomain.getIddrug() == item.getIddrug()) {
+                exist = true;
+                break;
+            }
 
-        drugOrder = new InpatientDrugOrder();
+        if (!exist) {
+            InpatientDrugOrder drugOrder = new InpatientDrugOrder();
+            drugOrder.setIddrug(phaInventoryDomain.getIddrug());
+            drugOrder.setIdroute(drugRoute.getIdline());
+            drugOrder.setActivename(phaInventoryDomain.getNameactiveingre());
+            drugOrder.setQtymor(morning);
+            drugOrder.setQtyaft(after);
+            drugOrder.setQtydin(dinner);
+            drugOrder.setQtynig(evening);
+            drugOrder.setQty(Float.parseFloat(total));
+            drugOrder.setQtyday(Integer.parseInt(number));
+            drugOrder.setDesc(reason);
+
+            lstDrugOrder.add(drugOrder);
+            adapterDrugOrder.setItems(lstDrugOrder);
+            adapterDrugOrder.notifyDataSetChanged();
+        }
     }
 }

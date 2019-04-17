@@ -24,7 +24,6 @@ import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
 import ptt.vn.icaremobileapp.expand.ExpandableHappening;
 import ptt.vn.icaremobileapp.adapter.HappeningAdapter;
-import ptt.vn.icaremobileapp.model.filter.Method;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
@@ -110,7 +109,7 @@ public class Happening extends BaseFragment {
                 bundle.putParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING, happening);
                 bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
                 if (getActivity() != null)
-                    Fragmentuz.addMainFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
+                    Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
             }
 
             @Override

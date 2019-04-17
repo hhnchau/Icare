@@ -57,20 +57,21 @@ public class Diagnose extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     IcdDomain icd = (IcdDomain) parent.getItemAtPosition(position);
-                    InpatientDiagnose diagnose = new InpatientDiagnose();
-                    diagnose.setIdicd(icd.getId());
-                    diagnose.setNameicdvn(icd.getName());
-                    diagnose.setNameicdeng(icd.getNameen());
-                    diagnose.setCode(icd.getCode());
 
-                    int exist = 0;
+                    boolean exist = false;
                     for (InpatientDiagnose item : lstDiagnose)
                         if (item.getIdicd() == icd.getId()) {
-                            exist++;
+                            exist = true;
                             break;
                         }
 
-                    if (exist == 0) {
+                    if (!exist) {
+                        InpatientDiagnose diagnose = new InpatientDiagnose();
+                        diagnose.setIdicd(icd.getId());
+                        diagnose.setNameicdvn(icd.getName());
+                        diagnose.setNameicdeng(icd.getNameen());
+                        diagnose.setCode(icd.getCode());
+
                         lstDiagnose.add(diagnose);
                         adapterDiagnose.setItems(lstDiagnose);
                         adapterDiagnose.notifyDataSetChanged();
@@ -119,5 +120,4 @@ public class Diagnose extends BaseFragment {
                     }
                 });
     }
-
 }

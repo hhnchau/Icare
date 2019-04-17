@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ApiController;
@@ -21,11 +24,13 @@ import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.togglebutton.MyTabButton;
+import ptt.vn.icaremobileapp.utils.Fragmentoz;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
 public class Instruction extends BaseFragment implements MyButton.OnListener {
     private View view;
     public static HappeningDomain happeningDomain;
+    private List<Fragmentoz> lstFragment = new ArrayList<>();
 
 
     @Nullable
@@ -49,7 +54,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
             setupTabButton(fragmentManager);
 
             //Default
-            Fragmentuz.addFrame(fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
+            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
         }
         return view;
     }
@@ -76,19 +81,19 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
                 if (getActivity() != null) {
                     switch (fzg) {
                         case THAM_KHAM:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
                             break;
                         case SERVICE_ITEM:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
                             break;
                         case DRUG_ORDER:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
                             break;
                         case DRUG_ORDER_OUTSIDE:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
                             break;
                         case DIAGNOSE:
-                            Fragmentuz.addFrame(fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
                             break;
                     }
                 }

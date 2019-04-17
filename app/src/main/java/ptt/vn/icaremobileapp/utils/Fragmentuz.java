@@ -6,9 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import java.util.List;
-import java.util.Objects;
 
-import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
@@ -26,7 +24,7 @@ public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
     public static final String BUNDLE_KEY_HAPPENING = "HAPPENING";
 
-    public static void addMainFrame(FragmentManager fragmentManager, Bundle bundle, Fragmentez fzg, int frame, Directionez direction) {
+    public static void replaceFrame(FragmentManager fragmentManager, Bundle bundle, Fragmentez fzg, int frame, Directionez direction) {
 
         Fragment frg = null;
         String name = null;
@@ -82,10 +80,14 @@ public class Fragmentuz {
                     .commit();
     }
 
-    public static void addFrame(FragmentManager fragmentManager, Fragmentez fzg, int frame, Directionez direction) {
+    public static void addFrame(List<Fragmentoz> lstFragment, FragmentManager fragmentManager, Fragmentez fzg, int frame, Directionez direction) {
+        boolean exist = false;
+        for (Fragmentoz item : lstFragment)
+            if (fzg == item.getFzg()) {
+                exist = true;
+                break;
+            }
 
-        Fragment frg = null;
-        String name = null;
 
         int enter, exit;
         if (direction == Directionez.NEXT) {
@@ -96,78 +98,44 @@ public class Fragmentuz {
             exit = R.anim.exit_to_right;
         }
 
-//        boolean isExist = false;
-//        for (Fragmentez frgez : lstFragmentez) {
-//            if (frgez == fzg) {
-//                isExist = true;
-//                break;
-//            }
-//        }
-//
-//        FragmentTransaction transaction = fragmentManager.beginTransaction();
-//
-//        if (isExist) {
-//            //Hide
-//            for (int i = 0; i < lstFragment.size(); i++) {
-//                transaction.hide(lstFragment.get(i));
-//            }
-//            transaction.setCustomAnimations(enter, exit);
-//            transaction.show(getFragment(fzg, lstFragment, lstFragmentez));
-//            transaction.commit();
-//
-//            //Show
-//        } else {
-//            //Add New
-//        }
+        if (exist) {
+            //Exist
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            Fragment frg = getFragment(fzg);
+            if (frg != null) {
+                for (Fragmentoz item : lstFragment)
+                    transaction.hide(item.getFrg());
+                transaction.setCustomAnimations(enter, exit)
+                        .show(frg)
+                        .commit();
+            }
+        } else {
+            //Add
+            Fragment frg = getFragment(fzg);
+            if (fragmentManager != null && frg != null) {
+                fragmentManager
+                        .beginTransaction()
+                        .setCustomAnimations(enter, exit)
+                        .add(frame, frg)
+                        .commit();
 
-        switch (fzg) {
-
-            case THAM_KHAM:
-                name = ThamKham.class.getName();
-                frg = new ThamKham();
-                break;
-            case SERVICE_ITEM:
-                name = ServiceItem.class.getName();
-                frg = new ServiceItem();
-                break;
-            case DRUG_ORDER:
-                name = DrugOrder.class.getName();
-                frg = new DrugOrder();
-                break;
-            case DRUG_ORDER_OUTSIDE:
-                name = DrugOrderOutside.class.getName();
-                frg = new DrugOrderOutside();
-                break;
-            case DIAGNOSE:
-                name = Diagnose.class.getName();
-                frg = new Diagnose();
-                break;
+                lstFragment.add(new Fragmentoz(fzg, frg));
+            }
         }
-
-//        fragmentManager.beginTransaction()
-//                .setCustomAnimations(enter, exit)
-//                .show(frg)
-//                .commit();
-//
-//        fragmentManager.beginTransaction()
-//                .hide(frg)
-//                .setCustomAnimations(enter, exit)
-//                .show(frg)
-//                .commit();
-
-        if (fragmentManager != null && frg != null)
-            fragmentManager
-                    .beginTransaction()
-                    .setCustomAnimations(enter, exit)
-                    .replace(frame, frg, name)
-                    .commit();
     }
 
-    private static BaseFragment getFragment(Fragmentez fzg, List<BaseFragment> lstFragment, List<Fragmentez> lstFragmentez) {
-        for (int i = 0; i < lstFragmentez.size(); i++) {
-            if (fzg == lstFragmentez.get(i)) {
-                return lstFragment.get(i);
-            }
+    private static Fragment getFragment(Fragmentez fzg) {
+        switch (fzg) {
+            case THAM_KHAM:
+                return new ThamKham();
+            case SERVICE_ITEM:
+                return new ServiceItem();
+            case DRUG_ORDER:
+                return new DrugOrder();
+            case DRUG_ORDER_OUTSIDE:
+                return new DrugOrderOutside();
+            case DIAGNOSE:
+                return new Diagnose();
         }
         return null;
     }

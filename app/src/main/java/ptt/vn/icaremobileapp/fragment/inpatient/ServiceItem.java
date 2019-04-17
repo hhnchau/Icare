@@ -31,6 +31,9 @@ public class ServiceItem extends BaseFragment {
     private AutoCompleteTextViewServiceItemAdapter adapterAuto;
     private List<ServiceItemDomain> lstServiceItem;
     private ServiceItemAdapter adapterServiceItem;
+
+    private List<InpatientServiceOrder> lstInpatientServiceOrder;
+
     private int offset = 0;
     private int limit = 1000;
 
@@ -73,6 +76,16 @@ public class ServiceItem extends BaseFragment {
                         lstServiceItem.add(serviceItemDomain);
                         adapterServiceItem.setItems(lstServiceItem);
                         adapterServiceItem.notifyDataSetChanged();
+
+                        //Update Domain
+                        InpatientServiceOrder inpatientServiceOrder = new InpatientServiceOrder();
+                        inpatientServiceOrder.setIdservice(serviceItemDomain.getId());
+                        inpatientServiceOrder.setDocoder(serviceItemDomain.getDocoder());
+                        inpatientServiceOrder.setPrice(serviceItemDomain.getPrice());
+                        inpatientServiceOrder.setPricehi(serviceItemDomain.getPricehi());
+                        inpatientServiceOrder.setQty(serviceItemDomain.getQty());
+                        inpatientServiceOrder.setDateapp(serviceItemDomain.getDateapp());
+                        lstInpatientServiceOrder.add(inpatientServiceOrder);
                     }
                 }
             });
@@ -97,9 +110,14 @@ public class ServiceItem extends BaseFragment {
         rcv.setAdapter(adapterServiceItem);
         adapterServiceItem.setOnItemClick(new ServiceItemAdapter.OnItemClick() {
             @Override
-            public void onClick(int p) {
+            public void onClick(ServiceItemDomain serviceItemDomain) {
                 if (getActivity() != null) {
-                    adapterServiceItem.removeItem(p);
+                    //Update Domain
+                    for (int i = 0; i < lstInpatientServiceOrder.size(); i++)
+                        if (serviceItemDomain.getId() == lstInpatientServiceOrder.get(i).getIdservice()) {
+                            lstInpatientServiceOrder.remove(i);
+                        }
+
                 }
             }
         });
@@ -123,12 +141,12 @@ public class ServiceItem extends BaseFragment {
 
     private void updateListService(List<ServiceItemDomain> listServiceItem) {
         if (Instruction.happeningDomain != null) {
-            List<InpatientServiceOrder> lstService = Instruction.happeningDomain.getLstInpatientServiceOrder();
+            lstInpatientServiceOrder = Instruction.happeningDomain.getLstInpatientServiceOrder();
 
             ServiceItemDomain serviceItemDomain = null;
 
-            if (lstService != null && lstService.size() > 0 && listServiceItem != null && listServiceItem.size() > 0) {
-                for (InpatientServiceOrder service : lstService) {
+            if (lstInpatientServiceOrder != null && lstInpatientServiceOrder.size() > 0 && listServiceItem != null && listServiceItem.size() > 0) {
+                for (InpatientServiceOrder service : lstInpatientServiceOrder) {
                     for (ServiceItemDomain serviceItem : listServiceItem) {
                         if (service.getIdservice() == serviceItem.getId()) {
                             try {
@@ -148,7 +166,6 @@ public class ServiceItem extends BaseFragment {
                         }
                     }
                 }
-
 
                 adapterServiceItem.setItems(lstServiceItem);
                 adapterServiceItem.notifyDataSetChanged();

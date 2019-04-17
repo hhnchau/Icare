@@ -60,6 +60,10 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
+
+        final InpatientDiagnose diagnose = lists.get(position);
+
+
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,24 +74,26 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         holder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                removeItem(position);
             }
         });
 
         holder.icSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lists.get(position).setPrimary(1);
+                if (diagnose.getPrimary() == 0) {
+                    diagnose.setPrimary(1);
+                } else {
+                    diagnose.setPrimary(0);
+                }
+                updateSelected(diagnose, holder.icSelect);
             }
         });
 
-        holder.tvIcdVn.setText(lists.get(position).getNameicdvn());
-        holder.tvIcdCode.setText(lists.get(position).getCode());
-        holder.tvIcdEn.setValues(lists.get(position).getNameicdeng());
-
-        if (lists.get(position).getPrimary() == 0)
-            holder.icSelect.setImageResource(R.mipmap.ic_uncheck);
-        else holder.icSelect.setImageResource(R.mipmap.ic_checked);
+        holder.tvIcdVn.setText(diagnose.getNameicdvn());
+        holder.tvIcdCode.setText(diagnose.getCode());
+        holder.tvIcdEn.setValues(diagnose.getNameicdeng());
+        updateSelected(diagnose, holder.icSelect);
     }
 
     @Override
@@ -140,6 +146,11 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
 
     public void setOnItemClick(OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
+    }
+
+    private void updateSelected(InpatientDiagnose diagnose, ImageView img) {
+        if (diagnose.getPrimary() == 0) img.setImageResource(R.mipmap.ic_uncheck);
+        else img.setImageResource(R.mipmap.ic_checked);
     }
 
 }

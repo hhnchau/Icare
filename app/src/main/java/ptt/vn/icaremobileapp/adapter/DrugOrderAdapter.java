@@ -70,15 +70,15 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         holder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                removeItem(position);
             }
         });
 
-        holder.tvName.setText("Tên Thuốc");
-        holder.tvNumber.setText(10+"");
-        holder.tvDrugCode.setText("AC1243123");
-        holder.tvDrugActiveingre.setValues("Tên Hoạt Chất");
-        holder.tvDrugUse.setValues("Sáng - Trưa - Chiều - Tối");
+        holder.tvName.setText(lists.get(position).getNamedrug());
+        holder.tvNumber.setText(lists.get(position).getQty() + "");
+        holder.tvDrugCode.setText(lists.get(position).getCodedrug());
+        holder.tvDrugActiveingre.setValues(lists.get(position).getActivename());
+        holder.tvDrugUse.setValues(lists.get(position).getDesc());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         private ImageView icArrow;
 
         private TextView tvName, tvNumber, tvDrugCode;
-        private MyTextView  tvDrugActiveingre, tvDrugUse;
+        private MyTextView tvDrugActiveingre, tvDrugUse;
         private ImageView icEdit, icDelete;
 
         MyViewHolder(View itemView) {
@@ -125,7 +125,9 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
 
     public interface OnItemClick {
         void onClick(InpatientDrugOrder inpatientDrugOrder);
+
         void onEdit(InpatientDrugOrder inpatientDrugOrder);
+
         void onDelete(InpatientDrugOrder inpatientDrugOrder);
     }
 
