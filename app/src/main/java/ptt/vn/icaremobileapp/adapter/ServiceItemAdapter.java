@@ -73,7 +73,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         holder.tvItemCode.setValues("1");
         holder.tvUnit.setValues("2");
         holder.tvNumber.setValues("2");
-        holder.tvDoctor.setValues("3");
+        holder.tvDoctor.setText("BS. Nguyễn Văn BS");
         holder.tvPrice.setValues("5");
         holder.tvPriceInsurance.setValues("2");
     }
@@ -88,9 +88,9 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         private LinearLayout detailView;
         private ImageView icArrow;
 
-        private TextView tvName, tvTotal;
+        private TextView tvName, tvTotal, tvDoctor;
         private ImageView icDelete;
-        private MyTextView tvItemCode, tvUnit, tvNumber, tvDoctor, tvPrice, tvPriceInsurance;
+        private MyTextView tvItemCode, tvUnit, tvNumber, tvPrice, tvPriceInsurance;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -100,7 +100,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
 
             tvName = itemView.findViewById(R.id.tvName);
             tvTotal = itemView.findViewById(R.id.tvTotal);
-            icDelete = itemView.findViewById(R.id.icEdit);
+            icDelete = itemView.findViewById(R.id.icDelete);
             tvItemCode = itemView.findViewById(R.id.tvItemCode);
             tvUnit = itemView.findViewById(R.id.tvUnit);
             tvNumber = itemView.findViewById(R.id.tvNumber);

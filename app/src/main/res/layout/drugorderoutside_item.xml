@@ -46,7 +46,7 @@
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sp_22"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/icCheck"
+                app:layout_constraintBottom_toTopOf="@id/tvDoctor"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
                 app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +66,7 @@
 
 
             <ImageView
-                android:id="@+id/icCheck"
+                android:id="@+id/tvDoctor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
@@ -87,7 +87,7 @@
                 android:padding="@dimen/dp_20"
                 android:src="@mipmap/ic_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/icDelete"
+                app:layout_constraintEnd_toStartOf="@id/icEdit"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
                 app:layout_constraintVertical_bias="1" />
 
             <ImageView
-                android:id="@+id/icDelete"
+                android:id="@+id/icEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/img_des"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.util.Calendar;
@@ -69,10 +70,10 @@ public class DialogNewHappening {
             });
 
             final MyInputTextOutline edtHappening = dialog.findViewById(R.id.edtHappening);
-            final MyInputTextOutline edtDatetime = dialog.findViewById(R.id.edtDatetime);
-            final MyInputTextOutline edtDoctor = dialog.findViewById(R.id.edtDoctor);
+            final EditText edtDatetime = dialog.findViewById(R.id.edtDateTime);
             final MyInputTextOutline edtCircuit = dialog.findViewById(R.id.edtCircuit);
-            final MyInputTextOutline edtBlood = dialog.findViewById(R.id.edtBlood);
+            final MyInputTextOutline edtBloodMax = dialog.findViewById(R.id.edtBloodMax);
+            final MyInputTextOutline edtBloodMin = dialog.findViewById(R.id.edtBloodMin);
             final MyInputTextOutline edtTemperature = dialog.findViewById(R.id.edtTemperature);
             final MyInputTextOutline edtHeartbeat = dialog.findViewById(R.id.edtHeartbeat);
             final MyInputTextOutline edtWeight = dialog.findViewById(R.id.edtWeight);
@@ -98,9 +99,8 @@ public class DialogNewHappening {
             if (happening != null) {
                 edtHappening.setText(happening.getHappening());
                 edtDatetime.setText(Utils.dateConvert(happening.getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
-                if (happening.getNamedoctor() != null) edtDoctor.setText(happening.getNamedoctor());
                 edtCircuit.setText(String.valueOf(happening.getCircui()));
-                edtBlood.setText(happening.getBlomax() + "");// + " / " + happening.getBlomin());
+                edtBloodMax.setText(happening.getBlomax() + "");// + " / " + happening.getBlomin());
                 edtTemperature.setText(String.valueOf(happening.getTemper()));
                 edtHeartbeat.setText(String.valueOf(happening.getHeartb()));
                 edtWeight.setText(String.valueOf(happening.getWeight()));
@@ -117,9 +117,9 @@ public class DialogNewHappening {
                     happen.setHappening(edtHappening.getText().toString());
                     happen.setDatecreate(Utils.dateConvert(edtDatetime.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
                     happen.setIddoctor(1);
-                    happen.setNamedoctor(edtDoctor.getText().toString());
+
                     happen.setCircui(edtCircuit.getText().toString());
-                    happen.setBlomax(Integer.parseInt(edtBlood.getText().toString()));
+                    happen.setBlomax(Integer.parseInt(edtBloodMax.getText().toString()));
                     happen.setTemper(Float.parseFloat(edtTemperature.getText().toString()));
                     happen.setHeartb(Integer.parseInt(edtHeartbeat.getText().toString()));
                     happen.setWeight(Float.parseFloat(edtWeight.getText().toString()));

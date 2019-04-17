@@ -59,17 +59,19 @@
                     android:textColor="@color/text_label"
                     android:textSize="@dimen/sp_20"
                     android:textStyle="italic"
-                    app:layout_constraintBottom_toTopOf="@id/icCheck"
+                    app:layout_constraintBottom_toTopOf="@id/tvDoctor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guide"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0" />
 
 
-                <View
-                    android:id="@+id/icCheck"
+                <TextView
+                    android:id="@+id/tvDoctor"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:text="BS. Nguyễn Văn BS"
+                    android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guide"
@@ -159,15 +161,6 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvDoctor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_24"
-                    android:layout_marginEnd="@dimen/dp_32"
-                    android:layout_weight="1"
-                    app:label="@string/txt_doctor" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvCircuit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,15 +177,6 @@
                     android:layout_weight="1"
                     app:label="@string/txt_blomin" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
-                android:layout_marginBottom="@dimen/dp_16"
-                android:orientation="horizontal">
-
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvTemper"
                     android:layout_width="match_parent"
@@ -201,6 +185,15 @@
                     android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_temper" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvHeartb"
@@ -218,6 +211,11 @@
                     android:layout_marginStart="@dimen/dp_8"
                     android:layout_weight="1"
                     app:label="@string/txt_weight" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
             </LinearLayout>
 
         </LinearLayout>

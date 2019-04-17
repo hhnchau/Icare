@@ -74,11 +74,11 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
             }
         });
 
-        holder.tvName.setText(lists.get(position).getNamedrug());
-        holder.tvNumber.setText(String.valueOf(lists.get(position).getQty()));
-        holder.tvDrugCode.setValues(lists.get(position).getCodedrug());
-        holder.tvDrugActiveingre.setValues(lists.get(position).getActivename());
-        holder.tvDrugUse.setValues(lists.get(position).getDesc());
+        holder.tvName.setText("Tên Thuốc");
+        holder.tvNumber.setText(10+"");
+        holder.tvDrugCode.setText("AC1243123");
+        holder.tvDrugActiveingre.setValues("Tên Hoạt Chất");
+        holder.tvDrugUse.setValues("Sáng - Trưa - Chiều - Tối");
     }
 
     @Override
@@ -91,8 +91,8 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         private LinearLayout detailView;
         private ImageView icArrow;
 
-        private TextView tvName, tvNumber;
-        private MyTextView tvDrugCode, tvDrugActiveingre, tvDrugUse;
+        private TextView tvName, tvNumber, tvDrugCode;
+        private MyTextView  tvDrugActiveingre, tvDrugUse;
         private ImageView icEdit, icDelete;
 
         MyViewHolder(View itemView) {
@@ -101,7 +101,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
             detailView = itemView.findViewById(R.id.detailView);
             icArrow = itemView.findViewById(R.id.ic_expand);
             tvName = itemView.findViewById(R.id.tvName);
-            tvNumber = itemView.findViewById(R.id.tvTotal);
+            tvNumber = itemView.findViewById(R.id.tvNumber);
             tvDrugCode = itemView.findViewById(R.id.tvDrugCode);
             tvDrugActiveingre = itemView.findViewById(R.id.tvDrugActiveingre);
             tvDrugUse = itemView.findViewById(R.id.tvDrugUse);

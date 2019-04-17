@@ -74,7 +74,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
-        holder.icCheck.setOnClickListener(new View.OnClickListener() {
+        holder.icSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lists.get(position).setPrimary(1);
@@ -82,12 +82,12 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         });
 
         holder.tvIcdVn.setText(lists.get(position).getNameicdvn());
-        holder.tvIcdCode.setValues(lists.get(position).getCode());
+        holder.tvIcdCode.setText(lists.get(position).getCode());
         holder.tvIcdEn.setValues(lists.get(position).getNameicdeng());
 
         if (lists.get(position).getPrimary() == 0)
-            holder.icCheck.setImageResource(R.mipmap.ic_uncheck);
-        else holder.icCheck.setImageResource(R.mipmap.ic_checked);
+            holder.icSelect.setImageResource(R.mipmap.ic_uncheck);
+        else holder.icSelect.setImageResource(R.mipmap.ic_checked);
     }
 
     @Override
@@ -100,9 +100,9 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         private LinearLayout detailView;
         private ImageView icArrow;
 
-        private TextView tvIcdVn;
-        private ImageView icEdit, icDelete, icCheck;
-        private MyTextView tvIcdCode, tvIcdEn;
+        private TextView tvIcdVn, tvIcdCode;
+        private ImageView icEdit, icDelete, icSelect;
+        private MyTextView tvIcdEn;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -113,7 +113,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             tvIcdVn = itemView.findViewById(R.id.tvName);
             icEdit = itemView.findViewById(R.id.icEdit);
             icDelete = itemView.findViewById(R.id.icDelete);
-            icCheck = itemView.findViewById(R.id.icCheck);
+            icSelect = itemView.findViewById(R.id.icSelect);
             tvIcdCode = itemView.findViewById(R.id.tvIcdCode);
             tvIcdEn = itemView.findViewById(R.id.tvIcdEn);
         }

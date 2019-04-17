@@ -31,7 +31,7 @@
                 android:text="@string/txt_happening"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/icEdit"
+                app:layout_constraintBottom_toTopOf="@id/icDelete"
                 app:layout_constraintEnd_toEndOf="@id/guide"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -42,12 +42,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
+                android:lines="1"
                 android:text="100.000"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sp_22"
                 android:textStyle="bold"
-                android:lines="1"
-                app:layout_constraintBottom_toTopOf="@id/icCheck"
+                app:layout_constraintBottom_toTopOf="@id/tvDoctor"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
                 app:layout_constraintTop_toTopOf="parent"
@@ -66,47 +66,30 @@
                 app:layout_constraintTop_toTopOf="@id/tvTotal" />
 
 
-            <ImageView
-                android:id="@+id/icCheck"
+            <TextView
+                android:id="@+id/tvDoctor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:contentDescription="@string/img_des"
-                android:padding="@dimen/dp_20"
-                android:src="@mipmap/ic_checked"
+                android:gravity="center"
+                android:text="BS. Nguyễn Văn BS"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tvTotal"
                 app:layout_constraintStart_toStartOf="@id/guide"
                 app:layout_constraintTop_toBottomOf="@id/tvTotal"
                 app:layout_constraintVertical_bias="1" />
 
 
             <ImageView
-                android:id="@+id/icEdit"
+                android:id="@+id/icDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
-                android:padding="@dimen/dp_20"
-                android:src="@mipmap/ic_delete"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/icDelete"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName"
-                app:layout_constraintVertical_bias="1" />
-
-            <ImageView
-                android:id="@+id/icDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/img_des"
-                android:padding="@dimen/dp_20"
                 android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide"
-                app:layout_constraintStart_toEndOf="@id/icEdit"
-                app:layout_constraintTop_toTopOf="@id/icEdit" />
-
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guide"
@@ -170,13 +153,6 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvDoctor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:label="@string/txt_doctor" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,6 +165,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:label="@string/txt_price_insurance" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>

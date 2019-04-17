@@ -105,7 +105,7 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
 
         holder.tvName.setText(lists.get(position).getHappening());
         holder.tvDate.setText(Utils.dateConvert(lists.get(position).getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
-        holder.tvDoctor.setValues("");
+        holder.tvDoctor.setText("BS. Nguyễn Văn BS");
         holder.tvCircui.setValues(lists.get(position).getCircui() + "");
         holder.tvBlood.setValues(lists.get(position).getBlomax() + lists.get(position).getBlomin() + "");
         holder.tvTemper.setValues(lists.get(position).getTemper() + "");
@@ -122,9 +122,9 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
     class MyViewHolder extends RecyclerView.ViewHolder {
         private CardView cv;
         private ImageView btnNext;
-        private TextView tvName, tvDate;
+        private TextView tvName, tvDate, tvDoctor;
         private LinearLayout detailView;
-        private MyTextView tvDoctor, tvCircui, tvBlood, tvTemper, tvHeartb, tvWeight;
+        private MyTextView  tvCircui, tvBlood, tvTemper, tvHeartb, tvWeight;
         private ImageView icCopy, icEdit, icDelete;
 
 

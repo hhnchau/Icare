@@ -21,13 +21,14 @@ import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
+import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.model.common.AutoComplete;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 
-public class DrugOrder extends BaseFragment {
+public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private View view;
     private List<PhaInventoryDomain> lstAuto;
     private AutoCompleteTextViewDrugOrderAdapter adapterAuto;
@@ -41,6 +42,7 @@ public class DrugOrder extends BaseFragment {
     private int limit = 1000;
 
     private MyInputTextOutline edtActiveIngre, edtDrugMorning, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
+    private MyButton btnAdd;
 
 
     @Nullable
@@ -61,6 +63,8 @@ public class DrugOrder extends BaseFragment {
     }
 
     private void setupView() {
+        btnAdd = view.findViewById(R.id.btnAdd);
+        btnAdd.setOnSelectedListener(this);
         edtActiveIngre = view.findViewById(R.id.edtActiveIngre);
         edtDrugMorning = view.findViewById(R.id.edtDrugMorning);
         edtDrugAfter = view.findViewById(R.id.edtDrugAfter);
@@ -235,5 +239,18 @@ public class DrugOrder extends BaseFragment {
                 });
     }
 
+    @Override
+    public void onClick() {
+        boolean validate = true;
+        validate = validateInputText(edtActiveIngre);
+    }
 
+    private boolean validateInputText(MyInputTextOutline edt){
+        String s = edt.getText().toString();
+        if (s.matches("")) {
+            edt.setError("*");
+            return false;
+        }
+        return true;
+    }
 }

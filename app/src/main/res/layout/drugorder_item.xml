@@ -28,7 +28,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:lines="2"
-                android:text="@string/txt_happening"
+                android:text="Tên Thuốc"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/icEdit"
@@ -38,13 +38,14 @@
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/tvTotal"
+                android:id="@+id/tvDrugCode"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/sp_22"
                 android:textStyle="bold"
+                android:text="AD123421423"
                 app:layout_constraintBottom_toBottomOf="@id/tvName"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
@@ -58,10 +59,23 @@
                 android:layout_margin="@dimen/dp_8"
                 android:contentDescription="@string/img_des"
                 android:src="@drawable/ic_arrow_drop_down"
-                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
+                app:layout_constraintBottom_toBottomOf="@id/tvDrugCode"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvTotal"
-                app:layout_constraintTop_toTopOf="@id/tvTotal" />
+                app:layout_constraintStart_toEndOf="@id/tvDrugCode"
+                app:layout_constraintTop_toTopOf="@id/tvDrugCode" />
+
+
+            <TextView
+                android:id="@+id/tvNumber"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tvDrugCode"
+                app:layout_constraintStart_toStartOf="@id/guide"
+                app:layout_constraintTop_toBottomOf="@id/tvDrugCode"
+                app:layout_constraintVertical_bias="1" />
 
 
             <ImageView
@@ -69,28 +83,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
-                android:padding="@dimen/dp_20"
                 android:src="@mipmap/ic_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/icDelete"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName"
-                app:layout_constraintVertical_bias="1" />
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
 
             <ImageView
                 android:id="@+id/icDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/img_des"
-                android:padding="@dimen/dp_20"
                 android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guide"
                 app:layout_constraintStart_toEndOf="@id/icEdit"
                 app:layout_constraintTop_toTopOf="@id/icEdit" />
-
 
             <android.support.constraint.Guideline
                 android:id="@+id/guide"
@@ -116,14 +126,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/bg" />
-
-
-            <ptt.vn.icaremobileapp.custom.MyTextView
-                android:id="@+id/tvDrugCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:label="@string/txt_drugorder_code" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvDrugActiveingre"

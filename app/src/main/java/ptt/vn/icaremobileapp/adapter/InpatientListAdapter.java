@@ -42,9 +42,10 @@ public class InpatientListAdapter extends RecyclerView.Adapter<InpatientListAdap
                 holder.tvName.setText(patientDomain.getPATIENTNAME());
                 holder.tvBirthday.setValues(Utils.dateConvert(patientDomain.getBirthday(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyy));
                 holder.tvGender.setValues(patientDomain.getGender());
+                holder.tvCode.setValues(patientDomain.getHospcode());
             }
 
-            holder.tvCode.setValues(inpatientDomain.getPatid());
+
             //holder.tvRoom.setValues(inpatientDomain.getPatid());
             holder.tvDate.setValues("");
             //holder.tvBed.setValues(inpatientDomain.getPatid());
