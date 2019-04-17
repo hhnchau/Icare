@@ -40,7 +40,7 @@ public class InpatientList extends BaseFragment {
         view = inflater.inflate(R.layout.inpatient_list, container, false);
         initView();
 
-        getInpatient(offset, limit, 1);
+        getInpatient(offset, limit, 2);
 
         return view;
     }

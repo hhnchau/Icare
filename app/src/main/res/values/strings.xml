@@ -8,6 +8,7 @@
     <string name="btn_login">ĐĂNG NHẬP</string>
     <string name="txt_service_not_found">Service Not Found</string>
     <string name="txt_not_connect">Không thể kết nối tới server!!!</string>
+    <string name="txt_success">Lưu Thông Tin Thành Công</string>
 
     <string name="txt__patient_address">Địa Chỉ</string>
     <string name="txt_patient_code">Mã Bệnh Nhân</string>
@@ -76,6 +77,9 @@
     <string name="tab_drug_order">Kê đơn</string>
     <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
     <string name="tab_diagnose">Chẩn đoán</string>
+
+    <string name="txt_err_drug">Vui lòng chọn thuốc</string>
+    <string name="txt_err_number">Vui lòng chọn số ngày</string>
 
     <string name="item_menu_edit">Chỉnh sửa</string>
     <string name="item_menu_copy">Copy</string>

@@ -80,7 +80,7 @@
                     android:hint="@string/txt_drug_type">
 
                     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                        android:id="@+id/acDrugtype"
+                        android:id="@+id/acHappeningType"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:completionThreshold="1"

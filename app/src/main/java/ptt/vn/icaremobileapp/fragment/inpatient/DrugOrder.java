@@ -5,10 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +34,19 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private View view;
     private List<PhaInventoryDomain> lstAuto;
     private AutoCompleteTextViewDrugOrderAdapter adapterAuto;
-    private List<AutoComplete> lstAutoDrugType;
+    private List<AutoComplete> lstAutoHappeningType;
     private AutoCompleteTextViewAdapter adapterAutoHappeningType;
-    private List<AutoComplete> lstAutoHappeningRoute;
+    private List<AutoComplete> lstAutoDrugRoute;
     private AutoCompleteTextViewAdapter adapterAutoDrugRoute;
     private List<InpatientDrugOrder> lstDrugOrder;
     private DrugOrderAdapter adapterDrugOrder;
+
+    private InpatientDrugOrder drugOrder = new InpatientDrugOrder();
+
     private int offset = 0;
     private int limit = 1000;
-
+    private MyAutoCompleteTextView acpDrug, acpHappeningType, acpDrugRoute;
     private MyInputTextOutline edtActiveIngre, edtDrugMorning, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
-    private MyButton btnAdd;
 
 
     @Nullable
@@ -52,7 +56,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
         setupView();
         setupDrugOrder();
-        setupDrugType();
+        setupHappeningType();
         setupDrugRoute();
         setupListDrugOrder();
         getDrugRoute();
@@ -63,7 +67,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void setupView() {
-        btnAdd = view.findViewById(R.id.btnAdd);
+        MyButton btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnSelectedListener(this);
         edtActiveIngre = view.findViewById(R.id.edtActiveIngre);
         edtDrugMorning = view.findViewById(R.id.edtDrugMorning);
@@ -77,74 +81,88 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
     private void setView(InpatientDrugOrder inpatientDrugOrder) {
         if (inpatientDrugOrder != null) {
-            edtActiveIngre.setValue(inpatientDrugOrder.getActivename());
-            edtDrugMorning.setValue(inpatientDrugOrder.getQtymor());
-            edtDrugAfter.setValue(inpatientDrugOrder.getQtyaft());
-            edtDrugDinner.setValue(inpatientDrugOrder.getQtydin());
-            edtDrugEvening.setValue(inpatientDrugOrder.getQtynig());
-            edtDrugNumber.setValue(String.valueOf(inpatientDrugOrder.getQtyday()));
-            edtDrugTotal.setValue(String.valueOf(inpatientDrugOrder.getQty()));
-            edtDrugReason.setValue(inpatientDrugOrder.getDesc());
+            edtActiveIngre.setText(inpatientDrugOrder.getActivename());
+            edtDrugMorning.setText(inpatientDrugOrder.getQtymor());
+            edtDrugAfter.setText(inpatientDrugOrder.getQtyaft());
+            edtDrugDinner.setText(inpatientDrugOrder.getQtydin());
+            edtDrugEvening.setText(inpatientDrugOrder.getQtynig());
+            edtDrugNumber.setText(String.valueOf(inpatientDrugOrder.getQtyday()));
+            edtDrugTotal.setText(String.valueOf(inpatientDrugOrder.getQty()));
+            edtDrugReason.setText(inpatientDrugOrder.getDesc());
         }
     }
 
     private void setupDrugOrder() {
         if (getActivity() != null) {
-            final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDrug);
+            acpDrug = view.findViewById(R.id.acDrug);
 
             lstAuto = new ArrayList<>();
             adapterAuto = new AutoCompleteTextViewDrugOrderAdapter(getActivity(), lstAuto);
-            myAutoCompleteTextView.setAdapter(adapterAuto);
-            myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            acpDrug.setAdapter(adapterAuto);
+            acpDrug.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     PhaInventoryDomain phaInventory = (PhaInventoryDomain) parent.getItemAtPosition(position);
-                    InpatientDrugOrder drugOrder = new InpatientDrugOrder();
-                    drugOrder.setActivename(phaInventory.getCode());
 
-                    boolean exist = false;
-                    for (InpatientDrugOrder item : lstDrugOrder)
-                        if (item.getIddrug() == phaInventory.getIddrug()) {
-                            exist = true;
-                            //add
+                    /*
+                     * Add to Domain
+                     **/
+                    if (drugOrder != null) {
+                        drugOrder.setIddrug(phaInventory.getIddrug());
+                        drugOrder.setActivename(phaInventory.getCode());
+                    }
+
+                    /*
+                     * Add to ActiveIngre
+                     */
+                    edtActiveIngre.setText(phaInventory.getNameactiveingre(), false);
+
+                    /*
+                     * Add to Route
+                     **/
+                    for (int i = 0; i < lstAutoDrugRoute.size(); i++)
+                        if (phaInventory.getIdroute() == lstAutoDrugRoute.get(i).getId()) {
+                            acpDrugRoute.setText(lstAutoDrugRoute.get(i).getName());
                             break;
                         }
 
-                    if (!exist) {
-                        lstDrugOrder.add(drugOrder);
-                        adapterDrugOrder.setItems(lstDrugOrder);
-                        adapterDrugOrder.notifyDataSetChanged();
-                    }
                 }
             });
 
-            myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            acpDrug.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    myAutoCompleteTextView.showDropDown();
+                    acpDrug.showDropDown();
                 }
             });
         }
     }
 
-    private void setupDrugType() {
+    private void setupHappeningType() {
         if (getActivity() != null) {
-            final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDrugtype);
+            acpHappeningType = view.findViewById(R.id.acHappeningType);
 
-            lstAutoDrugType = new ArrayList<>();
-            adapterAutoHappeningType = new AutoCompleteTextViewAdapter(getActivity(), lstAutoDrugType);
-            myAutoCompleteTextView.setAdapter(adapterAutoHappeningType);
-            myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            lstAutoHappeningType = new ArrayList<>();
+            adapterAutoHappeningType = new AutoCompleteTextViewAdapter(getActivity(), lstAutoHappeningType);
+            acpHappeningType.setAdapter(adapterAutoHappeningType);
+            acpHappeningType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     AutoComplete autoComplete = (AutoComplete) parent.getItemAtPosition(position);
+                    /*
+                     * Add to Domain
+                     **/
+                    if (drugOrder != null) {
+
+                    }
+
                 }
             });
 
-            myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            acpHappeningType.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    myAutoCompleteTextView.showDropDown();
+                    acpHappeningType.showDropDown();
                 }
             });
         }
@@ -152,22 +170,24 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
     private void setupDrugRoute() {
         if (getActivity() != null) {
-            final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDrugRoute);
+            acpDrugRoute = view.findViewById(R.id.acDrugRoute);
 
-            lstAutoHappeningRoute = new ArrayList<>();
-            adapterAutoDrugRoute = new AutoCompleteTextViewAdapter(getActivity(), lstAutoHappeningRoute);
-            myAutoCompleteTextView.setAdapter(adapterAutoDrugRoute);
-            myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            lstAutoDrugRoute = new ArrayList<>();
+            adapterAutoDrugRoute = new AutoCompleteTextViewAdapter(getActivity(), lstAutoDrugRoute);
+            acpDrugRoute.setAdapter(adapterAutoDrugRoute);
+            acpDrugRoute.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     AutoComplete autoComplete = (AutoComplete) parent.getItemAtPosition(position);
+
+                    Toast.makeText(getActivity(), autoComplete.getName(), Toast.LENGTH_SHORT).show();
                 }
             });
 
-            myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            acpDrugRoute.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    myAutoCompleteTextView.showDropDown();
+                    acpDrugRoute.showDropDown();
                 }
             });
         }
@@ -178,7 +198,10 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         rcv.setHasFixedSize(true);
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         //rcv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        lstDrugOrder = new ArrayList<>();
+
+        if (Instruction.happeningDomain != null)
+            lstDrugOrder = Instruction.happeningDomain.getLstInpatientDrugOrder();
+
         adapterDrugOrder = new DrugOrderAdapter(lstDrugOrder);
         rcv.setAdapter(adapterDrugOrder);
         adapterDrugOrder.setOnItemClick(new DrugOrderAdapter.OnItemClick() {
@@ -216,10 +239,10 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(List<CateSharelDomain> list) {
-                        for (CateSharelDomain item: list){
-                            lstAutoHappeningRoute.add(new AutoComplete(item.getIdline(), item.getName()));
+                        for (CateSharelDomain item : list) {
+                            lstAutoDrugRoute.add(new AutoComplete(item.getIdline(), item.getName()));
                         }
-                        adapterAutoDrugRoute.setItems(lstAutoHappeningRoute);
+                        adapterAutoDrugRoute.setItems(lstAutoDrugRoute);
                         adapterAutoDrugRoute.notifyDataSetChanged();
                     }
                 });
@@ -230,10 +253,10 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(List<CateSharelDomain> list) {
-                        for (CateSharelDomain item: list){
-                            lstAutoDrugType.add(new AutoComplete(item.getIdline(), item.getName()));
+                        for (CateSharelDomain item : list) {
+                            lstAutoHappeningType.add(new AutoComplete(item.getIdline(), item.getName()));
                         }
-                        adapterAutoHappeningType.setItems(lstAutoDrugType);
+                        adapterAutoHappeningType.setItems(lstAutoHappeningType);
                         adapterAutoHappeningType.notifyDataSetChanged();
                     }
                 });
@@ -241,16 +264,31 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
     @Override
     public void onClick() {
-        boolean validate = true;
-        validate = validateInputText(edtActiveIngre);
-    }
-
-    private boolean validateInputText(MyInputTextOutline edt){
-        String s = edt.getText().toString();
-        if (s.matches("")) {
-            edt.setError("*");
-            return false;
+        String drug = acpDrug.getText().toString();
+        if (TextUtils.isEmpty(drug)) {
+            Toast.makeText(getActivity(), getString(R.string.txt_err_drug), Toast.LENGTH_SHORT).show();
+            acpDrug.setError("*");
+            return;
         }
-        return true;
+        String type = acpHappeningType.getText().toString();
+        String route = acpDrugRoute.getText().toString();
+        String morning = edtDrugMorning.getText().toString();
+        String after = edtDrugAfter.getText().toString();
+        String dinner = edtDrugDinner.getText().toString();
+        String evening = edtDrugEvening.getText().toString();
+        String number = edtDrugNumber.getText().toString();
+        if (TextUtils.isEmpty(number)) {
+            Toast.makeText(getActivity(), getString(R.string.txt_err_number), Toast.LENGTH_SHORT).show();
+            edtDrugNumber.setError("*");
+            return;
+        }
+        String total = edtDrugTotal.getText().toString();
+        String reason = edtDrugReason.getText().toString();
+
+        /*
+         * Check Exist
+         */
+
+        drugOrder = new InpatientDrugOrder();
     }
 }

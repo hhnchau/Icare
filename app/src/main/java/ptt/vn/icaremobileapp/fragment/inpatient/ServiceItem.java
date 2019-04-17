@@ -20,15 +20,16 @@ import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
-import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class ServiceItem extends BaseFragment {
     private View view;
     private List<ServiceItemDomain> lstAuto;
     private AutoCompleteTextViewServiceItemAdapter adapterAuto;
-    private List<InpatientServiceOrder> lstServiceItem;
+    private List<ServiceItemDomain> lstServiceItem;
     private ServiceItemAdapter adapterServiceItem;
     private int offset = 0;
     private int limit = 1000;
@@ -59,18 +60,17 @@ public class ServiceItem extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ServiceItemDomain serviceItemDomain = (ServiceItemDomain) parent.getItemAtPosition(position);
-                    InpatientServiceOrder serviceOrder = new InpatientServiceOrder();
-                    serviceOrder.setDocoder(serviceItemDomain.getNamehosp());
 
                     boolean exist = false;
-                    for (InpatientServiceOrder item : lstServiceItem)
-                        if (item.getDocoder().equals(serviceOrder.getDocoder())) {
+                    for (ServiceItemDomain item : lstServiceItem)
+                        if (item.getId() == serviceItemDomain.getId()) {
                             exist = true;
                             break;
                         }
 
                     if (!exist) {
-                        lstServiceItem.add(serviceOrder);
+                        serviceItemDomain.setDateapp(Utils.getCurrentDate(Utils.ddMMyyyyHHmm));
+                        lstServiceItem.add(serviceItemDomain);
                         adapterServiceItem.setItems(lstServiceItem);
                         adapterServiceItem.notifyDataSetChanged();
                     }
@@ -113,8 +113,49 @@ public class ServiceItem extends BaseFragment {
                         lstAuto = listServiceItem;
                         adapterAuto.setItems(lstAuto);
                         adapterAuto.notifyDataSetChanged();
+
+                        //Add to List
+                        updateListService(listServiceItem);
+
                     }
                 });
+    }
+
+    private void updateListService(List<ServiceItemDomain> listServiceItem) {
+        if (Instruction.happeningDomain != null) {
+            List<InpatientServiceOrder> lstService = Instruction.happeningDomain.getLstInpatientServiceOrder();
+
+            ServiceItemDomain serviceItemDomain = null;
+
+            if (lstService != null && lstService.size() > 0 && listServiceItem != null && listServiceItem.size() > 0) {
+                for (InpatientServiceOrder service : lstService) {
+                    for (ServiceItemDomain serviceItem : listServiceItem) {
+                        if (service.getIdservice() == serviceItem.getId()) {
+                            try {
+                                serviceItemDomain = (ServiceItemDomain) serviceItem.clone();
+
+                                serviceItemDomain.setDocoder(service.getDocoder());
+                                serviceItemDomain.setPrice(service.getPrice());
+                                serviceItemDomain.setPricehi(service.getPricehi());
+                                serviceItemDomain.setQty(service.getQty());
+                                serviceItemDomain.setDateapp(service.getDateapp());
+
+                            } catch (CloneNotSupportedException e) {
+                                e.printStackTrace();
+                            }
+                            if (serviceItemDomain != null) lstServiceItem.add(serviceItemDomain);
+                            break;
+                        }
+                    }
+                }
+
+
+                adapterServiceItem.setItems(lstServiceItem);
+                adapterServiceItem.notifyDataSetChanged();
+
+            }
+
+        }
     }
 
 }
