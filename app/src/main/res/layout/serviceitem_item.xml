@@ -88,7 +88,7 @@
 
             <ImageView
                 android:id="@+id/icDelete"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.7" />
+                app:layout_constraintGuide_percent="0.6" />
 
         </android.support.constraint.ConstraintLayout>
 
