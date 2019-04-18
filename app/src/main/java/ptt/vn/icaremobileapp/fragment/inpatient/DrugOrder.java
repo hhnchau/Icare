@@ -42,16 +42,21 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private List<CateSharelDomain> lstAutoDrugRoute;
     private AutoCompleteTextViewAdapter adapterAutoDrugRoute;
 
+    private List<CateSharelDomain> lstDrugUnitUse;
+    private AutoCompleteTextViewAdapter adapterDrugUnitUse;
+
     private List<InpatientDrugOrder> lstDrugOrder;
     private DrugOrderAdapter adapterDrugOrder;
+
 
     private PhaInventoryDomain phaInventoryDomain;
     private CateSharelDomain happeningType;
     private CateSharelDomain drugRoute;
+    private CateSharelDomain drugUnitUse;
 
     private int offset = 0;
     private int limit = 1000;
-    private MyAutoCompleteTextView acpDrug, acpHappeningType, acpDrugRoute;
+    private MyAutoCompleteTextView acpDrug, acpHappeningType, acpDrugRoute, acpDrugUnitUse;
     private MyInputTextOutline edtActiveIngre, edtDrugMorning, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
 
 
@@ -62,11 +67,13 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
         setupView();
         setupDrugOrder();
+        setupDrugUnitUse();
         setupHappeningType();
         setupDrugRoute();
         setupListDrugOrder();
         getDrugRoute();
         getHappeningType();
+        getDrugUnitUse();
         getPhaInventory(offset, limit, 1, 0);
 
         return view;
@@ -118,6 +125,11 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                             break;
                         }
 
+                    for (int i = 0; i < lstDrugUnitUse.size(); i++)
+                        if (phaInventoryDomain.getIdunituse() == lstDrugUnitUse.get(i).getIdline()) {
+                            acpDrugUnitUse.setText(lstDrugUnitUse.get(i).getName());
+                            break;
+                        }
                 }
             });
 
@@ -125,6 +137,30 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 @Override
                 public void onClick(View v) {
                     acpDrug.showDropDown();
+                }
+            });
+        }
+    }
+
+    private void setupDrugUnitUse() {
+        if (getActivity() != null) {
+            acpDrugUnitUse = view.findViewById(R.id.acpDrugUnitUse);
+
+            lstDrugUnitUse = new ArrayList<>();
+            adapterDrugUnitUse = new AutoCompleteTextViewAdapter(getActivity(), lstDrugUnitUse);
+            acpDrugUnitUse.setAdapter(adapterDrugUnitUse);
+            acpDrugUnitUse.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    drugUnitUse = (CateSharelDomain) parent.getItemAtPosition(position);
+
+                }
+            });
+
+            acpDrugUnitUse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    acpDrugUnitUse.showDropDown();
                 }
             });
         }
@@ -230,6 +266,19 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 });
     }
 
+    private void getDrugUnitUse() {
+        ApiController.getInstance().getDrugUnitUse(getActivity(),
+                new ACallback<CateSharelDomain>() {
+                    @Override
+                    public void response(List<CateSharelDomain> list) {
+
+                        lstDrugUnitUse = list;
+                        adapterDrugUnitUse.setItems(lstDrugUnitUse);
+                        adapterDrugUnitUse.notifyDataSetChanged();
+                    }
+                });
+    }
+
     private void getHappeningType() {
         ApiController.getInstance().getHappeningType(getActivity(),
                 new ACallback<CateSharelDomain>() {
@@ -289,7 +338,9 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
 
             drugOrder.setIdstore(1);
-            drugOrder.setIdunit(25425);
+            if (drugUnitUse != null) drugOrder.setIdunituse(drugUnitUse.getIdline());
+
+            drugOrder.setIdunit(drugUnitUse.getIdline());
 
             drugOrder.setQtymor(morning);
             drugOrder.setQtyaft(after);

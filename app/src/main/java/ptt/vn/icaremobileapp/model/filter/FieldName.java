@@ -9,5 +9,6 @@ public enum  FieldName {
     idstore,
     ishi,
     routedrug,
-    typemedicalchart
+    typemedicalchart,
+    unitusedrug
 }

@@ -54,6 +54,9 @@ public interface ApiService {
     Observable<CateShareResponse> getDrugRoute(@Url String url, @Header("Content") String filterModel);
 
     @GET()
+    Observable<CateShareResponse> getDrugUnitUse(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
     Observable<CateShareResponse> getHappeningType(@Url String url, @Header("Content") String filterModel);
 
 

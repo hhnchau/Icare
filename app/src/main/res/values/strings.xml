@@ -41,6 +41,7 @@
     <string name="txt_serviceitem_code">Mã Chỉ Định</string>
     <string name="txt_serviceitem_select">Chọn Chỉ Định</string>
     <string name="txt_unit">Đơn Vị Tính</string>
+    <string name="txt_unit_use">Đơn Vị Dùng</string>
     <string name="txt_number">Số Lượng</string>
     <string name="txt_price">Đơn giá</string>
     <string name="txt_price_insurance">Giá BHYT</string>

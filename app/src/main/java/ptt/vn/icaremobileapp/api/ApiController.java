@@ -564,6 +564,56 @@ public class ApiController {
 
 
     @SuppressWarnings("unchecked")
+    public void getDrugUnitUse(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.CATE);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
+        lstPara.add(new Para(FieldName.unitusedrug, Operation.Equals, DataTypeOfValue.String, null));
+        CompositeManager.add(Api.apiService.getDrugUnitUse(url + "filter", new FilterModel(lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<CateShareResponse>() {
+
+                    @Override
+                    public void onNext(CateShareResponse response) {
+                        if (response.getCode() == 0 && aCallback != null) {
+                            List<CateSharehDomain> lstCateShareh = response.getData();
+                            if (lstCateShareh != null && lstCateShareh.size() > 0)
+                                aCallback.response(lstCateShareh.get(0).getLstCateShareDetail());
+                        } else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getDrugUnitUse(context, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+
+    @SuppressWarnings("unchecked")
     public void getHappeningType(final Context context, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.CATE);
         if (url == null) {
