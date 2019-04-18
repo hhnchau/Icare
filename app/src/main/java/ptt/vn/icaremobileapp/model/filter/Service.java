@@ -9,5 +9,6 @@ public class Service {
     public static final String OCLINIC = "OCLINIC";
     public static final String ICD = "ICD";
     public static final String CATE = "CATE";
+    public static final String  SPECIALIST = "SPECIALIST";
 }
 

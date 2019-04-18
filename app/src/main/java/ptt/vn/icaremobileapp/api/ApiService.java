@@ -8,8 +8,11 @@ import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
+import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
+import ptt.vn.icaremobileapp.model.medexa.MedexaResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
+import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import retrofit2.http.Body;
@@ -27,6 +30,9 @@ public interface ApiService {
 
     @GET("/SysApiConfigService/1/0/0")
     Observable<SysApiModel> getSysApi();
+
+    @GET()
+    Observable<MedexaResponse> getMedexa(@Url String url);
 
     @GET()
     Observable<InpatientResponse> getInpatient(@Url String url, @Header("Content") String filterModel);
@@ -58,6 +64,9 @@ public interface ApiService {
 
     @GET()
     Observable<CateShareResponse> getHappeningType(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<MapPriceServiceItemResponse> getMapPriceServiceItem(@Url String url, @Header("Content") String filterModel);
 
 
 

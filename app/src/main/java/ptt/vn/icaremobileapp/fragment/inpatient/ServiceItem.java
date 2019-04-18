@@ -22,8 +22,8 @@ import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
-import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
+import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemLDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.storage.Storage;
 import ptt.vn.icaremobileapp.utils.Utils;
@@ -137,9 +137,31 @@ public class ServiceItem extends BaseFragment {
                         adapterAuto.setItems(lstAuto);
                         adapterAuto.notifyDataSetChanged();
 
+                        /*Get Price*/
+                        //getMapPriceServiceItem(offset, limit, 1);
+
                         //Add to List
                         updateListService(listServiceItem);
 
+                    }
+                });
+    }
+
+    private void getMapPriceServiceItem(int _offset, int _limit, int _idPrice) {
+        ApiController.getInstance().getMapPriceServiceItem(getActivity(), _offset, _limit, _idPrice,
+                new ACallback<MapPriceServiceItemLDomain>() {
+                    @Override
+                    public void response(List<MapPriceServiceItemLDomain> list) {
+                        if (lstAuto != null)
+                            for (ServiceItemDomain item : lstAuto)
+                                for (MapPriceServiceItemLDomain price : list)
+                                    if (item.getId() == price.getIdservice()) {
+                                        item.setPrice(price.getPrice());
+                                        item.setPricehi(price.getPricehi());
+                                    }
+
+
+                        int i = 0;
                     }
                 });
     }

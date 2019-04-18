@@ -27,7 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txt_diagnose">
-
                 <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
                     android:id="@+id/acDiagnose"
                     android:layout_width="match_parent"

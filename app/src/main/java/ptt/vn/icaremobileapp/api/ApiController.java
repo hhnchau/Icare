@@ -33,10 +33,15 @@ import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.filter.Service;
+import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
+import ptt.vn.icaremobileapp.model.medexa.MedexaResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
 import ptt.vn.icaremobileapp.model.pharmacy.ResultResponse;
+import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemHDomain;
+import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemResponse;
+import ptt.vn.icaremobileapp.model.serviceitem.MapResultResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
 import ptt.vn.icaremobileapp.model.sysapi.UrlModel;
@@ -45,6 +50,7 @@ import static ptt.vn.icaremobileapp.model.filter.Method.GetHappeningInDepartment
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInpatientInDepartment;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInvDrug;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetListPatient;
+import static ptt.vn.icaremobileapp.model.filter.Method.GetPriceList;
 
 
 /**
@@ -86,6 +92,39 @@ public class ApiController {
 
                     @Override
                     public void onComplete() {
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getMedexa(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.SPECIALIST);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+
+        CompositeManager.add(Api.apiService.getMedexa(url + "0/0/0")
+                .subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<MedexaResponse>() {
+                    @Override
+                    public void onNext(MedexaResponse response) {
+                        if (response.getCode() == 0 && aCallback != null)
+                            aCallback.response(response.getData());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
                     }
                 }));
     }
@@ -288,6 +327,8 @@ public class ApiController {
             return;
         }
 
+        //url = "http://172.16.0.21:7770/InpatientHappeningService/";
+
         Loading.getInstance().show(context);
 
         CompositeManager.add(Api.apiService.saveHappening(url, happening)
@@ -413,6 +454,59 @@ public class ApiController {
                     }
                 }));
     }
+
+    @SuppressWarnings("unchecked")
+    public void getMapPriceServiceItem(final Context context, final int _offset, final int _limit, final int _idPrice, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.SERVITEM);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
+        lstPara.add(new Para(FieldName.id, Operation.Equals, DataTypeOfValue.Int64, _idPrice));
+        CompositeManager.add(Api.apiService.getMapPriceServiceItem(url + "filter", new FilterModel(_offset, _limit, GetPriceList, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<MapPriceServiceItemResponse>() {
+
+                    @Override
+                    public void onNext(MapPriceServiceItemResponse response) {
+                        if (response.getCode() == 0 && aCallback != null) {
+                            List<MapResultResponse> resultResponse = response.getData();
+                            if (resultResponse != null && resultResponse.size() > 0)
+                                aCallback.response(resultResponse.get(0).getResult().get(0).getLstPriceServiceValueObject());
+                            else
+                                MyLog.print(context, String.valueOf(response.getCode()));
+                        } else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getMapPriceServiceItem(context, _offset, _limit, _idPrice, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
 
     @SuppressWarnings("unchecked")
     public void getPhaInventory(final Context context, final int _offset, final int _limit, final int _idStore, final int _isHi, final ACallback aCallback) {

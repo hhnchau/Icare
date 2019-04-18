@@ -40,6 +40,8 @@ public class InpatientDrugOrder implements Parcelable {
     private String timeup;
     private String computer;
 
+
+
     public InpatientDrugOrder() {
     }
 

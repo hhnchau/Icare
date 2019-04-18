@@ -39,7 +39,8 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private List<CateSharelDomain> lstAutoHappeningType;
     private AutoCompleteTextViewAdapter adapterAutoHappeningType;
 
-    private List<CateSharelDomain> lstAutoDrugRoute;
+    private List<CateSharelDomain> lstAutoDrugRoute = new ArrayList<>();
+    ;
     private AutoCompleteTextViewAdapter adapterAutoDrugRoute;
 
     private List<CateSharelDomain> lstDrugUnitUse;
@@ -69,7 +70,6 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         setupDrugOrder();
         setupDrugUnitUse();
         setupHappeningType();
-        setupDrugRoute();
         setupListDrugOrder();
         getDrugRoute();
         getHappeningType();
@@ -122,12 +122,14 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                     for (int i = 0; i < lstAutoDrugRoute.size(); i++)
                         if (phaInventoryDomain.getIdroute() == lstAutoDrugRoute.get(i).getIdline()) {
                             acpDrugRoute.setText(lstAutoDrugRoute.get(i).getName());
+                            drugRoute = lstAutoDrugRoute.get(i);
                             break;
                         }
 
                     for (int i = 0; i < lstDrugUnitUse.size(); i++)
                         if (phaInventoryDomain.getIdunituse() == lstDrugUnitUse.get(i).getIdline()) {
                             acpDrugUnitUse.setText(lstDrugUnitUse.get(i).getName());
+                            drugUnitUse = lstDrugUnitUse.get(i);
                             break;
                         }
                 }
@@ -193,7 +195,6 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         if (getActivity() != null) {
             acpDrugRoute = view.findViewById(R.id.acDrugRoute);
 
-            lstAutoDrugRoute = new ArrayList<>();
             adapterAutoDrugRoute = new AutoCompleteTextViewAdapter(getActivity(), lstAutoDrugRoute);
             acpDrugRoute.setAdapter(adapterAutoDrugRoute);
             acpDrugRoute.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -260,8 +261,9 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                     public void response(List<CateSharelDomain> list) {
 
                         lstAutoDrugRoute = list;
-                        adapterAutoDrugRoute.setItems(lstAutoDrugRoute);
-                        adapterAutoDrugRoute.notifyDataSetChanged();
+                        setupDrugRoute();
+                        //adapterAutoDrugRoute.setItems(lstAutoDrugRoute);
+                        //adapterAutoDrugRoute.notifyDataSetChanged();
                     }
                 });
     }
@@ -334,13 +336,14 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 drugOrder.setCodedrug(phaInventoryDomain.getCode());
                 drugOrder.setNamedrug(phaInventoryDomain.getName());
                 drugOrder.setActivename(phaInventoryDomain.getNameactiveingre());
+                drugOrder.setIdstore(phaInventoryDomain.getIdstore());
+                drugOrder.setIdunit(phaInventoryDomain.getIdunit());
+                drugOrder.setPrice(phaInventoryDomain.getPrice());
             }
             if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
 
-            drugOrder.setIdstore(1);
-            if (drugUnitUse != null) drugOrder.setIdunituse(drugUnitUse.getIdline());
 
-            drugOrder.setIdunit(drugUnitUse.getIdline());
+            if (drugUnitUse != null) drugOrder.setIdunituse(drugUnitUse.getIdline());
 
             drugOrder.setQtymor(morning);
             drugOrder.setQtyaft(after);
@@ -348,6 +351,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             drugOrder.setQtynig(evening);
             drugOrder.setQty(Float.parseFloat(total));
             drugOrder.setQtyday(Integer.parseInt(number));
+            drugOrder.setTotal(phaInventoryDomain.getPrice() * Float.parseFloat(total));
             drugOrder.setDesc(reason);
 
             lstDrugOrder.add(drugOrder);

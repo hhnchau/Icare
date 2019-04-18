@@ -21,6 +21,7 @@ import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
+import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
@@ -36,6 +37,8 @@ public class InpatientList extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.inpatient_list, container, false);
         initView();
+
+        getMedexa();
 
         getInpatient(offset, limit, 2);
 
@@ -65,9 +68,19 @@ public class InpatientList extends BaseFragment {
 
     }
 
+    private void getMedexa() {
+        ApiController.getInstance().getMedexa(getActivity(),
+                new ACallback<MedexaHDomain>() {
+                    @Override
+                    public void response(List<MedexaHDomain> list) {
+                        int i = 0;
+                    }
+                });
+    }
+
     @SuppressWarnings("unchecked")
     private void getInpatient(int _offset, int _limit, int _idmedexa) {
-        ApiController.getInstance().getInpatient(getActivity(), _offset, _limit,  _idmedexa, new ACallback<InpatientDomain>() {
+        ApiController.getInstance().getInpatient(getActivity(), _offset, _limit, _idmedexa, new ACallback<InpatientDomain>() {
             @Override
             public void response(List<InpatientDomain> listInpatient) {
                 lstInpatient = listInpatient;

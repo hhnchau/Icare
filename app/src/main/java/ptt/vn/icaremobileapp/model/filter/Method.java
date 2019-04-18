@@ -4,5 +4,6 @@ public enum Method {
     GetInpatientInDepartment,
     GetListPatient,
     GetHappeningInDepartment,
-    GetInvDrug
+    GetInvDrug,
+    GetPriceList
 }

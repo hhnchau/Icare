@@ -82,6 +82,8 @@
     <string name="txt_err_drug">Vui lòng chọn thuốc</string>
     <string name="txt_err_number">Vui lòng chọn số ngày</string>
 
+    <string name="txt_medexa">Chuyên Khoa</string>
+
     <string name="item_menu_edit">Chỉnh sửa</string>
     <string name="item_menu_copy">Copy</string>
     <string name="item_menu_delete">Xóa</string>
