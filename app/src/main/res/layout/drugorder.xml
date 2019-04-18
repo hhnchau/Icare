@@ -88,6 +88,7 @@
                         android:imeOptions="actionDone"
                         android:inputType="text"
                         android:paddingStart="@dimen/dp_16"
+                        android:paddingEnd="@dimen/dp_16"
                         android:textSize="@dimen/sp_16"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -109,6 +110,29 @@
                         android:imeOptions="actionDone"
                         android:inputType="text"
                         android:paddingStart="@dimen/dp_16"
+                        android:paddingEnd="@dimen/dp_16"
+                        android:textSize="@dimen/sp_16" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/MyTextInput"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_weight="1"
+                    android:hint="@string/txt_unit_use">
+
+                    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                        android:id="@+id/acpDrugUnitUse"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:completionThreshold="1"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/dp_16"
+                        android:paddingEnd="@dimen/dp_16"
                         android:textSize="@dimen/sp_16" />
                 </android.support.design.widget.TextInputLayout>
 

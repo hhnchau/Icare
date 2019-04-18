@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Default
-        Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
+        Fragmentuz.replaceFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
 
     }
 
@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (lstDrawer.get(position).getFzg()) {
                             case INPATIENT_LIST:
-                                Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
+                                Fragmentuz.replaceFrame(fragmentManager, null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
                                 //fragmentManager.popBackStack("DASHBOARD", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                                 break;
                             case DASHBOARD:
-                                Fragmentuz.addMainFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
+                                Fragmentuz.replaceFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
                                 //fragmentManager.popBackStack("INPATIENT_LIST", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                                 break;
                         }

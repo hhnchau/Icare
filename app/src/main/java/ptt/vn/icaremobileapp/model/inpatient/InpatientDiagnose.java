@@ -6,7 +6,6 @@ import android.os.Parcelable;
 public class InpatientDiagnose implements Parcelable {
     private int siterf;
     private String idline;
-    private String idlink;
     private int idicd;
     private String nameicdvn;
     private String nameicdeng;
@@ -24,7 +23,6 @@ public class InpatientDiagnose implements Parcelable {
     protected InpatientDiagnose(Parcel in) {
         siterf = in.readInt();
         idline = in.readString();
-        idlink = in.readString();
         idicd = in.readInt();
         nameicdvn = in.readString();
         nameicdeng = in.readString();
@@ -61,14 +59,6 @@ public class InpatientDiagnose implements Parcelable {
 
     public void setIdline(String idline) {
         this.idline = idline;
-    }
-
-    public String getIdlink() {
-        return idlink;
-    }
-
-    public void setIdlink(String idlink) {
-        this.idlink = idlink;
     }
 
     public int getIdicd() {
@@ -145,7 +135,6 @@ public class InpatientDiagnose implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(siterf);
         dest.writeString(idline);
-        dest.writeString(idlink);
         dest.writeInt(idicd);
         dest.writeString(nameicdvn);
         dest.writeString(nameicdeng);

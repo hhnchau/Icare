@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
@@ -19,6 +19,7 @@ public class MyTabButton extends CardView implements View.OnClickListener {
     public static final int TAB3 = 3;
     public static final int TAB4 = 4;
     public static final int TAB5 = 5;
+    private Fragmentez currentTab;
     private RadioButton radio1, radio2, radio3, radio4, radio5;
 
 
@@ -67,19 +68,34 @@ public class MyTabButton extends CardView implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn1:
-                if (listener != null) listener.onToggled(Fragmentez.THAM_KHAM);
+                if (listener != null && currentTab != Fragmentez.THAM_KHAM) {
+                    currentTab = Fragmentez.THAM_KHAM;
+                    listener.onToggled(Fragmentez.THAM_KHAM);
+                }
                 break;
             case R.id.btn2:
-                if (listener != null) listener.onToggled(Fragmentez.SERVICE_ITEM);
+                if (listener != null && currentTab != Fragmentez.SERVICE_ITEM) {
+                    currentTab = Fragmentez.SERVICE_ITEM;
+                    listener.onToggled(Fragmentez.SERVICE_ITEM);
+                }
                 break;
             case R.id.btn3:
-                if (listener != null) listener.onToggled(Fragmentez.DRUG_ORDER);
+                if (listener != null && currentTab != Fragmentez.DRUG_ORDER) {
+                    currentTab = Fragmentez.DRUG_ORDER;
+                    listener.onToggled(Fragmentez.DRUG_ORDER);
+                }
                 break;
             case R.id.btn4:
-                if (listener != null) listener.onToggled(Fragmentez.DRUG_ORDER_OUTSIDE);
+                if (listener != null && currentTab != Fragmentez.DRUG_ORDER_OUTSIDE) {
+                    currentTab = Fragmentez.DRUG_ORDER_OUTSIDE;
+                    listener.onToggled(Fragmentez.DRUG_ORDER_OUTSIDE);
+                }
                 break;
             case R.id.btn5:
-                if (listener != null) listener.onToggled(Fragmentez.DIAGNOSE);
+                if (listener != null && currentTab != Fragmentez.DIAGNOSE) {
+                    currentTab = Fragmentez.DIAGNOSE;
+                    listener.onToggled(Fragmentez.DIAGNOSE);
+                }
                 break;
         }
     }

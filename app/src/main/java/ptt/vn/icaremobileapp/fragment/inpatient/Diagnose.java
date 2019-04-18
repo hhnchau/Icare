@@ -18,10 +18,12 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DiagnoseAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDiagnoseAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.model.icd.IcdDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class Diagnose extends BaseFragment {
     private View view;
@@ -57,20 +59,23 @@ public class Diagnose extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     IcdDomain icd = (IcdDomain) parent.getItemAtPosition(position);
-                    InpatientDiagnose diagnose = new InpatientDiagnose();
-                    diagnose.setIdicd(icd.getId());
-                    diagnose.setNameicdvn(icd.getName());
-                    diagnose.setNameicdeng(icd.getNameen());
-                    diagnose.setCode(icd.getCode());
 
-                    int exist = 0;
+                    boolean exist = false;
                     for (InpatientDiagnose item : lstDiagnose)
                         if (item.getIdicd() == icd.getId()) {
-                            exist++;
+                            exist = true;
                             break;
                         }
 
-                    if (exist == 0) {
+                    if (!exist) {
+                        InpatientDiagnose diagnose = new InpatientDiagnose();
+                        diagnose.setActive(Host.ACTIVE);
+                        diagnose.setIdline(Utils.newGuid());
+                        diagnose.setIdicd(icd.getId());
+                        diagnose.setNameicdvn(icd.getName());
+                        diagnose.setNameicdeng(icd.getNameen());
+                        diagnose.setCode(icd.getCode());
+
                         lstDiagnose.add(diagnose);
                         adapterDiagnose.setItems(lstDiagnose);
                         adapterDiagnose.notifyDataSetChanged();
@@ -119,5 +124,4 @@ public class Diagnose extends BaseFragment {
                     }
                 });
     }
-
 }
