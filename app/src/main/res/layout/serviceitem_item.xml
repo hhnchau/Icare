@@ -4,27 +4,32 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/dp_8"
-    android:layout_marginTop="@dimen/dp_4"
-    android:layout_marginEnd="@dimen/dp_8"
-    android:layout_marginBottom="@dimen/dp_4"
+    android:layout_marginStart="@dimen/dp_4"
+    android:layout_marginTop="@dimen/dp_8"
+    android:layout_marginEnd="@dimen/dp_4"
+    android:layout_marginBottom="@dimen/dp_8"
     app:cardCornerRadius="@dimen/dp_4">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <!--Header-->
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20">
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_84"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:lines="2"
@@ -44,9 +49,9 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="100.000"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/sp_22"
-                android:textStyle="bold"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@id/tvDoctor"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
@@ -55,10 +60,10 @@
 
             <ImageView
                 android:id="@+id/ic_expand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/img_des"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:src="@drawable/ic_arrow_drop_down"
                 app:layout_constraintBottom_toBottomOf="@id/tvTotal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,8 +75,10 @@
                 android:id="@+id/tvDoctor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:text="B.S Nguyễn Văn BS"
+                android:textColor="@color/text_label"
                 android:gravity="center"
-                android:text="BS. Nguyễn Văn BS"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/tvTotal"
                 app:layout_constraintStart_toStartOf="@id/guide"
@@ -83,6 +90,7 @@
                 android:id="@+id/icDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -108,6 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_16"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -126,6 +135,8 @@
                     android:id="@+id/tvItemCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_serviceitem_code" />
 
@@ -133,6 +144,8 @@
                     android:id="@+id/tvUnit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:layout_marginEnd="@dimen/dp_24"
                     android:layout_weight="1"
                     app:label="@string/txt_unit" />
 
@@ -140,6 +153,8 @@
                     android:id="@+id/tvNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_number" />
 
@@ -149,13 +164,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_16"
-                android:layout_marginBottom="@dimen/dp_16"
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_price" />
 
@@ -163,6 +179,8 @@
                     android:id="@+id/tvPriceInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:layout_marginEnd="@dimen/dp_24"
                     android:layout_weight="1"
                     app:label="@string/txt_price_insurance" />
 

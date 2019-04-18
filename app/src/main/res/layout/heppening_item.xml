@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_8"
             android:layout_marginTop="@dimen/dp_16"
-            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_12"
             android:gravity="center"
             android:orientation="horizontal"
             >
@@ -36,7 +36,7 @@
                     android:id="@+id/tvName"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_32"
                     android:layout_marginEnd="@dimen/dp_84"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
@@ -57,7 +57,7 @@
                     android:gravity="center"
                     android:text="20/12/2019"
                     android:textColor="@color/text_label"
-                    android:textSize="@dimen/sp_20"
+                    android:textSize="@dimen/sp_16"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@id/tvDoctor"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -70,8 +70,10 @@
                     android:id="@+id/tvDoctor"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:text="BS. Nguyễn Văn BS"
+                    android:text="B.S Nguyễn Văn BS"
+                    android:textColor="@color/text_label"
                     android:gravity="center"
+                    android:textSize="@dimen/sp_18"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guide"
@@ -83,7 +85,7 @@
                     android:id="@+id/icCopy"
                     android:layout_width="@dimen/dp_40"
                     android:layout_height="@dimen/dp_0"
-                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_32"
                     android:contentDescription="@string/img_des"
                     android:src="@mipmap/ic_copy"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -132,7 +134,7 @@
                 android:id="@+id/btnNext"
                 android:layout_width="40dp"
                 android:layout_height="60dp"
-                android:layout_marginEnd="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_28"
                 android:background="@drawable/ic_next"
                 android:contentDescription="@string/img_des"
                 android:padding="32dp" />
@@ -144,7 +146,7 @@
             android:id="@+id/detailView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_0"
             android:layout_marginEnd="@dimen/dp_8"
             android:orientation="vertical"
             android:visibility="gone">
@@ -164,8 +166,7 @@
                     android:id="@+id/tvCircuit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_24"
-                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_marginStart="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_circuit" />
 
@@ -173,7 +174,7 @@
                     android:id="@+id/edtBlood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_blomin" />
 
@@ -181,7 +182,7 @@
                     android:id="@+id/tvTemper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_temper" />
@@ -199,8 +200,7 @@
                     android:id="@+id/tvHeartb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_24"
-                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_marginStart="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_heartb" />
 
@@ -208,7 +208,7 @@
                     android:id="@+id/edtWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_weight" />
 

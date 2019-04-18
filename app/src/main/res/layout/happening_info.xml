@@ -10,6 +10,7 @@
         android:id="@+id/tvPatientAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
         android:layout_marginStart="@dimen/dp_0"
         android:layout_marginEnd="@dimen/dp_0"
         app:label="@string/txt__patient_address" />
@@ -18,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_0"
-        android:layout_marginBottom="@dimen/dp_24"
         android:orientation="vertical">
 
         <LinearLayout
@@ -31,6 +31,7 @@
                 android:id="@+id/tvPatientCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt_patient_code" />
 
@@ -38,6 +39,8 @@
                 android:id="@+id/tvPatientBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_birthday" />
 
@@ -45,6 +48,8 @@
                 android:id="@+id/tvPatientSex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt__patient_sex" />
         </LinearLayout>
@@ -54,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_32"
             app:label="@string/txt_dialog_happening" />
 
         <LinearLayout
@@ -66,6 +72,7 @@
                 android:id="@+id/tvDoctor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt_doctor" />
 
@@ -73,6 +80,8 @@
                 android:id="@+id/tvCircuit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:layout_weight="1"
                 app:label="@string/txt_circuit" />
 
@@ -80,6 +89,8 @@
                 android:id="@+id/tvBlood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt_blomin" />
 
@@ -89,13 +100,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
-            android:layout_marginBottom="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_4"
             android:orientation="horizontal">
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvTemper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt_temper" />
 
@@ -103,6 +115,8 @@
                 android:id="@+id/tvHeartb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:layout_weight="1"
                 app:label="@string/txt_heartb" />
 
@@ -110,6 +124,8 @@
                 android:id="@+id/tvWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
                 app:label="@string/txt_weight" />
         </LinearLayout>
