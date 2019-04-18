@@ -15,8 +15,9 @@ import android.widget.Toast;
 
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.custom.MyButton;
+import ptt.vn.icaremobileapp.storage.Storage;
 
-public class Login extends AppCompatActivity implements MyButton.OnListener  {
+public class Login extends AppCompatActivity implements MyButton.OnListener {
     private EditText edtUserName, edtPassword;
 
     @Override
@@ -56,8 +57,9 @@ public class Login extends AppCompatActivity implements MyButton.OnListener  {
         String p = edtPassword.getText().toString();
 
         if (u.equals("admin") && p.equals("123")) {
+            Storage.getInstance(this).setUserName("admin");
             gotoDashboard();
-        }else {
+        } else {
             Toast.makeText(this, "Sai ten dang nhap hoac mat khau", Toast.LENGTH_SHORT).show();
         }
     }

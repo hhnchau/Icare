@@ -74,7 +74,8 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         holder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeItem(position);
+                if (onItemClick != null)
+                    onItemClick.onClick(position);
             }
         });
 

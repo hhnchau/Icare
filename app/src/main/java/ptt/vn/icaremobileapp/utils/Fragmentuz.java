@@ -103,10 +103,10 @@ public class Fragmentuz {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             Fragment frg = getFragment(fzg);
             if (frg != null) {
-                for (Fragmentoz item : lstFragment)
-                    transaction.hide(item.getFrg());
+                //for (Fragmentoz item : lstFragment)
+                    //transaction.detach(item.getFrg());
                 transaction.setCustomAnimations(enter, exit)
-                        .show(frg)
+                        .replace(frame, frg)
                         .commit();
             }
         } else {
@@ -116,7 +116,7 @@ public class Fragmentuz {
                 fragmentManager
                         .beginTransaction()
                         .setCustomAnimations(enter, exit)
-                        .add(frame, frg)
+                        .replace(frame, frg)
                         .commit();
 
                 lstFragment.add(new Fragmentoz(fzg, frg));

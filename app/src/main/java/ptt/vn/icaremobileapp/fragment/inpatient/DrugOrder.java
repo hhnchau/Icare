@@ -20,6 +20,7 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DrugOrderAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
@@ -28,6 +29,7 @@ import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private View view;
@@ -275,9 +277,20 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
         if (!exist) {
             InpatientDrugOrder drugOrder = new InpatientDrugOrder();
-            drugOrder.setIddrug(phaInventoryDomain.getIddrug());
-            drugOrder.setIdroute(drugRoute.getIdline());
-            drugOrder.setActivename(phaInventoryDomain.getNameactiveingre());
+            drugOrder.setActive(Host.ACTIVE);
+            drugOrder.setIdline(Utils.newGuid());
+            drugOrder.setIdhappening(Utils.newGuid());
+            if (phaInventoryDomain != null) {
+                drugOrder.setIddrug(phaInventoryDomain.getIddrug());
+                drugOrder.setCodedrug(phaInventoryDomain.getCode());
+                drugOrder.setNamedrug(phaInventoryDomain.getName());
+                drugOrder.setActivename(phaInventoryDomain.getNameactiveingre());
+            }
+            if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
+
+            drugOrder.setIdstore(1);
+            drugOrder.setIdunit(25425);
+
             drugOrder.setQtymor(morning);
             drugOrder.setQtyaft(after);
             drugOrder.setQtydin(dinner);

@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +104,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     }
 
     private void saveHappening(HappeningDomain happening) {
+        String json = new Gson().toJson(happening);
         ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
             @Override
             public void response(HappeningDomain happening) {

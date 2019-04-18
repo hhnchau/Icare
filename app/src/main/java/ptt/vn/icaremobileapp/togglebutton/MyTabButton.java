@@ -74,25 +74,25 @@ public class MyTabButton extends CardView implements View.OnClickListener {
                 }
                 break;
             case R.id.btn2:
-                if (listener != null && currentTab != Fragmentez.THAM_KHAM) {
+                if (listener != null && currentTab != Fragmentez.SERVICE_ITEM) {
                     currentTab = Fragmentez.SERVICE_ITEM;
                     listener.onToggled(Fragmentez.SERVICE_ITEM);
                 }
                 break;
             case R.id.btn3:
-                if (listener != null && currentTab != Fragmentez.THAM_KHAM) {
+                if (listener != null && currentTab != Fragmentez.DRUG_ORDER) {
                     currentTab = Fragmentez.DRUG_ORDER;
                     listener.onToggled(Fragmentez.DRUG_ORDER);
                 }
                 break;
             case R.id.btn4:
-                if (listener != null && currentTab != Fragmentez.THAM_KHAM) {
+                if (listener != null && currentTab != Fragmentez.DRUG_ORDER_OUTSIDE) {
                     currentTab = Fragmentez.DRUG_ORDER_OUTSIDE;
                     listener.onToggled(Fragmentez.DRUG_ORDER_OUTSIDE);
                 }
                 break;
             case R.id.btn5:
-                if (listener != null && currentTab != Fragmentez.THAM_KHAM) {
+                if (listener != null && currentTab != Fragmentez.DIAGNOSE) {
                     currentTab = Fragmentez.DIAGNOSE;
                     listener.onToggled(Fragmentez.DIAGNOSE);
                 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,13 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.ServiceItemAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.storage.Storage;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 public class ServiceItem extends BaseFragment {
@@ -73,18 +76,20 @@ public class ServiceItem extends BaseFragment {
 
                     if (!exist) {
                         serviceItemDomain.setDateapp(Utils.getCurrentDate(Utils.ddMMyyyyHHmm));
+                        serviceItemDomain.setDocoder(Storage.getInstance(getActivity()).getUserName());
                         lstServiceItem.add(serviceItemDomain);
                         adapterServiceItem.setItems(lstServiceItem);
                         adapterServiceItem.notifyDataSetChanged();
 
                         //Update Domain
                         InpatientServiceOrder inpatientServiceOrder = new InpatientServiceOrder();
+                        inpatientServiceOrder.setActive(Host.ACTIVE);
+                        inpatientServiceOrder.setIdline(Utils.newGuid());
+                        inpatientServiceOrder.setIdhappening(Utils.newGuid());
                         inpatientServiceOrder.setIdservice(serviceItemDomain.getId());
-                        inpatientServiceOrder.setDocoder(serviceItemDomain.getDocoder());
                         inpatientServiceOrder.setPrice(serviceItemDomain.getPrice());
                         inpatientServiceOrder.setPricehi(serviceItemDomain.getPricehi());
                         inpatientServiceOrder.setQty(serviceItemDomain.getQty());
-                        inpatientServiceOrder.setDateapp(serviceItemDomain.getDateapp());
                         lstInpatientServiceOrder.add(inpatientServiceOrder);
                     }
                 }

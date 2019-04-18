@@ -18,10 +18,12 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DiagnoseAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDiagnoseAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.model.icd.IcdDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class Diagnose extends BaseFragment {
     private View view;
@@ -67,6 +69,8 @@ public class Diagnose extends BaseFragment {
 
                     if (!exist) {
                         InpatientDiagnose diagnose = new InpatientDiagnose();
+                        diagnose.setActive(Host.ACTIVE);
+                        diagnose.setIdline(Utils.newGuid());
                         diagnose.setIdicd(icd.getId());
                         diagnose.setNameicdvn(icd.getName());
                         diagnose.setNameicdeng(icd.getNameen());
