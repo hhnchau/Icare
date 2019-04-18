@@ -3,8 +3,9 @@
     android:id="@+id/textInputLayout"
     style="@style/MyTextInput"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/txt_drug_name">
+    android:layout_height="52dp"
+    android:hint="@string/txt_drug_name"
+    >
 
     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
         android:id="@+id/myAutoCompleteTextView"
@@ -13,5 +14,7 @@
         android:completionThreshold="1"
         android:imeOptions="actionDone"
         android:inputType="text"
-        android:padding="@dimen/dp_12" />
+        android:paddingStart="@dimen/dp_16"
+        android:textSize="@dimen/sp_16"
+    />
 </android.support.design.widget.TextInputLayout>

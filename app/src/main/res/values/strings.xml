@@ -27,8 +27,8 @@
     <string name="txt_doctor">Bác Sĩ</string>
     <string name="txt_circuit">Mạch</string>
     <string name="txt_blomin">Huyết Áp</string>
-    <string name="txt_blomin_max">Huyết Áp Tối Đa</string>
-    <string name="txt_blomin_min">Huyết Áp Tối Thiểu</string>
+    <string name="txt_blomin_max">H.A Tối Đa</string>
+    <string name="txt_blomin_min">H.A Tối Thiểu</string>
     <string name="txt_temper">Nhiệt Độ</string>
     <string name="txt_heartb">Nhịp Tim</string>
     <string name="txt_weight">Cân Nặng</string>

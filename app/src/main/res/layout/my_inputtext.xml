@@ -17,7 +17,7 @@
             android:id="@+id/myAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent"
+            android:background="@color/wh"
             android:padding="@dimen/dp_8" />
     </android.support.design.widget.TextInputLayout>
 
