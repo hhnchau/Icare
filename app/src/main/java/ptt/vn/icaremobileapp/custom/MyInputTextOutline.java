@@ -68,8 +68,9 @@ public class MyInputTextOutline extends LinearLayout {
         myAutoCompleteTextView.setEnabled(selected);
     }
 
-    public void setValue(@NonNull CharSequence value){
+    public void setText(@NonNull CharSequence value, boolean selected){
         myAutoCompleteTextView.setText(value);
+        myAutoCompleteTextView.setEnabled(selected);
     }
 
     public void setError(@NonNull CharSequence value){

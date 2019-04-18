@@ -3,7 +3,7 @@ package ptt.vn.icaremobileapp.model.serviceitem;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ServiceItemDomain implements Parcelable {
+public class ServiceItemDomain implements Parcelable, Cloneable {
     private int siterf;
     private int id;
     private int idgroupl2;
@@ -12,6 +12,7 @@ public class ServiceItemDomain implements Parcelable {
     private String namehi;
     private String namehosp;
     private int unitid;
+    private String nameunit;
     private int ishi;
     private int status;
     private String descrp;
@@ -19,7 +20,18 @@ public class ServiceItemDomain implements Parcelable {
     private int selectquick;
     private int active;
 
+    private String docoder;
+    private float price;
+    private float pricehi;
+    private int qty;
+    private String dateapp;
+
     public ServiceItemDomain() {
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 
@@ -32,12 +44,47 @@ public class ServiceItemDomain implements Parcelable {
         namehi = in.readString();
         namehosp = in.readString();
         unitid = in.readInt();
+        nameunit = in.readString();
         ishi = in.readInt();
         status = in.readInt();
         descrp = in.readString();
         sort = in.readInt();
         selectquick = in.readInt();
         active = in.readInt();
+        docoder = in.readString();
+        price = in.readFloat();
+        pricehi = in.readFloat();
+        qty = in.readInt();
+        dateapp = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
+        dest.writeInt(id);
+        dest.writeInt(idgroupl2);
+        dest.writeInt(equivalentid);
+        dest.writeString(code);
+        dest.writeString(namehi);
+        dest.writeString(namehosp);
+        dest.writeInt(unitid);
+        dest.writeString(nameunit);
+        dest.writeInt(ishi);
+        dest.writeInt(status);
+        dest.writeString(descrp);
+        dest.writeInt(sort);
+        dest.writeInt(selectquick);
+        dest.writeInt(active);
+        dest.writeString(docoder);
+        dest.writeFloat(price);
+        dest.writeFloat(pricehi);
+        dest.writeInt(qty);
+        dest.writeString(dateapp);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ServiceItemDomain> CREATOR = new Creator<ServiceItemDomain>() {
@@ -116,6 +163,14 @@ public class ServiceItemDomain implements Parcelable {
         this.unitid = unitid;
     }
 
+    public String getNameunit() {
+        return nameunit;
+    }
+
+    public void setNameunit(String nameunit) {
+        this.nameunit = nameunit;
+    }
+
     public int getIshi() {
         return ishi;
     }
@@ -164,27 +219,43 @@ public class ServiceItemDomain implements Parcelable {
         this.active = active;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getDocoder() {
+        return docoder;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(siterf);
-        dest.writeInt(id);
-        dest.writeInt(idgroupl2);
-        dest.writeInt(equivalentid);
-        dest.writeString(code);
-        dest.writeString(namehi);
-        dest.writeString(namehosp);
-        dest.writeInt(unitid);
-        dest.writeInt(ishi);
-        dest.writeInt(status);
-        dest.writeString(descrp);
-        dest.writeInt(sort);
-        dest.writeInt(selectquick);
-        dest.writeInt(active);
+    public void setDocoder(String docoder) {
+        this.docoder = docoder;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getPricehi() {
+        return pricehi;
+    }
+
+    public void setPricehi(float pricehi) {
+        this.pricehi = pricehi;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public String getDateapp() {
+        return dateapp;
+    }
+
+    public void setDateapp(String dateapp) {
+        this.dateapp = dateapp;
     }
 }

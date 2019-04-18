@@ -18,12 +18,13 @@ import java.util.List;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
+import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
-    private List<InpatientServiceOrder> lists;
+    private List<ServiceItemDomain> lists;
 
-    public ServiceItemAdapter(List<InpatientServiceOrder> lists) {
+    public ServiceItemAdapter(List<ServiceItemDomain> lists) {
         this.lists = lists;
 
         for (int i = 0; i < lists.size(); i++) {
@@ -68,14 +69,14 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             }
         });
 
-        holder.tvName.setText(lists.get(position).getDocoder());
-        holder.tvTotal.setText(lists.get(position).getDocoder());
-        holder.tvItemCode.setValues("1");
-        holder.tvUnit.setValues("2");
-        holder.tvNumber.setValues("2");
-        holder.tvDoctor.setText("BS. Nguyễn Văn BS");
-        holder.tvPrice.setValues("5");
-        holder.tvPriceInsurance.setValues("2");
+        holder.tvName.setText(lists.get(position).getNamehosp());
+        holder.tvTotal.setText(lists.get(position).getDateapp());
+        holder.tvItemCode.setValues(lists.get(position).getCode());
+        holder.tvUnit.setValues(lists.get(position).getNameunit());
+        holder.tvNumber.setValues(lists.get(position).getQty() + "");
+        holder.tvDoctor.setText(lists.get(position).getDocoder());
+        holder.tvPrice.setValues(lists.get(position).getPrice() + "");
+        holder.tvPriceInsurance.setValues(lists.get(position).getPricehi() + "");
     }
 
     @Override
@@ -110,7 +111,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         }
     }
 
-    public void setItems(List<InpatientServiceOrder> lists) {
+    public void setItems(List<ServiceItemDomain> lists) {
         this.lists = lists;
         for (int i = 0; i < this.lists.size(); i++) {
             expand.add(0);

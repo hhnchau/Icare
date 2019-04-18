@@ -63,8 +63,7 @@ public class AutoCompleteTextViewAdapter extends ArrayAdapter<AutoComplete> {
                 chr = constraint.toString().toLowerCase();
 
                 for (AutoComplete item : lists) {
-                    if (item.getName().toLowerCase().contains(chr) ||
-                            item.getName().toLowerCase().contains(chr)) {
+                    if (item.getName().toLowerCase().contains(chr)) {
                         suggestions.add(item);
                     }
                 }

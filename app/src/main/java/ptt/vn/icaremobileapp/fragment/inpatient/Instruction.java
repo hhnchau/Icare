@@ -3,17 +3,17 @@ package ptt.vn.icaremobileapp.fragment.inpatient;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.Toast;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Callback;
+import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.enums.Directionez;
 import ptt.vn.icaremobileapp.enums.Fragmentez;
 import ptt.vn.icaremobileapp.expand.ExpandableInstruction;
@@ -23,28 +23,30 @@ import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.togglebutton.MyTabButton;
 import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
-public class Instruction extends BaseFragment {
+public class Instruction extends BaseFragment implements MyButton.OnListener {
     private View view;
-    private PatientDomain patient;
-
+    public static HappeningDomain happeningDomain;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.instruction, container, false);
+
+        MyButton btn = view.findViewById(R.id.btnSave);
+        btn.setOnSelectedListener(this);
+
         if (getArguments() != null) {
-            HappeningDomain happening = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
+            happeningDomain = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
             InpatientDomain inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
             if (inpatient != null)
-                patient = inpatient.getPatient();
-            if (patient != null) setupExpandableInstructionInfo(patient, happening);
+                if (inpatient.getPatient() != null)
+                    setupExpandableInstructionInfo(inpatient.getPatient(), happeningDomain);
         }
 
         if (getActivity() != null) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             setupTabButton(fragmentManager);
-
 
             //Default
             Fragmentuz.addFrame(fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
@@ -92,5 +94,19 @@ public class Instruction extends BaseFragment {
                 }
             }
         });
+    }
+
+    private void saveHappening(HappeningDomain happening) {
+        ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
+            @Override
+            public void response(HappeningDomain happening) {
+                Toast.makeText(getActivity(), getString(R.string.txt_success), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onClick() {
+        saveHappening(happeningDomain);
     }
 }

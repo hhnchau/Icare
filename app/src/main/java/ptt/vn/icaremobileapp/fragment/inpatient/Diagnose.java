@@ -93,7 +93,10 @@ public class Diagnose extends BaseFragment {
         rcv.setHasFixedSize(true);
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         //rcv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        lstDiagnose = new ArrayList<>();
+
+        if (Instruction.happeningDomain != null)
+            lstDiagnose = Instruction.happeningDomain.getLstInpatientDiagnose();
+
         adapterDiagnose = new DiagnoseAdapter(lstDiagnose);
         rcv.setAdapter(adapterDiagnose);
 
