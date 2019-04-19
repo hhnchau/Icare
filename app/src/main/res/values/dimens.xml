@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="width_drawer">300sp</dimen>
+    <dimen name="width_drawer">320dp</dimen>
     <dimen name="margin_dashboard">12dp</dimen>
 
     <dimen name="dp_0">0dp</dimen>
