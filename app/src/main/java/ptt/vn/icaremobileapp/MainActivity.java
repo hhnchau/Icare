@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupDrawer() {
         final List<DrawerModel> lstDrawer = new ArrayList<>();
-        lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_checked, getString(R.string.screen_dashboard)));
-        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_checked, getString(R.string.screen_inpatient)));
+        lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_dash, getString(R.string.screen_dashboard)));
+        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_ipt, getString(R.string.screen_inpatient)));
 
         drawerList = findViewById(R.id.drawerList);
         drawerAdapter = new DrawerAdapter(this, lstDrawer);

@@ -4,10 +4,10 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/dp_8"
-    android:layout_marginTop="@dimen/dp_4"
-    android:layout_marginEnd="@dimen/dp_8"
-    android:layout_marginBottom="@dimen/dp_4"
+    android:layout_marginStart="@dimen/dp_4"
+    android:layout_marginTop="@dimen/dp_8"
+    android:layout_marginEnd="@dimen/dp_4"
+    android:layout_marginBottom="@dimen/dp_8"
     app:cardCornerRadius="@dimen/dp_4">
 
     <LinearLayout
@@ -19,12 +19,16 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20">
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_84"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:lines="2"
@@ -42,9 +46,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/sp_22"
-                android:textStyle="bold"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="italic"
                 android:text="AD123421423"
                 app:layout_constraintBottom_toBottomOf="@id/tvName"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
@@ -54,15 +58,16 @@
 
             <ImageView
                 android:id="@+id/ic_expand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/img_des"
+                android:layout_marginEnd="@dimen/dp_32"
                 android:src="@drawable/ic_arrow_drop_down"
                 app:layout_constraintBottom_toBottomOf="@id/tvDrugCode"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvDrugCode"
-                app:layout_constraintTop_toTopOf="@id/tvDrugCode" />
+                app:layout_constraintTop_toTopOf="@id/tvDrugCode"
+                app:layout_constraintHorizontal_bias="1"/>
 
 
             <TextView
@@ -80,8 +85,9 @@
 
             <ImageView
                 android:id="@+id/icEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,8 +99,9 @@
 
             <ImageView
                 android:id="@+id/icDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -107,7 +114,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.7" />
+                app:layout_constraintGuide_percent="0.65" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -131,6 +138,9 @@
                 android:id="@+id/tvDrugActiveingre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
                 android:layout_weight="1"
                 app:label="@string/txt_drugorder_activeingre" />
 
@@ -138,6 +148,10 @@
                 android:id="@+id/tvDrugUse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_16"
                 android:layout_weight="1"
                 app:label="@string/txt_drugorder_use" />
 

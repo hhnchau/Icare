@@ -7,13 +7,13 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cvAlert"
-        android:layout_width="0dp"
+        android:layout_width="420dp"
         android:layout_height="0dp"
         android:layout_margin="64dp"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="2:0.9"
+        app:layout_constraintDimensionRatio="2:1.2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
