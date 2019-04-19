@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +19,19 @@ import ptt.vn.icaremobileapp.adapter.InpatientListAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.CompositeManager;
-import ptt.vn.icaremobileapp.enums.Directionez;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
+import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewMedexaAdapter;
+import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
+import ptt.vn.icaremobileapp.fragmentutils.Directionez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
-import ptt.vn.icaremobileapp.utils.Fragmentuz;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 
 public class InpatientList extends BaseFragment {
     private View view;
+
     private InpatientListAdapter adapter;
     private List<InpatientDomain> lstInpatient;
     private int offset = 0;
@@ -40,11 +45,8 @@ public class InpatientList extends BaseFragment {
 
         getMedexa();
 
-        getInpatient(offset, limit, 2);
-
         return view;
     }
-
 
     private void initView() {
         RecyclerView rcv = view.findViewById(R.id.rcvInpatientList);
@@ -73,9 +75,31 @@ public class InpatientList extends BaseFragment {
                 new ACallback<MedexaHDomain>() {
                     @Override
                     public void response(List<MedexaHDomain> list) {
-                        int i = 0;
+                        setupListMedexa(list);
                     }
                 });
+    }
+
+    private void setupListMedexa(List<MedexaHDomain> lstMedexa) {
+        if (getActivity() != null) {
+            final MyAutoCompleteTextView acpSearch = view.findViewById(R.id.acpSearch);
+            AutoCompleteTextViewMedexaAdapter adapterMedexa = new AutoCompleteTextViewMedexaAdapter(getActivity(), lstMedexa);
+            acpSearch.setAdapter(adapterMedexa);
+            acpSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    MedexaHDomain medexa = (MedexaHDomain) parent.getItemAtPosition(position);
+                    if (medexa != null) getInpatient(offset, limit, medexa.getId());
+                }
+            });
+
+            acpSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    acpSearch.showDropDown();
+                }
+            });
+        }
     }
 
     @SuppressWarnings("unchecked")

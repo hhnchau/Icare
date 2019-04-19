@@ -65,14 +65,13 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             @Override
             public void onClick(View v) {
                 if (onItemClick != null) {
-                    onItemClick.onClick(lists.get(position));
-                    removeItem(position);
+                    onItemClick.onClick(holder.getAdapterPosition(), lists.get(holder.getAdapterPosition()).getId());
                 }
             }
         });
 
         holder.tvName.setText(lists.get(position).getNamehosp());
-        holder.tvTotal.setText(lists.get(position).getDateapp());
+        holder.tvDate.setText(lists.get(position).getDateapp());
         holder.tvItemCode.setValues(lists.get(position).getCode());
         holder.tvUnit.setValues(lists.get(position).getNameunit());
         holder.tvNumber.setValues(lists.get(position).getQty() + "");
@@ -91,7 +90,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         private LinearLayout detailView;
         private ImageView icArrow;
 
-        private TextView tvName, tvTotal, tvDoctor;
+        private TextView tvName, tvDate, tvDoctor;
         private ImageView icDelete;
         private MyTextView tvItemCode, tvUnit, tvNumber, tvPrice, tvPriceInsurance;
 
@@ -102,7 +101,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             icArrow = itemView.findViewById(R.id.ic_expand);
 
             tvName = itemView.findViewById(R.id.tvName);
-            tvTotal = itemView.findViewById(R.id.tvTotal);
+            tvDate = itemView.findViewById(R.id.tvDate);
             icDelete = itemView.findViewById(R.id.icDelete);
             tvItemCode = itemView.findViewById(R.id.tvItemCode);
             tvUnit = itemView.findViewById(R.id.tvUnit);
@@ -127,7 +126,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
     }
 
     public interface OnItemClick {
-        void onClick(ServiceItemDomain serviceItemDomain);
+        void onClick(int p, int idService);
     }
 
     private OnItemClick onItemClick;

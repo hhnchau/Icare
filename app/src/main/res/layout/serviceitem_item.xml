@@ -43,12 +43,12 @@
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/tvTotal"
+                android:id="@+id/tvDate"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:lines="1"
-                android:text="100.000"
+                android:text="31/05/2019"
                 android:textColor="@color/text_label"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="italic"
@@ -65,10 +65,10 @@
                 android:contentDescription="@string/img_des"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:src="@drawable/ic_arrow_drop_down"
-                app:layout_constraintBottom_toBottomOf="@id/tvTotal"
+                app:layout_constraintBottom_toBottomOf="@id/tvDate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvTotal"
-                app:layout_constraintTop_toTopOf="@id/tvTotal" />
+                app:layout_constraintStart_toEndOf="@id/tvDate"
+                app:layout_constraintTop_toTopOf="@id/tvDate" />
 
 
             <TextView
@@ -80,9 +80,9 @@
                 android:gravity="center"
                 android:textSize="@dimen/sp_18"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/tvTotal"
+                app:layout_constraintEnd_toEndOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="@id/guide"
-                app:layout_constraintTop_toBottomOf="@id/tvTotal"
+                app:layout_constraintTop_toBottomOf="@id/tvDate"
                 app:layout_constraintVertical_bias="1" />
 
 

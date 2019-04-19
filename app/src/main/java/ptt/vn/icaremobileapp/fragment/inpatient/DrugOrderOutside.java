@@ -15,11 +15,7 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.adapter.DrugOrderAdapter;
 import ptt.vn.icaremobileapp.adapter.DrugOrderOutSideAdapter;
-import ptt.vn.icaremobileapp.enums.Directionez;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
-import ptt.vn.icaremobileapp.utils.Fragmentuz;
 
 public class DrugOrderOutside extends BaseFragment {
     private View view;

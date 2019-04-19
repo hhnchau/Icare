@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 
 public class Toolbaruz {
     public static void setToolbar(Context context, FragmentManager.BackStackEntry backStackEntry, TextView toolbarTile, ImageView toolbarLeft, ImageView toolbarRight) {

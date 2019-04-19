@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +17,15 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.custom.MyButton;
-import ptt.vn.icaremobileapp.enums.Directionez;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Directionez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.expand.ExpandableInstruction;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.togglebutton.MyTabButton;
-import ptt.vn.icaremobileapp.utils.Fragmentoz;
-import ptt.vn.icaremobileapp.utils.Fragmentuz;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 
 public class Instruction extends BaseFragment implements MyButton.OnListener {
     private View view;
@@ -103,12 +101,12 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
         });
     }
 
-    private void saveHappening(HappeningDomain happening) {
-        String json = new Gson().toJson(happening);
+    public void saveHappening(HappeningDomain happening) {
+        //String json = new Gson().toJson(happening);
         ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
             @Override
             public void response(HappeningDomain happening) {
-                Toast.makeText(getActivity(), getString(R.string.txt_success), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.txt_save_success), Toast.LENGTH_SHORT).show();
             }
         });
     }

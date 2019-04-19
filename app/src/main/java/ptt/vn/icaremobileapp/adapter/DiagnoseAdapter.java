@@ -75,7 +75,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             @Override
             public void onClick(View v) {
                 if (onItemClick != null)
-                    onItemClick.onClick(position);
+                    onItemClick.onClick(holder.getAdapterPosition());
             }
         });
 

@@ -1,4 +1,4 @@
-package ptt.vn.icaremobileapp.enums;
+package ptt.vn.icaremobileapp.fragmentutils;
 
 public enum Fragmentez {
     INPATIENT_LIST,

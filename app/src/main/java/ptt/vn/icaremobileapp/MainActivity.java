@@ -22,11 +22,11 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.drawer.DrawerAdapter;
 import ptt.vn.icaremobileapp.drawer.DrawerModel;
-import ptt.vn.icaremobileapp.enums.Directionez;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Directionez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
 import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
-import ptt.vn.icaremobileapp.utils.Fragmentuz;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.utils.Toolbaruz;
 
 public class MainActivity extends AppCompatActivity {

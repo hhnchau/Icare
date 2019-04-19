@@ -70,7 +70,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         holder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeItem(position);
+                if (onItemClick != null) onItemClick.onDelete(holder.getAdapterPosition());
             }
         });
 
@@ -128,7 +128,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
 
         void onEdit(InpatientDrugOrder inpatientDrugOrder);
 
-        void onDelete(InpatientDrugOrder inpatientDrugOrder);
+        void onDelete(int p);
     }
 
     private OnItemClick onItemClick;

@@ -1,8 +1,6 @@
-package ptt.vn.icaremobileapp.utils;
+package ptt.vn.icaremobileapp.fragmentutils;
 
 import android.support.v4.app.Fragment;
-
-import ptt.vn.icaremobileapp.enums.Fragmentez;
 
 /**
  * Created by Chau Huynh on 4/17/2019.

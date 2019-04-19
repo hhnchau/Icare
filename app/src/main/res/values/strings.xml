@@ -2,13 +2,16 @@
     <string name="app_name">ICareMobileApp</string>
 
     <string name="img_des" />
-    <string name="btn_yes">OK</string>
+    <string name="btn_again">THỬ LẠI</string>
     <string name="btn_no">No</string>
+    <string name="btn_cancel">HỦY</string>
+    <string name="btn_delete">XÓA</string>
     <string name="btn_save">LƯU</string>
     <string name="btn_login">ĐĂNG NHẬP</string>
     <string name="txt_service_not_found">Service Not Found</string>
     <string name="txt_not_connect">Không thể kết nối tới server!!!</string>
-    <string name="txt_success">Lưu Thông Tin Thành Công</string>
+    <string name="txt_save_success">Lưu Thông Tin Thành Công</string>
+    <string name="txt_delete_success">Xóa Thông Tin Thành Công</string>
 
     <string name="txt__patient_address">Địa Chỉ</string>
     <string name="txt_patient_code">Mã Bệnh Nhân</string>

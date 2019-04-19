@@ -464,7 +464,7 @@ public class ApiController {
         }
 
 
-        Loading.getInstance().show(context);
+        //Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Host.SITERF));
         lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Host.ACTIVE));
@@ -488,7 +488,7 @@ public class ApiController {
 
                     @Override
                     public void onError(Throwable e) {
-                        Loading.getInstance().hide();
+                        //Loading.getInstance().hide();
 
                         connectAgain(context, new OnRetry() {
                             @Override
@@ -502,7 +502,7 @@ public class ApiController {
 
                     @Override
                     public void onComplete() {
-                        Loading.getInstance().hide();
+                        //Loading.getInstance().hide();
                     }
                 }));
     }
@@ -801,7 +801,7 @@ public class ApiController {
     }
 
     private void connectAgain(Context context, final OnRetry onRetry) {
-        Alert.getInstance().show(context, context.getString(R.string.txt_not_connect), context.getString(R.string.btn_yes), null, false, new Alert.OnAlertClickListener() {
+        Alert.getInstance().show(context, context.getString(R.string.txt_not_connect), context.getString(R.string.btn_again), Alert.BLUE, null, 0, false, new Alert.OnAlertClickListener() {
             @Override
             public void onYes() {
                 onRetry.request();

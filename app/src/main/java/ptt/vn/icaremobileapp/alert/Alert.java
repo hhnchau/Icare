@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -28,7 +29,11 @@ public class Alert {
         return instance;
     }
 
-    public void show(Context context, String message, String btnYes, String btnNo, final boolean isOutSide, final OnAlertClickListener onAlertClickListener) {
+    public static final int BLUE = R.color.blue;
+    public static final int REB = R.color.red;
+    public static final int WHITE = R.color.wh;
+
+    public void show(Context context, String message, String btnYes, int yesColor, String btnNo, int noColor, final boolean isOutSide, final OnAlertClickListener onAlertClickListener) {
         final Dialog dialog = new Dialog(context, R.style.MyDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.alert);
@@ -71,6 +76,7 @@ public class Alert {
                 tvYes.setBackgroundResource(R.drawable.radius_blue_bottom);
             } else {
                 tvNo.setText(btnNo);
+                tvNo.setBackgroundColor(ContextCompat.getColor(context, noColor));
             }
 
             if (btnYes == null || btnYes.equals("")) {
@@ -78,6 +84,7 @@ public class Alert {
                 tvNo.setBackgroundResource(R.drawable.radius_white_bottom);
             } else {
                 tvYes.setText(btnYes);
+                tvYes.setBackgroundColor(ContextCompat.getColor(context, yesColor));
             }
 
             tvNo.setOnClickListener(new View.OnClickListener() {

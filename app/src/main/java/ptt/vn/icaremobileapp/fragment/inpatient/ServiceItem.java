@@ -17,11 +17,14 @@ import java.util.List;
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.ServiceItemAdapter;
+import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemLDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
@@ -30,10 +33,10 @@ import ptt.vn.icaremobileapp.utils.Utils;
 
 public class ServiceItem extends BaseFragment {
     private View view;
-    private List<ServiceItemDomain> lstAuto;
-    private AutoCompleteTextViewServiceItemAdapter adapterAuto;
     private List<ServiceItemDomain> lstServiceItem;
     private ServiceItemAdapter adapterServiceItem;
+
+    private List<MapPriceServiceItemLDomain> lstMapPriceServiceItem;
 
     private List<InpatientServiceOrder> lstInpatientServiceOrder;
 
@@ -46,7 +49,8 @@ public class ServiceItem extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.serviceitem, container, false);
 
-        setupServiceItem();
+        /*Get Price*/
+        getMapPriceServiceItem(offset, limit, 1);
 
         setupListServiceItem();
 
@@ -55,12 +59,10 @@ public class ServiceItem extends BaseFragment {
         return view;
     }
 
-    private void setupServiceItem() {
+    private void setupServiceItem(List<ServiceItemDomain> lstAuto) {
         if (getActivity() != null) {
             final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acServiceItem);
-
-            lstAuto = new ArrayList<>();
-            adapterAuto = new AutoCompleteTextViewServiceItemAdapter(getActivity(), lstAuto);
+            AutoCompleteTextViewServiceItemAdapter adapterAuto = new AutoCompleteTextViewServiceItemAdapter(getActivity(), lstAuto);
             myAutoCompleteTextView.setAdapter(adapterAuto);
             myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -77,6 +79,14 @@ public class ServiceItem extends BaseFragment {
                     if (!exist) {
                         serviceItemDomain.setDateapp(Utils.getCurrentDate(Utils.ddMMyyyyHHmm));
                         serviceItemDomain.setDocoder(Storage.getInstance(getActivity()).getUserName());
+                        serviceItemDomain.setQty(1);
+                        /*Map Price*/
+                        for (MapPriceServiceItemLDomain price : lstMapPriceServiceItem)
+                            if (serviceItemDomain.getId() == price.getIdservice()) {
+                                serviceItemDomain.setPrice(price.getPrice());
+                                serviceItemDomain.setPricehi(price.getPricehi());
+                                break;
+                            }
                         lstServiceItem.add(serviceItemDomain);
                         adapterServiceItem.setItems(lstServiceItem);
                         adapterServiceItem.notifyDataSetChanged();
@@ -115,14 +125,29 @@ public class ServiceItem extends BaseFragment {
         rcv.setAdapter(adapterServiceItem);
         adapterServiceItem.setOnItemClick(new ServiceItemAdapter.OnItemClick() {
             @Override
-            public void onClick(ServiceItemDomain serviceItemDomain) {
+            public void onClick(final int p, final int idService) {
                 if (getActivity() != null) {
-                    //Update Domain
-                    for (int i = 0; i < lstInpatientServiceOrder.size(); i++)
-                        if (serviceItemDomain.getId() == lstInpatientServiceOrder.get(i).getIdservice()) {
-                            lstInpatientServiceOrder.remove(i);
+                    Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), Alert.REB, getString(R.string.btn_cancel), Alert.WHITE, false, new Alert.OnAlertClickListener() {
+                        @Override
+                        public void onYes() {
+                            /*
+                             * DELETE
+                             **/
+                            for (InpatientServiceOrder item : lstInpatientServiceOrder)
+                                if (idService == item.getIdservice()) {
+                                    item.setActive(Host.DELETE);
+                                    if (Instruction.happeningDomain != null)
+                                        deleteService(Instruction.happeningDomain, p);
+                                    break;
+                                }
+
                         }
 
+                        @Override
+                        public void onNo() {
+
+                        }
+                    });
                 }
             }
         });
@@ -133,14 +158,9 @@ public class ServiceItem extends BaseFragment {
                 new ACallback<ServiceItemDomain>() {
                     @Override
                     public void response(List<ServiceItemDomain> listServiceItem) {
-                        lstAuto = listServiceItem;
-                        adapterAuto.setItems(lstAuto);
-                        adapterAuto.notifyDataSetChanged();
+                        setupServiceItem(listServiceItem);
 
-                        /*Get Price*/
-                        //getMapPriceServiceItem(offset, limit, 1);
-
-                        //Add to List
+                        /*Join Happeing To Service*/
                         updateListService(listServiceItem);
 
                     }
@@ -152,16 +172,7 @@ public class ServiceItem extends BaseFragment {
                 new ACallback<MapPriceServiceItemLDomain>() {
                     @Override
                     public void response(List<MapPriceServiceItemLDomain> list) {
-                        if (lstAuto != null)
-                            for (ServiceItemDomain item : lstAuto)
-                                for (MapPriceServiceItemLDomain price : list)
-                                    if (item.getId() == price.getIdservice()) {
-                                        item.setPrice(price.getPrice());
-                                        item.setPricehi(price.getPricehi());
-                                    }
-
-
-                        int i = 0;
+                        lstMapPriceServiceItem = list;
                     }
                 });
     }
@@ -200,6 +211,16 @@ public class ServiceItem extends BaseFragment {
             }
 
         }
+    }
+
+    public void deleteService(HappeningDomain happening, final int p) {
+        ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
+            @Override
+            public void response(HappeningDomain happening) {
+                adapterServiceItem.removeItem(p);
+                Toast.makeText(getActivity(), getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

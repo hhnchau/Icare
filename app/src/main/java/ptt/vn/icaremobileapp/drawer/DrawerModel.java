@@ -1,7 +1,7 @@
 package ptt.vn.icaremobileapp.drawer;
 
 
-import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 
 public class DrawerModel {
     private Fragmentez fzg;

@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 
 
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 
 public class MyTabButton extends CardView implements View.OnClickListener {
     public static final int TAB1 = 1;

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +17,21 @@ import java.util.List;
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DiagnoseAdapter;
+import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.api.Host;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDiagnoseAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.model.icd.IcdDomain;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 public class Diagnose extends BaseFragment {
     private View view;
-    private List<IcdDomain> lstAuto;
-    private AutoCompleteTextViewDiagnoseAdapter adapterAuto;
+
     private List<InpatientDiagnose> lstDiagnose;
     private DiagnoseAdapter adapterDiagnose;
     private int offset = 0;
@@ -39,7 +42,6 @@ public class Diagnose extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.diagnose, container, false);
 
-        setupDiagnose();
         setupListDiagnose();
 
         getIcd(offset, limit);
@@ -48,12 +50,10 @@ public class Diagnose extends BaseFragment {
         return view;
     }
 
-    private void setupDiagnose() {
+    private void setupDiagnose(List<IcdDomain> lstAuto) {
         if (getActivity() != null) {
             final MyAutoCompleteTextView myAutoCompleteTextView = view.findViewById(R.id.acDiagnose);
-
-            lstAuto = new ArrayList<>();
-            adapterAuto = new AutoCompleteTextViewDiagnoseAdapter(getActivity(), lstAuto);
+            AutoCompleteTextViewDiagnoseAdapter adapterAuto = new AutoCompleteTextViewDiagnoseAdapter(getActivity(), lstAuto);
             myAutoCompleteTextView.setAdapter(adapterAuto);
             myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -107,8 +107,26 @@ public class Diagnose extends BaseFragment {
 
         adapterDiagnose.setOnItemClick(new DiagnoseAdapter.OnItemClick() {
             @Override
-            public void onClick(int p) {
+            public void onClick(final int p) {
+                if (getActivity() != null) {
+                    Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), Alert.REB, getString(R.string.btn_cancel), Alert.WHITE, false, new Alert.OnAlertClickListener() {
+                        @Override
+                        public void onYes() {
+                            /*
+                             * DELETE
+                             **/
+                            InpatientDiagnose inpatientDiagnose = lstDiagnose.get(p);
+                            inpatientDiagnose.setActive(Host.DELETE);
+                            if (Instruction.happeningDomain != null)
+                                deleteDiagnose(Instruction.happeningDomain, p);
+                        }
 
+                        @Override
+                        public void onNo() {
+
+                        }
+                    });
+                }
             }
         });
     }
@@ -118,10 +136,18 @@ public class Diagnose extends BaseFragment {
                 new ACallback<IcdDomain>() {
                     @Override
                     public void response(List<IcdDomain> listIcd) {
-                        lstAuto = listIcd;
-                        adapterAuto.setItems(lstAuto);
-                        adapterAuto.notifyDataSetChanged();
+                        setupDiagnose(listIcd);
                     }
                 });
+    }
+
+    public void deleteDiagnose(HappeningDomain happening, final int p) {
+        ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
+            @Override
+            public void response(HappeningDomain happening) {
+                adapterDiagnose.removeItem(p);
+                Toast.makeText(getActivity(), getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

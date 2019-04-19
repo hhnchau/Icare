@@ -1,4 +1,4 @@
-package ptt.vn.icaremobileapp.utils;
+package ptt.vn.icaremobileapp.fragmentutils;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.enums.Directionez;
-import ptt.vn.icaremobileapp.enums.Fragmentez;
 import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
 import ptt.vn.icaremobileapp.fragment.inpatient.Diagnose;
 import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrder;
@@ -101,24 +99,29 @@ public class Fragmentuz {
         if (exist) {
             //Exist
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            Fragment frg = getFragment(fzg);
+            Fragment frg = null;
+
+            for (Fragmentoz item : lstFragment) {
+                transaction.hide(item.getFrg());
+                if (fzg == item.getFzg()) frg = item.getFrg();
+            }
             if (frg != null) {
-                //for (Fragmentoz item : lstFragment)
-                    //transaction.detach(item.getFrg());
                 transaction.setCustomAnimations(enter, exit)
-                        .replace(frame, frg)
+                        .show(frg)
                         .commit();
             }
         } else {
             //Add
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            for (Fragmentoz item : lstFragment) {
+                if (fzg != item.getFzg()) transaction.hide(item.getFrg());
+            }
             Fragment frg = getFragment(fzg);
-            if (fragmentManager != null && frg != null) {
-                fragmentManager
-                        .beginTransaction()
+            if (frg != null) {
+                transaction
                         .setCustomAnimations(enter, exit)
-                        .replace(frame, frg)
+                        .add(frame, frg)
                         .commit();
-
                 lstFragment.add(new Fragmentoz(fzg, frg));
             }
         }
