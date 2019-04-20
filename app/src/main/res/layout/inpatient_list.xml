@@ -10,6 +10,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/txt_medexa"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toTopOf="@id/rcvInpatientList"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -17,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-            android:id="@+id/acpSearch"
+            android:id="@+id/acpMedexa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:completionThreshold="1"

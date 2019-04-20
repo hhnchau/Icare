@@ -19,7 +19,6 @@ import ptt.vn.icaremobileapp.adapter.InpatientListAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.CompositeManager;
-import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewMedexaAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
@@ -67,25 +66,30 @@ public class InpatientList extends BaseFragment {
                 }
             }
         });
-
     }
 
     private void getMedexa() {
         ApiController.getInstance().getMedexa(getActivity(),
                 new ACallback<MedexaHDomain>() {
                     @Override
-                    public void response(List<MedexaHDomain> list) {
-                        setupListMedexa(list);
+                    public void response(final List<MedexaHDomain> list) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    setupListMedexa(list);
+                                }
+                            });
+                        }
                     }
                 });
     }
 
     private void setupListMedexa(List<MedexaHDomain> lstMedexa) {
         if (getActivity() != null) {
-            final MyAutoCompleteTextView acpSearch = view.findViewById(R.id.acpSearch);
+            final MyAutoCompleteTextView acpMedexa = view.findViewById(R.id.acpMedexa);
             AutoCompleteTextViewMedexaAdapter adapterMedexa = new AutoCompleteTextViewMedexaAdapter(getActivity(), lstMedexa);
-            acpSearch.setAdapter(adapterMedexa);
-            acpSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            acpMedexa.setAdapter(adapterMedexa);
+            acpMedexa.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     MedexaHDomain medexa = (MedexaHDomain) parent.getItemAtPosition(position);
@@ -93,13 +97,14 @@ public class InpatientList extends BaseFragment {
                 }
             });
 
-            acpSearch.setOnClickListener(new View.OnClickListener() {
+            acpMedexa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    acpSearch.showDropDown();
+                    acpMedexa.showDropDown();
                 }
             });
         }
+
     }
 
     @SuppressWarnings("unchecked")

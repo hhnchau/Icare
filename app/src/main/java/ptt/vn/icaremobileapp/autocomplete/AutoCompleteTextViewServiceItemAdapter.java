@@ -35,7 +35,7 @@ public class AutoCompleteTextViewServiceItemAdapter extends ArrayAdapter<Service
     @NonNull
     @Override
     public Filter getFilter() {
-        return filter;
+         return filter;
     }
 
     @NonNull

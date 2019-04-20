@@ -157,12 +157,17 @@ public class ServiceItem extends BaseFragment {
         ApiController.getInstance().getServiceItem(getActivity(), _offset, _limit,
                 new ACallback<ServiceItemDomain>() {
                     @Override
-                    public void response(List<ServiceItemDomain> listServiceItem) {
-                        setupServiceItem(listServiceItem);
+                    public void response(final List<ServiceItemDomain> listServiceItem) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    setupServiceItem(listServiceItem);
 
-                        /*Join Happeing To Service*/
-                        updateListService(listServiceItem);
-
+                                    /*Join Happeing To Service*/
+                                    updateListService(listServiceItem);
+                                }
+                            });
+                        }
                     }
                 });
     }

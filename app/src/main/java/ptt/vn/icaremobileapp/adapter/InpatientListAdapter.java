@@ -45,10 +45,9 @@ public class InpatientListAdapter extends RecyclerView.Adapter<InpatientListAdap
                 holder.tvCode.setValues(patientDomain.getHospcode());
             }
 
+            if (inpatientDomain.getLstInpatientDepartment() != null && inpatientDomain.getLstInpatientDepartment().size() > 0)
+                holder.tvDate.setValues(Utils.dateConvert(inpatientDomain.getLstInpatientDepartment().get(0).getIntodate(),Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
 
-            //holder.tvRoom.setValues(inpatientDomain.getPatid());
-            holder.tvDate.setValues("");
-            //holder.tvBed.setValues(inpatientDomain.getPatid());
 
             holder.cv.setOnClickListener(new View.OnClickListener() {
                 @Override

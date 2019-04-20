@@ -135,8 +135,14 @@ public class Diagnose extends BaseFragment {
         ApiController.getInstance().getIcd(getActivity(), _offset, _limit,
                 new ACallback<IcdDomain>() {
                     @Override
-                    public void response(List<IcdDomain> listIcd) {
-                        setupDiagnose(listIcd);
+                    public void response(final List<IcdDomain> listIcd) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    setupDiagnose(listIcd);
+                                }
+                            });
+                        }
                     }
                 });
     }

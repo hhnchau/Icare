@@ -15,7 +15,7 @@ public class Toolbaruz {
             if (name.equals(Fragmentez.INPATIENT_LIST.name())) {
                 toolbarTile.setText(context.getString(R.string.screen_inpatient_list));
                 toolbarLeft.setImageResource(R.drawable.ic_menu);
-                toolbarRight.setImageResource(R.drawable.ic_uncheck);
+                toolbarRight.setImageResource(0);
             } else if (name.equals(Fragmentez.HAPPENING.name())) {
                 toolbarTile.setText(context.getString(R.string.screen_inpatient_happening));
                 toolbarLeft.setImageResource(R.drawable.ic_back);

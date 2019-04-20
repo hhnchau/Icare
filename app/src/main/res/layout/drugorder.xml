@@ -219,7 +219,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:layout_marginStart="@dimen/dp_32"
                     android:layout_marginEnd="@dimen/dp_16"
                     android:layout_weight="1"
                     app:hint="@string/txt_drug_number" />

@@ -253,8 +253,14 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         ApiController.getInstance().getPhaInventory(getActivity(), _offset, _limit, _idStore, _isHi,
                 new ACallback<PhaInventoryDomain>() {
                     @Override
-                    public void response(List<PhaInventoryDomain> listInventory) {
-                        setupDrugOrder(listInventory);
+                    public void response(final List<PhaInventoryDomain> listInventory) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    setupDrugOrder(listInventory);
+                                }
+                            });
+                        }
                     }
                 });
     }
@@ -263,10 +269,15 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         ApiController.getInstance().getDrugRoute(getActivity(),
                 new ACallback<CateSharelDomain>() {
                     @Override
-                    public void response(List<CateSharelDomain> list) {
-
-                        lstAutoDrugRoute = list;
-                        setupDrugRoute();
+                    public void response(final List<CateSharelDomain> list) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    lstAutoDrugRoute = list;
+                                    setupDrugRoute();
+                                }
+                            });
+                        }
                     }
                 });
     }
@@ -275,9 +286,15 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         ApiController.getInstance().getDrugUnitUse(getActivity(),
                 new ACallback<CateSharelDomain>() {
                     @Override
-                    public void response(List<CateSharelDomain> list) {
-                        lstDrugUnitUse = list;
-                        setupDrugUnitUse();
+                    public void response(final List<CateSharelDomain> list) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    lstDrugUnitUse = list;
+                                    setupDrugUnitUse();
+                                }
+                            });
+                        }
                     }
                 });
     }
@@ -286,8 +303,14 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         ApiController.getInstance().getHappeningType(getActivity(),
                 new ACallback<CateSharelDomain>() {
                     @Override
-                    public void response(List<CateSharelDomain> list) {
-                        setupHappeningType(list);
+                    public void response(final List<CateSharelDomain> list) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    setupHappeningType(list);
+                                }
+                            });
+                        }
                     }
                 });
     }
