@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ import ptt.vn.icaremobileapp.expand.ExpandableInstruction;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
-import ptt.vn.icaremobileapp.togglebutton.MyTabButton;
+import ptt.vn.icaremobileapp.custom.MyTabButton;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 
@@ -31,6 +33,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     private View view;
     public static HappeningDomain happeningDomain;
     private List<Fragmentoz> lstFragment = new ArrayList<>();
+    private InpatientDomain inpatient;
 
 
     @Nullable
@@ -43,7 +46,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
 
         if (getArguments() != null) {
             happeningDomain = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING);
-            InpatientDomain inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
+            inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
             if (inpatient != null)
                 if (inpatient.getPatient() != null)
                     setupExpandableInstructionInfo(inpatient.getPatient(), happeningDomain);
@@ -52,9 +55,6 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
         if (getActivity() != null) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             setupTabButton(fragmentManager);
-
-            //Default
-            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
         }
         return view;
     }
@@ -73,27 +73,40 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     }
 
     private void setupTabButton(final FragmentManager fragmentManager) {
-        MyTabButton myTabButton = view.findViewById(R.id.toggle);
+        MyTabButton myTabButton = view.findViewById(R.id.myTab);
+        List<String> lst = new ArrayList<>();
+        //lst.add(getString(R.string.tab_tham_kham));
+        lst.add(null);
+        lst.add(getString(R.string.tab_service_item));
+        lst.add(getString(R.string.tab_drug_order));
+        //lst.add(getString(R.string.tab_drug_order_outside));
+        lst.add(null);
+        lst.add(getString(R.string.tab_diagnose));
+        myTabButton.setContent(lst);
+        //Default
         myTabButton.setActive(MyTabButton.TAB2);
+        final Bundle bundle = new Bundle();
+        bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
+        Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, bundle, Directionez.NEXT);
         myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
             @Override
-            public void onToggled(Fragmentez fzg) {
+            public void onTab(int tab) {
                 if (getActivity() != null) {
-                    switch (fzg) {
-                        case THAM_KHAM:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, Directionez.NEXT);
+                    switch (tab) {
+                        case MyTabButton.TAB1:
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, null, Directionez.NEXT);
                             break;
-                        case SERVICE_ITEM:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, Directionez.NEXT);
+                        case MyTabButton.TAB2:
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, bundle, Directionez.NEXT);
                             break;
-                        case DRUG_ORDER:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, Directionez.NEXT);
+                        case MyTabButton.TAB3:
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, bundle, Directionez.NEXT);
                             break;
-                        case DRUG_ORDER_OUTSIDE:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, Directionez.NEXT);
+                        case MyTabButton.TAB4:
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, null, Directionez.NEXT);
                             break;
-                        case DIAGNOSE:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, Directionez.NEXT);
+                        case MyTabButton.TAB5:
+                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, null, Directionez.NEXT);
                             break;
                     }
                 }
@@ -102,7 +115,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     }
 
     public void saveHappening(HappeningDomain happening) {
-        //String json = new Gson().toJson(happening);
+        String json = new Gson().toJson(happening);
         ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
             @Override
             public void response(HappeningDomain happening) {

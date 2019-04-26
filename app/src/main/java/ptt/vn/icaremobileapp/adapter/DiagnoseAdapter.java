@@ -18,6 +18,7 @@ import java.util.List;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
+import ptt.vn.icaremobileapp.utils.Constant;
 
 public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
@@ -55,7 +56,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
                 }
                 expand.set(holder.getAdapterPosition(), expand.get(holder.getAdapterPosition()) + 1);
                 arrowAnimation.setFillAfter(true);
-                arrowAnimation.setDuration((long) 100);
+                arrowAnimation.setDuration((long) 300);
                 holder.icArrow.startAnimation(arrowAnimation);
             }
         });
@@ -82,11 +83,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         holder.icSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (diagnose.getPrimary() == 0) {
-                    diagnose.setPrimary(1);
-                } else {
-                    diagnose.setPrimary(0);
-                }
+                diagnose.setPrimary(diagnose.getPrimary()== Constant.ACTIVE ? Constant.DEACTIVE: Constant.ACTIVE);
                 updateSelected(diagnose, holder.icSelect);
             }
         });
@@ -150,7 +147,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
     }
 
     private void updateSelected(InpatientDiagnose diagnose, ImageView img) {
-        if (diagnose.getPrimary() == 0) img.setImageResource(R.mipmap.ic_uncheck);
+        if (diagnose.getPrimary() == Constant.DEACTIVE) img.setImageResource(R.mipmap.ic_uncheck);
         else img.setImageResource(R.mipmap.ic_checked);
     }
 

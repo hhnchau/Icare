@@ -4,6 +4,11 @@
     <dimen name="width_drawer">320dp</dimen>
     <dimen name="margin_dashboard">12dp</dimen>
 
+    <dimen name="ic_40">40dp</dimen>
+    <dimen name="ic_50">50dp</dimen>
+
+
+
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_2">2dp</dimen>

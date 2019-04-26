@@ -33,7 +33,7 @@
     <style name="MyToggleButton" parent="@android:style/Widget.CompoundButton.RadioButton">
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/toggle_background</item>
         <item name="android:button">@null</item>
         <item name="android:paddingTop">8dp</item>
@@ -48,6 +48,16 @@
     <style name="MyTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">#747383</item>
         <item name="boxStrokeWidth">1dip</item>
+        <item name="boxCornerRadiusBottomStart">84dp</item>
+        <item name="boxCornerRadiusBottomEnd">84dp</item>
+        <item name="boxCornerRadiusTopStart">84dp</item>
+        <item name="boxCornerRadiusTopEnd">84dp</item>
+    </style>
+
+    <style name="MyTextInputWhite" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#747383</item>
+        <item name="boxStrokeWidth">1dip</item>
+        <item name="boxBackgroundColor">@color/wh</item>
         <item name="boxCornerRadiusBottomStart">84dp</item>
         <item name="boxCornerRadiusBottomEnd">84dp</item>
         <item name="boxCornerRadiusTopStart">84dp</item>

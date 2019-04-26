@@ -18,7 +18,8 @@ import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
-import ptt.vn.icaremobileapp.api.Host;
+import ptt.vn.icaremobileapp.utils.Constant;
+import ptt.vn.icaremobileapp.custom.MyTabButton;
 import ptt.vn.icaremobileapp.dialog.DialogNewHappening;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
@@ -46,6 +47,7 @@ public class Happening extends BaseFragment {
         if (getArguments() != null)
             inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
         if (inpatient != null) {
+            setupTabButton();
             initView();
             PatientDomain patient = inpatient.getPatient();
             if (patient != null) setupExpandablePatientInfo(patient);
@@ -54,6 +56,31 @@ public class Happening extends BaseFragment {
             getHappening(offset, limit, inpatient.getIdlink());
         }
         return view;
+    }
+
+    private void setupTabButton() {
+        MyTabButton myTabButton = view.findViewById(R.id.myTab);
+        List<String> lst = new ArrayList<>();
+        lst.add(getString(R.string.tab_happening));
+        lst.add(getString(R.string.tab_resolve));
+        myTabButton.setContent(lst);
+        myTabButton.setActive(MyTabButton.TAB1);
+        myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
+            @Override
+            public void onTab(int tab) {
+                if (getActivity() != null) {
+                    switch (tab) {
+                        case MyTabButton.TAB1:
+
+                            break;
+                        case MyTabButton.TAB2:
+
+                            break;
+
+                    }
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -66,8 +93,8 @@ public class Happening extends BaseFragment {
                         /*
                          * NEW
                          **/
-                        happening.setActive(Host.ACTIVE);
-                        happening.setSiterf(Host.SITERF);
+                        happening.setActive(Constant.ACTIVE);
+                        happening.setSiterf(Constant.SITERF);
                         happening.setIdline(Utils.newGuid());
                         happening.setIdlinedepartinfolog(Utils.newGuid());
                         happening.setIdlink(inpatient.getIdlink());
@@ -148,7 +175,7 @@ public class Happening extends BaseFragment {
                         /*
                          * DELETE
                          **/
-                        happening.setActive(Host.DELETE);
+                        happening.setActive(Constant.DELETE);
                         deleteHappening(happening);
                     }
 

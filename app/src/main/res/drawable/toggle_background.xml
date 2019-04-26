@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:state_window_focused="false">
-        <color android:color="@color/toggle_hover" />
+
+    <item android:drawable="@drawable/border_red_button" android:state_focused="true" android:state_pressed="false"/>
+    <item android:drawable="@drawable/border_yellow_button" android:state_pressed="true"/>
+
+    <item android:state_checked="true" android:state_window_focused="false"
+        android:drawable="@drawable/border_blue_button">
     </item>
-    <item android:state_checked="false" android:state_window_focused="false">
-        <color android:color="@color/toggle_normal" />
+
+    <item android:state_checked="true" android:state_focused="true"
+        android:drawable="@drawable/border_blue_button">
     </item>
-    <item android:state_checked="true" android:state_pressed="true">
-        <color android:color="@color/toggle_active" />
-    </item>
-    <item android:state_checked="false" android:state_pressed="true">
-        <color android:color="@color/toggle_active" />
-    </item>
-    <item android:state_checked="true" android:state_focused="true">
-        <color android:color="@color/toggle_hover" />
-    </item>
-    <item android:state_checked="false" android:state_focused="true">
-        <color android:color="@color/toggle_normal_off" />
-    </item>
-    <item android:state_checked="false">
-        <color android:color="@color/toggle_normal" />
-    </item>
-    <item android:state_checked="true">
-        <color android:color="@color/toggle_hover" />
+
+    <item android:state_checked="true"
+        android:drawable="@drawable/border_blue_button">
     </item>
 </selector>

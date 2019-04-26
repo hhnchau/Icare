@@ -78,7 +78,7 @@ public class Fragmentuz {
                     .commit();
     }
 
-    public static void addFrame(List<Fragmentoz> lstFragment, FragmentManager fragmentManager, Fragmentez fzg, int frame, Directionez direction) {
+    public static void addFrame(List<Fragmentoz> lstFragment, FragmentManager fragmentManager, Fragmentez fzg, int frame, Bundle bundle, Directionez direction) {
         boolean exist = false;
         for (Fragmentoz item : lstFragment)
             if (fzg == item.getFzg()) {
@@ -117,7 +117,11 @@ public class Fragmentuz {
                 if (fzg != item.getFzg()) transaction.hide(item.getFrg());
             }
             Fragment frg = getFragment(fzg);
+
             if (frg != null) {
+
+                if (bundle != null) frg.setArguments(bundle);
+
                 transaction
                         .setCustomAnimations(enter, exit)
                         .add(frame, frg)

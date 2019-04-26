@@ -13,16 +13,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <!--Header-->
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginBottom="@dimen/dp_20">
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvName"
@@ -36,14 +35,14 @@
                 android:text="@string/txt_happening"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/icDelete"
+                app:layout_constraintBottom_toTopOf="@id/icEdit"
                 app:layout_constraintEnd_toEndOf="@id/guide"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
-                android:id="@+id/tvDate"
+                android:id="@+id/tvDoctor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -52,7 +51,7 @@
                 android:textColor="@color/text_label"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@id/tvDoctor"
+                app:layout_constraintBottom_toTopOf="@id/icInsurance"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
                 app:layout_constraintTop_toTopOf="parent"
@@ -60,44 +59,55 @@
 
             <ImageView
                 android:id="@+id/ic_expand"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:contentDescription="@string/img_des"
+                android:layout_width="@dimen/ic_50"
+                android:layout_height="@dimen/ic_50"
                 android:layout_marginEnd="@dimen/dp_32"
+                android:contentDescription="@string/img_des"
                 android:src="@drawable/ic_arrow_drop_down"
-                app:layout_constraintBottom_toBottomOf="@id/tvDate"
+                app:layout_constraintBottom_toBottomOf="@id/tvDoctor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvDate"
-                app:layout_constraintTop_toTopOf="@id/tvDate" />
+                app:layout_constraintStart_toEndOf="@id/tvDoctor"
+                app:layout_constraintTop_toTopOf="@id/tvDoctor" />
 
 
-            <TextView
-                android:id="@+id/tvDoctor"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/icInsurance"
+                android:layout_width="@dimen/ic_40"
                 android:layout_height="0dp"
-                android:text="B.S Nguyễn Văn BS"
-                android:textColor="@color/text_label"
-                android:gravity="center"
-                android:textSize="@dimen/sp_18"
+                android:contentDescription="@string/img_des"
+                android:src="@mipmap/ic_insurance_red"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/tvDate"
+                app:layout_constraintEnd_toEndOf="@id/tvDoctor"
                 app:layout_constraintStart_toStartOf="@id/guide"
-                app:layout_constraintTop_toBottomOf="@id/tvDate"
+                app:layout_constraintTop_toBottomOf="@id/tvDoctor"
                 app:layout_constraintVertical_bias="1" />
 
 
             <ImageView
+                android:id="@+id/icEdit"
+                android:layout_width="@dimen/ic_40"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
+                android:contentDescription="@string/img_des"
+                android:src="@mipmap/ic_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/icDelete"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+            <ImageView
                 android:id="@+id/icDelete"
-                android:layout_width="40dp"
+                android:layout_width="@dimen/ic_40"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_delete"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/icEdit"
                 app:layout_constraintEnd_toEndOf="@id/guide"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName" />
+                app:layout_constraintStart_toEndOf="@id/icEdit"
+                app:layout_constraintTop_toTopOf="@id/icEdit" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guide"

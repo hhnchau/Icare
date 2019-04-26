@@ -6,15 +6,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
+import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.custom.MyButton;
+import ptt.vn.icaremobileapp.model.account.AccountDomain;
 import ptt.vn.icaremobileapp.storage.Storage;
 
 public class Login extends AppCompatActivity implements MyButton.OnListener {
@@ -41,11 +44,6 @@ public class Login extends AppCompatActivity implements MyButton.OnListener {
         btnOk.setOnSelectedListener(this);
     }
 
-    private void login() {
-        ApiController.getInstance().login(this, null);
-    }
-
-
     private void gotoDashboard() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -56,11 +54,21 @@ public class Login extends AppCompatActivity implements MyButton.OnListener {
         String u = edtUserName.getText().toString();
         String p = edtPassword.getText().toString();
 
-        if (u.equals("admin") && p.equals("123")) {
-            Storage.getInstance(this).setUserName("admin");
-            gotoDashboard();
-        } else {
-            Toast.makeText(this, "Sai ten dang nhap hoac mat khau", Toast.LENGTH_SHORT).show();
-        }
+        login(u, p);
+
+    }
+
+    private void login(String u, String p) {
+        ApiController.getInstance().login(this, u, p, new ACallback<AccountDomain>() {
+            @Override
+            public void response(List<AccountDomain> list) {
+                if (list != null && list.size() > 0) {
+                    Storage.getInstance(Login.this).setUserName(list.get(0).getUsername());
+                    gotoDashboard();
+                } else {
+                    Toast.makeText(Login.this, getString(R.string.txt_login_fail), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

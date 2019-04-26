@@ -17,14 +17,16 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.utils.Constant;
 
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
-    private List<ServiceItemDomain> lists;
+    private List<InpatientServiceOrder> lists;
 
-    public ServiceItemAdapter(List<ServiceItemDomain> lists) {
+    public ServiceItemAdapter(List<InpatientServiceOrder> lists) {
         this.lists = lists;
 
         for (int i = 0; i < lists.size(); i++) {
@@ -56,28 +58,49 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
                 }
                 expand.set(holder.getAdapterPosition(), expand.get(holder.getAdapterPosition()) + 1);
                 arrowAnimation.setFillAfter(true);
-                arrowAnimation.setDuration((long) 100);
+                arrowAnimation.setDuration((long) 300);
                 holder.icArrow.startAnimation(arrowAnimation);
             }
         });
+
+
+        final InpatientServiceOrder serviceItem = lists.get(holder.getAdapterPosition());
 
         holder.icDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClick != null) {
-                    onItemClick.onClick(holder.getAdapterPosition(), lists.get(holder.getAdapterPosition()).getId());
+                    onItemClick.onDelete(holder.getAdapterPosition());
                 }
             }
         });
 
-        holder.tvName.setText(lists.get(position).getNamehosp());
-        holder.tvDate.setText(lists.get(position).getDateapp());
-        holder.tvItemCode.setValues(lists.get(position).getCode());
-        holder.tvUnit.setValues(lists.get(position).getNameunit());
-        holder.tvNumber.setValues(lists.get(position).getQty() + "");
-        holder.tvDoctor.setText(lists.get(position).getDocoder());
-        holder.tvPrice.setValues(lists.get(position).getPrice() + "");
-        holder.tvPriceInsurance.setValues(lists.get(position).getPricehi() + "");
+        holder.icEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClick != null) {
+
+                }
+            }
+        });
+
+        holder.icInsurance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClick != null) {
+                    onItemClick.onIsHi(holder.getAdapterPosition());
+                }
+            }
+        });
+
+        holder.tvName.setText(serviceItem.getNamehosp());
+        holder.tvItemCode.setValues(serviceItem.getCode());
+        holder.tvUnit.setValues(serviceItem.getNameunit());
+        holder.tvNumber.setValues(serviceItem.getQty() + "");
+        holder.tvDoctor.setText(serviceItem.getDocoder());
+        holder.tvPrice.setValues(serviceItem.getPrice() + "");
+        holder.tvPriceInsurance.setValues(serviceItem.getPricehi() + "");
+        updateInsurance(serviceItem.getIshi(), holder.icInsurance);
     }
 
     @Override
@@ -90,8 +113,8 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         private LinearLayout detailView;
         private ImageView icArrow;
 
-        private TextView tvName, tvDate, tvDoctor;
-        private ImageView icDelete;
+        private TextView tvName, tvDoctor;
+        private ImageView icEdit, icDelete, icInsurance;
         private MyTextView tvItemCode, tvUnit, tvNumber, tvPrice, tvPriceInsurance;
 
         MyViewHolder(View itemView) {
@@ -101,8 +124,9 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             icArrow = itemView.findViewById(R.id.ic_expand);
 
             tvName = itemView.findViewById(R.id.tvName);
-            tvDate = itemView.findViewById(R.id.tvDate);
+            icEdit = itemView.findViewById(R.id.icEdit);
             icDelete = itemView.findViewById(R.id.icDelete);
+            icInsurance = itemView.findViewById(R.id.icInsurance);
             tvItemCode = itemView.findViewById(R.id.tvItemCode);
             tvUnit = itemView.findViewById(R.id.tvUnit);
             tvNumber = itemView.findViewById(R.id.tvNumber);
@@ -112,7 +136,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         }
     }
 
-    public void setItems(List<ServiceItemDomain> lists) {
+    public void setItems(List<InpatientServiceOrder> lists) {
         this.lists = lists;
         for (int i = 0; i < this.lists.size(); i++) {
             expand.add(0);
@@ -125,8 +149,18 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         notifyItemRangeChanged(position, this.lists.size());
     }
 
+    private void updateInsurance(int isHi, ImageView img) {
+        if (isHi == Objectez.BHYT.ordinal())
+            img.setImageResource(R.mipmap.ic_insurance_red);
+        else img.setImageResource(R.mipmap.ic_insurance_gray);
+    }
+
     public interface OnItemClick {
-        void onClick(int p, int idService);
+        void onDelete(int p);
+
+        void onEdit(int p);
+
+        void onIsHi(int p);
     }
 
     private OnItemClick onItemClick;

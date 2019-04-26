@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.fragment.inpatient;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,10 +24,12 @@ import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewMedexaAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
+import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
+import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 
 public class InpatientList extends BaseFragment {
     private View view;
@@ -35,6 +38,7 @@ public class InpatientList extends BaseFragment {
     private List<InpatientDomain> lstInpatient;
     private int offset = 0;
     private int limit = 1000;
+    private int position;
 
     @Nullable
     @Override
@@ -59,13 +63,19 @@ public class InpatientList extends BaseFragment {
         adapter.setOnItemClick(new InpatientListAdapter.OnItemClick() {
             @Override
             public void onClick(int p) {
-                if (getActivity() != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, lstInpatient.get(p));
-                    Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
-                }
+
+                gotoHappening(p);
+
             }
         });
+    }
+
+    private void gotoHappening(int p) {
+        if (getActivity() != null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, lstInpatient.get(p));
+            Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
+        }
     }
 
     private void getMedexa() {
@@ -119,6 +129,10 @@ public class InpatientList extends BaseFragment {
 
                 //Get Patient
                 getPatientByPatId(lstInpatient);
+                //Get Register
+                getPatientRegister(lstInpatient);
+                //Get Object
+                getPatientObject();
             }
         });
     }
@@ -126,8 +140,9 @@ public class InpatientList extends BaseFragment {
     private void getPatientByPatId(List<InpatientDomain> list) {
         ApiController.getInstance().getPatientByPatId(getActivity(), list, new ACallback<PatientDomain>() {
             @Override
-            public void response(List<PatientDomain> lstPatient) {
-                int position;
+            public void response(final List<PatientDomain> lstPatient) {
+
+
                 for (InpatientDomain inpatient : lstInpatient)
                     for (PatientDomain patient : lstPatient)
                         if (inpatient.getPatid().equals(patient.getPatid())) {
@@ -137,8 +152,52 @@ public class InpatientList extends BaseFragment {
                             if (position == -1) return;
 
                             lstInpatient.set(position, inpatient);
+
                             adapter.notifyItemChanged(position);
+
+
                         }
+
+            }
+        });
+    }
+
+    private void getPatientObject() {
+        ApiController.getInstance().getObject(getActivity(), new ACallback<CateSharelDomain>() {
+            @Override
+            public void response(final List<CateSharelDomain> listCate) {
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (InpatientDomain inpatient : lstInpatient)
+                            for (CateSharelDomain cate : listCate)
+                                if (inpatient.getIdobject() == cate.getIdline()) {
+                                    inpatient.setNameObject(cate.getName());
+                                    break;
+                                }
+
+                    }
+                });
+            }
+        });
+    }
+
+    private void getPatientRegister(List<InpatientDomain> list) {
+        ApiController.getInstance().getRegisterByIdLink(getActivity(), list, new ACallback<RegisterDomain>() {
+            @Override
+            public void response(final List<RegisterDomain> listRegister) {
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (InpatientDomain inpatient : lstInpatient)
+                            for (RegisterDomain register : listRegister)
+                                if (inpatient.getIdlink().equals(register.getIdlink())) {
+                                    inpatient.setRegister(register);
+                                    break;
+                                }
+
+                    }
+                });
             }
         });
     }

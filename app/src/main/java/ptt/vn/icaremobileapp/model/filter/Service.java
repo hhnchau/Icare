@@ -10,5 +10,6 @@ public class Service {
     public static final String ICD = "ICD";
     public static final String CATE = "CATE";
     public static final String  SPECIALIST = "SPECIALIST";
+    public static final String  ACCOUNT = "ACCOUNT";
 }
 

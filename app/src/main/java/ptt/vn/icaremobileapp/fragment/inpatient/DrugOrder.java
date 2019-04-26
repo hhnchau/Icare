@@ -22,7 +22,12 @@ import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
-import ptt.vn.icaremobileapp.api.Host;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
+import ptt.vn.icaremobileapp.model.filter.Objectez;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
+import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDetail;
+import ptt.vn.icaremobileapp.model.register.RegisterDomain;
+import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
@@ -44,11 +49,13 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private List<InpatientDrugOrder> lstDrugOrder;
     private DrugOrderAdapter adapterDrugOrder;
 
-
+    List<PhaInventoryDomain> lstPhaInventory;
     private PhaInventoryDomain phaInventoryDomain;
     private CateSharelDomain happeningType;
     private CateSharelDomain drugRoute;
     private CateSharelDomain drugUnitUse;
+
+    private InpatientDomain inpatient;
 
     private int offset = 0;
     private int limit = 1000;
@@ -60,13 +67,21 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.drugorder, container, false);
-        setupView();
 
-        setupListDrugOrder();
-        getDrugRoute();
-        getHappeningType();
-        getDrugUnitUse();
-        getPhaInventory(offset, limit, 1, 0);
+        if (getArguments() != null) {
+            inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
+            if (inpatient != null) {
+
+                setupView();
+                setupListDrugOrder();
+                getDrugRoute();
+                getHappeningType();
+                getDrugUnitUse();
+                getPhaInventory(offset, limit, 1, inpatient.getNameObject().equals(Objectez.BHYT.name()) ? Objectez.BHYT.ordinal() : Objectez.DICHVU.ordinal());
+
+
+            }
+        }
 
         return view;
     }
@@ -215,8 +230,25 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
         rcv.setAdapter(adapterDrugOrder);
         adapterDrugOrder.setOnItemClick(new DrugOrderAdapter.OnItemClick() {
             @Override
-            public void onClick(InpatientDrugOrder inpatientDrugOrder) {
-                setView(inpatientDrugOrder);
+            public void onIsHi(int p) {
+                InpatientDrugOrder inpatientDrugOrder = lstDrugOrder.get(p);
+
+                if (inpatient.getNameObject().equals(Objectez.BHYT.name())) {
+                    for (PhaInventoryDomain pha : lstPhaInventory)
+                        if (pha.getIddrug() == inpatientDrugOrder.getIddrug()) {
+                            if (pha.getIshi() == Objectez.DICHVU.ordinal())
+                                Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+                            else {
+                                inpatientDrugOrder.setInsurance(inpatientDrugOrder.getInsurance() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
+                                lstDrugOrder.set(p, inpatientDrugOrder);
+                                adapterDrugOrder.notifyItemChanged(p);
+                            }
+
+                            break;
+                        }
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -234,7 +266,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                              * DELETE
                              **/
                             InpatientDrugOrder inpatientDrugOrder = lstDrugOrder.get(p);
-                            inpatientDrugOrder.setActive(Host.DELETE);
+                            inpatientDrugOrder.setActive(Constant.DELETE);
                             if (Instruction.happeningDomain != null)
                                 deleteDrugOrder(Instruction.happeningDomain, p);
                         }
@@ -257,6 +289,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                         if (getActivity() != null) {
                             getActivity().runOnUiThread(new Runnable() {
                                 public void run() {
+                                    lstPhaInventory = listInventory;
                                     setupDrugOrder(listInventory);
                                 }
                             });
@@ -350,7 +383,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
 
         if (!exist) {
             InpatientDrugOrder drugOrder = new InpatientDrugOrder();
-            drugOrder.setActive(Host.ACTIVE);
+            drugOrder.setActive(Constant.ACTIVE);
             drugOrder.setIdline(Utils.newGuid());
             drugOrder.setIdhappening(Utils.newGuid());
             if (phaInventoryDomain != null) {
@@ -361,6 +394,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 drugOrder.setIdstore(phaInventoryDomain.getIdstore());
                 drugOrder.setIdunit(phaInventoryDomain.getIdunit());
                 drugOrder.setPrice(phaInventoryDomain.getPrice());
+                drugOrder.setInsurance(phaInventoryDomain.getIshi());
             }
             if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
 

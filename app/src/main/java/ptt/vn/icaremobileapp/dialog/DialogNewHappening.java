@@ -119,6 +119,7 @@ public class DialogNewHappening {
                     happen.setIddoctor(1);
 
                     happen.setCircui(edtCircuit.getText().toString());
+
                     happen.setBlomax(Integer.parseInt(edtBloodMax.getText().toString()));
                     happen.setTemper(Float.parseFloat(edtTemperature.getText().toString()));
                     happen.setHeartb(Integer.parseInt(edtHeartbeat.getText().toString()));

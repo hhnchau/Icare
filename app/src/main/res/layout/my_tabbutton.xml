@@ -1,69 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="1dp">
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="horizontal">
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <RadioButton
+        android:id="@+id/btn1"
+        style="@style/MyToggleButton"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:visibility="gone" />
 
-        <RadioButton
-            android:id="@+id/btn1"
-            style="@style/MyToggleButton"
-            android:gravity="center"
-            android:text="@string/tab_tham_kham"
-            android:visibility="gone" />
+    <RadioButton
+        android:id="@+id/btn2"
+        style="@style/MyToggleButton"
+        android:gravity="center"
+        android:visibility="gone"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/wh" />
 
-        <RadioButton
-            android:id="@+id/btn2"
-            style="@style/MyToggleButton"
-            android:gravity="center"
-            android:text="@string/tab_service_item" />
+    <RadioButton
+        android:id="@+id/btn3"
+        style="@style/MyToggleButton"
+        android:gravity="center"
+        android:visibility="gone"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/wh" />
 
-        <RadioButton
-            android:id="@+id/btn3"
-            style="@style/MyToggleButton"
-            android:gravity="center"
-            android:text="@string/tab_drug_order" />
+    <RadioButton
+        android:id="@+id/btn4"
+        style="@style/MyToggleButton"
+        android:gravity="center"
+        android:visibility="gone" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/wh" />
+    <RadioButton
+        android:id="@+id/btn5"
+        style="@style/MyToggleButton"
+        android:gravity="center"
+        android:visibility="gone"/>
 
-        <RadioButton
-            android:id="@+id/btn4"
-            style="@style/MyToggleButton"
-            android:gravity="center"
-            android:text="@string/tab_drug_order_outside"
-            android:visibility="gone" />
+</RadioGroup>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/wh" />
-
-        <RadioButton
-            android:id="@+id/btn5"
-            style="@style/MyToggleButton"
-            android:gravity="center"
-            android:text="@string/tab_diagnose" />
-
-    </RadioGroup>
-
-</android.support.v7.widget.CardView>

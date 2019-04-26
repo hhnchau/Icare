@@ -17,11 +17,15 @@ public class InpatientServiceOrder implements Parcelable {
     private int ishi;
     private String attributes;
     private int active;
-    private String usercr;
-    private String timecr;
-    private String userup;
-    private String timeup;
-    private String computer;
+
+    private String namehosp;
+    private String code;
+    private int unitid;
+    private String nameunit;
+    private String descrp;
+    private int status;
+    private String namehi;
+
 
     public InpatientServiceOrder() {
     }
@@ -40,11 +44,42 @@ public class InpatientServiceOrder implements Parcelable {
         ishi = in.readInt();
         attributes = in.readString();
         active = in.readInt();
-        usercr = in.readString();
-        timecr = in.readString();
-        userup = in.readString();
-        timeup = in.readString();
-        computer = in.readString();
+        namehosp = in.readString();
+        code = in.readString();
+        unitid = in.readInt();
+        nameunit = in.readString();
+        descrp = in.readString();
+        status = in.readInt();
+        namehi = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
+        dest.writeString(idline);
+        dest.writeString(idhappening);
+        dest.writeInt(idmedexa);
+        dest.writeInt(idservice);
+        dest.writeInt(qty);
+        dest.writeFloat(price);
+        dest.writeFloat(pricehi);
+        dest.writeString(docoder);
+        dest.writeString(dateapp);
+        dest.writeInt(ishi);
+        dest.writeString(attributes);
+        dest.writeInt(active);
+        dest.writeString(namehosp);
+        dest.writeString(code);
+        dest.writeInt(unitid);
+        dest.writeString(nameunit);
+        dest.writeString(descrp);
+        dest.writeInt(status);
+        dest.writeString(namehi);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<InpatientServiceOrder> CREATOR = new Creator<InpatientServiceOrder>() {
@@ -163,70 +198,59 @@ public class InpatientServiceOrder implements Parcelable {
         this.active = active;
     }
 
-    public String getUsercr() {
-        return usercr;
+    public String getNamehosp() {
+        return namehosp;
     }
 
-    public void setUsercr(String usercr) {
-        this.usercr = usercr;
+    public void setNamehosp(String namehosp) {
+        this.namehosp = namehosp;
     }
 
-    public String getTimecr() {
-        return timecr;
+    public String getCode() {
+        return code;
     }
 
-    public void setTimecr(String timecr) {
-        this.timecr = timecr;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getUserup() {
-        return userup;
+    public int getUnitid() {
+        return unitid;
     }
 
-    public void setUserup(String userup) {
-        this.userup = userup;
+    public void setUnitid(int unitid) {
+        this.unitid = unitid;
     }
 
-    public String getTimeup() {
-        return timeup;
+    public String getNameunit() {
+        return nameunit;
     }
 
-    public void setTimeup(String timeup) {
-        this.timeup = timeup;
+    public void setNameunit(String nameunit) {
+        this.nameunit = nameunit;
     }
 
-    public String getComputer() {
-        return computer;
+    public String getDescrp() {
+        return descrp;
     }
 
-    public void setComputer(String computer) {
-        this.computer = computer;
+    public void setDescrp(String descrp) {
+        this.descrp = descrp;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public int getStatus() {
+        return status;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(siterf);
-        dest.writeString(idline);
-        dest.writeString(idhappening);
-        dest.writeInt(idmedexa);
-        dest.writeInt(idservice);
-        dest.writeInt(qty);
-        dest.writeFloat(price);
-        dest.writeFloat(pricehi);
-        dest.writeString(docoder);
-        dest.writeString(dateapp);
-        dest.writeInt(ishi);
-        dest.writeString(attributes);
-        dest.writeInt(active);
-        dest.writeString(usercr);
-        dest.writeString(timecr);
-        dest.writeString(userup);
-        dest.writeString(timeup);
-        dest.writeString(computer);
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getNamehi() {
+        return namehi;
+    }
+
+    public void setNamehi(String namehi) {
+        this.namehi = namehi;
     }
 }

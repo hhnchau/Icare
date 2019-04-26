@@ -4,37 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/input"
+    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+        android:id="@+id/acDiagnose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/dp_2"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dp_72"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_72"
+        android:background="@drawable/border_white_text"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="@dimen/dp_16"
+        android:hint="TÊN ĐĂNG NHẬP"
+        android:elevation="@dimen/dp_1"
+        android:maxLines="1"
+        android:paddingStart="@dimen/dp_32"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingEnd="@dimen/dp_32"
+        android:paddingBottom="@dimen/dp_12"
+        android:textColorHint="@color/gr"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintBottom_toTopOf="@id/rcv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
-
-
-            <android.support.design.widget.TextInputLayout
-                style="@style/MyTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/txt_diagnose">
-                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                    android:id="@+id/acDiagnose"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:completionThreshold="1"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:padding="@dimen/dp_12" />
-            </android.support.design.widget.TextInputLayout>
-
-
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv"
@@ -43,6 +37,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input" />
+        app:layout_constraintTop_toBottomOf="@id/acDiagnose" />
 
 </android.support.constraint.ConstraintLayout>

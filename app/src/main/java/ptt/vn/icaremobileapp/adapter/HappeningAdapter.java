@@ -68,7 +68,7 @@ public class HappeningAdapter extends RecyclerView.Adapter<HappeningAdapter.MyVi
 
 
                 arrowAnimation.setFillAfter(true);
-                arrowAnimation.setDuration((long) 100);
+                arrowAnimation.setDuration((long) 300);
                 holder.btnNext.startAnimation(arrowAnimation);
             }
         });

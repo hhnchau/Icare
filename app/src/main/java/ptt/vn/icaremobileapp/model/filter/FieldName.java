@@ -11,5 +11,8 @@ public enum  FieldName {
     routedrug,
     typemedicalchart,
     unitusedrug,
-    id
+    id,
+    username,
+    password,
+    regobject
 }

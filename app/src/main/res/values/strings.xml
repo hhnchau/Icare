@@ -12,6 +12,8 @@
     <string name="txt_not_connect">Không thể kết nối tới server!!!</string>
     <string name="txt_save_success">Lưu Thông Tin Thành Công</string>
     <string name="txt_delete_success">Xóa Thông Tin Thành Công</string>
+    <string name="txt_login_fail">Sai Tên Đăng Nhập Hoặc Mật Khẩu</string>
+    <string name="txt_not_available">Đối Tượng Không Phù Hợp</string>
 
     <string name="txt__patient_address">Địa Chỉ</string>
     <string name="txt_patient_code">Mã Bệnh Nhân</string>
@@ -81,6 +83,8 @@
     <string name="tab_drug_order">Kê đơn</string>
     <string name="tab_drug_order_outside">Thuốc mua ngoài</string>
     <string name="tab_diagnose">Chẩn đoán</string>
+    <string name="tab_happening">Diễn biến</string>
+    <string name="tab_resolve">Xử Trí</string>
 
     <string name="txt_err_drug">Vui lòng chọn thuốc</string>
     <string name="txt_err_number">Vui lòng chọn số ngày</string>

@@ -2,23 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/radius_white"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#123"
         android:ellipsize="end"
         android:lines="1"
-        android:padding="@dimen/dp_8"
-        android:textColor="@color/wh"
-        android:textSize="@dimen/sp_20" />
+        android:padding="@dimen/dp_12"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/sp_16" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/wh" />
+        android:layout_height="1dip"
+        android:background="@color/bg" />
 
 </LinearLayout>

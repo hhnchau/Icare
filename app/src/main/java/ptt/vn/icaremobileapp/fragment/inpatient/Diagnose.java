@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.BaseFragment;
@@ -21,7 +20,7 @@ import ptt.vn.icaremobileapp.alert.Alert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
-import ptt.vn.icaremobileapp.api.Host;
+import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDiagnoseAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.model.icd.IcdDomain;
@@ -69,7 +68,7 @@ public class Diagnose extends BaseFragment {
 
                     if (!exist) {
                         InpatientDiagnose diagnose = new InpatientDiagnose();
-                        diagnose.setActive(Host.ACTIVE);
+                        diagnose.setActive(Constant.ACTIVE);
                         diagnose.setIdline(Utils.newGuid());
                         diagnose.setIdicd(icd.getId());
                         diagnose.setNameicdvn(icd.getName());
@@ -116,7 +115,7 @@ public class Diagnose extends BaseFragment {
                              * DELETE
                              **/
                             InpatientDiagnose inpatientDiagnose = lstDiagnose.get(p);
-                            inpatientDiagnose.setActive(Host.DELETE);
+                            inpatientDiagnose.setActive(Constant.DELETE);
                             if (Instruction.happeningDomain != null)
                                 deleteDiagnose(Instruction.happeningDomain, p);
                         }

@@ -52,7 +52,7 @@ public class DrugOrderOutSideAdapter extends RecyclerView.Adapter<DrugOrderOutSi
                 }
                 expand.set(holder.getAdapterPosition(), expand.get(holder.getAdapterPosition()) + 1);
                 arrowAnimation.setFillAfter(true);
-                arrowAnimation.setDuration((long) 100);
+                arrowAnimation.setDuration((long) 300);
                 holder.icArrow.startAnimation(arrowAnimation);
             }
         });

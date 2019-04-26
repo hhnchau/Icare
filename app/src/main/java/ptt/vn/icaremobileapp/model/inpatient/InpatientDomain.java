@@ -5,7 +5,10 @@ import android.os.Parcelable;
 
 import java.util.List;
 
+import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
+import ptt.vn.icaremobileapp.model.register.RegisterDomain;
+import ptt.vn.icaremobileapp.utils.Constant;
 
 public class InpatientDomain implements Parcelable {
     private String idlink; /*Id liên kết (toàn đợt nội trú)*/
@@ -34,8 +37,11 @@ public class InpatientDomain implements Parcelable {
     private String usercr;
     private int idstatusprofile;
     private String treatmentresults;
+    private String nameObject;
 
     private PatientDomain patient;
+
+    private RegisterDomain register;
 
     public InpatientDomain() {
     }
@@ -58,12 +64,54 @@ public class InpatientDomain implements Parcelable {
         idhostranto = in.readInt();
         attributes = in.readString();
         active = in.readInt();
+        lstInpatientDiagnose = in.createTypedArrayList(InpatientDiagnose.CREATOR);
+        lstInpatientDepartment = in.createTypedArrayList(InpatientDepartment.CREATOR);
         actioninpatient = in.readInt();
         computer = in.readString();
         siterf = in.readInt();
         usercr = in.readString();
         idstatusprofile = in.readInt();
         treatmentresults = in.readString();
+        nameObject = in.readString();
+        patient = in.readParcelable(PatientDomain.class.getClassLoader());
+        register = in.readParcelable(RegisterDomain.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idlink);
+        dest.writeString(medicalcode);
+        dest.writeString(year);
+        dest.writeString(patid);
+        dest.writeInt(idobject);
+        dest.writeString(hospitalizationdate);
+        dest.writeString(reasonhospitalization);
+        dest.writeInt(idhospitalizationtype);
+        dest.writeInt(idplaceintro);
+        dest.writeInt(iddoctor);
+        dest.writeInt(idexporttype);
+        dest.writeInt(iddisfrohostype);
+        dest.writeString(disfrohosdate);
+        dest.writeInt(idhostrantype);
+        dest.writeInt(idhostranto);
+        dest.writeString(attributes);
+        dest.writeInt(active);
+        dest.writeTypedList(lstInpatientDiagnose);
+        dest.writeTypedList(lstInpatientDepartment);
+        dest.writeInt(actioninpatient);
+        dest.writeString(computer);
+        dest.writeInt(siterf);
+        dest.writeString(usercr);
+        dest.writeInt(idstatusprofile);
+        dest.writeString(treatmentresults);
+        dest.writeString(nameObject);
+        dest.writeParcelable(patient, flags);
+        dest.writeParcelable(register, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<InpatientDomain> CREATOR = new Creator<InpatientDomain>() {
@@ -278,6 +326,14 @@ public class InpatientDomain implements Parcelable {
         this.treatmentresults = treatmentresults;
     }
 
+    public String getNameObject() {
+        return nameObject;
+    }
+
+    public void setNameObject(String nameObject) {
+        this.nameObject = nameObject;
+    }
+
     public PatientDomain getPatient() {
         return patient;
     }
@@ -286,35 +342,11 @@ public class InpatientDomain implements Parcelable {
         this.patient = patient;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public RegisterDomain getRegister() {
+        return register;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(idlink);
-        dest.writeString(medicalcode);
-        dest.writeString(year);
-        dest.writeString(patid);
-        dest.writeInt(idobject);
-        dest.writeString(hospitalizationdate);
-        dest.writeString(reasonhospitalization);
-        dest.writeInt(idhospitalizationtype);
-        dest.writeInt(idplaceintro);
-        dest.writeInt(iddoctor);
-        dest.writeInt(idexporttype);
-        dest.writeInt(iddisfrohostype);
-        dest.writeString(disfrohosdate);
-        dest.writeInt(idhostrantype);
-        dest.writeInt(idhostranto);
-        dest.writeString(attributes);
-        dest.writeInt(active);
-        dest.writeInt(actioninpatient);
-        dest.writeString(computer);
-        dest.writeInt(siterf);
-        dest.writeString(usercr);
-        dest.writeInt(idstatusprofile);
-        dest.writeString(treatmentresults);
+    public void setRegister(RegisterDomain register) {
+        this.register = register;
     }
 }

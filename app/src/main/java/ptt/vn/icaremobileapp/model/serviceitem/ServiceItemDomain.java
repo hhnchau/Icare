@@ -20,11 +20,6 @@ public class ServiceItemDomain implements Parcelable, Cloneable {
     private int selectquick;
     private int active;
 
-    private String docoder;
-    private float price;
-    private float pricehi;
-    private int qty;
-    private String dateapp;
 
     public ServiceItemDomain() {
     }
@@ -51,11 +46,6 @@ public class ServiceItemDomain implements Parcelable, Cloneable {
         sort = in.readInt();
         selectquick = in.readInt();
         active = in.readInt();
-        docoder = in.readString();
-        price = in.readFloat();
-        pricehi = in.readFloat();
-        qty = in.readInt();
-        dateapp = in.readString();
     }
 
     @Override
@@ -75,11 +65,6 @@ public class ServiceItemDomain implements Parcelable, Cloneable {
         dest.writeInt(sort);
         dest.writeInt(selectquick);
         dest.writeInt(active);
-        dest.writeString(docoder);
-        dest.writeFloat(price);
-        dest.writeFloat(pricehi);
-        dest.writeInt(qty);
-        dest.writeString(dateapp);
     }
 
     @Override
@@ -219,43 +204,4 @@ public class ServiceItemDomain implements Parcelable, Cloneable {
         this.active = active;
     }
 
-    public String getDocoder() {
-        return docoder;
-    }
-
-    public void setDocoder(String docoder) {
-        this.docoder = docoder;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public float getPricehi() {
-        return pricehi;
-    }
-
-    public void setPricehi(float pricehi) {
-        this.pricehi = pricehi;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public String getDateapp() {
-        return dateapp;
-    }
-
-    public void setDateapp(String dateapp) {
-        this.dateapp = dateapp;
-    }
 }

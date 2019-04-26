@@ -1,6 +1,7 @@
 package ptt.vn.icaremobileapp.api;
 
 import io.reactivex.Observable;
+import ptt.vn.icaremobileapp.model.account.AccountResponse;
 import ptt.vn.icaremobileapp.model.common.CateShareResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
@@ -12,6 +13,7 @@ import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
+import ptt.vn.icaremobileapp.model.register.RegisterResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
@@ -41,6 +43,9 @@ public interface ApiService {
     Observable<PatientResponse> getPatientByPatId(@Url String url, @Header("Content") String filterModel);
 
     @GET()
+    Observable<RegisterResponse> getRegisterByIdLink(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
     Observable<HappeningResponse> getHappening(@Url String url, @Header("Content") String filterModel);
 
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
@@ -57,30 +62,14 @@ public interface ApiService {
     Observable<IcdResponse> getIcd(@Url String url, @Header("Content") String filterModel);
 
     @GET()
-    Observable<CateShareResponse> getDrugRoute(@Url String url, @Header("Content") String filterModel);
-
-    @GET()
-    Observable<CateShareResponse> getDrugUnitUse(@Url String url, @Header("Content") String filterModel);
-
-    @GET()
-    Observable<CateShareResponse> getHappeningType(@Url String url, @Header("Content") String filterModel);
+    Observable<CateShareResponse> getCateShare(@Url String url, @Header("Content") String filterModel);
 
     @GET()
     Observable<MapPriceServiceItemResponse> getMapPriceServiceItem(@Url String url, @Header("Content") String filterModel);
 
+    @GET()
+    Observable<AccountResponse> login(@Url String url, @Header("Content") String filterModel);
 
-
-
-
-
-
-
-
-
-
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST()
-    Observable<Object> login(@Url String url, @Body Object login);
 
 
 
