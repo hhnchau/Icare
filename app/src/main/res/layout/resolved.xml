@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/dp_4"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:elevation="@dimen/dp_2"
+        app:cardCornerRadius="@dimen/dp_8"
+        app:layout_constraintBottom_toTopOf="@id/rcv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/boxDiagnose"
+                style="@style/MyTextInput"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_diagnose"
+                app:layout_constraintBottom_toTopOf="@id/boxStatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                    android:id="@+id/acpDiagnose"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="@dimen/dp_12" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/boxStatus"
+                style="@style/MyTextInput"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_resolved_stauts"
+                app:layout_constraintBottom_toTopOf="@id/boxResult"
+                app:layout_constraintEnd_toStartOf="@id/boxDate"
+                app:layout_constraintStart_toStartOf="@id/boxDiagnose"
+                app:layout_constraintTop_toBottomOf="@id/boxDiagnose">
+
+                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                    android:id="@+id/acpStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="@dimen/dp_12" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/boxResult"
+                style="@style/MyTextInput"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_resolved_result"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/boxAdvice"
+                app:layout_constraintStart_toStartOf="@id/boxDiagnose"
+                app:layout_constraintTop_toBottomOf="@id/boxStatus">
+
+                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                    android:id="@+id/acpResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/dp_16"
+                    android:paddingEnd="@dimen/dp_16"
+                    android:textSize="@dimen/sp_16" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/boxDate"
+                style="@style/MyTextInput"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_resolved_date"
+                app:layout_constraintBottom_toBottomOf="@id/boxStatus"
+                app:layout_constraintEnd_toEndOf="@id/boxDiagnose"
+                app:layout_constraintStart_toEndOf="@id/boxStatus"
+                app:layout_constraintTop_toTopOf="@id/boxStatus">
+
+                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                    android:id="@+id/acpDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/dp_16"
+                    android:paddingEnd="@dimen/dp_16"
+                    android:textSize="@dimen/sp_16" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/boxAdvice"
+                style="@style/MyTextInput"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_resolved_advice"
+                app:layout_constraintBottom_toBottomOf="@id/boxResult"
+                app:layout_constraintEnd_toEndOf="@id/boxDiagnose"
+                app:layout_constraintStart_toEndOf="@id/boxResult"
+                app:layout_constraintTop_toTopOf="@id/boxResult">
+
+                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                    android:id="@+id/acpAdvice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/dp_16"
+                    android:paddingEnd="@dimen/dp_16"
+                    android:textSize="@dimen/sp_16" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_8"
+        app:layout_constraintBottom_toTopOf="@id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input" />
+
+    <ptt.vn.icaremobileapp.custom.MyButton
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:backgroundColor="@drawable/button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rcv"
+        app:padding="@dimen/dp_10"
+        app:text="@string/btn_save"
+        app:textColor="@color/wh"
+        app:textSize="@dimen/sp_10" />
+
+</android.support.constraint.ConstraintLayout>
+

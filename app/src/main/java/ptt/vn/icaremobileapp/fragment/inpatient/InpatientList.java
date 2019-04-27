@@ -74,7 +74,7 @@ public class InpatientList extends BaseFragment {
         if (getActivity() != null) {
             Bundle bundle = new Bundle();
             bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, lstInpatient.get(p));
-            Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENING, R.id.mainFrame, Directionez.NEXT);
+            Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENINGFRAME, R.id.mainFrame, Directionez.NEXT);
         }
     }
 

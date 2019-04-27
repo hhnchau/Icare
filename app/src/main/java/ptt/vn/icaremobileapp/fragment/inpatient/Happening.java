@@ -47,10 +47,8 @@ public class Happening extends BaseFragment {
         if (getArguments() != null)
             inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
         if (inpatient != null) {
-            setupTabButton();
-            initView();
-            PatientDomain patient = inpatient.getPatient();
-            if (patient != null) setupExpandablePatientInfo(patient);
+            initFloatButton();
+
             setupExpandableRecyclerView();
 
             getHappening(offset, limit, inpatient.getIdlink());
@@ -58,32 +56,8 @@ public class Happening extends BaseFragment {
         return view;
     }
 
-    private void setupTabButton() {
-        MyTabButton myTabButton = view.findViewById(R.id.myTab);
-        List<String> lst = new ArrayList<>();
-        lst.add(getString(R.string.tab_happening));
-        lst.add(getString(R.string.tab_resolve));
-        myTabButton.setContent(lst);
-        myTabButton.setActive(MyTabButton.TAB1);
-        myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
-            @Override
-            public void onTab(int tab) {
-                if (getActivity() != null) {
-                    switch (tab) {
-                        case MyTabButton.TAB1:
 
-                            break;
-                        case MyTabButton.TAB2:
-
-                            break;
-
-                    }
-                }
-            }
-        });
-    }
-
-    private void initView() {
+    private void initFloatButton() {
         view.findViewById(R.id.fabAdd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,20 +79,6 @@ public class Happening extends BaseFragment {
         });
     }
 
-    private void setupExpandablePatientInfo(PatientDomain patient) {
-        final ExpandableHappening expPatientInfo = view.findViewById(R.id.expPatientInfo);
-        expPatientInfo.setChildrenView(patient);
-
-        expPatientInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (expPatientInfo.isExpanded())
-                    expPatientInfo.collapse();
-                else expPatientInfo.expand();
-            }
-        });
-    }
-
     private void setupExpandableRecyclerView() {
         RecyclerView rcv = view.findViewById(R.id.rcv);
         lstHappening = new ArrayList<>();
@@ -129,14 +89,8 @@ public class Happening extends BaseFragment {
         adapter.setOnItemClick(new HappeningAdapter.OnItemClick() {
             @Override
             public void onItem(HappeningDomain happening) {
-                /*
-                 * GOTO
-                 **/
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING, happening);
-                bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
-                if (getActivity() != null)
-                    Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
+
+                gotoInstruction(happening);
             }
 
             @Override
@@ -186,6 +140,14 @@ public class Happening extends BaseFragment {
                 });
             }
         });
+    }
+
+    private void gotoInstruction(HappeningDomain happening) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING, happening);
+        bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
+        if (getActivity() != null)
+            Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
     }
 
     private void getHappening(int _offset, int _limit, @NonNull String _idLink) {

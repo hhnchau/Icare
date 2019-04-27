@@ -13,8 +13,10 @@ import ptt.vn.icaremobileapp.fragment.inpatient.Diagnose;
 import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrder;
 import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrderOutside;
 import ptt.vn.icaremobileapp.fragment.inpatient.Happening;
+import ptt.vn.icaremobileapp.fragment.inpatient.HappeningFrame;
 import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
 import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
+import ptt.vn.icaremobileapp.fragment.inpatient.Resolved;
 import ptt.vn.icaremobileapp.fragment.inpatient.ServiceItem;
 import ptt.vn.icaremobileapp.fragment.inpatient.ThamKham;
 
@@ -49,10 +51,10 @@ public class Fragmentuz {
                 frg = new InpatientList();
                 stack = Fragmentez.INPATIENT_LIST.name();
                 break;
-            case HAPPENING:
-                name = Happening.class.getName();
-                frg = new Happening();
-                stack = Fragmentez.HAPPENING.name();
+            case HAPPENINGFRAME:
+                name = HappeningFrame.class.getName();
+                frg = new HappeningFrame();
+                stack = Fragmentez.HAPPENINGFRAME.name();
                 break;
             case INSTRUCTION:
                 name = Instruction.class.getName();
@@ -143,6 +145,11 @@ public class Fragmentuz {
                 return new DrugOrderOutside();
             case DIAGNOSE:
                 return new Diagnose();
+            case HAPPENING:
+                return new Happening();
+            case RESOLVED:
+                return new Resolved();
+
         }
         return null;
     }

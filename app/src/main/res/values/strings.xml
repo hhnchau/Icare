@@ -58,6 +58,11 @@
     <string name="txt_drugorder_activeingre">Hoạt Chất</string>
     <string name="txt_drugorder_use">Cách Dùng</string>
 
+    <string name="txt_resolved_stauts">Tình Trạng</string>
+    <string name="txt_resolved_result">Kết Quả</string>
+    <string name="txt_resolved_date">Ngày Xử Trí</string>
+    <string name="txt_resolved_advice">Lời Dặn</string>
+
 
     <string name="txt_drug_name">Tên Thuốc</string>
     <string name="txt_drug_activeingre">Hoạt Chất</string>
