@@ -31,6 +31,8 @@ import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 
+import static ptt.vn.icaremobileapp.model.filter.FieldName.regobject;
+
 public class InpatientList extends BaseFragment {
     private View view;
 
@@ -163,7 +165,7 @@ public class InpatientList extends BaseFragment {
     }
 
     private void getPatientObject() {
-        ApiController.getInstance().getObject(getActivity(), new ACallback<CateSharelDomain>() {
+        ApiController.getInstance().getCateShare(getActivity(),regobject, new ACallback<CateSharelDomain>() {
             @Override
             public void response(final List<CateSharelDomain> listCate) {
                 AsyncTask.execute(new Runnable() {

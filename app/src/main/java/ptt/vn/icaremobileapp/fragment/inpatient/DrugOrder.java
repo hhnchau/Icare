@@ -39,6 +39,10 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 
+import static ptt.vn.icaremobileapp.model.filter.FieldName.routedrug;
+import static ptt.vn.icaremobileapp.model.filter.FieldName.typemedicalchart;
+import static ptt.vn.icaremobileapp.model.filter.FieldName.unitusedrug;
+
 public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private View view;
 
@@ -299,7 +303,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getDrugRoute() {
-        ApiController.getInstance().getDrugRoute(getActivity(),
+        ApiController.getInstance().getCateShare(getActivity(),routedrug,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {
@@ -316,7 +320,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getDrugUnitUse() {
-        ApiController.getInstance().getDrugUnitUse(getActivity(),
+        ApiController.getInstance().getCateShare(getActivity(),unitusedrug,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {
@@ -333,7 +337,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getHappeningType() {
-        ApiController.getInstance().getHappeningType(getActivity(),
+        ApiController.getInstance().getCateShare(getActivity(),typemedicalchart,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {

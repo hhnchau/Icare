@@ -58,9 +58,9 @@
     <string name="txt_drugorder_activeingre">Hoạt Chất</string>
     <string name="txt_drugorder_use">Cách Dùng</string>
 
-    <string name="txt_resolved_stauts">Tình Trạng</string>
+    <string name="txt_resolved_status">Tình Trạng</string>
     <string name="txt_resolved_result">Kết Quả</string>
-    <string name="txt_resolved_date">Ngày Xử Trí</string>
+    <string name="txt_resolved_date_discharged">Ngày Xuất viện</string>
     <string name="txt_resolved_advice">Lời Dặn</string>
 
 

@@ -508,7 +508,6 @@ public class ApiController {
                 }));
     }
 
-
     @SuppressWarnings("unchecked")
     public void getPhaInventory(final Context context, final int _offset, final int _limit, final int _idStore, final int _isHi, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.OCLINIC);
@@ -609,18 +608,16 @@ public class ApiController {
     }
 
     @SuppressWarnings("unchecked")
-    public void getDrugRoute(final Context context, final ACallback aCallback) {
+    public void getCateShare(final Context context, final FieldName fieldName, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.CATE);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
             return;
         }
-
-        //Loading.getInstance().show(context);
         final List<Para> lstPara = new ArrayList<>();
         //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Constant.SITERF));
         //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
-        lstPara.add(new Para(FieldName.routedrug, Operation.Equals, DataTypeOfValue.String, null));
+        lstPara.add(new Para(fieldName, Operation.Equals, DataTypeOfValue.String, null));
         CompositeManager.add(Api.apiService.getCateShare(url + "filter", new FilterModel(lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -638,12 +635,11 @@ public class ApiController {
 
                     @Override
                     public void onError(Throwable e) {
-                        //Loading.getInstance().hide();
 
                         connectAgain(context, new OnRetry() {
                             @Override
                             public void request() {
-                                getDrugRoute(context, aCallback);
+                                getCateShare(context, fieldName, aCallback);
                             }
                         });
 
@@ -652,159 +648,10 @@ public class ApiController {
 
                     @Override
                     public void onComplete() {
-                        //Loading.getInstance().hide();
+
                     }
                 }));
-    }
 
-
-    @SuppressWarnings("unchecked")
-    public void getDrugUnitUse(final Context context, final ACallback aCallback) {
-        String url = MyApplication.getUrl(Service.CATE);
-        if (url == null) {
-            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Loading.getInstance().show(context);
-        final List<Para> lstPara = new ArrayList<>();
-        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Constant.SITERF));
-        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
-        lstPara.add(new Para(FieldName.unitusedrug, Operation.Equals, DataTypeOfValue.String, null));
-        CompositeManager.add(Api.apiService.getCateShare(url + "filter", new FilterModel(lstPara).toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<CateShareResponse>() {
-
-                    @Override
-                    public void onNext(CateShareResponse response) {
-                        if (response.getCode() == 0 && aCallback != null) {
-                            List<CateSharehDomain> lstCateShareh = response.getData();
-                            if (lstCateShareh != null && lstCateShareh.size() > 0)
-                                aCallback.response(lstCateShareh.get(0).getLstCateShareDetail());
-                        } else
-                            MyLog.print(context, String.valueOf(response.getCode()));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        //Loading.getInstance().hide();
-
-                        connectAgain(context, new OnRetry() {
-                            @Override
-                            public void request() {
-                                getDrugUnitUse(context, aCallback);
-                            }
-                        });
-
-                        MyLog.print(context, e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        //Loading.getInstance().hide();
-                    }
-                }));
-    }
-
-
-    @SuppressWarnings("unchecked")
-    public void getHappeningType(final Context context, final ACallback aCallback) {
-        String url = MyApplication.getUrl(Service.CATE);
-        if (url == null) {
-            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Loading.getInstance().show(context);
-        final List<Para> lstPara = new ArrayList<>();
-        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Constant.SITERF));
-        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
-        lstPara.add(new Para(FieldName.typemedicalchart, Operation.Equals, DataTypeOfValue.String, null));
-        CompositeManager.add(Api.apiService.getCateShare(url + "filter", new FilterModel(lstPara).toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<CateShareResponse>() {
-
-                    @Override
-                    public void onNext(CateShareResponse response) {
-                        if (response.getCode() == 0 && aCallback != null) {
-                            List<CateSharehDomain> lstCateShareh = response.getData();
-                            if (lstCateShareh != null && lstCateShareh.size() > 0)
-                                aCallback.response(lstCateShareh.get(0).getLstCateShareDetail());
-                        } else
-                            MyLog.print(context, String.valueOf(response.getCode()));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        //Loading.getInstance().hide();
-
-                        connectAgain(context, new OnRetry() {
-                            @Override
-                            public void request() {
-                                getDrugRoute(context, aCallback);
-                            }
-                        });
-
-                        MyLog.print(context, e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        //Loading.getInstance().hide();
-                    }
-                }));
-    }
-
-
-    @SuppressWarnings("unchecked")
-    public void getObject(final Context context, final ACallback aCallback) {
-        String url = MyApplication.getUrl(Service.CATE);
-        if (url == null) {
-            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //Loading.getInstance().show(context);
-        final List<Para> lstPara = new ArrayList<>();
-        //lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Constant.SITERF));
-        //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
-        lstPara.add(new Para(FieldName.regobject, Operation.Equals, DataTypeOfValue.String, null));
-        CompositeManager.add(Api.apiService.getCateShare(url + "filter", new FilterModel(lstPara).toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<CateShareResponse>() {
-
-                    @Override
-                    public void onNext(CateShareResponse response) {
-                        if (response.getCode() == 0 && aCallback != null) {
-                            List<CateSharehDomain> lstCateShareh = response.getData();
-                            if (lstCateShareh != null && lstCateShareh.size() > 0)
-                                aCallback.response(lstCateShareh.get(0).getLstCateShareDetail());
-                        } else
-                            MyLog.print(context, String.valueOf(response.getCode()));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        //Loading.getInstance().hide();
-
-                        connectAgain(context, new OnRetry() {
-                            @Override
-                            public void request() {
-                                getDrugRoute(context, aCallback);
-                            }
-                        });
-
-                        MyLog.print(context, e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        //Loading.getInstance().hide();
-                    }
-                }));
     }
 
 

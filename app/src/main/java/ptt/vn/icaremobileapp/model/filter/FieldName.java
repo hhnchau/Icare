@@ -14,5 +14,7 @@ public enum  FieldName {
     id,
     username,
     password,
-    regobject
+    regobject,
+    managstatus,
+    results
 }

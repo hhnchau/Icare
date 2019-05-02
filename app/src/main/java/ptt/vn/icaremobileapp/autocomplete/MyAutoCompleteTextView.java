@@ -130,6 +130,10 @@ public class  MyAutoCompleteTextView extends android.support.v7.widget.AppCompat
         return super.onTouchEvent(event);
     }
 
+    public CharSequence getValue(){
+        return this.getText();
+    }
+
     @Override
     public boolean performClick() {
         return super.performClick();

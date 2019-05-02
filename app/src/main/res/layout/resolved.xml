@@ -54,9 +54,9 @@
                 style="@style/MyTextInput"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
-                android:hint="@string/txt_resolved_stauts"
+                android:hint="@string/txt_resolved_status"
                 app:layout_constraintBottom_toTopOf="@id/boxResult"
-                app:layout_constraintEnd_toStartOf="@id/boxDate"
+                app:layout_constraintEnd_toStartOf="@id/boxDateDischarged"
                 app:layout_constraintStart_toStartOf="@id/boxDiagnose"
                 app:layout_constraintTop_toBottomOf="@id/boxDiagnose">
 
@@ -95,28 +95,56 @@
             </android.support.design.widget.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/boxDate"
-                style="@style/MyTextInput"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/boxDateDischarged"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
-                android:hint="@string/txt_resolved_date"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@id/boxStatus"
                 app:layout_constraintEnd_toEndOf="@id/boxDiagnose"
                 app:layout_constraintStart_toEndOf="@id/boxStatus"
                 app:layout_constraintTop_toTopOf="@id/boxStatus">
 
-                <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                    android:id="@+id/acpDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:completionThreshold="1"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/dp_16"
-                    android:paddingEnd="@dimen/dp_16"
-                    android:textSize="@dimen/sp_16" />
-            </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutDatetime"
+                    style="@style/MyTextInput"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_52"
+                    android:hint="@string/txt_resolved_date_discharged"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/edtDateTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:completionThreshold="1"
+                        android:imeOptions="actionDone"
+                        android:inputType="datetime"
+                        android:padding="@dimen/dp_12" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/icDate"
+                    android:layout_width="@dimen/dp_48"
+                    android:layout_height="@dimen/dp_48"
+                    android:layout_marginTop="@dimen/dp_0"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:contentDescription="@string/img_des"
+                    android:src="@mipmap/ic_date"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutDatetime"
+                    app:layout_constraintEnd_toEndOf="@id/layoutDatetime"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@id/layoutDatetime"
+                    app:layout_constraintTop_toTopOf="@id/layoutDatetime" />
+
+            </android.support.constraint.ConstraintLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/boxAdvice"
