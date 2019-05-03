@@ -18,15 +18,13 @@ import java.util.List;
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DrugOrderAdapter;
-import ptt.vn.icaremobileapp.alert.Alert;
+import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
-import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDetail;
-import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewDrugOrderAdapter;
@@ -237,7 +235,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             public void onIsHi(int p) {
                 InpatientDrugOrder inpatientDrugOrder = lstDrugOrder.get(p);
 
-                if (inpatient.getNameObject().equals(Objectez.BHYT.name())) {
+                if (inpatient.getNameObject().equals(Objectez.BHYT.name()) && lstPhaInventory != null) {
                     for (PhaInventoryDomain pha : lstPhaInventory)
                         if (pha.getIddrug() == inpatientDrugOrder.getIddrug()) {
                             if (pha.getIshi() == Objectez.DICHVU.ordinal())
@@ -263,7 +261,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             @Override
             public void onDelete(final int p) {
                 if (getActivity() != null) {
-                    Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), Alert.REB, getString(R.string.btn_cancel), Alert.WHITE, false, new Alert.OnAlertClickListener() {
+                    MyAlert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), MyAlert.REB, getString(R.string.btn_cancel), MyAlert.WHITE, false, new MyAlert.OnAlertClickListener() {
                         @Override
                         public void onYes() {
                             /*

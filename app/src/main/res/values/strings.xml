@@ -53,10 +53,14 @@
     <string name="txt_diagnose">Chuẩn đoán</string>
     <string name="txt_diagnose_code">Mã ICD 10</string>
     <string name="txt_diagnose_name_en">Tên Tiếng Anh</string>
+    <string name="txt_diagnose_primary">Bệnh Chính</string>
+    <string name="txt_diagnose_unprimary">Bệnh Phụ</string>
 
     <string name="txt_drugorder_code">Mã Biệt Dược</string>
     <string name="txt_drugorder_activeingre">Hoạt Chất</string>
     <string name="txt_drugorder_use">Cách Dùng</string>
+    <string name="txt_drugorder_insurance">Thuốc BHYT</string>
+    <string name="txt_drugorder_service">Thuốc DV</string>
 
     <string name="txt_resolved_status">Tình Trạng</string>
     <string name="txt_resolved_result">Kết Quả</string>

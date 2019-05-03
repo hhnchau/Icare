@@ -12,7 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.alert.Alert;
+import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.application.MyApplication;
 import ptt.vn.icaremobileapp.loading.Loading;
 import ptt.vn.icaremobileapp.log.MyLog;
@@ -702,7 +702,7 @@ public class ApiController {
     }
 
     private void connectAgain(Context context, final OnRetry onRetry) {
-        Alert.getInstance().show(context, context.getString(R.string.txt_not_connect), context.getString(R.string.btn_again), Alert.BLUE, null, 0, false, new Alert.OnAlertClickListener() {
+        MyAlert.getInstance().show(context, context.getString(R.string.txt_not_connect), context.getString(R.string.btn_again), MyAlert.BLUE, null, 0, false, new MyAlert.OnAlertClickListener() {
             @Override
             public void onYes() {
                 onRetry.request();

@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +21,13 @@ import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
 
 public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
     private List<InpatientDrugOrder> lists;
+    private Context context;
 
     public DrugOrderAdapter(List<InpatientDrugOrder> lists) {
         this.lists = lists;
@@ -37,8 +40,10 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.drugorder_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.drugorder_item, parent, false);
+
+        this.context = parent.getContext();
+
         return new MyViewHolder(view);
     }
 
@@ -64,7 +69,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         });
 
 
-        InpatientDrugOrder inpatientDrugOrder = lists.get(position);
+        final InpatientDrugOrder inpatientDrugOrder = lists.get(position);
 
 
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +89,10 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         holder.icInsurance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onItemClick != null) onItemClick.onIsHi(holder.getAdapterPosition());
+                if (onItemClick != null) {
+                    onItemClick.onIsHi(holder.getAdapterPosition());
+                    showTooltip(inpatientDrugOrder.getInsurance(), holder.icInsurance);
+                }
             }
         });
 
@@ -141,6 +149,13 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         if (isHi == Objectez.BHYT.ordinal())
             img.setImageResource(R.mipmap.ic_insurance_red);
         else img.setImageResource(R.mipmap.ic_insurance_gray);
+    }
+
+    private void showTooltip(int primary, ImageView img) {
+        if (primary == Constant.DEACTIVE)
+            MyTooltip.on(img).autoHide(true, 1000).position(MyTooltip.Position.LEFT).text(context.getString(R.string.txt_drugorder_service)).show();
+        else
+            MyTooltip.on(img).autoHide(true, 1000).position(MyTooltip.Position.LEFT).text(context.getString(R.string.txt_drugorder_insurance)).show();
     }
 
     public interface OnItemClick {

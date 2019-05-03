@@ -14,20 +14,17 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.alert.Alert;
+import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.utils.Constant;
-import ptt.vn.icaremobileapp.custom.MyTabButton;
 import ptt.vn.icaremobileapp.dialog.DialogNewHappening;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
-import ptt.vn.icaremobileapp.expand.ExpandableHappening;
 import ptt.vn.icaremobileapp.adapter.HappeningAdapter;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
-import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.utils.Utils;
 
@@ -123,7 +120,7 @@ public class Happening extends BaseFragment {
 
             @Override
             public void onDelete(final HappeningDomain happening) {
-                Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), Alert.REB, getString(R.string.btn_cancel), Alert.WHITE, false, new Alert.OnAlertClickListener() {
+                MyAlert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), MyAlert.REB, getString(R.string.btn_cancel), MyAlert.WHITE, false, new MyAlert.OnAlertClickListener() {
                     @Override
                     public void onYes() {
                         /*

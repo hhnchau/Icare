@@ -11,13 +11,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.ServiceItemAdapter;
-import ptt.vn.icaremobileapp.alert.Alert;
+import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
@@ -25,7 +24,6 @@ import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
-import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemHDomain;
 import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
@@ -145,7 +143,7 @@ public class ServiceItem extends BaseFragment {
             @Override
             public void onDelete(final int p) {
                 if (getActivity() != null) {
-                    Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), Alert.REB, getString(R.string.btn_cancel), Alert.WHITE, false, new Alert.OnAlertClickListener() {
+                    MyAlert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), MyAlert.REB, getString(R.string.btn_cancel), MyAlert.WHITE, false, new MyAlert.OnAlertClickListener() {
                         @Override
                         public void onYes() {
                             /*
@@ -174,11 +172,11 @@ public class ServiceItem extends BaseFragment {
             public void onIsHi(int p) {
                 InpatientServiceOrder inpatientService = lstInpatientServiceOrder.get(p);
 
-                if (inpatient.getNameObject().equals(Objectez.BHYT.name())) {
+                if (inpatient.getNameObject().equals(Objectez.BHYT.name()) && lstServiceItem != null) {
                     for (ServiceItemDomain service : lstServiceItem)
                         if (service.getId() == inpatientService.getIdservice()) {
                             if (service.getIshi() == Objectez.DICHVU.ordinal())
-                                Toast.makeText(getActivity(),  getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
                             else {
                                 inpatientService.setIshi(inpatientService.getIshi() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
                                 lstInpatientServiceOrder.set(p, inpatientService);
@@ -198,15 +196,18 @@ public class ServiceItem extends BaseFragment {
         ApiController.getInstance().getServiceItem(getActivity(), _offset, _limit,
                 new ACallback<ServiceItemDomain>() {
                     @Override
-                    public void response(final List<ServiceItemDomain> listServiceItem) {
+                    public void response(final List<ServiceItemDomain> list) {
                         if (getActivity() != null) {
                             getActivity().runOnUiThread(new Runnable() {
                                 public void run() {
+
+                                    lstServiceItem = list;
+
                                     /*Update Suggest Search*/
-                                    setupServiceItem(listServiceItem);
+                                    setupServiceItem(lstServiceItem);
 
                                     /*Join Happening To Service*/
-                                    updateListService(listServiceItem);
+                                    updateListService(lstServiceItem);
                                 }
                             });
                         }

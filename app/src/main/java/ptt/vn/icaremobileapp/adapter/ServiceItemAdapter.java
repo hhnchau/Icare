@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +21,13 @@ import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
 
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
     private List<InpatientServiceOrder> lists;
+    private Context context;
 
     public ServiceItemAdapter(List<InpatientServiceOrder> lists) {
         this.lists = lists;
@@ -37,8 +40,10 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.serviceitem_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.serviceitem_item, parent, false);
+
+        this.context = parent.getContext();
+
         return new MyViewHolder(view);
     }
 
@@ -89,6 +94,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             public void onClick(View v) {
                 if (onItemClick != null) {
                     onItemClick.onIsHi(holder.getAdapterPosition());
+                    showTooltip(serviceItem.getIshi(), holder.icInsurance);
                 }
             }
         });
@@ -153,6 +159,13 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
         if (isHi == Objectez.BHYT.ordinal())
             img.setImageResource(R.mipmap.ic_insurance_red);
         else img.setImageResource(R.mipmap.ic_insurance_gray);
+    }
+
+    private void showTooltip(int primary, ImageView img) {
+        if (primary == Constant.DEACTIVE)
+            MyTooltip.on(img).autoHide(true, 1000).position(MyTooltip.Position.LEFT).text(context.getString(R.string.txt_drugorder_service)).show();
+        else
+            MyTooltip.on(img).autoHide(true, 1000).position(MyTooltip.Position.LEFT).text(context.getString(R.string.txt_drugorder_insurance)).show();
     }
 
     public interface OnItemClick {

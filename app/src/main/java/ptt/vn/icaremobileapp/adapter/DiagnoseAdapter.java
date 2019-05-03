@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +19,13 @@ import java.util.List;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
+import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
 
 public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
     private List<InpatientDiagnose> lists;
+    private Context context;
 
     public DiagnoseAdapter(List<InpatientDiagnose> lists) {
         this.lists = lists;
@@ -35,8 +38,10 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.diagnose_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.diagnose_item, parent, false);
+
+        this.context = parent.getContext();
+
         return new MyViewHolder(view);
     }
 
@@ -83,8 +88,9 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         holder.icSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                diagnose.setPrimary(diagnose.getPrimary()== Constant.ACTIVE ? Constant.DEACTIVE: Constant.ACTIVE);
+                diagnose.setPrimary(diagnose.getPrimary() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
                 updateSelected(diagnose, holder.icSelect);
+                showTooltip(diagnose.getPrimary(), holder.icSelect);
             }
         });
 
@@ -149,6 +155,13 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
     private void updateSelected(InpatientDiagnose diagnose, ImageView img) {
         if (diagnose.getPrimary() == Constant.DEACTIVE) img.setImageResource(R.mipmap.ic_uncheck);
         else img.setImageResource(R.mipmap.ic_checked);
+    }
+
+    private void showTooltip(int primary, ImageView img) {
+        if (primary == Constant.DEACTIVE)
+            MyTooltip.on(img).autoHide(true, 1000).position(MyTooltip.Position.LEFT).text(context.getString(R.string.txt_diagnose_unprimary)).show();
+        else
+            MyTooltip.on(img).autoHide(true, 1000).position(MyTooltip.Position.LEFT).text(context.getString(R.string.txt_diagnose_primary)).show();
     }
 
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -19,12 +18,12 @@ import ptt.vn.icaremobileapp.R;
  * Created by kingpes on 8/22/18.
  */
 
-public class Alert {
-    private static Alert instance = null;
+public class MyAlert {
+    private static MyAlert instance = null;
 
-    public static Alert getInstance() {
+    public static MyAlert getInstance() {
         if (instance == null) {
-            instance = new Alert();
+            instance = new MyAlert();
         }
         return instance;
     }

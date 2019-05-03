@@ -22,7 +22,7 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DiagnoseAdapter;
-import ptt.vn.icaremobileapp.alert.Alert;
+import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
@@ -219,7 +219,7 @@ public class Resolved extends Fragment {
             @Override
             public void onClick(final int p) {
                 if (getActivity() != null) {
-                    Alert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), Alert.REB, getString(R.string.btn_cancel), Alert.WHITE, false, new Alert.OnAlertClickListener() {
+                    MyAlert.getInstance().show(getActivity(), getString(R.string.txt_delete_happening), getString(R.string.btn_delete), MyAlert.REB, getString(R.string.btn_cancel), MyAlert.WHITE, false, new MyAlert.OnAlertClickListener() {
                         @Override
                         public void onYes() {
                             /*
