@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#00BCD4</color>
 
+    <color name="keyboard_bg">#aaeceff2</color>
+
     <color name="colorMain">#00BCD4</color>
     <color name="transparent">#00000000</color>
 
@@ -40,4 +42,5 @@
     <color name="dashboard_frame4">#fb6d9d</color>
     <color name="dashboard_black">#757575</color>
     <color name="dashboard_text">#212121</color>
+
 </resources>

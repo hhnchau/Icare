@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">ICareMobileApp</string>
 
+    <string name="number_zero">0</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="btn_clear">\u232B</string>
+    <string name="btn_divide">/</string>
+
     <string name="img_des" />
     <string name="btn_again">THỬ LẠI</string>
     <string name="btn_no">No</string>
@@ -51,6 +64,7 @@
     <string name="txt_price">Đơn giá</string>
     <string name="txt_price_insurance">Giá BHYT</string>
     <string name="txt_diagnose">Chuẩn đoán</string>
+    <string name="txt_diagnose_selected">Chọn Chuẩn Đooán</string>
     <string name="txt_diagnose_code">Mã ICD 10</string>
     <string name="txt_diagnose_name_en">Tên Tiếng Anh</string>
     <string name="txt_diagnose_primary">Bệnh Chính</string>
@@ -99,11 +113,13 @@
     <string name="txt_err_number">Vui lòng chọn số ngày</string>
 
     <string name="txt_medexa">Chuyên Khoa</string>
+    <string name="txt_medexa_selected">Chọn Chuyên Khoa</string>
 
     <string name="item_menu_edit">Chỉnh sửa</string>
     <string name="item_menu_copy">Copy</string>
     <string name="item_menu_delete">Xóa</string>
 
+    <string name="txt_service_selected">Chọn Dịch Vụ</string>
     <string name="txt_service_name">Tên dịch vụ</string>
     <string name="txt_select">Chọn</string>
 

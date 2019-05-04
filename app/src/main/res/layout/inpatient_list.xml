@@ -14,7 +14,7 @@
         android:background="@drawable/border_white_text"
         android:drawableStart="@drawable/ic_medexa"
         android:drawablePadding="@dimen/dp_16"
-        android:hint="TÊN ĐĂNG NHẬP"
+        android:hint="@string/txt_medexa_selected"
         android:elevation="@dimen/dp_1"
         android:maxLines="1"
         android:paddingStart="@dimen/dp_32"
