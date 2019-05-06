@@ -1,22 +1,31 @@
 package ptt.vn.icaremobileapp.custom;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import java.lang.reflect.Method;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 
 
 public class MyInputTextOutline extends LinearLayout {
+    private Context context;
     private TextInputLayout textInputLayout;
     private MyAutoCompleteTextView myAutoCompleteTextView;
     private CharSequence hint, text;
@@ -24,19 +33,22 @@ public class MyInputTextOutline extends LinearLayout {
 
     public MyInputTextOutline(@NonNull Context context) {
         super(context);
-        create(context);
+        this.context = context;
+        create(this.context);
     }
 
     public MyInputTextOutline(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initAttributes(context, attrs);
-        create(context);
+        this.context = context;
+        create(this.context);
     }
 
     public MyInputTextOutline(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttributes(context, attrs);
-        create(context);
+        this.context = context;
+        create(this.context);
     }
 
     private void initAttributes(Context context, AttributeSet attrs) {
@@ -68,17 +80,53 @@ public class MyInputTextOutline extends LinearLayout {
         myAutoCompleteTextView.setEnabled(selected);
     }
 
-    public void setText(@NonNull CharSequence value, boolean selected){
+    public void setText(@NonNull CharSequence value, boolean selected) {
         myAutoCompleteTextView.setText(value);
         myAutoCompleteTextView.setEnabled(selected);
     }
 
-    public void setError(@NonNull CharSequence value){
+    public void setError(@NonNull CharSequence value) {
         myAutoCompleteTextView.setError(value);
     }
 
     public void setText(@NonNull CharSequence charSequence) {
         myAutoCompleteTextView.setText(charSequence);
+    }
+
+    public void registerNumPadKeyboard() {
+        myAutoCompleteTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    //((InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    //NumPad.getInstance(context).show(myAutoCompleteTextView);
+                }
+                //else NumPad.getInstance(context).hide();
+            }
+        });
+        myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NumPad.getInstance(context).show(myAutoCompleteTextView);
+            }
+        });
+
+        // Disable standard keyboard hard way
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            myAutoCompleteTextView.setShowSoftInputOnFocus(false);
+        } else {
+            //For sdk versions [14-20]
+            try {
+                final Method method = EditText.class.getMethod(
+                        "setShowSoftInputOnFocus"
+                        , boolean.class);
+                method.setAccessible(true);
+                method.invoke(myAutoCompleteTextView, false);
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        myAutoCompleteTextView.setInputType(myAutoCompleteTextView.getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
     }
 
     public CharSequence getText() {

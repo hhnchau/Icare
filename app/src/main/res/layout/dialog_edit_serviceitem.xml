@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="0dp"
+        android:layout_height="464dp"
+        android:layout_margin="@dimen/dp_80"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="2:1.45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/boxHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorMain"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/edtHappening"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_medical_01"
+                    android:drawablePadding="@dimen/dp_16"
+                    android:padding="@dimen/dp_12"
+                    android:text="@string/txt_dialog_serviceitem"
+                    android:textColor="@color/wh"
+                    android:textSize="@dimen/sp_22"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btnClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_8"
+                    android:contentDescription="@string/img_des"
+                    android:src="@drawable/ic_close" />
+
+            </LinearLayout>
+
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtHappening"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_52"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_32"
+                android:layout_marginBottom="@dimen/dp_8"
+                app:hint="Diễn Biến"
+                app:layout_constraintBottom_toTopOf="@id/boxDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/boxHeader"
+                app:layout_constraintVertical_bias="0" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/boxDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/edtCircuit"
+                app:layout_constraintEnd_toEndOf="@id/edtHappening"
+                app:layout_constraintStart_toStartOf="@id/edtHappening"
+                app:layout_constraintTop_toBottomOf="@id/edtHappening"
+                app:layout_constraintVertical_bias="0">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutDatetime"
+                    style="@style/MyTextInput"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_52"
+                    android:layout_marginStart="@dimen/dp_32"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_marginBottom="@dimen/dp_16"
+                    android:hint="@string/txt_datetime"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/edtDateTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:completionThreshold="1"
+                        android:imeOptions="actionDone"
+                        android:inputType="datetime"
+                        android:padding="@dimen/dp_12" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/icDate"
+                    android:layout_width="@dimen/dp_48"
+                    android:layout_height="@dimen/dp_48"
+                    android:layout_marginTop="@dimen/dp_0"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:contentDescription="@string/img_des"
+                    android:src="@mipmap/ic_date"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutDatetime"
+                    app:layout_constraintEnd_toEndOf="@id/layoutDatetime"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@id/layoutDatetime"
+                    app:layout_constraintTop_toTopOf="@id/layoutDatetime" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtCircuit"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:inputType="numberDecimal"
+                app:hint="@string/txt_circuit"
+                app:layout_constraintBottom_toTopOf="@id/edtTemperature"
+                app:layout_constraintEnd_toStartOf="@id/edtBloodMax"
+                app:layout_constraintStart_toStartOf="@id/edtHappening"
+                app:layout_constraintTop_toBottomOf="@id/boxDate" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtBloodMax"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_32"
+                android:inputType="numberDecimal"
+                app:hint="@string/txt_blomin_max"
+                app:layout_constraintBottom_toBottomOf="@id/edtCircuit"
+                app:layout_constraintEnd_toStartOf="@id/edtBloodMin"
+                app:layout_constraintStart_toEndOf="@id/edtCircuit"
+                app:layout_constraintTop_toTopOf="@id/edtCircuit" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtBloodMin"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:inputType="numberDecimal"
+                app:hint="@string/txt_blomin_min"
+                app:layout_constraintBottom_toBottomOf="@id/edtCircuit"
+                app:layout_constraintEnd_toEndOf="@id/edtHappening"
+                app:layout_constraintStart_toEndOf="@id/edtBloodMax"
+                app:layout_constraintTop_toTopOf="@id/edtCircuit" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtTemperature"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:layout_marginTop="@dimen/dp_16"
+                android:inputType="numberDecimal"
+                app:hint="@string/txt_temper"
+                app:layout_constraintBottom_toTopOf="@id/btnOk"
+                app:layout_constraintEnd_toStartOf="@id/edtHeartbeat"
+                app:layout_constraintStart_toStartOf="@id/edtHappening"
+                app:layout_constraintTop_toBottomOf="@id/edtCircuit" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtHeartbeat"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_32"
+                android:inputType="numberDecimal"
+                app:hint="@string/txt_heartb"
+                app:layout_constraintBottom_toBottomOf="@id/edtTemperature"
+                app:layout_constraintEnd_toStartOf="@id/edtWeight"
+                app:layout_constraintStart_toEndOf="@id/edtTemperature"
+                app:layout_constraintTop_toTopOf="@id/edtTemperature" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtWeight"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_52"
+                android:inputType="numberDecimal"
+                app:hint="@string/txt_weight"
+                app:layout_constraintBottom_toBottomOf="@id/edtTemperature"
+                app:layout_constraintEnd_toEndOf="@id/edtHappening"
+                app:layout_constraintStart_toEndOf="@id/edtHeartbeat"
+                app:layout_constraintTop_toTopOf="@id/edtTemperature" />
+
+            <ptt.vn.icaremobileapp.custom.MyButton
+                android:id="@+id/btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_32"
+                app:backgroundColor="@drawable/button_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edtTemperature"
+                app:padding="@dimen/dp_10"
+                app:text="@string/btn_save"
+                app:textColor="@color/wh"
+                app:textSize="@dimen/sp_10" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.constraint.ConstraintLayout>

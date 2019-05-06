@@ -38,8 +38,6 @@ public class Animationz {
         v.startAnimation(out);
     }
 
-
-
     public static void alphaz(View v){
         Animation zoom = AnimationUtils.loadAnimation(v.getContext(), R.anim.alphaz);
         v.startAnimation(zoom);

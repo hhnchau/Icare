@@ -1,6 +1,5 @@
 package ptt.vn.icaremobileapp.fragment.inpatient;
 
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,7 +22,6 @@ import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
-import ptt.vn.icaremobileapp.custom.MyKeyboard;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
@@ -64,8 +62,8 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private int offset = 0;
     private int limit = 1000;
     private MyAutoCompleteTextView acpDrug, acpHappeningType, acpDrugRoute, acpDrugUnitUse;
-    private MyInputTextOutline edtActiveIngre, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
-    MyAutoCompleteTextView edtDrugMorning;
+    private MyInputTextOutline edtActiveIngre, edtDrugMorning, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
+
 
     @Nullable
     @Override
@@ -83,7 +81,6 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 getDrugUnitUse();
                 getPhaInventory(offset, limit, 1, inpatient.getNameObject().equals(Objectez.BHYT.name()) ? Objectez.BHYT.ordinal() : Objectez.DICHVU.ordinal());
 
-
             }
         }
 
@@ -91,41 +88,24 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void setupView() {
-
-        MyKeyboard myKeyboard = view.findViewById(R.id.myKeyboard);
-        myKeyboard.setKeyboard(new Keyboard(getActivity(), R.xml.numpad));
-        myKeyboard.setPreviewEnabled(false);
-
         MyButton btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnSelectedListener(this);
         edtActiveIngre = view.findViewById(R.id.edtActiveIngre);
         edtDrugMorning = view.findViewById(R.id.edtDrugMorning);
-        myKeyboard.registerEditText(edtDrugMorning);
+        edtDrugMorning.registerNumPadKeyboard();
         edtDrugAfter = view.findViewById(R.id.edtDrugAfter);
-        //myKeyboard.registerEditText(edtDrugAfter);
+        edtDrugAfter.registerNumPadKeyboard();
         edtDrugDinner = view.findViewById(R.id.edtDrugDinner);
-        //myKeyboard.registerEditText(edtDrugDinner);
+        edtDrugDinner.registerNumPadKeyboard();
         edtDrugEvening = view.findViewById(R.id.edtDrugEvening);
-        //myKeyboard.registerEditText(edtDrugEvening);
+        edtDrugEvening.registerNumPadKeyboard();
         edtDrugNumber = view.findViewById(R.id.edtDrugNumber);
-        //myKeyboard.registerEditText(edtDrugNumber);
+        edtDrugNumber.registerNumPadKeyboard();
         edtDrugTotal = view.findViewById(R.id.edtDrugTotal);
-        //myKeyboard.registerEditText(edtDrugTotal);
+        edtDrugTotal.registerNumPadKeyboard();
         edtDrugReason = view.findViewById(R.id.edtDrugReason);
     }
 
-    private void setView(InpatientDrugOrder inpatientDrugOrder) {
-        if (inpatientDrugOrder != null) {
-            edtActiveIngre.setText(inpatientDrugOrder.getActivename());
-            edtDrugMorning.setText(inpatientDrugOrder.getQtymor());
-            edtDrugAfter.setText(inpatientDrugOrder.getQtyaft());
-            edtDrugDinner.setText(inpatientDrugOrder.getQtydin());
-            edtDrugEvening.setText(inpatientDrugOrder.getQtynig());
-            edtDrugNumber.setText(String.valueOf(inpatientDrugOrder.getQtyday()));
-            edtDrugTotal.setText(String.valueOf(inpatientDrugOrder.getQty()));
-            edtDrugReason.setText(inpatientDrugOrder.getDesc());
-        }
-    }
 
     private void setupDrugOrder(List<PhaInventoryDomain> lstPhaInventory) {
         if (getActivity() != null) {
@@ -314,7 +294,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getDrugRoute() {
-        ApiController.getInstance().getCateShare(getActivity(), routedrug,
+        ApiController.getInstance().getCateShare(getActivity(),routedrug,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {
@@ -331,7 +311,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getDrugUnitUse() {
-        ApiController.getInstance().getCateShare(getActivity(), unitusedrug,
+        ApiController.getInstance().getCateShare(getActivity(),unitusedrug,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {
@@ -348,7 +328,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getHappeningType() {
-        ApiController.getInstance().getCateShare(getActivity(), typemedicalchart,
+        ApiController.getInstance().getCateShare(getActivity(),typemedicalchart,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {

@@ -52,6 +52,11 @@
     <string name="txt_weight">Cân Nặng</string>
 
     <string name="txt_dialog_happening">Diễn Biến Bệnh</string>
+    <string name="txt_dialog_serviceitem">Chỉ Định</string>
+    <string name="txt_dialog_drugorder">Kê Đơn</string>
+    <string name="txt_dialog_diagnose">Chẩn Đoán</string>
+
+
     <string name="txt_happening">Diễn Biến</string>
     <string name="txt_datetime">Ngày Giờ</string>
     <string name="txt_delete_happening">Xóa Diễn Biến Bệnh</string>

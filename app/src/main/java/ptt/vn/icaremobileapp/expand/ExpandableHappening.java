@@ -217,6 +217,8 @@ public class ExpandableHappening extends LinearLayout {
                 return true;
             }
         };
+        expandAnimation.setDuration((long) distance);
+        startAnimation(expandAnimation);
 
         RotateAnimation arrowAnimation = animationType == EXPANDING ?
                 new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
@@ -225,15 +227,11 @@ public class ExpandableHappening extends LinearLayout {
                         0.5f);
 
         arrowAnimation.setFillAfter(true);
-
         arrowAnimation.setDuration((long) distance);
-        expandAnimation.setDuration((long) distance);
+        icArrow.startAnimation(arrowAnimation);
 
         isExpanding = animationType == EXPANDING;
         isCollapsing = animationType == COLLAPSING;
-
-        startAnimation(expandAnimation);
-        icArrow.startAnimation(arrowAnimation);
         isExpanded = animationType == EXPANDING;
 
     }

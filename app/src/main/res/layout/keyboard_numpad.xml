@@ -1,53 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout"
-        style="@style/MyTextInput"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_52">
-
-        <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-            android:id="@+id/myAutoCompleteTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:completionThreshold="1"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:paddingStart="@dimen/dp_16"
-            android:paddingEnd="@dimen/dp_16"
-            android:textSize="@dimen/sp_16" />
-    </android.support.design.widget.TextInputLayout>
+    <View
+        android:id="@+id/arrow"
+        android:layout_width="250dp"
+        android:layout_height="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/keyboard"
+        app:layout_constraintVertical_bias="0"/>
 
     <TableLayout
         android:id="@+id/keyboard"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:background="@color/keyboard_bg"
+        android:background="@drawable/keyboard_background"
         android:divider="@drawable/keyboard_divider"
         android:orientation="vertical"
-        android:showDividers="middle">
+        android:showDividers="middle"
+        app:layout_constraintTop_toBottomOf="@id/arrow"
+        app:layout_constraintStart_toStartOf="@id/arrow"
+        app:layout_constraintEnd_toEndOf="@id/arrow"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TableRow style="@style/keyboard_row">
 
             <TextView
                 android:id="@+id/key1"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_one"/>
+                android:text="@string/number_one" />
 
             <TextView
                 android:id="@+id/key2"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_two"/>
+                android:text="@string/number_two" />
 
             <TextView
                 android:id="@+id/key3"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_three"/>
+                android:text="@string/number_three" />
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -55,17 +51,17 @@
             <TextView
                 android:id="@+id/key4"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_four"/>
+                android:text="@string/number_four" />
 
             <TextView
                 android:id="@+id/key5"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_five"/>
+                android:text="@string/number_five" />
 
             <TextView
                 android:id="@+id/key6"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_six"/>
+                android:text="@string/number_six" />
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -73,17 +69,17 @@
             <TextView
                 android:id="@+id/key7"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_seven"/>
+                android:text="@string/number_seven" />
 
             <TextView
                 android:id="@+id/key8"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_eight"/>
+                android:text="@string/number_eight" />
 
             <TextView
                 android:id="@+id/key9"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_nine"/>
+                android:text="@string/number_nine" />
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -92,20 +88,19 @@
                 android:id="@+id/keydivide"
                 style="@style/keyboard_button"
                 android:text="@string/btn_divide"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/key0"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_zero"/>
+                android:text="@string/number_zero" />
 
             <TextView
                 android:id="@+id/keyclear"
                 style="@style/keyboard_button"
                 android:text="@string/btn_clear"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
     </TableLayout>
 
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
