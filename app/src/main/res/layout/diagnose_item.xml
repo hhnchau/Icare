@@ -60,8 +60,8 @@
 
             <ImageView
                 android:id="@+id/ic_expand"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="36dp"
+                android:layout_height="44dp"
                 android:contentDescription="@string/img_des"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:src="@drawable/ic_arrow_drop_down"
@@ -75,7 +75,7 @@
 
             <ImageView
                 android:id="@+id/icSelect"
-                android:layout_width="40dp"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_checked"
@@ -89,7 +89,7 @@
 
             <ImageView
                 android:id="@+id/icEdit"
-                android:layout_width="@dimen/dp_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
@@ -103,7 +103,7 @@
 
             <ImageView
                 android:id="@+id/icDelete"
-                android:layout_width="@dimen/dp_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"

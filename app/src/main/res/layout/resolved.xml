@@ -11,9 +11,9 @@
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_8"
-        android:layout_marginEnd="@dimen/dp_4"
+        android:layout_marginEnd="@dimen/dp_20"
         android:elevation="@dimen/dp_2"
         app:cardCornerRadius="@dimen/dp_8"
         app:layout_constraintBottom_toTopOf="@id/acpDiagnose"
@@ -36,7 +36,11 @@
                 app:layout_constraintBottom_toTopOf="@id/boxResult"
                 app:layout_constraintEnd_toStartOf="@id/boxDateDischarged"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_12"
+                >
 
                 <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
                     android:id="@+id/acpStatus"
@@ -46,7 +50,9 @@
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:dropDownVerticalOffset="0dp"
-                    android:padding="@dimen/dp_12" />
+                    android:paddingStart="@dimen/dp_24"
+                    android:paddingEnd="@dimen/dp_16"
+                    android:textSize="@dimen/sp_16"/>
             </android.support.design.widget.TextInputLayout>
 
 
@@ -57,20 +63,23 @@
                 android:layout_height="@dimen/dp_52"
                 android:hint="@string/txt_resolved_result"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/boxAdvice"
+                app:layout_constraintEnd_toEndOf="@id/boxStatus"
                 app:layout_constraintStart_toStartOf="@id/boxStatus"
-                app:layout_constraintTop_toBottomOf="@id/boxStatus">
+                app:layout_constraintTop_toBottomOf="@id/boxStatus"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_12">
 
                 <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
                     android:id="@+id/acpResult"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_4"
                     android:completionThreshold="1"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:dropDownVerticalOffset="0dp"
-                    android:paddingStart="@dimen/dp_16"
-                    android:paddingEnd="@dimen/dp_16"
+                    android:paddingStart="@dimen/dp_24"
+                    android:paddingEnd="@dimen/dp_24"
                     android:textSize="@dimen/sp_16" />
             </android.support.design.widget.TextInputLayout>
 
@@ -84,7 +93,10 @@
                 app:layout_constraintBottom_toBottomOf="@id/boxStatus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/boxStatus"
-                app:layout_constraintTop_toTopOf="@id/boxStatus">
+                app:layout_constraintTop_toTopOf="@id/boxStatus"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_24"
+                >
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/layoutDatetime"
@@ -104,7 +116,9 @@
                         android:completionThreshold="1"
                         android:imeOptions="actionDone"
                         android:inputType="datetime"
-                        android:padding="@dimen/dp_12" />
+                        android:paddingStart="@dimen/dp_24"
+                        android:paddingBottom="@dimen/dp_12"
+                        android:textSize="@dimen/sp_16" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -132,8 +146,8 @@
                 android:layout_height="@dimen/dp_52"
                 android:hint="@string/txt_resolved_advice"
                 app:layout_constraintBottom_toBottomOf="@id/boxResult"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/boxResult"
+                app:layout_constraintEnd_toEndOf="@id/boxDateDischarged"
+                app:layout_constraintStart_toStartOf="@id/boxDateDischarged"
                 app:layout_constraintTop_toTopOf="@id/boxResult">
 
                 <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
@@ -144,9 +158,10 @@
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:dropDownVerticalOffset="0dp"
-                    android:paddingStart="@dimen/dp_16"
-                    android:paddingEnd="@dimen/dp_16"
-                    android:textSize="@dimen/sp_16" />
+                    android:paddingStart="@dimen/dp_24"
+                    android:paddingEnd="@dimen/dp_24"
+                    android:textSize="@dimen/sp_16"
+                    />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -157,13 +172,13 @@
         android:id="@+id/acpDiagnose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_72"
-        android:layout_marginTop="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_72"
-        android:layout_marginBottom="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_48"
+        android:layout_marginBottom="@dimen/dp_4"
         android:background="@drawable/border_white_text"
-        android:drawableStart="@drawable/ic_person"
-        android:drawablePadding="@dimen/dp_16"
+        android:drawableStart="@drawable/ic_diagnose"
+        android:drawablePadding="@dimen/dp_8"
         android:elevation="@dimen/dp_1"
         android:hint="@string/txt_diagnose"
         android:maxLines="1"
@@ -184,17 +199,18 @@
         android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_8"
         app:layout_constraintBottom_toTopOf="@id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/acpDiagnose" />
+        app:layout_constraintTop_toBottomOf="@id/acpDiagnose"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"/>
 
     <ptt.vn.icaremobileapp.custom.MyButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_24"
+        android:layout_marginStart="@dimen/dp_12"
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginEnd="@dimen/dp_24"
         android:layout_marginBottom="@dimen/dp_8"

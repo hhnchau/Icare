@@ -13,7 +13,7 @@
         android:layout_marginEnd="@dimen/dp_16"
         android:background="@drawable/border_white_text"
         android:drawableStart="@drawable/ic_medexa"
-        android:drawablePadding="@dimen/dp_16"
+        android:drawablePadding="@dimen/dp_8"
         android:hint="@string/txt_medexa_selected"
         android:elevation="@dimen/dp_1"
         android:maxLines="1"
