@@ -73,7 +73,7 @@
                     android:text="B.S Nguyễn Văn BS"
                     android:textColor="@color/text_label"
                     android:gravity="center"
-                    android:textSize="@dimen/sp_18"
+                    android:textSize="@dimen/sp_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/guide"
@@ -83,7 +83,7 @@
 
                 <ImageView
                     android:id="@+id/icCopy"
-                    android:layout_width="@dimen/dp_40"
+                    android:layout_width="36dp"
                     android:layout_height="@dimen/dp_0"
                     android:layout_marginStart="@dimen/dp_32"
                     android:contentDescription="@string/img_des"
@@ -98,7 +98,7 @@
 
                 <ImageView
                     android:id="@+id/icEdit"
-                    android:layout_width="@dimen/dp_40"
+                    android:layout_width="36dp"
                     android:layout_height="@dimen/dp_0"
                     android:layout_marginStart="@dimen/dp_24"
                     android:contentDescription="@string/img_des"
@@ -110,7 +110,7 @@
 
                 <ImageView
                     android:id="@+id/icDelete"
-                    android:layout_width="@dimen/dp_40"
+                    android:layout_width="36dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_24"
                     android:contentDescription="@string/img_des"

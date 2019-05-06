@@ -58,6 +58,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="@dimen/dp_16"
             android:hint="MẬT KHẨU"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/dp_32"
             android:paddingTop="@dimen/dp_24"
             android:paddingBottom="@dimen/dp_24"

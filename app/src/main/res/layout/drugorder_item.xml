@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginBottom="@dimen/dp_20">
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_16">
 
             <TextView
                 android:id="@+id/tvName"
@@ -58,8 +58,8 @@
 
             <ImageView
                 android:id="@+id/ic_expand"
-                android:layout_width="@dimen/ic_50"
-                android:layout_height="@dimen/ic_50"
+                android:layout_width="36dp"
+                android:layout_height="44dp"
                 android:contentDescription="@string/img_des"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:src="@drawable/ic_arrow_drop_down"
@@ -72,7 +72,7 @@
 
             <ImageView
                 android:id="@+id/icInsurance"
-                android:layout_width="@dimen/ic_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_insurance_red"
@@ -85,7 +85,7 @@
 
             <ImageView
                 android:id="@+id/icEdit"
-                android:layout_width="@dimen/ic_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
@@ -99,7 +99,7 @@
 
             <ImageView
                 android:id="@+id/icDelete"
-                android:layout_width="@dimen/ic_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
