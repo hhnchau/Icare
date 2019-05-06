@@ -16,7 +16,7 @@
         android:layout_marginEnd="@dimen/dp_20"
         android:elevation="@dimen/dp_2"
         app:cardCornerRadius="@dimen/dp_8"
-        app:layout_constraintBottom_toTopOf="@id/acpDiagnose"
+        app:layout_constraintBottom_toTopOf="@id/rcv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_52"
                 android:hint="@string/txt_resolved_result"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/acpDiagnose"
                 app:layout_constraintEnd_toEndOf="@id/boxStatus"
                 app:layout_constraintStart_toStartOf="@id/boxStatus"
                 app:layout_constraintTop_toBottomOf="@id/boxStatus"
@@ -162,34 +162,32 @@
                     />
             </android.support.design.widget.TextInputLayout>
 
-
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpDiagnose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/border_white_text"
+                android:drawableStart="@drawable/ic_diagnose"
+                android:drawablePadding="@dimen/dp_8"
+                android:elevation="@dimen/dp_1"
+                android:hint="@string/txt_diagnose"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_32"
+                android:paddingBottom="@dimen/dp_8"
+                android:textColorHint="@color/gr"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/boxAdvice"
+                app:layout_constraintStart_toStartOf="@id/boxStatus"
+                app:layout_constraintTop_toBottomOf="@id/boxAdvice" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 
-    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-        android:id="@+id/acpDiagnose"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_48"
-        android:layout_marginTop="@dimen/dp_12"
-        android:layout_marginEnd="@dimen/dp_48"
-        android:layout_marginBottom="@dimen/dp_4"
-        android:background="@drawable/border_white_text"
-        android:drawableStart="@drawable/ic_diagnose"
-        android:drawablePadding="@dimen/dp_8"
-        android:elevation="@dimen/dp_1"
-        android:hint="@string/txt_diagnose"
-        android:maxLines="1"
-        android:paddingStart="@dimen/dp_32"
-        android:paddingTop="@dimen/dp_12"
-        android:paddingEnd="@dimen/dp_32"
-        android:paddingBottom="@dimen/dp_12"
-        android:textColorHint="@color/gr"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toTopOf="@id/rcv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input" />
+
 
 
     <android.support.v7.widget.RecyclerView
@@ -199,7 +197,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/acpDiagnose"
+        app:layout_constraintTop_toBottomOf="@id/input"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_16"/>
 
