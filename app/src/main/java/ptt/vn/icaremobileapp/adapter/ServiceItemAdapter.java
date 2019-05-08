@@ -18,7 +18,9 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.dialog.DialogEditServiceItem;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
@@ -84,7 +86,14 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             @Override
             public void onClick(View v) {
                 if (onItemClick != null) {
-
+                    DialogEditServiceItem.getInstance().show(context,null, new DialogEditServiceItem.OnClickListener(){
+                        @Override
+                        public void onClickListener(HappeningDomain happening) {
+                            serviceItem.setQty(3);
+                            serviceItem.setDescrp("Demo Test-----");
+                            notifyDataSetChanged();
+                        }
+                    });
                 }
             }
         });
@@ -99,13 +108,16 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             }
         });
 
-        holder.tvName.setText(serviceItem.getNamehosp());
-        holder.tvItemCode.setValues(serviceItem.getCode());
-        holder.tvUnit.setValues(serviceItem.getNameunit());
-        holder.tvNumber.setValues(serviceItem.getQty() + "");
+        holder.tvName.setText(serviceItem.getCode() + " - " + serviceItem.getNamehosp());
         holder.tvDoctor.setText(serviceItem.getDocoder());
+        holder.tvUnit.setValues(serviceItem.getNameunit());
         holder.tvPrice.setValues(serviceItem.getPrice() + "");
         holder.tvPriceInsurance.setValues(serviceItem.getPricehi() + "");
+        holder.tvSurcharge.setValues(serviceItem.getDocoder());
+        holder.tvNumber.setValues(serviceItem.getQty() + "");
+        holder.tvTotal.setValues(serviceItem.getQty() * serviceItem.getPrice() + "");
+        holder.tvNote.setValues(serviceItem.getDescrp());
+
         updateInsurance(serviceItem.getIshi(), holder.icInsurance);
     }
 
@@ -121,7 +133,7 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
 
         private TextView tvName, tvDoctor;
         private ImageView icEdit, icDelete, icInsurance;
-        private MyTextView tvItemCode, tvUnit, tvNumber, tvPrice, tvPriceInsurance;
+        private MyTextView tvUnit, tvPrice, tvPriceInsurance, tvSurcharge, tvNumber, tvTotal, tvNote;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -129,16 +141,19 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             detailView = itemView.findViewById(R.id.detailView);
             icArrow = itemView.findViewById(R.id.ic_expand);
 
-            tvName = itemView.findViewById(R.id.tvName);
             icEdit = itemView.findViewById(R.id.icEdit);
             icDelete = itemView.findViewById(R.id.icDelete);
-            icInsurance = itemView.findViewById(R.id.icInsurance);
-            tvItemCode = itemView.findViewById(R.id.tvItemCode);
-            tvUnit = itemView.findViewById(R.id.tvUnit);
-            tvNumber = itemView.findViewById(R.id.tvNumber);
+
+            tvName = itemView.findViewById(R.id.tvName);
             tvDoctor = itemView.findViewById(R.id.tvDoctor);
+            tvUnit = itemView.findViewById(R.id.tvUnit);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvPriceInsurance = itemView.findViewById(R.id.tvPriceInsurance);
+            icInsurance = itemView.findViewById(R.id.icInsurance);
+            tvSurcharge = itemView.findViewById(R.id.tvSurcharge);
+            tvNumber = itemView.findViewById(R.id.tvNumber);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
+            tvNote = itemView.findViewById(R.id.tvNote);
         }
     }
 

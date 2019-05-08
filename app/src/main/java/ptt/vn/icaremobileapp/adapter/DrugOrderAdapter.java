@@ -18,7 +18,9 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.dialog.DialogEditDrugOrder;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
@@ -75,7 +77,13 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DialogEditDrugOrder.getInstance().show(context, null, new DialogEditDrugOrder.OnClickListener() {
+                    @Override
+                    public void onClickListener(HappeningDomain happening) {
+                        inpatientDrugOrder.setTotal(10);
+                        notifyDataSetChanged();
+                    }
+                });
             }
         });
 
@@ -96,10 +104,13 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
             }
         });
 
-        holder.tvName.setText(lists.get(position).getNamedrug());
-        holder.tvNumber.setText(lists.get(position).getQty() + "");
-        holder.tvDrugActiveingre.setValues(lists.get(position).getActivename());
-        holder.tvDrugUse.setValues(lists.get(position).getDesc());
+        holder.tvName.setText(inpatientDrugOrder.getCodedrug() + " - " + inpatientDrugOrder.getNamedrug());
+        holder.tvNumber.setText(inpatientDrugOrder.getQty() + "");
+        holder.tvDrugActiveingre.setValues(inpatientDrugOrder.getActivename());
+        holder.tvUnit.setValues(inpatientDrugOrder.getUnitusename());
+        holder.tvPrice.setValues(inpatientDrugOrder.getPrice() + "");
+        holder.tvTotal.setValues(inpatientDrugOrder.getTotal() + "");
+        holder.tvDrugUse.setValues(inpatientDrugOrder.getDesc());
         updateInsurance(inpatientDrugOrder.getInsurance(), holder.icInsurance);
     }
 
@@ -114,7 +125,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         private ImageView icArrow;
 
         private TextView tvName, tvNumber;
-        private MyTextView tvDrugActiveingre, tvDrugUse;
+        private MyTextView tvUnit, tvPrice, tvTotal, tvDrugActiveingre, tvDrugUse;
         private ImageView icEdit, icDelete, icInsurance;
 
         MyViewHolder(View itemView) {
@@ -125,6 +136,9 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
             tvName = itemView.findViewById(R.id.tvName);
             tvNumber = itemView.findViewById(R.id.tvNumber);
             icInsurance = itemView.findViewById(R.id.icInsurance);
+            tvUnit = itemView.findViewById(R.id.tvUnit);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
             tvDrugActiveingre = itemView.findViewById(R.id.tvDrugActiveingre);
             tvDrugUse = itemView.findViewById(R.id.tvDrugUse);
             icEdit = itemView.findViewById(R.id.icEdit);

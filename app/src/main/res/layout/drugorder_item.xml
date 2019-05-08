@@ -32,7 +32,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:lines="2"
-                android:text="Tên Thuốc"
+                android:text="Tên 10Thuốc"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/icEdit"
@@ -49,7 +49,7 @@
                 android:textColor="@color/text_label"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="italic"
-                android:text="AD123421423"
+                android:text="423"
                 app:layout_constraintBottom_toBottomOf="@id/tvName"
                 app:layout_constraintEnd_toStartOf="@id/ic_expand"
                 app:layout_constraintStart_toStartOf="@id/guide"
@@ -136,6 +136,38 @@
                 android:layout_height="1dp"
                 android:background="@color/bg" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_22"
+                    android:layout_marginEnd="@dimen/dp_24"
+                    android:layout_weight="1"
+                    app:label="@string/txt_unit" />
+
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_weight="1"
+                    app:label="@string/txt_price" />
+
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_weight="1"
+                    app:label="@string/txt_total" />
+            </LinearLayout>
+
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvDrugActiveingre"
                 android:layout_width="match_parent"
@@ -143,7 +175,6 @@
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginStart="@dimen/dp_24"
                 android:layout_marginEnd="@dimen/dp_24"
-                android:layout_weight="1"
                 app:label="@string/txt_drugorder_activeingre" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
@@ -154,7 +185,6 @@
                 android:layout_marginStart="@dimen/dp_24"
                 android:layout_marginEnd="@dimen/dp_24"
                 android:layout_marginBottom="@dimen/dp_16"
-                android:layout_weight="1"
                 app:label="@string/txt_drugorder_use" />
 
 

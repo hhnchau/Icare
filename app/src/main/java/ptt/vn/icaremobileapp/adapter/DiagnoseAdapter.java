@@ -18,6 +18,8 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.dialog.DialogEditDiagnose;
+import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
@@ -73,7 +75,13 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DialogEditDiagnose.getInstance().show(context, null, new DialogEditDiagnose.OnClickListener() {
+                    @Override
+                    public void onClickListener(HappeningDomain happening) {
+                        diagnose.setNameicdvn("");
+                        notifyDataSetChanged();
+                    }
+                });
             }
         });
 
@@ -94,7 +102,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
-        holder.tvIcdVn.setText(diagnose.getNameicdvn());
+        holder.tvIcdVn.setText(diagnose.getCode() + " - " + diagnose.getNameicdvn());
         holder.tvIcdCode.setText(diagnose.getCode());
         holder.tvIcdEn.setValues(diagnose.getNameicdeng());
         updateSelected(diagnose, holder.icSelect);

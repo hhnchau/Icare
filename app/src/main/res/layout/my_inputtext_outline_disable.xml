@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textInputLayout"
-    style="@style/MyTextInput"
+    style="@style/MyTextInputDisable"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_52">
 
-    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+    <AutoCompleteTextView
         android:id="@+id/myAutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:completionThreshold="1"
         android:imeOptions="actionDone"
+        android:enabled="false"
         android:inputType="text"
         android:paddingStart="@dimen/dp_16"
         android:paddingEnd="@dimen/dp_16"
         android:textSize="@dimen/sp_16"
-    />
+        android:hint="@string/img_des"/>
 </android.support.design.widget.TextInputLayout>

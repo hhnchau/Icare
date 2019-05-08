@@ -67,6 +67,10 @@
     <string name="txt_unit_use">Đơn Vị Dùng</string>
     <string name="txt_number">Số Lượng</string>
     <string name="txt_price">Đơn giá</string>
+    <string name="txt_note">Ghi Chú</string>
+    <string name="txt_total">Thành Tiền</string>
+    <string name="txt_surcharge">Phụ Thu</string>
+
     <string name="txt_price_insurance">Giá BHYT</string>
     <string name="txt_diagnose">Chuẩn đoán</string>
     <string name="txt_diagnose_selected">Chọn Chuẩn Đooán</string>

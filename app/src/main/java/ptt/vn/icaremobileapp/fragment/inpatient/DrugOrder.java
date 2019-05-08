@@ -294,7 +294,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getDrugRoute() {
-        ApiController.getInstance().getCateShare(getActivity(),routedrug,
+        ApiController.getInstance().getCateShare(getActivity(), routedrug,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {
@@ -311,7 +311,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getDrugUnitUse() {
-        ApiController.getInstance().getCateShare(getActivity(),unitusedrug,
+        ApiController.getInstance().getCateShare(getActivity(), unitusedrug,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {
@@ -328,7 +328,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void getHappeningType() {
-        ApiController.getInstance().getCateShare(getActivity(),typemedicalchart,
+        ApiController.getInstance().getCateShare(getActivity(), typemedicalchart,
                 new ACallback<CateSharelDomain>() {
                     @Override
                     public void response(final List<CateSharelDomain> list) {

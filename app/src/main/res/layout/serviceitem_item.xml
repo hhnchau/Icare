@@ -144,15 +144,6 @@
                 android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvItemCode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_24"
-                    android:layout_marginEnd="@dimen/dp_32"
-                    android:layout_weight="1"
-                    app:label="@string/txt_serviceitem_code" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvUnit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -160,23 +151,6 @@
                     android:layout_marginEnd="@dimen/dp_24"
                     android:layout_weight="1"
                     app:label="@string/txt_unit" />
-
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_10"
-                    android:layout_marginEnd="@dimen/dp_32"
-                    android:layout_weight="1"
-                    app:label="@string/txt_number" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
-                android:orientation="horizontal">
 
                 <ptt.vn.icaremobileapp.custom.MyTextView
                     android:id="@+id/tvPrice"
@@ -191,16 +165,56 @@
                     android:id="@+id/tvPriceInsurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_22"
-                    android:layout_marginEnd="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
                     app:label="@string/txt_price_insurance" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:orientation="horizontal">
+
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvSurcharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_weight="1"
+                    app:label="@string/txt_surcharge" />
+
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_weight="1"
+                    app:label="@string/txt_number" />
+
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_32"
+                    android:layout_weight="1"
+                    app:label="@string/txt_total" />
+
+            </LinearLayout>
+
+            <ptt.vn.icaremobileapp.custom.MyTextView
+                android:id="@+id/tvNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_32"
+                app:label="@string/txt_note" />
 
         </LinearLayout>
 

@@ -41,7 +41,7 @@ import ptt.vn.icaremobileapp.R;
  * });
  */
 
-public class  MyAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
     private Bitmap mClearButton;
     private Paint mPaint;
 
@@ -130,7 +130,7 @@ public class  MyAutoCompleteTextView extends android.support.v7.widget.AppCompat
         return super.onTouchEvent(event);
     }
 
-    public CharSequence getValue(){
+    public CharSequence getValue() {
         return this.getText();
     }
 

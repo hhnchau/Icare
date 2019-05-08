@@ -16,6 +16,7 @@ import java.util.List;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.custom.MyButton;
+import ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable;
 import ptt.vn.icaremobileapp.model.account.AccountDomain;
 import ptt.vn.icaremobileapp.storage.Storage;
 
@@ -41,6 +42,7 @@ public class Login extends AppCompatActivity implements MyButton.OnListener {
         edtPassword = findViewById(R.id.edtPassword);
         MyButton btnOk = findViewById(R.id.btnOk);
         btnOk.setOnSelectedListener(this);
+
     }
 
     private void gotoDashboard() {

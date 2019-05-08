@@ -48,8 +48,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="MyTextInputDisable" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/disable</item>
+        <item name="boxStrokeWidth">1dip</item>
+        <item name="hintTextAppearance">@color/disable</item>
+        <item name="boxCornerRadiusBottomStart">84dp</item>
+        <item name="boxCornerRadiusBottomEnd">84dp</item>
+        <item name="boxCornerRadiusTopStart">84dp</item>
+        <item name="boxCornerRadiusTopEnd">84dp</item>
+    </style>
+
     <style name="MyTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">#747383</item>
+        <item name="boxStrokeColor">@color/colorMain</item>
         <item name="boxStrokeWidth">1dip</item>
         <item name="boxCornerRadiusBottomStart">84dp</item>
         <item name="boxCornerRadiusBottomEnd">84dp</item>
