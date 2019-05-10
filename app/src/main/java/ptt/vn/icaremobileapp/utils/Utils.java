@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.utils;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 
 import com.google.gson.Gson;
@@ -70,7 +73,7 @@ public class Utils {
         return sdf.format(calendar.getTime());
     }
 
-    public static String formatCurrency(int currency) {
+    public static String formatCurrency(float currency) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String current = formatter.format(currency);
         return current.replaceAll(",", ".");
@@ -105,5 +108,9 @@ public class Utils {
         final T[] jsonToObject = new Gson().fromJson(json, clazz);
 
         return Arrays.asList(jsonToObject);
+    }
+
+    public static void keyboardClose(Context context, View v) {
+        ((InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 }

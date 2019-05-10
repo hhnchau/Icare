@@ -84,6 +84,8 @@ public class ServiceItem extends BaseFragment {
             myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Utils.keyboardClose(parent.getContext(), myAutoCompleteTextView);
+                    myAutoCompleteTextView.setValue("");
                     ServiceItemDomain serviceItemDomain = (ServiceItemDomain) parent.getItemAtPosition(position);
 
                     boolean exist = false;

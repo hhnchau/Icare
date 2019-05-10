@@ -57,6 +57,8 @@ public class Diagnose extends BaseFragment {
             myAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Utils.keyboardClose(parent.getContext(), myAutoCompleteTextView);
+                    myAutoCompleteTextView.setValue("");
                     IcdDomain icd = (IcdDomain) parent.getItemAtPosition(position);
 
                     boolean exist = false;

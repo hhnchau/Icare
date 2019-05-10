@@ -53,7 +53,7 @@ public class NumPad {
         END
     }
 
-    public void show(final View view) {
+    public void show(final View view, final OnDoneListener onDoneListener) {
         final Context activityContext = floatingKeyboard.getContext();
         final ViewGroup viewGroup = (ViewGroup) ((Activity) activityContext).getWindow().getDecorView();
 
@@ -87,14 +87,33 @@ public class NumPad {
             }
         });
 
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r = new Rect();
+                view.getWindowVisibleDisplayFrame(r);
+
+                int heightDiff = view.getRootView().getHeight() - (r.bottom - r.top);
+                if (heightDiff > 100) {
+                    floatingKeyboard.remove();
+                }
+            }
+        });
+
         floatingKeyboard.setOnListener(new OnListener() {
             @Override
             public void onKey(CharSequence chr) {
                 if (view instanceof EditText)
                     if (chr.equals(activityContext.getString(R.string.btn_clear))) {
                         String text = ((EditText) view).getText().toString();
-                        if (text.length() > 0)
-                            ((EditText) view).setText(text.substring(0, text.length() - 1));
+                        int length = text.length();
+                        if (length > 0) {
+                            ((EditText) view).setText(text.substring(0, length - 1));
+                            ((EditText) view).setSelection(((EditText) view).getText().length());
+                        }
+                    } else if (chr.equals(activityContext.getString(R.string.btn_done))) {
+                        onDoneListener.onDone();
+                        floatingKeyboard.remove();
                     } else ((EditText) view).append(chr);
             }
         });
@@ -172,8 +191,8 @@ public class NumPad {
             keyClear.setOnClickListener(this);
             TextView keyDivide = this.childView.findViewById(R.id.keydivide);
             keyDivide.setOnClickListener(this);
-
-
+            TextView keyDone = this.childView.findViewById(R.id.keydone);
+            keyDone.setOnClickListener(this);
         }
 
         public void setColor(int color) {
@@ -498,5 +517,9 @@ public class NumPad {
 
     public interface OnListener {
         void onKey(CharSequence chr);
+    }
+
+    public interface OnDoneListener {
+        void onDone();
     }
 }

@@ -71,8 +71,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <ptt.vn.icaremobileapp.custom.MyTextView
-                    android:id="@+id/tvIcdEn"
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
+                    android:id="@+id/edtIcdCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_24"
+                    android:layout_marginBottom="@dimen/dp_16"
+                    app:label="@string/txt_diagnose_name_en" />
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                    android:id="@+id/edtIcdVn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginStart="@dimen/dp_24"
+                    android:layout_marginEnd="@dimen/dp_24"
+                    android:layout_marginBottom="@dimen/dp_16"
+                    app:label="@string/txt_diagnose_name_en" />
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
+                    android:id="@+id/edtIcdEn"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"

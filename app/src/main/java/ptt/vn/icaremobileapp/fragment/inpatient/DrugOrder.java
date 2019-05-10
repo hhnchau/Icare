@@ -41,7 +41,7 @@ import static ptt.vn.icaremobileapp.model.filter.FieldName.routedrug;
 import static ptt.vn.icaremobileapp.model.filter.FieldName.typemedicalchart;
 import static ptt.vn.icaremobileapp.model.filter.FieldName.unitusedrug;
 
-public class DrugOrder extends BaseFragment implements MyButton.OnListener {
+public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyInputTextOutline.OnLostFocus {
     private View view;
 
     private List<CateSharelDomain> lstAutoDrugRoute = new ArrayList<>();
@@ -63,7 +63,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     private int limit = 1000;
     private MyAutoCompleteTextView acpDrug, acpHappeningType, acpDrugRoute, acpDrugUnitUse;
     private MyInputTextOutline edtActiveIngre, edtDrugMorning, edtDrugAfter, edtDrugDinner, edtDrugEvening, edtDrugNumber, edtDrugTotal, edtDrugReason;
-
+    private MyButton btnAdd;
 
     @Nullable
     @Override
@@ -80,7 +80,6 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 getHappeningType();
                 getDrugUnitUse();
                 getPhaInventory(offset, limit, 1, inpatient.getNameObject().equals(Objectez.BHYT.name()) ? Objectez.BHYT.ordinal() : Objectez.DICHVU.ordinal());
-
             }
         }
 
@@ -88,21 +87,26 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
     }
 
     private void setupView() {
-        MyButton btnAdd = view.findViewById(R.id.btnAdd);
+        btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnSelectedListener(this);
         edtActiveIngre = view.findViewById(R.id.edtActiveIngre);
         edtDrugMorning = view.findViewById(R.id.edtDrugMorning);
-        edtDrugMorning.registerNumPadKeyboard();
+        edtDrugMorning.registerNumPadKeyboard(this);
+        edtDrugMorning.setOnLostFocusListener(this);
         edtDrugAfter = view.findViewById(R.id.edtDrugAfter);
-        edtDrugAfter.registerNumPadKeyboard();
+        edtDrugAfter.registerNumPadKeyboard(this);
+        edtDrugAfter.setOnLostFocusListener(this);
         edtDrugDinner = view.findViewById(R.id.edtDrugDinner);
-        edtDrugDinner.registerNumPadKeyboard();
+        edtDrugDinner.registerNumPadKeyboard(this);
+        edtDrugDinner.setOnLostFocusListener(this);
         edtDrugEvening = view.findViewById(R.id.edtDrugEvening);
-        edtDrugEvening.registerNumPadKeyboard();
+        edtDrugEvening.registerNumPadKeyboard(this);
+        edtDrugEvening.setOnLostFocusListener(this);
         edtDrugNumber = view.findViewById(R.id.edtDrugNumber);
-        edtDrugNumber.registerNumPadKeyboard();
+        edtDrugNumber.registerNumPadKeyboard(this);
+        edtDrugNumber.setOnLostFocusListener(this);
         edtDrugTotal = view.findViewById(R.id.edtDrugTotal);
-        edtDrugTotal.registerNumPadKeyboard();
+        edtDrugTotal.registerNumPadKeyboard(this);
         edtDrugReason = view.findViewById(R.id.edtDrugReason);
     }
 
@@ -116,6 +120,9 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpDrug.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Utils.keyboardClose(parent.getContext(), acpDrug);
+
                     phaInventoryDomain = (PhaInventoryDomain) parent.getItemAtPosition(position);
 
                     edtActiveIngre.setText(phaInventoryDomain.getNameactiveingre(), false);
@@ -154,8 +161,8 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpDrugUnitUse.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Utils.keyboardClose(parent.getContext(), acpDrugUnitUse);
                     drugUnitUse = (CateSharelDomain) parent.getItemAtPosition(position);
-
                 }
             });
 
@@ -177,6 +184,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpHappeningType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Utils.keyboardClose(parent.getContext(), acpHappeningType);
                     happeningType = (CateSharelDomain) parent.getItemAtPosition(position);
                 }
             });
@@ -199,6 +207,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
             acpDrugRoute.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Utils.keyboardClose(parent.getContext(), acpDrugRoute);
                     drugRoute = (CateSharelDomain) parent.getItemAtPosition(position);
                 }
             });
@@ -343,71 +352,112 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 });
     }
 
+    private void calculation() {
+        String number = edtDrugNumber.getText().toString();
+        if (!TextUtils.isEmpty(number)) {
+
+            float morning = convertString2Float(edtDrugMorning.getText().toString());
+            float after = convertString2Float(edtDrugAfter.getText().toString());
+            float dinner = convertString2Float(edtDrugDinner.getText().toString());
+            float evening = convertString2Float(edtDrugEvening.getText().toString());
+
+
+            int num = Integer.parseInt(number.split("/")[0]);
+            float total = ((morning + after + dinner + evening) * num);
+            float residual = total - (int) total;
+            if (residual > 0) total = total + 1;
+
+            edtDrugTotal.setText(String.valueOf((int) total));
+        }
+    }
+
+    private float convertString2Float(String number) {
+        if (TextUtils.isEmpty(number)) {
+            return 0;
+        }
+        String[] num = number.split("/");
+        if (num.length > 1) {
+            float num1 = Float.parseFloat(num[0]);
+            float num2 = Float.parseFloat(num[1]);
+            return num1 / num2;
+        } else return Float.parseFloat(number);
+    }
+
     @Override
     public void onClick() {
-        String drug = acpDrug.getText().toString();
-        if (TextUtils.isEmpty(drug)) {
-            Toast.makeText(getActivity(), getString(R.string.txt_err_drug), Toast.LENGTH_SHORT).show();
-            acpDrug.setError("*");
-            return;
-        }
-        String type = acpHappeningType.getText().toString();
-        String route = acpDrugRoute.getText().toString();
-        String morning = edtDrugMorning.getText().toString();
-        String after = edtDrugAfter.getText().toString();
-        String dinner = edtDrugDinner.getText().toString();
-        String evening = edtDrugEvening.getText().toString();
-        String number = edtDrugNumber.getText().toString();
-        if (TextUtils.isEmpty(number)) {
-            Toast.makeText(getActivity(), getString(R.string.txt_err_number), Toast.LENGTH_SHORT).show();
-            edtDrugNumber.setError("*");
-            return;
-        }
-        String total = edtDrugTotal.getText().toString();
-        String reason = edtDrugReason.getText().toString();
+        if (getActivity() != null) {
+            Utils.keyboardClose(getActivity(), btnAdd);
 
-        /*
-         * Check Exist
-         */
-        boolean exist = false;
-        for (InpatientDrugOrder item : lstDrugOrder)
-            if (phaInventoryDomain.getIddrug() == item.getIddrug()) {
-                exist = true;
-                break;
+            String drug = acpDrug.getText().toString();
+            if (TextUtils.isEmpty(drug)) {
+                Toast.makeText(getActivity(), getString(R.string.txt_err_drug), Toast.LENGTH_SHORT).show();
+                acpDrug.setError("*");
+                return;
             }
-
-        if (!exist) {
-            InpatientDrugOrder drugOrder = new InpatientDrugOrder();
-            drugOrder.setActive(Constant.ACTIVE);
-            drugOrder.setIdline(Utils.newGuid());
-            drugOrder.setIdhappening(Utils.newGuid());
-            if (phaInventoryDomain != null) {
-                drugOrder.setIddrug(phaInventoryDomain.getIddrug());
-                drugOrder.setCodedrug(phaInventoryDomain.getCode());
-                drugOrder.setNamedrug(phaInventoryDomain.getName());
-                drugOrder.setActivename(phaInventoryDomain.getNameactiveingre());
-                drugOrder.setIdstore(phaInventoryDomain.getIdstore());
-                drugOrder.setIdunit(phaInventoryDomain.getIdunit());
-                drugOrder.setPrice(phaInventoryDomain.getPrice());
-                drugOrder.setInsurance(phaInventoryDomain.getIshi());
+            String type = acpHappeningType.getText().toString();
+            String route = acpDrugRoute.getText().toString();
+            String morning = edtDrugMorning.getText().toString();
+            String after = edtDrugAfter.getText().toString();
+            String dinner = edtDrugDinner.getText().toString();
+            String evening = edtDrugEvening.getText().toString();
+            String number = edtDrugNumber.getText().toString();
+            if (TextUtils.isEmpty(number)) {
+                Toast.makeText(getActivity(), getString(R.string.txt_err_number), Toast.LENGTH_SHORT).show();
+                edtDrugNumber.setError("*");
+                return;
             }
-            if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
+            String total = edtDrugTotal.getText().toString();
+            String reason = edtDrugReason.getText().toString();
+
+            /*
+             * Check Exist
+             */
+            boolean exist = false;
+            for (InpatientDrugOrder item : lstDrugOrder)
+                if (phaInventoryDomain.getIddrug() == item.getIddrug()) {
+                    exist = true;
+                    break;
+                }
+
+            if (!exist) {
+                InpatientDrugOrder drugOrder = new InpatientDrugOrder();
+                drugOrder.setActive(Constant.ACTIVE);
+                drugOrder.setIdline(Utils.newGuid());
+                drugOrder.setIdhappening(Utils.newGuid());
+                if (phaInventoryDomain != null) {
+                    drugOrder.setIddrug(phaInventoryDomain.getIddrug());
+                    drugOrder.setCodedrug(phaInventoryDomain.getCode());
+                    drugOrder.setNamedrug(phaInventoryDomain.getName());
+                    drugOrder.setActivename(phaInventoryDomain.getNameactiveingre());
+                    drugOrder.setIdstore(phaInventoryDomain.getIdstore());
+                    drugOrder.setIdunit(phaInventoryDomain.getIdunit());
+                    drugOrder.setIdunitname(phaInventoryDomain.getNameunit());
+                    drugOrder.setPrice(phaInventoryDomain.getPrice());
+                    drugOrder.setInsurance(phaInventoryDomain.getIshi());
+                }
+                if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
 
 
-            if (drugUnitUse != null) drugOrder.setIdunituse(drugUnitUse.getIdline());
+                if (drugUnitUse != null) drugOrder.setIdunituse(drugUnitUse.getIdline());
 
-            drugOrder.setQtymor(morning);
-            drugOrder.setQtyaft(after);
-            drugOrder.setQtydin(dinner);
-            drugOrder.setQtynig(evening);
-            drugOrder.setQty(Float.parseFloat(total));
-            drugOrder.setQtyday(Integer.parseInt(number));
-            drugOrder.setTotal(phaInventoryDomain.getPrice() * Float.parseFloat(total));
-            drugOrder.setDesc(reason);
+                drugOrder.setQtymor(morning);
+                drugOrder.setQtyaft(after);
+                drugOrder.setQtydin(dinner);
+                drugOrder.setQtynig(evening);
+                drugOrder.setQty(Float.parseFloat(total));
+                drugOrder.setQtyday(Integer.parseInt(number));
+                drugOrder.setTotal(phaInventoryDomain.getPrice() * Float.parseFloat(total));
+                drugOrder.setDesc(
+                        "Sáng: " + drugRoute.getName() + " " + drugOrder.getQtymor() + " " + drugOrder.getIdunitname() + ", " +
+                                "Trưa:" + drugRoute.getName() + " " + drugOrder.getQtyaft() + " " + drugOrder.getIdunitname() + ", " +
+                                "Chiều:" + drugRoute.getName() + " " + drugOrder.getQtynig() + " " + drugOrder.getIdunitname() + ", " +
+                                "Tối:" + drugRoute.getName() + " " + drugOrder.getQtydin() + " " + drugOrder.getIdunitname() + ", " +
+                                " (" + reason + ")");
 
-            lstDrugOrder.add(drugOrder);
-            adapterDrugOrder.setItems(lstDrugOrder);
-            adapterDrugOrder.notifyDataSetChanged();
+                lstDrugOrder.add(drugOrder);
+                adapterDrugOrder.setItems(lstDrugOrder);
+                adapterDrugOrder.notifyDataSetChanged();
+            }
         }
     }
 
@@ -419,5 +469,10 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener {
                 Toast.makeText(getActivity(), getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onLost() {
+        calculation();
     }
 }

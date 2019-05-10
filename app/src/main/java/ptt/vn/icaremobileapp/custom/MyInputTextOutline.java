@@ -1,5 +1,6 @@
 package ptt.vn.icaremobileapp.custom;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -27,6 +29,10 @@ public class MyInputTextOutline extends LinearLayout {
     private MyAutoCompleteTextView myAutoCompleteTextView;
     private CharSequence hint, text;
     private int inputType;
+
+    public interface OnLostFocus {
+        void onLost();
+    }
 
     public MyInputTextOutline(@NonNull Context context) {
         super(context);
@@ -90,21 +96,26 @@ public class MyInputTextOutline extends LinearLayout {
         myAutoCompleteTextView.setText(charSequence);
     }
 
-    public void registerNumPadKeyboard() {
+    public void setOnLostFocusListener(final OnLostFocus onLostFocus) {
         myAutoCompleteTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    //((InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    //NumPad.getInstance(context).show(myAutoCompleteTextView);
-                }
-                //else NumPad.getInstance(context).hide();
+                if (!hasFocus) onLostFocus.onLost();
             }
         });
+    }
+
+    public void registerNumPadKeyboard(final OnLostFocus onLostFocus) {
         myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NumPad.getInstance(context).show(myAutoCompleteTextView);
+                ((InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+                NumPad.getInstance(context).show(myAutoCompleteTextView, new NumPad.OnDoneListener() {
+                    @Override
+                    public void onDone() {
+                        onLostFocus.onLost();
+                    }
+                });
             }
         });
 

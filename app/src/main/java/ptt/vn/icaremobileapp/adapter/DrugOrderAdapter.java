@@ -25,6 +25,7 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
@@ -104,12 +105,12 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
             }
         });
 
-        holder.tvName.setText(inpatientDrugOrder.getCodedrug() + " - " + inpatientDrugOrder.getNamedrug());
-        holder.tvNumber.setText(inpatientDrugOrder.getQty() + "");
+        holder.tvName.setText((inpatientDrugOrder.getCodedrug() + " - " + inpatientDrugOrder.getNamedrug()));
+        holder.tvNumber.setText(String.valueOf(inpatientDrugOrder.getQty()));
         holder.tvDrugActiveingre.setValues(inpatientDrugOrder.getActivename());
         holder.tvUnit.setValues(inpatientDrugOrder.getUnitusename());
-        holder.tvPrice.setValues(inpatientDrugOrder.getPrice() + "");
-        holder.tvTotal.setValues(inpatientDrugOrder.getTotal() + "");
+        holder.tvPrice.setValues(Utils.formatCurrency((int)inpatientDrugOrder.getPrice()));
+        holder.tvTotal.setValues(String.valueOf((int)inpatientDrugOrder.getTotal()));
         holder.tvDrugUse.setValues(inpatientDrugOrder.getDesc());
         updateInsurance(inpatientDrugOrder.getInsurance(), holder.icInsurance);
     }

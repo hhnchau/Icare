@@ -134,6 +134,10 @@ public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatA
         return this.getText();
     }
 
+    public void setValue(String value) {
+        this.setText(value);
+    }
+
     @Override
     public boolean performClick() {
         return super.performClick();

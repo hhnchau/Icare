@@ -28,6 +28,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
     private List<Integer> expand = new ArrayList<>();
     private List<InpatientDiagnose> lists;
     private Context context;
+    private InpatientDiagnose diagnose;
 
     public DiagnoseAdapter(List<InpatientDiagnose> lists) {
         this.lists = lists;
@@ -68,17 +69,16 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
-
-        final InpatientDiagnose diagnose = lists.get(position);
+        diagnose = lists.get(position);
 
 
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogEditDiagnose.getInstance().show(context, null, new DialogEditDiagnose.OnClickListener() {
+                DialogEditDiagnose.getInstance().show(context, diagnose, new DialogEditDiagnose.OnClickListener() {
                     @Override
-                    public void onClickListener(HappeningDomain happening) {
-                        diagnose.setNameicdvn("");
+                    public void onClickListener(InpatientDiagnose diagnosel) {
+                        diagnose = diagnosel;
                         notifyDataSetChanged();
                     }
                 });
@@ -102,7 +102,8 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
-        holder.tvIcdVn.setText(diagnose.getCode() + " - " + diagnose.getNameicdvn());
+
+        holder.tvIcdVn.setText((diagnose.getCode() + " - " + diagnose.getNameicdvn()));
         holder.tvIcdCode.setText(diagnose.getCode());
         holder.tvIcdEn.setValues(diagnose.getNameicdeng());
         updateSelected(diagnose, holder.icSelect);

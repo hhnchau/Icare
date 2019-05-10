@@ -101,6 +101,15 @@
                 android:text="@string/btn_clear"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
+
+        <TableRow style="@style/keyboard_row">
+            <TextView
+                android:id="@+id/keydone"
+                style="@style/keyboard_button"
+                android:text="@string/btn_done"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+
     </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
