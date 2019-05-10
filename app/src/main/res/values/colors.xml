@@ -4,13 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">@color/colorMain</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#212121</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#757575</color>
 
     <color name="keyboard_bg">#f3f6f9</color>
 
     <color name="colorMain">#00BCD4</color>
     <color name="transparent">#00000000</color>
-    <color name="disable">#b3b3b3</color>
+    <color name="disable">#e0e0e0</color>
     <color name="bg">#f4f4f4</color>
     <color name="wh">#ffffff</color>
     <color name="gr">#bdbdbd</color>

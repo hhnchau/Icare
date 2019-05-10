@@ -73,7 +73,7 @@
 
             <ImageView
                 android:id="@+id/icInsurance"
-                android:layout_width="@dimen/ic_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:contentDescription="@string/img_des"
                 android:src="@mipmap/ic_insurance_red"
@@ -87,7 +87,7 @@
 
             <ImageView
                 android:id="@+id/icEdit"
-                android:layout_width="@dimen/ic_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
@@ -101,7 +101,7 @@
 
             <ImageView
                 android:id="@+id/icDelete"
-                android:layout_width="@dimen/ic_40"
+                android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/dp_32"
                 android:contentDescription="@string/img_des"
