@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_24"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_medical_01"
+                    android:drawableStart="@drawable/ic_diagnose_01"
                     android:drawablePadding="@dimen/dp_16"
                     android:padding="@dimen/dp_12"
                     android:text="@string/txt_dialog_diagnose"
