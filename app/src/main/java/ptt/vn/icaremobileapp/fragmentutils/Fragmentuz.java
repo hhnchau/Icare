@@ -14,21 +14,20 @@ import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrder;
 import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrderOutside;
 import ptt.vn.icaremobileapp.fragment.inpatient.Happening;
 import ptt.vn.icaremobileapp.fragment.inpatient.HappeningFrame;
-import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
+import ptt.vn.icaremobileapp.fragment.inpatient.Inpatient;
 import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
 import ptt.vn.icaremobileapp.fragment.inpatient.Resolved;
 import ptt.vn.icaremobileapp.fragment.inpatient.ServiceItem;
 import ptt.vn.icaremobileapp.fragment.inpatient.ThamKham;
+import ptt.vn.icaremobileapp.fragment.receive.Receiving;
+import ptt.vn.icaremobileapp.fragment.receive.ReceivingOne;
+import ptt.vn.icaremobileapp.fragment.receive.ReceivingTwo;
 
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
     public static final String BUNDLE_KEY_HAPPENING = "HAPPENING";
 
-    public static void replaceFrame(FragmentManager fragmentManager, Bundle bundle, Fragmentez fzg, int frame, Directionez direction) {
-
-        Fragment frg = null;
-        String name = null;
-        String stack = null;
+    public static void replaceFragment(FragmentManager fragmentManager, Fragmentez fzg, boolean backStack, int frame, Bundle bundle, Directionez direction) {
 
         int enter, exit, pop_enter, pop_exit;
         if (direction == Directionez.NEXT) {
@@ -45,42 +44,24 @@ public class Fragmentuz {
             pop_exit = R.anim.exit_to_left;
         }
 
-        switch (fzg) {
-            case INPATIENT_LIST:
-                name = InpatientList.class.getName();
-                frg = new InpatientList();
-                stack = Fragmentez.INPATIENT_LIST.name();
-                break;
-            case HAPPENINGFRAME:
-                name = HappeningFrame.class.getName();
-                frg = new HappeningFrame();
-                stack = Fragmentez.HAPPENINGFRAME.name();
-                break;
-            case INSTRUCTION:
-                name = Instruction.class.getName();
-                frg = new Instruction();
-                stack = Fragmentez.INSTRUCTION.name();
-                break;
-            case DASHBOARD:
-                name = Dashboard.class.getName();
-                frg = new Dashboard();
-                stack = Fragmentez.DASHBOARD.name();
-                break;
-        }
+        Fragment frg = getFragment(fzg);
 
         if (frg != null && bundle != null)
             frg.setArguments(bundle);
 
-        if (fragmentManager != null && frg != null)
-            fragmentManager
-                    .beginTransaction()
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (frg != null) {
+
+            if (backStack) transaction.addToBackStack(frg.getClass().getName());
+
+            transaction
                     .setCustomAnimations(enter, exit, pop_enter, pop_exit)
-                    .addToBackStack(stack)
-                    .replace(frame, frg, name)
+                    .replace(frame, frg, frg.getClass().getName())
                     .commit();
+        }
     }
 
-    public static void addFrame(List<Fragmentoz> lstFragment, FragmentManager fragmentManager, Fragmentez fzg, int frame, Bundle bundle, Directionez direction) {
+    public static void addFragment(List<Fragmentoz> lstFragment, FragmentManager fragmentManager, Fragmentez fzg, boolean backStack, int frame, Bundle bundle, Directionez direction) {
         boolean exist = false;
         for (Fragmentoz item : lstFragment)
             if (fzg == item.getFzg()) {
@@ -124,6 +105,8 @@ public class Fragmentuz {
 
                 if (bundle != null) frg.setArguments(bundle);
 
+                if (backStack) transaction.addToBackStack(frg.getClass().getName());
+
                 transaction
                         .setCustomAnimations(enter, exit)
                         .add(frame, frg)
@@ -135,6 +118,17 @@ public class Fragmentuz {
 
     private static Fragment getFragment(Fragmentez fzg) {
         switch (fzg) {
+            case INPATIENT:
+                return new Inpatient();
+            case HAPPENINGFRAME:
+                return new HappeningFrame();
+            case INSTRUCTION:
+                return new Instruction();
+            case DASHBOARD:
+                return new Dashboard();
+            case RECEIVING:
+                return new Receiving();
+
             case THAM_KHAM:
                 return new ThamKham();
             case SERVICE_ITEM:
@@ -149,12 +143,16 @@ public class Fragmentuz {
                 return new Happening();
             case RESOLVED:
                 return new Resolved();
+            case RECEIVING_ONE:
+                return new ReceivingOne();
+            case RECEIVING_TWO:
+                return new ReceivingTwo();
 
         }
         return null;
     }
 
-    public static void clearPopBackStack(FragmentManager fragmentManager) {
+    public static void clearAllPopBackStack(FragmentManager fragmentManager) {
         for (int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
             fragmentManager.popBackStack();
         }

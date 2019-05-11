@@ -15,6 +15,7 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable;
 import ptt.vn.icaremobileapp.model.account.AccountDomain;
@@ -48,6 +49,7 @@ public class Login extends AppCompatActivity implements MyButton.OnListener {
     private void gotoDashboard() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -71,5 +73,11 @@ public class Login extends AppCompatActivity implements MyButton.OnListener {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        CompositeManager.dispose();
+        super.onDestroy();
     }
 }

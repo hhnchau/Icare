@@ -109,6 +109,7 @@
 
     <string name="screen_dashboard">DASHBOARD</string>
     <string name="screen_inpatient">NỘI TRÚ</string>
+    <string name="screen_receiving">TIẾP NHẬN</string>
     <string name="screen_inpatient_list">DS NỘI TRÚ</string>
     <string name="screen_inpatient_happening">DIỄN BIẾN</string>
     <string name="screen_inpatient_instruction">Y LỆNH</string>

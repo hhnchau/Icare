@@ -87,26 +87,26 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
         myTabButton.setActive(MyTabButton.TAB2);
         final Bundle bundle = new Bundle();
         bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
-        Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, bundle, Directionez.NEXT);
+        Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, false, R.id.frame, bundle, Directionez.NEXT);
         myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
             @Override
             public void onTab(int tab) {
                 if (getActivity() != null) {
                     switch (tab) {
                         case MyTabButton.TAB1:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.THAM_KHAM, R.id.frame, null, Directionez.NEXT);
+                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.THAM_KHAM, false, R.id.frame, null, Directionez.NEXT);
                             break;
                         case MyTabButton.TAB2:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, R.id.frame, bundle, Directionez.NEXT);
+                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.SERVICE_ITEM, false, R.id.frame, bundle, Directionez.NEXT);
                             break;
                         case MyTabButton.TAB3:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER, R.id.frame, bundle, Directionez.NEXT);
+                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER, false, R.id.frame, bundle, Directionez.NEXT);
                             break;
                         case MyTabButton.TAB4:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, R.id.frame, null, Directionez.NEXT);
+                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.DRUG_ORDER_OUTSIDE, false, R.id.frame, null, Directionez.NEXT);
                             break;
                         case MyTabButton.TAB5:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.DIAGNOSE, R.id.frame, null, Directionez.NEXT);
+                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.DIAGNOSE, false, R.id.frame, null, Directionez.NEXT);
                             break;
                     }
                 }

@@ -38,40 +38,40 @@ public class HappeningFrame extends Fragment {
             PatientDomain patient = inpatient.getPatient();
             if (patient != null) setupExpandablePatientInfo(patient);
 
-            if (getActivity() != null) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                setupTabButton(fragmentManager);
-            }
+            setupTabButton();
         }
 
         return view;
     }
 
-    private void setupTabButton(final FragmentManager fragmentManager) {
-        MyTabButton myTabButton = view.findViewById(R.id.myTab);
-        List<String> lst = new ArrayList<>();
-        lst.add(getString(R.string.tab_happening));
-        lst.add(getString(R.string.tab_resolve));
-        myTabButton.setContent(lst);
-        myTabButton.setActive(MyTabButton.TAB1);
-        final Bundle bundle = new Bundle();
-        bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
-        Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.HAPPENING, R.id.frameHappening, bundle, Directionez.NEXT);
-        myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
-            @Override
-            public void onTab(int tab) {
-                if (getActivity() != null) {
-                    switch (tab) {
-                        case MyTabButton.TAB1:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.HAPPENING, R.id.frameHappening, null, Directionez.NEXT);
-                            break;
-                        case MyTabButton.TAB2:
-                            Fragmentuz.addFrame(lstFragment, fragmentManager, Fragmentez.RESOLVED, R.id.frameHappening, null, Directionez.NEXT);
-                            break;
+    private void setupTabButton() {
+        if(getActivity() != null) {
+            final FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            MyTabButton myTabButton = view.findViewById(R.id.myTab);
+            List<String> lst = new ArrayList<>();
+            lst.add(getString(R.string.tab_happening));
+            lst.add(getString(R.string.tab_resolve));
+            myTabButton.setContent(lst);
+            myTabButton.setActive(MyTabButton.TAB1);
+            final Bundle bundle = new Bundle();
+            bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
+            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.HAPPENING, false, R.id.frameHappening, bundle, Directionez.NEXT);
+            myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
+                @Override
+                public void onTab(int tab) {
+                    if (getActivity() != null) {
+                        switch (tab) {
+                            case MyTabButton.TAB1:
+                                Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.HAPPENING, false, R.id.frameHappening, null, Directionez.NEXT);
+                                break;
+                            case MyTabButton.TAB2:
+                                Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.RESOLVED, false, R.id.frameHappening, null, Directionez.NEXT);
+                                break;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     private void setupExpandablePatientInfo(PatientDomain patient) {

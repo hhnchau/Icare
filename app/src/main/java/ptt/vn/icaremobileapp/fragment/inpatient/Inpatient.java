@@ -19,11 +19,11 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.InpatientListAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
-import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewMedexaAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
@@ -33,9 +33,9 @@ import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 
 import static ptt.vn.icaremobileapp.model.filter.FieldName.regobject;
 
-public class InpatientList extends BaseFragment {
+public class Inpatient extends BaseFragment {
     private View view;
-
+    private List<Fragmentoz> lstFragment = new ArrayList<>();
     private InpatientListAdapter adapter;
     private List<InpatientDomain> lstInpatient;
     private int offset = 0;
@@ -45,7 +45,7 @@ public class InpatientList extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.inpatient_list, container, false);
+        view = inflater.inflate(R.layout.inpatient, container, false);
         initView();
 
         getMedexa();
@@ -76,7 +76,8 @@ public class InpatientList extends BaseFragment {
         if (getActivity() != null) {
             Bundle bundle = new Bundle();
             bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, lstInpatient.get(p));
-            Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENINGFRAME, R.id.mainFrame, Directionez.NEXT);
+            //Fragmentuz.addFragment(getActivity().getSupportFragmentManager(), bundle, Fragmentez.HAPPENINGFRAME, R.id.mainFrame, Directionez.NEXT);
+            Fragmentuz.replaceFragment(getActivity().getSupportFragmentManager(), Fragmentez.HAPPENINGFRAME, true, R.id.mainFrame, bundle, Directionez.NEXT);
         }
     }
 
@@ -204,9 +205,4 @@ public class InpatientList extends BaseFragment {
         });
     }
 
-    @Override
-    public void onDestroy() {
-        CompositeManager.dispose();
-        super.onDestroy();
-    }
 }

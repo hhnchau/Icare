@@ -3,7 +3,6 @@ package ptt.vn.icaremobileapp;
 import android.os.Build;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,16 +15,16 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.drawer.DrawerAdapter;
 import ptt.vn.icaremobileapp.drawer.DrawerModel;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
-import ptt.vn.icaremobileapp.fragment.inpatient.InpatientList;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.utils.Toolbaruz;
 
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar
         setupToolbar();
 
-        //Fragment
+        //Listener BackStack
         fragmentManager = getSupportFragmentManager();
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
@@ -74,14 +73,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Default
-        Fragmentuz.replaceFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
+        Fragmentuz.replaceFragment(fragmentManager, Fragmentez.DASHBOARD, false, R.id.mainFrame, null, Directionez.NEXT);
+        Toolbaruz.setToolbar(MainActivity.this, Fragmentez.DASHBOARD, toolbarTitle, toolbarLeft, toolbarRight);
 
     }
 
     private void setupDrawer() {
         final List<DrawerModel> lstDrawer = new ArrayList<>();
         lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_dash, getString(R.string.screen_dashboard)));
-        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT_LIST, R.drawable.ic_ipt, getString(R.string.screen_inpatient)));
+        lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT, R.drawable.ic_ipt, getString(R.string.screen_inpatient)));
+        lstDrawer.add(new DrawerModel(Fragmentez.RECEIVING, R.drawable.ic_ipt, getString(R.string.screen_receiving)));
 
         drawerList = findViewById(R.id.drawerList);
         drawerAdapter = new DrawerAdapter(this, lstDrawer);
@@ -102,27 +103,23 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        for (Fragment fragment : fragmentManager.getFragments()) {
-                            if (fragment instanceof InpatientList || fragment instanceof Dashboard) {
-                            } else {
-                                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                            }
-                        }
-
                         switch (lstDrawer.get(position).getFzg()) {
-                            case INPATIENT_LIST:
-                                Fragmentuz.replaceFrame(fragmentManager, null, Fragmentez.INPATIENT_LIST, R.id.mainFrame, Directionez.NEXT);
-                                //fragmentManager.popBackStack("DASHBOARD", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
+                            case INPATIENT:
+                                Fragmentuz.replaceFragment(fragmentManager, Fragmentez.INPATIENT, false, R.id.mainFrame, null, Directionez.NEXT);
+                                Toolbaruz.setToolbar(MainActivity.this, Fragmentez.INPATIENT, toolbarTitle, toolbarLeft, toolbarRight);
                                 break;
                             case DASHBOARD:
-                                Fragmentuz.replaceFrame(fragmentManager, null, Fragmentez.DASHBOARD, R.id.mainFrame, Directionez.NEXT);
-                                //fragmentManager.popBackStack("INPATIENT_LIST", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                                Fragmentuz.replaceFragment(fragmentManager, Fragmentez.DASHBOARD, false, R.id.mainFrame, null, Directionez.NEXT);
+                                Toolbaruz.setToolbar(MainActivity.this, Fragmentez.DASHBOARD, toolbarTitle, toolbarLeft, toolbarRight);
+                                break;
+                            case RECEIVING:
+                                Fragmentuz.replaceFragment(fragmentManager, Fragmentez.RECEIVING, false, R.id.mainFrame, null, Directionez.NEXT);
+                                Toolbaruz.setToolbar(MainActivity.this, Fragmentez.RECEIVING, toolbarTitle, toolbarLeft, toolbarRight);
                                 break;
                         }
 
                     }
-                }, 100);
+                }, 200);
             }
         });
     }
@@ -136,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
         toolbarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fragmentManager.getBackStackEntryCount() > 1) {
+                int i = fragmentManager.getBackStackEntryCount();
+                if (fragmentManager.getBackStackEntryCount() > 0) {
                     fragmentManager.popBackStack();
                 } else {
                     drawerLayout.openDrawer(drawer);
@@ -152,4 +150,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        CompositeManager.dispose();
+        super.onDestroy();
+    }
 }

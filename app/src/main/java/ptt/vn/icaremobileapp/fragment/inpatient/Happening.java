@@ -1,13 +1,16 @@
 package ptt.vn.icaremobileapp.fragment.inpatient;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +39,11 @@ public class Happening extends BaseFragment {
     private int offset = 0;
     private int limit = 1000;
 
+    private boolean mAlreadyLoaded;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.happening, container, false);
         if (getArguments() != null)
             inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
@@ -49,10 +53,21 @@ public class Happening extends BaseFragment {
             setupExpandableRecyclerView();
 
             getHappening(offset, limit, inpatient.getIdlink());
+
+            getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+                @Override
+                public void onBackStackChanged() {
+                    if (savedInstanceState == null && !mAlreadyLoaded) {
+                        mAlreadyLoaded = true;
+
+                        Toast.makeText(getActivity(), "Change", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
         return view;
     }
-
 
     private void initFloatButton() {
         view.findViewById(R.id.fabAdd).setOnClickListener(new View.OnClickListener() {
@@ -144,7 +159,8 @@ public class Happening extends BaseFragment {
         bundle.putParcelable(Fragmentuz.BUNDLE_KEY_HAPPENING, happening);
         bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
         if (getActivity() != null)
-            Fragmentuz.replaceFrame(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
+            //Fragmentuz.replaceFragment(getActivity().getSupportFragmentManager(), bundle, Fragmentez.INSTRUCTION, R.id.mainFrame, Directionez.NEXT);
+            Fragmentuz.replaceFragment( getActivity().getSupportFragmentManager(), Fragmentez.INSTRUCTION, true, R.id.mainFrame, bundle, Directionez.NEXT);
     }
 
     private void getHappening(int _offset, int _limit, @NonNull String _idLink) {

@@ -1,7 +1,6 @@
 package ptt.vn.icaremobileapp.fragmentutils;
 
 public enum Fragmentez {
-    INPATIENT_LIST,
     HAPPENINGFRAME,
     HAPPENING,
     RESOLVED,
@@ -11,5 +10,9 @@ public enum Fragmentez {
     DRUG_ORDER,
     DRUG_ORDER_OUTSIDE,
     DIAGNOSE,
-    DASHBOARD;
+    DASHBOARD,
+    INPATIENT,
+    RECEIVING,
+    RECEIVING_ONE,
+    RECEIVING_TWO
 }
