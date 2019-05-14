@@ -3,7 +3,6 @@ package ptt.vn.icaremobileapp.fragment.inpatient;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTabButton;
 import ptt.vn.icaremobileapp.expand.ExpandableHappening;
@@ -22,32 +22,44 @@ import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 
-public class HappeningFrame extends Fragment {
+public class HappeningFrame extends BaseFragment {
     private View view;
-    private List<Fragmentoz> lstFragment = new ArrayList<>();
+    private FragmentManager fragmentManager;
+    private List<Fragmentoz> lstFragment;
     private InpatientDomain inpatient;
+    private MyTabButton myTabButton;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.happening_frame, container, false);
+        lstFragment = new ArrayList<>();
+        initView();
 
         if (getArguments() != null)
             inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
+
+        updateView();
+
+        return view;
+    }
+
+    private void initView() {
+        myTabButton = view.findViewById(R.id.myTab);
+    }
+
+    private void updateView() {
         if (inpatient != null) {
             PatientDomain patient = inpatient.getPatient();
             if (patient != null) setupExpandablePatientInfo(patient);
 
             setupTabButton();
         }
-
-        return view;
     }
 
     private void setupTabButton() {
-        if(getActivity() != null) {
-            final FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            MyTabButton myTabButton = view.findViewById(R.id.myTab);
+        if (getActivity() != null) {
+            fragmentManager = getActivity().getSupportFragmentManager();
             List<String> lst = new ArrayList<>();
             lst.add(getString(R.string.tab_happening));
             lst.add(getString(R.string.tab_resolve));
@@ -55,6 +67,8 @@ public class HappeningFrame extends Fragment {
             myTabButton.setActive(MyTabButton.TAB1);
             final Bundle bundle = new Bundle();
             bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
+
+            //Set Default
             Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.HAPPENING, false, R.id.frameHappening, bundle, Directionez.NEXT);
             myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
                 @Override
@@ -86,5 +100,17 @@ public class HappeningFrame extends Fragment {
                 else expPatientInfo.expand();
             }
         });
+    }
+
+    @Override
+    public void toolbarListener() {
+
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        Fragmentuz.removeFragment(lstFragment, fragmentManager);
+        super.onDestroyView();
     }
 }

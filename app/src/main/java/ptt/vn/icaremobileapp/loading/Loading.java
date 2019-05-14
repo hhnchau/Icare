@@ -29,6 +29,8 @@ public class Loading {
     private Dialog dialog;
 
     public void show(final Context context){
+        if(dialog != null && dialog.isShowing()) return;
+
         if (context != null){
             dialog = new Dialog(context, R.style.MyLoading);
             dialog.setOwnerActivity((Activity)context);

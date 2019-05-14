@@ -48,4 +48,9 @@ public class ReceivingOne extends BaseFragment {
 
         return view;
     }
+
+    @Override
+    public void toolbarListener() {
+
+    }
 }

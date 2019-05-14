@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,23 +23,23 @@ import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard4;
 import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard5;
 import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard6;
 
-public class Dashboard extends BaseFragment {
+public class Dashboard extends Fragment {
     private TextView header1, header2, header3, header4;
 
     int i = 0;
-    int i1= 0;
+    int i1 = 0;
     int i2 = 0;
-    int i3 =0;
+    int i3 = 0;
 
     int ii = 0;
-    int ii1= 0;
+    int ii1 = 0;
     int ii2 = 0;
-    int ii3 =0;
+    int ii3 = 0;
 
     int iii = 0;
-    int iii1= 0;
+    int iii1 = 0;
     int iii2 = 0;
-    int iii3 =0;
+    int iii3 = 0;
 
     int iiii = 0;
 
@@ -49,18 +50,25 @@ public class Dashboard extends BaseFragment {
     int iiiiii = 0;
 
 
+    private Dashboard1 frame1;
+    private Dashboard2 frame2;
+    private Dashboard3 frame3;
+    private Dashboard4 frame4;
+    private Dashboard5 frame5;
+    private Dashboard6 frame6;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dashboard, container, false);
 
 
-        Dashboard1 frame1 = new Dashboard1();
-        Dashboard2 frame2 = new Dashboard2();
-        Dashboard3 frame3 = new Dashboard3();
-        Dashboard4 frame4 = new Dashboard4();
-        Dashboard5 frame5 = new Dashboard5();
-        Dashboard6 frame6 = new Dashboard6();
+        frame1 = new Dashboard1();
+        frame2 = new Dashboard2();
+        frame3 = new Dashboard3();
+        frame4 = new Dashboard4();
+        frame5 = new Dashboard5();
+        frame6 = new Dashboard6();
 
         if (getActivity() != null)
             getActivity().getSupportFragmentManager().beginTransaction()
@@ -269,6 +277,21 @@ public class Dashboard extends BaseFragment {
                 }
             }
         }, 0, 10000);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .remove(frame1)
+                    .remove(frame2)
+                    .remove(frame3)
+                    .remove(frame4)
+                    .remove(frame5)
+                    .remove(frame6)
+                    .commit();
+        super.onDestroy();
 
     }
 }

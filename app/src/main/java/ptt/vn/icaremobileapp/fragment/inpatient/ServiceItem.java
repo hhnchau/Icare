@@ -264,4 +264,8 @@ public class ServiceItem extends BaseFragment {
         });
     }
 
+    @Override
+    public void toolbarListener() {
+
+    }
 }

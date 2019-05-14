@@ -157,4 +157,9 @@ public class Diagnose extends BaseFragment {
             }
         });
     }
+
+    @Override
+    public void toolbarListener() {
+
+    }
 }

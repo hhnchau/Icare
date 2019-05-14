@@ -22,13 +22,14 @@ import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 public class Receiving extends BaseFragment {
     private View view;
     private List<Fragmentoz> lstFragment = new ArrayList<>();
+    private FragmentManager fragmentManager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.receiving, container, false);
 
-        //setupTabButton();
+        setupTabButton();
 
         view.findViewById(R.id.go).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +47,7 @@ public class Receiving extends BaseFragment {
 
     private void setupTabButton() {
         if (getActivity() != null) {
-            final FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager = getActivity().getSupportFragmentManager();
             MyTabButton myTabButton = view.findViewById(R.id.myTab);
             List<String> lst = new ArrayList<>();
             lst.add("Mot");
@@ -61,7 +62,7 @@ public class Receiving extends BaseFragment {
                 public void onTab(int tab) {
                     switch (tab) {
                         case MyTabButton.TAB1:
-                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.RECEIVING_ONE,false, R.id.frameReceiving, null, Directionez.NEXT);
+                            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.RECEIVING_ONE, false, R.id.frameReceiving, null, Directionez.NEXT);
                             break;
                         case MyTabButton.TAB2:
                             Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.RECEIVING_TWO, false, R.id.frameReceiving, null, Directionez.NEXT);
@@ -70,5 +71,16 @@ public class Receiving extends BaseFragment {
                 }
             });
         }
+    }
+
+    @Override
+    public void toolbarListener() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        Fragmentuz.removeFragment(lstFragment, fragmentManager);
+        super.onDestroy();
     }
 }

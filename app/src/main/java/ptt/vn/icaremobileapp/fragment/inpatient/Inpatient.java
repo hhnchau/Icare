@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,6 @@ import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewMedexaAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
-import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
@@ -31,16 +31,17 @@ import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 
+
 import static ptt.vn.icaremobileapp.model.filter.FieldName.regobject;
 
 public class Inpatient extends BaseFragment {
     private View view;
-    private List<Fragmentoz> lstFragment = new ArrayList<>();
     private InpatientListAdapter adapter;
     private List<InpatientDomain> lstInpatient;
     private int offset = 0;
     private int limit = 1000;
     private int position;
+    private int idMedexa = 0;
 
     @Nullable
     @Override
@@ -49,6 +50,8 @@ public class Inpatient extends BaseFragment {
         initView();
 
         getMedexa();
+
+        if (idMedexa > 0) getInpatient(offset, limit, idMedexa);
 
         return view;
     }
@@ -106,7 +109,10 @@ public class Inpatient extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     MedexaHDomain medexa = (MedexaHDomain) parent.getItemAtPosition(position);
-                    if (medexa != null) getInpatient(offset, limit, medexa.getId());
+                    if (medexa != null) {
+                        idMedexa = medexa.getId();
+                        getInpatient(offset, limit, idMedexa);
+                    }
                 }
             });
 
@@ -166,7 +172,7 @@ public class Inpatient extends BaseFragment {
     }
 
     private void getPatientObject() {
-        ApiController.getInstance().getCateShare(getActivity(),regobject, new ACallback<CateSharelDomain>() {
+        ApiController.getInstance().getCateShare(getActivity(), regobject, new ACallback<CateSharelDomain>() {
             @Override
             public void response(final List<CateSharelDomain> listCate) {
                 AsyncTask.execute(new Runnable() {
@@ -205,4 +211,8 @@ public class Inpatient extends BaseFragment {
         });
     }
 
+    @Override
+    public void toolbarListener() {
+
+    }
 }

@@ -3,6 +3,7 @@ package ptt.vn.icaremobileapp;
 import android.os.Build;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +24,9 @@ import java.util.List;
 import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.drawer.DrawerAdapter;
 import ptt.vn.icaremobileapp.drawer.DrawerModel;
+import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
+import ptt.vn.icaremobileapp.fragment.inpatient.Inpatient;
+import ptt.vn.icaremobileapp.fragment.receive.Receiving;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
@@ -32,12 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private DrawerLayout drawerLayout;
     private ConstraintLayout drawer;
-    private ListView drawerList;
-    private DrawerAdapter drawerAdapter;
-
     private ImageView toolbarRight, toolbarLeft;
     private TextView toolbarTitle;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,22 @@ public class MainActivity extends AppCompatActivity {
                 if (position > 0) {
                     FragmentManager.BackStackEntry backEntry = fragmentManager.getBackStackEntryAt(position - 1);
                     Toolbaruz.setToolbar(MainActivity.this, backEntry, toolbarTitle, toolbarLeft, toolbarRight);
+                } else {
+                    Fragment frg = fragmentManager.findFragmentByTag(Inpatient.class.getName());
+                    if (frg != null && frg.isVisible()) {
+                        Toolbaruz.setToolbar(MainActivity.this, Fragmentez.INPATIENT, toolbarTitle, toolbarLeft, toolbarRight);
+                        return;
+                    }
+                    frg = fragmentManager.findFragmentByTag(Dashboard.class.getName());
+                    if (frg != null && frg.isVisible()) {
+                        Toolbaruz.setToolbar(MainActivity.this, Fragmentez.DASHBOARD, toolbarTitle, toolbarLeft, toolbarRight);
+                        return;
+                    }
+                    frg = fragmentManager.findFragmentByTag(Receiving.class.getName());
+                    if (frg != null && frg.isVisible()) {
+                        Toolbaruz.setToolbar(MainActivity.this, Fragmentez.RECEIVING, toolbarTitle, toolbarLeft, toolbarRight);
+                    }
+
                 }
             }
         });
@@ -84,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
         lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT, R.drawable.ic_ipt, getString(R.string.screen_inpatient)));
         lstDrawer.add(new DrawerModel(Fragmentez.RECEIVING, R.drawable.ic_ipt, getString(R.string.screen_receiving)));
 
-        drawerList = findViewById(R.id.drawerList);
-        drawerAdapter = new DrawerAdapter(this, lstDrawer);
+        ListView drawerList = findViewById(R.id.drawerList);
+        final DrawerAdapter drawerAdapter = new DrawerAdapter(this, lstDrawer);
         drawerList.setAdapter(drawerAdapter);
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -93,17 +109,19 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         drawer = findViewById(R.id.drawer);
 
-        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        drawerAdapter.setOnItemClickListener(new DrawerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
-
+            public void itemClick(final int p) {
                 drawerLayout.closeDrawer(drawer);
+
+                Fragmentuz.removeAllFragment(fragmentManager);
+                Fragmentuz.clearAllPopBackStack(fragmentManager);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
-                        switch (lstDrawer.get(position).getFzg()) {
+                        switch (lstDrawer.get(p).getFzg()) {
                             case INPATIENT:
                                 Fragmentuz.replaceFragment(fragmentManager, Fragmentez.INPATIENT, false, R.id.mainFrame, null, Directionez.NEXT);
                                 Toolbaruz.setToolbar(MainActivity.this, Fragmentez.INPATIENT, toolbarTitle, toolbarLeft, toolbarRight);
@@ -133,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
         toolbarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i = fragmentManager.getBackStackEntryCount();
-                if (fragmentManager.getBackStackEntryCount() > 0) {
+                int position = fragmentManager.getBackStackEntryCount();
+                if (position > 0) {
                     fragmentManager.popBackStack();
                 } else {
                     drawerLayout.openDrawer(drawer);
@@ -145,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         toolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (onToolbarListener != null) onToolbarListener.right();
             }
         });
     }
@@ -154,5 +172,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         CompositeManager.dispose();
         super.onDestroy();
+    }
+
+    public interface OnToolbarListener {
+        void left(String frgName);
+
+        void right();
+    }
+
+    private OnToolbarListener onToolbarListener;
+
+    public void toolbarClick(OnToolbarListener listener) {
+        onToolbarListener = listener;
     }
 }

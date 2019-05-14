@@ -475,4 +475,9 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
     public void onLost() {
         calculation();
     }
+
+    @Override
+    public void toolbarListener() {
+
+    }
 }

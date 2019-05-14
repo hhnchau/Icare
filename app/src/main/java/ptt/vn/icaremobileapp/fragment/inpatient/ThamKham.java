@@ -21,4 +21,9 @@ public class ThamKham extends BaseFragment {
 
         return view;
     }
+
+    @Override
+    public void toolbarListener() {
+
+    }
 }

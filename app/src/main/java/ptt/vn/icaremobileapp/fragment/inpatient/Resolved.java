@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.DiagnoseAdapter;
 import ptt.vn.icaremobileapp.alert.MyAlert;
@@ -40,7 +41,7 @@ import ptt.vn.icaremobileapp.utils.Utils;
 import static ptt.vn.icaremobileapp.model.filter.FieldName.managstatus;
 import static ptt.vn.icaremobileapp.model.filter.FieldName.results;
 
-public class Resolved extends Fragment {
+public class Resolved extends BaseFragment {
     private View view;
     private List<InpatientDiagnose> lstDiagnose;
     private DiagnoseAdapter adapterDiagnose;
@@ -270,5 +271,10 @@ public class Resolved extends Fragment {
                 Toast.makeText(getActivity(), getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void toolbarListener() {
+
     }
 }

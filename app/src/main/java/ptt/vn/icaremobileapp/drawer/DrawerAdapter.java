@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import ptt.vn.icaremobileapp.R;
 public class DrawerAdapter extends BaseAdapter {
     private Context context;
     private List<DrawerModel> lists;
+    private int item;
 
     public DrawerAdapter(Context context, List<DrawerModel> lists) {
         this.context = context;
@@ -42,7 +44,7 @@ public class DrawerAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             convertView = inflater.inflate(R.layout.drawer_item, parent, false);
@@ -53,7 +55,34 @@ public class DrawerAdapter extends BaseAdapter {
         ImageView drawerIcon = convertView.findViewById(R.id.drawerIcon);
         drawerIcon.setImageResource(lists.get(position).getIcon());
 
+        final LinearLayout drawerBox = convertView.findViewById(R.id.drawerBox);
+        if (item == position)
+            drawerBox.setBackgroundColor(parent.getContext().getResources().getColor(R.color.colorMain));
+        else
+            drawerBox.setBackgroundColor(parent.getContext().getResources().getColor(R.color.transparent));
+        drawerBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (item != position) {
+                    item = position;
+                    notifyDataSetChanged();
+                    if (onItemClickListener != null) onItemClickListener.itemClick(position);
+                }
+            }
+        });
+
+
         return convertView;
+    }
+
+    public interface OnItemClickListener {
+        void itemClick(int p);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }
 

@@ -152,6 +152,22 @@ public class Fragmentuz {
         return null;
     }
 
+    public static void removeFragment(List<Fragmentoz> lstFragment, FragmentManager fragmentManager) {
+        if (fragmentManager != null && lstFragment != null)
+            for (Fragmentoz f : lstFragment)
+                for (Fragment frg : fragmentManager.getFragments())
+                    if (frg == f.getFrg()) {
+                        fragmentManager.beginTransaction().remove(frg).commit();
+                        break;
+                    }
+    }
+
+    public static void removeAllFragment(FragmentManager fragmentManager) {
+        if (fragmentManager != null)
+            for (Fragment frg : fragmentManager.getFragments())
+                fragmentManager.beginTransaction().remove(frg).commit();
+    }
+
     public static void clearAllPopBackStack(FragmentManager fragmentManager) {
         for (int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
             fragmentManager.popBackStack();

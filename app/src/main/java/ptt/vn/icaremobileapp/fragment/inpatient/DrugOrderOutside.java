@@ -65,4 +65,9 @@ public class DrugOrderOutside extends BaseFragment {
 
         return view;
     }
+
+    @Override
+    public void toolbarListener() {
+
+    }
 }

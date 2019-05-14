@@ -33,6 +33,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     private View view;
     public static HappeningDomain happeningDomain;
     private List<Fragmentoz> lstFragment = new ArrayList<>();
+    private FragmentManager fragmentManager;
     private InpatientDomain inpatient;
 
 
@@ -53,7 +54,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
         }
 
         if (getActivity() != null) {
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager = getActivity().getSupportFragmentManager();
             setupTabButton(fragmentManager);
         }
         return view;
@@ -127,5 +128,16 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     @Override
     public void onClick() {
         saveHappening(happeningDomain);
+    }
+
+    @Override
+    public void toolbarListener() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        Fragmentuz.removeFragment(lstFragment, fragmentManager);
+        super.onDestroy();
     }
 }
