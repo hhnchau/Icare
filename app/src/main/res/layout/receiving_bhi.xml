@@ -15,6 +15,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,26 +28,30 @@
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Số Thẻ BHTN" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Từ Ngày" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Đến Ngày" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Tên Công Ty BH" />
 
     </LinearLayout>
 
@@ -51,6 +59,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_32"
+        android:layout_marginBottom="@dimen/dp_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@id/guide"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,26 +72,16 @@
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Tên Công Ty Mua BH" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
-
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:hint="Diễn Biến" />
-
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Địa Chỉ Công Ty Mua BH" />
 
     </LinearLayout>
 
