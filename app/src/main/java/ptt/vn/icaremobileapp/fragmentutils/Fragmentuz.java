@@ -19,9 +19,9 @@ import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
 import ptt.vn.icaremobileapp.fragment.inpatient.Resolved;
 import ptt.vn.icaremobileapp.fragment.inpatient.ServiceItem;
 import ptt.vn.icaremobileapp.fragment.inpatient.ThamKham;
-import ptt.vn.icaremobileapp.fragment.receive.Receiving;
-import ptt.vn.icaremobileapp.fragment.receive.ReceivingOne;
-import ptt.vn.icaremobileapp.fragment.receive.ReceivingTwo;
+import ptt.vn.icaremobileapp.fragment.receiving.Receiving;
+import ptt.vn.icaremobileapp.fragment.receiving.ReceivingHi;
+import ptt.vn.icaremobileapp.fragment.receiving.ReceivingInfo;
 
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
@@ -144,9 +144,9 @@ public class Fragmentuz {
             case RESOLVED:
                 return new Resolved();
             case RECEIVING_ONE:
-                return new ReceivingOne();
+                return new ReceivingHi();
             case RECEIVING_TWO:
-                return new ReceivingTwo();
+                return new ReceivingInfo();
 
         }
         return null;

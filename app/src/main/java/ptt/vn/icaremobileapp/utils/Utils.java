@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -112,5 +113,24 @@ public class Utils {
 
     public static void keyboardClose(Context context, View v) {
         ((InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+
+    public static String convertHexStrToUnicode(String hexString) {
+        StringBuilder output = new StringBuilder();
+        if (hexString.length() < 2)
+            return "";
+        for (int i = 0; i < hexString.length(); i += 2) {
+            String s = hexString.substring(i, i + 2);
+            output.append((char) Integer.parseInt(s, 16));
+        }
+
+        String s = "";
+        try {
+            s = new String(output.toString().getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return s;
     }
 }

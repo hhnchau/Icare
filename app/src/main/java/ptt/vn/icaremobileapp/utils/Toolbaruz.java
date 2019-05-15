@@ -43,7 +43,7 @@ public class Toolbaruz {
             case RECEIVING:
                 toolbarTile.setText(context.getString(R.string.screen_receiving));
                 toolbarLeft.setImageResource(R.drawable.ic_menu);
-                toolbarRight.setImageResource(0);
+                toolbarRight.setImageResource(R.drawable.ic_qr);
                 break;
         }
     }
