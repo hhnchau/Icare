@@ -3,6 +3,8 @@ package ptt.vn.icaremobileapp.api;
 import io.reactivex.Observable;
 import ptt.vn.icaremobileapp.model.account.AccountResponse;
 import ptt.vn.icaremobileapp.model.common.CateShareResponse;
+import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.hi.HiResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
@@ -70,7 +72,9 @@ public interface ApiService {
     @GET()
     Observable<AccountResponse> login(@Url String url, @Header("Content") String filterModel);
 
-
+    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
+    @POST()
+    Observable<HiResponse> getHiInfo(@Url String url, @Body HiDomain hiDomain);
 
 
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})

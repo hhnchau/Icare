@@ -24,6 +24,8 @@ import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.filter.Operation;
 import ptt.vn.icaremobileapp.model.filter.Para;
+import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.hi.HiResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
@@ -654,7 +656,6 @@ public class ApiController {
 
     }
 
-
     @SuppressWarnings("unchecked")
     public void login(final Context context, final String user, final String pass, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.ACCOUNT);
@@ -688,6 +689,57 @@ public class ApiController {
                             @Override
                             public void request() {
                                 login(context, user, pass, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getHiInfo(final Context context, final String maThe, final String hoTen, final String ngaySinh, final Callback callback) {
+        String url = MyApplication.getUrl(Service.ACCOUNT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            //return;
+        }
+
+        url = "http://172.16.0.21:7770/BHYTService/";
+
+        Loading.getInstance().show(context);
+
+        HiDomain hiDomain = new HiDomain();
+        if (maThe != null) hiDomain.setMaThe(maThe);
+        if (hoTen != null) hiDomain.setHoTen(hoTen);
+        if (ngaySinh != null) hiDomain.setNgaySinh(ngaySinh);
+
+        CompositeManager.add(Api.apiService.getHiInfo(url, hiDomain)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<HiResponse>() {
+
+                    @Override
+                    public void onNext(HiResponse response) {
+                        if (response.getCode() == 0 && callback != null)
+                            callback.response(response.getData());
+                        else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getHiInfo(context, maThe, hoTen, ngaySinh, callback);
                             }
                         });
 

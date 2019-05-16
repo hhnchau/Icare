@@ -17,7 +17,10 @@ import android.widget.Toast;
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.MainActivity;
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.api.ApiController;
+import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.model.hi.HiCard;
+import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.scanner.Scanner;
 
 import static android.app.Activity.RESULT_OK;
@@ -53,6 +56,17 @@ public class Receiving extends BaseFragment {
         }
     }
 
+    private void getHiInfo(String maThe, String hoTen, String ngaySinh) {
+        ApiController.getInstance().getHiInfo(getActivity(), maThe, hoTen, ngaySinh, new Callback<HiDomain>() {
+            @Override
+            public void response(HiDomain hiDomain) {
+                if (hiDomain != null && hiDomain.getMaKetQua().equals("000"))
+                    Toast.makeText(getActivity(), "The OK", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(getActivity(), "Thẻ Không Hợp Lệ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void startScanner() {
         if (getActivity() != null) {
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -71,7 +85,8 @@ public class Receiving extends BaseFragment {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1001) {
                 HiCard hiCard = data.getParcelableExtra("SCANNER");
-                int i = 0;
+                if (hiCard != null)
+                    getHiInfo(hiCard.getManagerCode(), hiCard.getName(), hiCard.getBirthday());
             }
         }
     }
@@ -98,8 +113,8 @@ public class Receiving extends BaseFragment {
 
     @Override
     public void toolbarListener() {
-        if(getActivity() != null)
-            ((MainActivity)getActivity()).toolbarClick(new MainActivity.OnToolbarListener() {
+        if (getActivity() != null)
+            ((MainActivity) getActivity()).toolbarClick(new MainActivity.OnToolbarListener() {
                 @Override
                 public void left(String frgName) {
 
