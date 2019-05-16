@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -48,11 +49,17 @@ public class Receiving extends BaseFragment {
             frgInfo = new ReceivingInfo();
             frgHi = new ReceivingHi();
             frgBhi = new ReceivingBhi();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frameInfo, frgInfo)
-                    .add(R.id.frameHi, frgHi)
-                    .add(R.id.frameBhi, frgBhi)
-                    .commit();
+
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .add(R.id.frameInfo, frgInfo)
+                            .add(R.id.frameHi, frgHi)
+                            .add(R.id.frameBhi, frgBhi)
+                            .commit();
+                }
+            });
         }
     }
 
