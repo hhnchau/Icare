@@ -7,7 +7,7 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,10 @@
                 android:id="@+id/f1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                app:cardCornerRadius="@dimen/dp_12"
                 app:cardElevation="@dimen/dp_2"
                 app:layout_constraintBottom_toTopOf="@id/f2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,11 +40,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp_8"
-                        android:text="Thong tin benh nhan"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/sp_20"
-                        android:textColor="@color/colorMain"/>
+                        android:layout_marginStart="@dimen/dp_48"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginBottom="@dimen/dp_12"
+                        android:text="Thông Tin Bệnh Nhân"
+                        android:textSize="@dimen/sp_18"
+                        android:textColor="@color/text_color"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -62,8 +65,10 @@
                 android:id="@+id/f2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                app:cardCornerRadius="@dimen/dp_12"
                 app:cardElevation="@dimen/dp_2"
                 app:layout_constraintBottom_toTopOf="@id/f3"
                 app:layout_constraintEnd_toEndOf="@id/f1"
@@ -78,11 +83,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp_8"
-                        android:text="Thong tin benh nhan"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/sp_20"
-                        android:textColor="@color/colorMain"/>
+                        android:layout_marginStart="@dimen/dp_48"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginBottom="@dimen/dp_12"
+                        android:text="Bảo Hiểm Y Tế"
+                        android:textSize="@dimen/sp_18"
+                        android:textColor="@color/text_color"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -102,8 +108,8 @@
                 android:id="@+id/f3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="@dimen/dp_20"
+                android:layout_margin="@dimen/dp_16"
+                app:cardCornerRadius="@dimen/dp_12"
                 app:cardElevation="@dimen/dp_2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/f1"
@@ -118,11 +124,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp_8"
-                        android:text="Thong tin benh nhan"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/sp_20"
-                        android:textColor="@color/colorMain"/>
+                        android:layout_marginStart="@dimen/dp_48"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginBottom="@dimen/dp_12"
+                        android:text="Bảo Hiểm Tư Nhân"
+                        android:textSize="@dimen/sp_18"
+                        android:textColor="@color/text_color"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -147,6 +154,7 @@
         android:layout_marginStart="@dimen/dp_24"
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginEnd="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_16"
         app:backgroundColor="@drawable/button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

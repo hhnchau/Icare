@@ -15,6 +15,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,26 +28,65 @@
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Mã Bệnh Nhân" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Giới Tính" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Ngày Sinh" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Quốc Tịch" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Tỉnh Thành" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Phường Xã" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Nghề Nghiệp" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Passport" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Họ Tên Bố Mẹ" />
 
     </LinearLayout>
 
@@ -51,6 +94,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_32"
+        android:layout_marginBottom="@dimen/dp_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@id/guide"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,26 +107,65 @@
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Họ Và Tên" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Hôn Nhân" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Số Điện Thoại" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Diễn Biến" />
+            app:hint="Dân Tộc" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Quận Huyện" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Số Nhà, Đường" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="CMND" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="Email" />
+
+        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            app:hint="CMND Bố Mẹ" />
 
     </LinearLayout>
 
