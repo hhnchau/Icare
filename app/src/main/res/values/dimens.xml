@@ -37,6 +37,8 @@
     <dimen name="dp_72">72dp</dimen>
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_84">84dp</dimen>
+    <dimen name="dp_114">114dp</dimen>
+    <dimen name="dp_176">176dp</dimen>
 
     <dimen name="sp_8">8sp</dimen>
     <dimen name="sp_10">10sp</dimen>

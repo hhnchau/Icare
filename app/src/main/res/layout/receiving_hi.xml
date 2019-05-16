@@ -26,16 +26,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_16"
-        android:src="@drawable/logo_giaan"
+        android:src="@drawable/bhyt"
         android:contentDescription="@string/img_des" />
 
     </android.support.v7.widget.CardView>
 
     <ImageView
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="@dimen/dp_60"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
         android:src="@drawable/ic_camera"
-        android:alpha="0.8"
+        android:alpha="0.7"
         android:contentDescription="@string/img_des"
         app:layout_constraintTop_toBottomOf="@id/boximg"
         app:layout_constraintBottom_toBottomOf="@id/boximg"
@@ -113,7 +113,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
             app:hints="Tên Bệnh Viện"
-            app:heights="@dimen/dp_84"/>
+            app:heights="@dimen/dp_176"/>
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
             android:layout_width="match_parent"
@@ -121,7 +121,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
             app:hints="Địa Chỉ Thẻ BHYT"
-            app:heights="@dimen/dp_84"/>
+            app:heights="@dimen/dp_114"/>
 
     </LinearLayout>
 
