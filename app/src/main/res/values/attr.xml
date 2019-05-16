@@ -24,8 +24,16 @@
 
     <declare-styleable name="MyInputText">
         <attr name="txt" format="string" />
-        <attr name="hint" format="string" />
+        <attr name="hint" format="string"/>
         <attr name="android:inputType"/>
     </declare-styleable>
+
+    <declare-styleable name="MyInputTextOutlineMultiLine">
+        <attr name="texts" format="string" />
+        <attr name="hints" format="string"/>
+        <attr name="heights" format="integer"/>
+        <attr name="android:inputType"/>
+    </declare-styleable>
+
 
 </resources>

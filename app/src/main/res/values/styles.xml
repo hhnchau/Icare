@@ -67,6 +67,15 @@
         <item name="boxCornerRadiusTopEnd">84dp</item>
     </style>
 
+    <style name="MyTextInputMultiline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/colorMain</item>
+        <item name="boxStrokeWidth">1dip</item>
+        <item name="boxCornerRadiusBottomStart">4dp</item>
+        <item name="boxCornerRadiusBottomEnd">4dp</item>
+        <item name="boxCornerRadiusTopStart">4dp</item>
+        <item name="boxCornerRadiusTopEnd">4dp</item>
+    </style>
+
     <style name="MyTextInputWhite" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">#747383</item>
         <item name="boxStrokeWidth">1dip</item>
