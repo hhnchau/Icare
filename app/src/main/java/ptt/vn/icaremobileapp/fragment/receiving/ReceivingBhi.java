@@ -22,6 +22,10 @@ public class ReceivingBhi extends BaseFragment {
         return view;
     }
 
+    public boolean validate() {
+        return true;
+    }
+
     @Override
     public void toolbarListener() {
 

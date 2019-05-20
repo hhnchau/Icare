@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/dp_8"
         android:layout_marginStart="@dimen/dp_0"
         android:layout_marginEnd="@dimen/dp_0"
-        app:label="@string/txt__patient_address" />
+        app:label="@string/txt_patient_address" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_20"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_birthday" />
+                app:label="@string/txt_patient_birthday" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvPatientSex"
@@ -51,7 +51,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_sex" />
+                app:label="@string/txt_patient_sex" />
         </LinearLayout>
 
         <ptt.vn.icaremobileapp.custom.MyTextView

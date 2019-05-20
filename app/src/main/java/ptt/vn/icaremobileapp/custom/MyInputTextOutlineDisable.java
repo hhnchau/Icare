@@ -40,7 +40,7 @@ public class MyInputTextOutlineDisable extends LinearLayout {
     }
 
     private void initAttributes(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyTextView);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyInputText);
         hint = typedArray.getString(R.styleable.MyInputText_hint);
         text = typedArray.getString(R.styleable.MyInputText_txt);
         typedArray.recycle();

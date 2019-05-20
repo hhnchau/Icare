@@ -1,6 +1,6 @@
 package ptt.vn.icaremobileapp.model.filter;
 
-public enum  FieldName {
+public enum FieldName {
     siterf,
     active,
     idmedexa,
@@ -16,5 +16,15 @@ public enum  FieldName {
     password,
     regobject,
     managstatus,
-    results
+    results,
+    district,
+    ethnic,
+    provincial,
+    ward,
+    nation,
+    job,
+    company,
+    livpla,
+    marr,
+    hospital
 }

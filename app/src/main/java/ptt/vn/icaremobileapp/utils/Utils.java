@@ -77,7 +77,7 @@ public class Utils {
     public static String formatCurrency(float currency) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String current = formatter.format(currency);
-        return current.replaceAll(",", ".");
+        return current.replaceAll("\\.", ",");
     }
 
     public static SpannableString spannable(String s, String character) {

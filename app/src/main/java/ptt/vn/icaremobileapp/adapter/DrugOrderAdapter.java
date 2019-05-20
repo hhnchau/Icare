@@ -78,13 +78,7 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogEditDrugOrder.getInstance().show(context, null, new DialogEditDrugOrder.OnClickListener() {
-                    @Override
-                    public void onClickListener(HappeningDomain happening) {
-                        inpatientDrugOrder.setTotal(10);
-                        notifyDataSetChanged();
-                    }
-                });
+                if(onItemClick != null) onItemClick.onEdit(inpatientDrugOrder);
             }
         });
 
@@ -106,11 +100,11 @@ public class DrugOrderAdapter extends RecyclerView.Adapter<DrugOrderAdapter.MyVi
         });
 
         holder.tvName.setText((inpatientDrugOrder.getCodedrug() + " - " + inpatientDrugOrder.getNamedrug()));
-        holder.tvNumber.setText(String.valueOf(inpatientDrugOrder.getQty()));
+        holder.tvNumber.setText(String.valueOf((int)inpatientDrugOrder.getQty()));
         holder.tvDrugActiveingre.setValues(inpatientDrugOrder.getActivename());
         holder.tvUnit.setValues(inpatientDrugOrder.getUnitusename());
         holder.tvPrice.setValues(Utils.formatCurrency((int)inpatientDrugOrder.getPrice()));
-        holder.tvTotal.setValues(String.valueOf((int)inpatientDrugOrder.getTotal()));
+        holder.tvTotal.setValues(Utils.formatCurrency((int)inpatientDrugOrder.getTotal()));
         holder.tvDrugUse.setValues(inpatientDrugOrder.getDesc());
         updateInsurance(inpatientDrugOrder.getInsurance(), holder.icInsurance);
     }

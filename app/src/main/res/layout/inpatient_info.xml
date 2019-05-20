@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/dp_0"
         android:layout_marginEnd="@dimen/dp_0"
         android:layout_marginTop="@dimen/dp_8"
-        app:label="@string/txt__patient_address" />
+        app:label="@string/txt_patient_address" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_birthday" />
+                app:label="@string/txt_patient_birthday" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvPatientSex"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_sex" />
+                app:label="@string/txt_patient_sex" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_nation" />
+                app:label="@string/txt_patient_nation" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvpPatientPhone"
@@ -76,7 +76,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_phone" />
+                app:label="@string/txt_patient_phone" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvPatientJob"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_job" />
+                app:label="@string/txt_patient_job" />
         </LinearLayout>
 
         <LinearLayout
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_relative" />
+                app:label="@string/txt_patient_relative" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvPatientObject"
@@ -108,7 +108,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__patient_object" />
+                app:label="@string/txt_patient_object" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvInsuranceCode"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
-                app:label="@string/txt__insurance_code" />
+                app:label="@string/txt_insurance_code" />
         </LinearLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__insurance_start" />
+                app:label="@string/txt_insurance_start" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvInsuranceEnd"
@@ -140,7 +140,7 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_32"
                 android:layout_weight="1"
-                app:label="@string/txt__insurance_end" />
+                app:label="@string/txt_insurance_end" />
 
             <ptt.vn.icaremobileapp.custom.MyTextView
                 android:id="@+id/tvInsuranceInit"
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_weight="1"
-                app:label="@string/txt__insurance_init" />
+                app:label="@string/txt_insurance_init" />
         </LinearLayout>
 
     </LinearLayout>

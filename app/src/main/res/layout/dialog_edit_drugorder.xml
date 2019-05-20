@@ -68,58 +68,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/boxHeader">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/cv1"
-                    style="@style/MyTextInput"
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
+                    android:id="@+id/tvDrug"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_52"
-                    android:layout_marginStart="@dimen/dp_32"
-                    android:layout_marginTop="@dimen/dp_24"
                     android:layout_marginEnd="@dimen/dp_16"
-                    android:hint="@string/txt_drug_name"
-                    app:layout_constraintBottom_toTopOf="@id/boxType"
+                    android:layout_weight="1"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:hint="@string/txt_drug_name"
+                    app:layout_constraintBottom_toTopOf="@id/boxDrugRoute"
                     app:layout_constraintEnd_toStartOf="@id/edtActiveIngre"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-                    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                        android:id="@+id/acDrug"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:completionThreshold="1"
-                        android:dropDownVerticalOffset="0dp"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:padding="@dimen/dp_12" />
-                </android.support.design.widget.TextInputLayout>
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/edtActiveIngre"
                     android:layout_width="0dp"
-                    android:layout_height="52dp"
+                    android:layout_height="@dimen/dp_52"
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginEnd="@dimen/dp_32"
                     app:hint="@string/txt_drug_activeingre"
-                    app:layout_constraintBottom_toBottomOf="@id/cv1"
+                    app:layout_constraintBottom_toBottomOf="@id/tvDrug"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cv1"
-                    app:layout_constraintTop_toTopOf="@id/cv1" />
+                    app:layout_constraintStart_toEndOf="@id/tvDrug"
+                    app:layout_constraintTop_toTopOf="@id/tvDrug" />
+
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/boxType"
+                    android:id="@+id/boxDrugRoute"
                     style="@style/MyTextInput"
                     android:layout_width="0dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_32"
                     android:layout_weight="1"
-                    android:hint="@string/txt_drug_type"
+                    android:hint="@string/txt_drug_route"
                     app:layout_constraintBottom_toTopOf="@id/box"
-                    app:layout_constraintEnd_toEndOf="@id/cv1"
-                    app:layout_constraintStart_toStartOf="@id/cv1"
-                    app:layout_constraintTop_toBottomOf="@id/cv1">
+                    app:layout_constraintEnd_toEndOf="@id/tvDrug"
+                    app:layout_constraintStart_toStartOf="@id/tvDrug"
+                    app:layout_constraintTop_toBottomOf="@id/tvDrug">
 
                     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                        android:id="@+id/acHappeningType"
+                        android:id="@+id/acDrugRoute"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:completionThreshold="1"
@@ -131,60 +122,31 @@
                         android:textSize="@dimen/sp_16" />
                 </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:id="@+id/cv3"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/boxDrugUnitUse"
+                    style="@style/MyTextInput"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="@id/boxType"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:hint="@string/txt_unit_use"
+                    app:layout_constraintBottom_toBottomOf="@id/boxDrugRoute"
                     app:layout_constraintEnd_toEndOf="@id/edtActiveIngre"
                     app:layout_constraintStart_toStartOf="@id/edtActiveIngre"
-                    app:layout_constraintTop_toTopOf="@id/boxType">
+                    app:layout_constraintTop_toTopOf="@id/boxDrugRoute">
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/MyTextInput"
-                        android:layout_width="0dp"
-                        android:layout_height="52dp"
-                        android:layout_marginEnd="@dimen/dp_32"
-                        android:layout_weight="1"
-                        android:hint="@string/txt_drug_route">
+                    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                        android:id="@+id/acpDrugUnitUse"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:completionThreshold="1"
+                        android:dropDownVerticalOffset="0dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/dp_16"
+                        android:paddingEnd="@dimen/dp_16"
+                        android:textSize="@dimen/sp_16" />
+                </android.support.design.widget.TextInputLayout>
 
-                        <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                            android:id="@+id/acDrugRoute"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:completionThreshold="1"
-                            android:dropDownVerticalOffset="0dp"
-                            android:imeOptions="actionDone"
-                            android:inputType="text"
-                            android:paddingStart="@dimen/dp_16"
-                            android:paddingEnd="@dimen/dp_16"
-                            android:textSize="@dimen/sp_16" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/MyTextInput"
-                        android:layout_width="0dp"
-                        android:layout_height="52dp"
-                        android:layout_weight="1"
-                        android:hint="@string/txt_unit_use">
-
-                        <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
-                            android:id="@+id/acpDrugUnitUse"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:completionThreshold="1"
-                            android:dropDownVerticalOffset="0dp"
-                            android:imeOptions="actionDone"
-                            android:inputType="text"
-                            android:paddingStart="@dimen/dp_16"
-                            android:paddingEnd="@dimen/dp_16"
-                            android:textSize="@dimen/sp_16" />
-                    </android.support.design.widget.TextInputLayout>
-
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/box"
@@ -198,7 +160,7 @@
                     app:layout_constraintBottom_toTopOf="@id/box1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/boxType">
+                    app:layout_constraintTop_toBottomOf="@id/boxDrugRoute">
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutline
                         android:id="@+id/edtDrugMorning"
@@ -251,8 +213,8 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/cv1"
-                    app:layout_constraintStart_toStartOf="@id/cv1"
+                    app:layout_constraintEnd_toEndOf="@id/tvDrug"
+                    app:layout_constraintStart_toStartOf="@id/tvDrug"
                     app:layout_constraintTop_toBottomOf="@id/box">
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutline

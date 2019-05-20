@@ -22,6 +22,7 @@ import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
+import ptt.vn.icaremobileapp.dialog.DialogEditDrugOrder;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
@@ -257,7 +258,12 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
 
             @Override
             public void onEdit(InpatientDrugOrder inpatientDrugOrder) {
-
+                DialogEditDrugOrder.getInstance().show(getActivity(), inpatientDrugOrder, new DialogEditDrugOrder.OnClickListener() {
+                    @Override
+                    public void onClickListener() {
+                        adapterDrugOrder.notifyDataSetChanged();
+                    }
+                });
             }
 
             @Override

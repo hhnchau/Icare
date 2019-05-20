@@ -34,7 +34,9 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.filter.Service;
 import ptt.vn.icaremobileapp.model.medexa.MedexaResponse;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
+import ptt.vn.icaremobileapp.model.patient.PatientSave;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
 import ptt.vn.icaremobileapp.model.pharmacy.ResultResponse;
 import ptt.vn.icaremobileapp.model.register.RegisterResponse;
@@ -740,6 +742,52 @@ public class ApiController {
                             @Override
                             public void request() {
                                 getHiInfo(context, maThe, hoTen, ngaySinh, callback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void saveReceiving(final Context context, final PatientDomain patientDomain, final Callback callback) {
+        String url = MyApplication.getUrl(Service.PAT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //url = "http://172.16.0.21:7770/InpatientHappeningService/";
+
+        Loading.getInstance().show(context);
+
+        CompositeManager.add(Api.apiService.saveReceiving(url, patientDomain)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<PatientSave>() {
+
+                    @Override
+                    public void onNext(PatientSave save) {
+                        if (save.getCode() == 0 && callback != null)
+                            callback.response(save.getData());
+                        else
+                            MyLog.print(context, String.valueOf(save.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                saveReceiving(context, patientDomain, callback);
                             }
                         });
 

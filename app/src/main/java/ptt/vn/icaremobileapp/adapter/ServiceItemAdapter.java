@@ -25,6 +25,7 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.MyViewHolder> {
     private List<Integer> expand = new ArrayList<>();
@@ -86,11 +87,9 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             @Override
             public void onClick(View v) {
                 if (onItemClick != null) {
-                    DialogEditServiceItem.getInstance().show(context,null, new DialogEditServiceItem.OnClickListener(){
+                    DialogEditServiceItem.getInstance().show(context, serviceItem, new DialogEditServiceItem.OnClickListener() {
                         @Override
-                        public void onClickListener(HappeningDomain happening) {
-                            serviceItem.setQty(3);
-                            serviceItem.setDescrp("Demo Test-----");
+                        public void onClickListener() {
                             notifyDataSetChanged();
                         }
                     });
@@ -108,14 +107,14 @@ public class ServiceItemAdapter extends RecyclerView.Adapter<ServiceItemAdapter.
             }
         });
 
-        holder.tvName.setText(serviceItem.getCode() + " - " + serviceItem.getNamehosp());
+        holder.tvName.setText((serviceItem.getCode() + " - " + serviceItem.getNamehosp()));
         holder.tvDoctor.setText(serviceItem.getDocoder());
         holder.tvUnit.setValues(serviceItem.getNameunit());
-        holder.tvPrice.setValues(serviceItem.getPrice() + "");
-        holder.tvPriceInsurance.setValues(serviceItem.getPricehi() + "");
+        holder.tvPrice.setValues(Utils.formatCurrency(serviceItem.getPrice()));
+        holder.tvPriceInsurance.setValues(Utils.formatCurrency(serviceItem.getPricehi()));
         holder.tvSurcharge.setValues(serviceItem.getDocoder());
-        holder.tvNumber.setValues(serviceItem.getQty() + "");
-        holder.tvTotal.setValues(serviceItem.getQty() * serviceItem.getPrice() + "");
+        holder.tvNumber.setValues(String.valueOf(serviceItem.getQty()));
+        holder.tvTotal.setValues(Utils.formatCurrency(serviceItem.getQty() * serviceItem.getPrice()));
         holder.tvNote.setValues(serviceItem.getDescrp());
 
         updateInsurance(serviceItem.getIshi(), holder.icInsurance);

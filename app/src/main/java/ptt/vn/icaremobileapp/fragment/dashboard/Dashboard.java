@@ -282,15 +282,19 @@ public class Dashboard extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (getActivity() != null)
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .remove(frame1)
-                    .remove(frame2)
-                    .remove(frame3)
-                    .remove(frame4)
-                    .remove(frame5)
-                    .remove(frame6)
-                    .commit();
+        new Handler().post(new Runnable() {
+            public void run() {
+                if (getActivity() != null)
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .remove(frame1)
+                            .remove(frame2)
+                            .remove(frame3)
+                            .remove(frame4)
+                            .remove(frame5)
+                            .remove(frame6)
+                            .commit();
+            }
+        });
         super.onDestroy();
 
     }

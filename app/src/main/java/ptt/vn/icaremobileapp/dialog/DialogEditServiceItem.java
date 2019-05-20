@@ -1,6 +1,6 @@
 package ptt.vn.icaremobileapp.dialog;
 
-import android.app.DatePickerDialog;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
@@ -9,17 +9,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
-
-import java.util.Calendar;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable;
-import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 public class DialogEditServiceItem {
@@ -33,10 +28,10 @@ public class DialogEditServiceItem {
     }
 
     public interface OnClickListener {
-        void onClickListener(HappeningDomain happening);
+        void onClickListener();
     }
 
-    public void show(final Context context, final HappeningDomain happening, final OnClickListener onClickListener) {
+    public void show(final Context context, final InpatientServiceOrder serviceItem, final OnClickListener onClickListener) {
         final Dialog dialog = new Dialog(context, R.style.MyDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_edit_serviceitem);
@@ -69,74 +64,37 @@ public class DialogEditServiceItem {
                 }
             });
 
-            MyInputTextOutlineDisable a = dialog.findViewById(R.id.a);
-            a.setContentView("demo", "chau");
+            MyInputTextOutlineDisable tvUnit = dialog.findViewById(R.id.tvUnit);
+            tvUnit.setValues(serviceItem.getNameunit());
 
-            MyInputTextOutline b = dialog.findViewById(R.id.tvNote);
-            b.setCustomView("haha", "aaaa", true);
+            MyInputTextOutlineDisable tvPrice = dialog.findViewById(R.id.tvPrice);
+            tvPrice.setValues(Utils.formatCurrency(serviceItem.getPrice()));
 
+            MyInputTextOutlineDisable tvPriceInsurance = dialog.findViewById(R.id.tvPriceInsurance);
+            tvPriceInsurance.setValues(Utils.formatCurrency(serviceItem.getPricehi()));
 
-            MyInputTextOutline c = dialog.findViewById(R.id.tvNn);
-            c.setCustomView("haha", "aaaa",  true);
+            MyInputTextOutlineDisable tvSurcharge = dialog.findViewById(R.id.tvSurcharge);
+            tvSurcharge.setValues(Utils.formatCurrency(serviceItem.getPrice()));
 
-            //final MyInputTextOutline edtHappening = dialog.findViewById(R.id.edtHappening);
-//            final EditText edtDatetime = dialog.findViewById(R.id.edtDateTime);
-//            final MyInputTextOutline edtCircuit = dialog.findViewById(R.id.edtCircuit);
-//            final MyInputTextOutline edtBloodMax = dialog.findViewById(R.id.edtBloodMax);
-//            final MyInputTextOutline edtBloodMin = dialog.findViewById(R.id.edtBloodMin);
-//            final MyInputTextOutline edtTemperature = dialog.findViewById(R.id.edtTemperature);
-//            final MyInputTextOutline edtHeartbeat = dialog.findViewById(R.id.edtHeartbeat);
-//            final MyInputTextOutline edtWeight = dialog.findViewById(R.id.edtWeight);
-//            ImageView icDatetime = dialog.findViewById(R.id.icDate);
-//            icDatetime.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    final Calendar _calendar = Utils.dateStringConvert(edtDatetime.getText().toString(), Utils.ddMMyyyy);
-//                    new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-//                        @Override
-//                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                            Calendar cal = Calendar.getInstance();
-//                            edtDatetime.setText(dayOfMonth + "/" + month + "/" + year + " " + cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE));
-//                        }
-//                    }, _calendar.get(Calendar.YEAR), _calendar.get(Calendar.MONTH), _calendar.get(Calendar.DAY_OF_MONTH)).show();
-//                }
-//            });
-//
-//
-//            /*
-//             * UPDATE
-//             */
-//            if (happening != null) {
-//                //edtHappening.setText(happening.getHappening());
-//                edtDatetime.setText(Utils.dateConvert(happening.getDatecreate(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyyHHmm));
-//                edtCircuit.setText(String.valueOf(happening.getCircui()));
-//                edtBloodMax.setText(happening.getBlomax() + "");// + " / " + happening.getBlomin());
-//                edtTemperature.setText(String.valueOf(happening.getTemper()));
-//                edtHeartbeat.setText(String.valueOf(happening.getHeartb()));
-//                edtWeight.setText(String.valueOf(happening.getWeight()));
-//            } else {
-//                edtDatetime.setText(Utils.getCurrentDate(Utils.ddMMyyyyHHmm));
-//            }
+            final MyInputTextOutline tvNumber = dialog.findViewById(R.id.tvNumber);
+            tvNumber.setText(String.valueOf(serviceItem.getQty()));
+
+            MyInputTextOutlineDisable tvTotal = dialog.findViewById(R.id.tvTotal);
+            tvTotal.setValues(Utils.formatCurrency(serviceItem.getPrice()));
+
+            final MyInputTextOutline tvNote = dialog.findViewById(R.id.tvNote);
+            tvNote.setText(serviceItem.getDescrp());
 
             MyButton myButton = dialog.findViewById(R.id.btnOk);
             myButton.setOnSelectedListener(new MyButton.OnListener() {
                 @Override
                 public void onClick() {
-//                    HappeningDomain happen = new HappeningDomain();
-//                    if (happening != null) happen = happening;
-//                    happen.setHappening(edtHappening.getText().toString());
-//                    happen.setDatecreate(Utils.dateConvert(edtDatetime.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
-//                    happen.setIddoctor(1);
-//
-//                    happen.setCircui(edtCircuit.getText().toString());
-//
-//                    happen.setBlomax(Integer.parseInt(edtBloodMax.getText().toString()));
-//                    happen.setTemper(Float.parseFloat(edtTemperature.getText().toString()));
-//                    happen.setHeartb(Integer.parseInt(edtHeartbeat.getText().toString()));
-//                    happen.setWeight(Float.parseFloat(edtWeight.getText().toString()));
+
+                    serviceItem.setQty(Integer.parseInt(tvNumber.getText().toString()));
+                    serviceItem.setDescrp(tvNote.getText().toString());
 
                     if (onClickListener != null)
-                        onClickListener.onClickListener(null);
+                        onClickListener.onClickListener();
                     dialog.dismiss();
                 }
             });

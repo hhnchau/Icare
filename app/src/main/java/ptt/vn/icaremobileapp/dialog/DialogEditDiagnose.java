@@ -26,7 +26,7 @@ public class DialogEditDiagnose {
     }
 
     public interface OnClickListener {
-        void onClickListener(InpatientDiagnose diagnose);
+        void onClickListener();
     }
 
     public void show(final Context context, final InpatientDiagnose diagnose, final OnClickListener onClickListener) {
@@ -79,7 +79,7 @@ public class DialogEditDiagnose {
                     diagnose.setNameicdvn(edtIcdVn.getText().toString().trim());
 
                     if (onClickListener != null)
-                        onClickListener.onClickListener(diagnose);
+                        onClickListener.onClickListener();
                     dialog.dismiss();
                 }
             });

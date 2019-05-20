@@ -78,32 +78,35 @@
                     android:orientation="horizontal">
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                        android:id="@+id/a"
+                        android:id="@+id/tvUnit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/dp_16"
                         android:layout_weight="1"
                         android:focusable="true"
-                        android:focusableInTouchMode="true" />
+                        android:focusableInTouchMode="true"
+                        app:hint="@string/txt_unit"/>
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                        android:id="@+id/b"
+                        android:id="@+id/tvPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         android:focusable="true"
-                        android:focusableInTouchMode="true" />
+                        android:focusableInTouchMode="true"
+                        app:hint="@string/txt_price"/>
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                        android:id="@+id/c"
+                        android:id="@+id/tvPriceInsurance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_16"
                         android:layout_weight="1"
                         android:focusable="true"
-                        android:focusableInTouchMode="true" />
+                        android:focusableInTouchMode="true"
+                        app:hint="@string/txt_price_insurance"/>
 
                 </LinearLayout>
 
@@ -114,31 +117,34 @@
                     android:orientation="horizontal">
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                        android:id="@+id/aa"
+                        android:id="@+id/tvSurcharge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/dp_16"
                         android:layout_weight="1"
                         android:focusable="true"
-                        android:focusableInTouchMode="true" />
+                        android:focusableInTouchMode="true"
+                        app:hint="@string/txt_surcharge"/>
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-                        android:id="@+id/tvNn"
+                        android:id="@+id/tvNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="@dimen/dp_16"
                         android:layout_marginEnd="@dimen/dp_16"
-                        app:label="@string/txt_note" />
+                        android:inputType="number"
+                        app:hint="@string/txt_number" />
 
                     <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                        android:id="@+id/as"
+                        android:id="@+id/tvTotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_16"
                         android:layout_weight="1"
                         android:focusable="true"
-                        android:focusableInTouchMode="true" />
+                        android:focusableInTouchMode="true"
+                        app:hint="@string/txt_total"/>
 
                 </LinearLayout>
 
@@ -147,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
-                    app:label="@string/txt_note" />
+                    app:hint="@string/txt_note" />
 
             </LinearLayout>
 

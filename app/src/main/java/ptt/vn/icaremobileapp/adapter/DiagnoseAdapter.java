@@ -19,7 +19,6 @@ import java.util.List;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.dialog.DialogEditDiagnose;
-import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
@@ -28,7 +27,6 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
     private List<Integer> expand = new ArrayList<>();
     private List<InpatientDiagnose> lists;
     private Context context;
-    private InpatientDiagnose diagnose;
 
     public DiagnoseAdapter(List<InpatientDiagnose> lists) {
         this.lists = lists;
@@ -69,7 +67,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             }
         });
 
-        diagnose = lists.get(position);
+        final InpatientDiagnose diagnose = lists.get(position);
 
 
         holder.icEdit.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +75,7 @@ public class DiagnoseAdapter extends RecyclerView.Adapter<DiagnoseAdapter.MyView
             public void onClick(View v) {
                 DialogEditDiagnose.getInstance().show(context, diagnose, new DialogEditDiagnose.OnClickListener() {
                     @Override
-                    public void onClickListener(InpatientDiagnose diagnosel) {
-                        diagnose = diagnosel;
+                    public void onClickListener() {
                         notifyDataSetChanged();
                     }
                 });

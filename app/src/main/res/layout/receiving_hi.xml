@@ -59,6 +59,7 @@
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtHiCode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -66,6 +67,7 @@
             app:hint="Số Thẻ BHYT" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtHiStart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -73,6 +75,7 @@
             app:hint="Từ Ngày" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtHiEnd"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -80,6 +83,7 @@
             app:hint="Đến Ngày" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtHiObjectCode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -87,6 +91,7 @@
             app:hint="Mã Nơi Đối Tượng Sinh Sống" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtHi5y"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -108,6 +113,7 @@
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+            android:id="@+id/edtHospitalName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
@@ -116,6 +122,7 @@
             app:heights="@dimen/dp_176"/>
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+            android:id="@+id/edtHiAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"

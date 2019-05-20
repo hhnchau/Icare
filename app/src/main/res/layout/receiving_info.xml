@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.constraint.Guideline
         android:id="@+id/guide"
@@ -14,67 +14,158 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientCode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Mã Bệnh Nhân"/>
+            app:hint="Mã Bệnh Nhân" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientSex"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
             app:hint="Giới Tính" />
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/boxDate"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Ngày Sinh" />
+            android:orientation="horizontal">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layoutDatetime"
+                style="@style/MyTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_patient_birthday"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/edtDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="datetime"
+                    android:padding="@dimen/dp_12" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/icDate"
+                android:layout_width="@dimen/dp_48"
+                android:layout_height="@dimen/dp_48"
+                android:layout_marginTop="@dimen/dp_0"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:contentDescription="@string/img_des"
+                android:src="@mipmap/ic_date"
+                app:layout_constraintBottom_toBottomOf="@id/layoutDatetime"
+                app:layout_constraintEnd_toEndOf="@id/layoutDatetime"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="@id/layoutDatetime"
+                app:layout_constraintTop_toTopOf="@id/layoutDatetime" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Quốc Tịch" />
+            android:hint="@string/txt_nation">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientNation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Tỉnh Thành" />
+            android:hint="@string/txt_province">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientProvince"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Phường Xã" />
+            android:hint="@string/txt_ward">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientWard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Nghề Nghiệp" />
+            android:hint="@string/txt_job">
+
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientJob"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientPassport"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -82,6 +173,7 @@
             app:hint="Passport" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtParentName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -93,53 +185,92 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_32"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guide"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
             app:hint="Họ Và Tên" />
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Hôn Nhân" />
+            android:hint="@string/txt_married">
+
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientMarried"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientPhone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
             app:hint="Số Điện Thoại" />
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Dân Tộc" />
+            android:hint="@string/txt_ethnic">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientEthnic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Quận Huyện" />
+            android:hint="@string/txt_district">
+
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpPatientDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientStreet"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -147,6 +278,7 @@
             app:hint="Số Nhà, Đường" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientIde"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -154,6 +286,7 @@
             app:hint="CMND" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtPatientEmail"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
@@ -161,6 +294,7 @@
             app:hint="Email" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+            android:id="@+id/edtParentIde"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"

@@ -86,7 +86,7 @@ public class DialogNewHappening {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             Calendar cal = Calendar.getInstance();
-                            edtDatetime.setText(dayOfMonth + "/" + month + "/" + year + " " + cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE));
+                            edtDatetime.setText((dayOfMonth + "/" + month + "/" + year + " " + cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE)));
                         }
                     }, _calendar.get(Calendar.YEAR), _calendar.get(Calendar.MONTH), _calendar.get(Calendar.DAY_OF_MONTH)).show();
                 }

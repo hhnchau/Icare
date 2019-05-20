@@ -13,7 +13,9 @@ import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
 import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaResponse;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
+import ptt.vn.icaremobileapp.model.patient.PatientSave;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
 import ptt.vn.icaremobileapp.model.register.RegisterResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemResponse;
@@ -76,10 +78,11 @@ public interface ApiService {
     @POST()
     Observable<HiResponse> getHiInfo(@Url String url, @Body HiDomain hiDomain);
 
-
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
     @POST()
-    Observable<Object> save(@Url String url, @Body InpatientDomain form);
+    Observable<PatientSave> saveReceiving(@Url String url, @Body PatientDomain patientDomain);
+
+
 
 
     @GET("/InpatientService/filter")
