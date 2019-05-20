@@ -6,8 +6,8 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_130"
         style="?android:attr/progressBarStyleHorizontal"
         android:max="100"
         android:indeterminate="false"

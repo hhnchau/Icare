@@ -8,8 +8,10 @@
 
     <ImageView
         android:id="@+id/ic1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_120"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
         android:contentDescription="@string/img_des"
         android:src="@drawable/ic_hospitalization"
         android:scaleType="centerInside"
@@ -22,10 +24,11 @@
         android:id="@+id/mainText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textSize="@dimen/sp_50"
+        android:textSize="@dimen/sp_70"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/dashboard_text"
+        android:layout_marginStart="@dimen/dp_32"
         android:text="15"
         app:layout_constraintTop_toTopOf="@id/ic1"
         app:layout_constraintStart_toEndOf="@id/ic1"
@@ -38,7 +41,8 @@
         android:layout_height="wrap_content"
         android:text="Bệnh nhân"
         android:gravity="center"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_26"
+        android:layout_marginStart="@dimen/dp_32"
         app:layout_constraintBottom_toBottomOf="@id/ic1"
         app:layout_constraintStart_toEndOf="@id/ic1"
         app:layout_constraintTop_toBottomOf="@id/mainText"
@@ -58,8 +62,8 @@
 
     <ImageView
         android:id="@+id/ic2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_120"
         android:src="@drawable/ic_hour_glass"
         android:contentDescription="@string/img_des"
         android:scaleType="centerInside"
@@ -67,16 +71,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.98"
        />
 
 
     <TextView
         android:id="@+id/patientNumber"
-        android:layout_width="65dp"
+        android:layout_width="114dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="@dimen/sp_32"
+        android:textSize="@dimen/sp_48"
         android:text="3499"
         android:maxLength="4"
         android:maxLines="1"
@@ -90,7 +94,8 @@
         android:id="@+id/patient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_18"
+        android:layout_marginStart="@dimen/dp_8"
+        android:textSize="@dimen/sp_26"
         android:text="Bệnh nhân"
         app:layout_constraintStart_toEndOf="@id/patientNumber"
         app:layout_constraintTop_toTopOf="@id/patientNumber"
@@ -110,26 +115,26 @@
 
     <TextView
         android:id="@+id/hourNumber"
-        android:layout_width="65dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="@dimen/sp_32"
+        android:textSize="@dimen/sp_48"
         android:textColor="@color/dashboard_frame4"
         android:text="24"
 
         app:layout_constraintTop_toBottomOf="@id/line2"
-        app:layout_constraintStart_toStartOf="@id/line2"
-        app:layout_constraintEnd_toStartOf="@id/hour"/>
+        app:layout_constraintStart_toStartOf="@id/patientNumber"
+        app:layout_constraintEnd_toEndOf="@id/patientNumber"/>
 
     <TextView
         android:id="@+id/hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_26"
         android:text="Giờ"
         app:layout_constraintTop_toTopOf="@id/hourNumber"
         app:layout_constraintBottom_toBottomOf="@id/hourNumber"
-        app:layout_constraintStart_toEndOf="@id/patientNumber"
+        app:layout_constraintStart_toStartOf="@id/patient"
      />
 
 
