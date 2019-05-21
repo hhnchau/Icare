@@ -25,6 +25,7 @@
         android:textColorHint="@color/gr"
         android:textSize="@dimen/sp_16"
         android:dropDownVerticalOffset="0dp"
+        android:completionThreshold="1"
         app:layout_constraintBottom_toTopOf="@id/rcv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

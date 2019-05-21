@@ -712,7 +712,7 @@ public class ApiController {
             //return;
         }
 
-        url = "http://172.16.0.21:7770/BHYTService/";
+        //url = "http://172.16.0.21:7770/BHYTService/";
 
         Loading.getInstance().show(context);
 

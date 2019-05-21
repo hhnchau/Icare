@@ -20,6 +20,11 @@ public class CateSharelDomain implements Parcelable {
     private String decrp5;
     private String usercr;
 
+    public CateSharelDomain(int idline, String name) {
+        this.idline = idline;
+        this.name = name;
+    }
+
     public CateSharelDomain() {
     }
 

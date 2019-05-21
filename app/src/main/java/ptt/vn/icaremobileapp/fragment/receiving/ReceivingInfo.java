@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -29,7 +30,10 @@ import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.patient.PatientAdrr;
+import ptt.vn.icaremobileapp.model.patient.PatientIde;
 import ptt.vn.icaremobileapp.model.shared.HiLiveData;
+import ptt.vn.icaremobileapp.utils.Helper;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 import static ptt.vn.icaremobileapp.model.filter.FieldName.district;
@@ -43,11 +47,12 @@ import static ptt.vn.icaremobileapp.model.filter.FieldName.ward;
 public class ReceivingInfo extends BaseFragment {
     private View view;
 
-    private MyInputTextOutline edtPatientCode, edtPatientSex, edtPatientPassport, edtParentName,
+    private MyInputTextOutline edtPatientCode, edtPatientPassport, edtParentName,
             edtPatientName, edtPatientPhone, edtPatientStreet, edtPatientIde, edtPatientEmail, edtParentIde;
-    private MyAutoCompleteTextView acpPatientDistrict, acpPatientProvince, acpPatientWard, acpPatientJob, acpPatientEthnic, acpPatientNation, acpPatientMarried;
-    private int idPatientDistrict, idPatientProvince, idPatientWard, idPatientJob, idPatientEthnic, idPatientNation, idPatientMarried;
-    private EditText edtDatetime;
+    private MyAutoCompleteTextView acpPatientDistrict, acpPatientProvince, acpPatientWard, acpPatientJob, acpPatientEthnic, acpPatientNation, acpPatientMarried, acpPatientSex;
+    private List<CateSharelDomain> lstPatientDistrict, lstPatientProvince, lstPatientWard, lstPatientJob, lstPatientEthnic, lstPatientNation, lstPatientMarried, lstPatientSex;
+    private int idPatientDistrict, idPatientProvince, idPatientWard, idPatientJob, idPatientEthnic, idPatientNation, idPatientMarried, idPatientSex;
+    private EditText edtPatientBirthday;
 
 
     @Nullable
@@ -55,7 +60,7 @@ public class ReceivingInfo extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.receiving_info, container, false);
         initView();
-
+        setupSex();
         getCateShare(district);
         getCateShare(ward);
         getCateShare(job);
@@ -85,14 +90,17 @@ public class ReceivingInfo extends BaseFragment {
         if (hiDomain != null) {
             if (!TextUtils.isEmpty(hiDomain.getHoTen()))
                 edtPatientName.setText(hiDomain.getHoTen());
-            if (!TextUtils.isEmpty(hiDomain.getDiaChi()))
-                edtPatientStreet.setText(hiDomain.getDiaChi());
+            if (!TextUtils.isEmpty(hiDomain.getGioiTinh())) {
+                acpPatientSex.setText(hiDomain.getGioiTinh());
+                idPatientSex = Helper.getIdByName(lstPatientSex, hiDomain.getGioiTinh());
+            }
+            if (!TextUtils.isEmpty(hiDomain.getNgaySinh()))
+                edtPatientBirthday.setText(hiDomain.getNgaySinh());
         }
     }
 
     private void initView() {
         edtPatientCode = view.findViewById(R.id.edtPatientCode);
-        edtPatientSex = view.findViewById(R.id.edtPatientSex);
         edtPatientPassport = view.findViewById(R.id.edtPatientPassport);
         edtParentName = view.findViewById(R.id.edtParentName);
         edtPatientName = view.findViewById(R.id.edtPatientName);
@@ -102,15 +110,15 @@ public class ReceivingInfo extends BaseFragment {
         edtPatientEmail = view.findViewById(R.id.edtPatientEmail);
         edtParentIde = view.findViewById(R.id.edtParentIde);
 
-        edtDatetime = view.findViewById(R.id.edtDateTime);
+        edtPatientBirthday = view.findViewById(R.id.edtPatientBirthday);
         view.findViewById(R.id.icDate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar _calendar = Utils.dateStringConvert(edtDatetime.getText().toString(), Utils.ddMMyyyy);
+                final Calendar _calendar = Utils.dateStringConvert(edtPatientBirthday.getText().toString(), Utils.ddMMyyyy);
                 new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        edtDatetime.setText((dayOfMonth + "/" + month + "/" + year));
+                        edtPatientBirthday.setText((dayOfMonth + "/" + month + "/" + year));
                     }
                 }, _calendar.get(Calendar.YEAR), _calendar.get(Calendar.MONTH), _calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -278,21 +286,99 @@ public class ReceivingInfo extends BaseFragment {
         }
     }
 
+    private void setupSex() {
+        if (getActivity() != null) {
+            acpPatientSex = view.findViewById(R.id.acpPatientSex);
+
+            lstPatientSex = new ArrayList<>();
+            lstPatientSex.add(new CateSharelDomain(1, "Nam"));
+            lstPatientSex.add(new CateSharelDomain(0, "Nữ"));
+
+            AutoCompleteTextViewAdapter adapter = new AutoCompleteTextViewAdapter(getActivity(), lstPatientSex);
+            acpPatientSex.setAdapter(adapter);
+            acpPatientSex.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Utils.keyboardClose(parent.getContext(), acpPatientSex);
+                    idPatientSex = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                }
+            });
+
+            acpPatientSex.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    acpPatientSex.showDropDown();
+                }
+            });
+        }
+    }
+
     public boolean validate() {
-        Receiving.patientDomain.setFirstname("Huynh");
-        Receiving.patientDomain.setLastname("Demo-Demo");
-        Receiving.patientDomain.setSex(1);
-        Receiving.patientDomain.setYearbr(1980);
-        Receiving.patientDomain.setMonthbr(1);
-        Receiving.patientDomain.setDaybr(1);
-        Receiving.patientDomain.setPhone("0901010101");
-        Receiving.patientDomain.setEmail("abc@gmail.com");
-        Receiving.patientDomain.setIdnation(25124);
-        Receiving.patientDomain.setIdethnic(25069);
-        Receiving.patientDomain.setIdjob(25378);
-        Receiving.patientDomain.setIsmarr(25385);
-        Receiving.patientDomain.setFaname("Ten Ba Me");
-        Receiving.patientDomain.setFacard("CMND BA ME");
+        boolean validate = true;
+        if (TextUtils.isEmpty(edtPatientName.getText())) {
+            edtPatientName.setError(".");
+            validate = false;
+        }
+        if (TextUtils.isEmpty(acpPatientSex.getText())) {
+            acpPatientSex.setError(".");
+            validate = false;
+        }
+        if (TextUtils.isEmpty(edtPatientBirthday.getText())) {
+            edtPatientBirthday.setError(".");
+            validate = false;
+        }
+        if (TextUtils.isEmpty(edtPatientBirthday.getText())) {
+            edtPatientBirthday.setError(".");
+            validate = false;
+        }
+        if (!validate) return false;
+
+        String[] name = Helper.splitName(edtPatientName.getText().toString());
+        Receiving.patientDomain.setFirstname(name[0]);
+        Receiving.patientDomain.setLastname(name[1]);
+
+        Receiving.patientDomain.setSex(idPatientSex);
+
+        String[] date = Helper.splitDate(edtPatientBirthday.getText().toString());
+        if (!TextUtils.isEmpty(date[0]))
+            Receiving.patientDomain.setDaybr(Integer.parseInt(date[0]));
+        else
+            Receiving.patientDomain.setDaybr(null);
+        if (!TextUtils.isEmpty(date[1]))
+            Receiving.patientDomain.setMonthbr(Integer.parseInt(date[1]));
+        else
+            Receiving.patientDomain.setMonthbr(null);
+        Receiving.patientDomain.setYearbr(Integer.parseInt(date[2]));
+
+        Receiving.patientDomain.setPhone(edtPatientPhone.getText().toString());
+        Receiving.patientDomain.setEmail(edtPatientEmail.getText().toString());
+        Receiving.patientDomain.setIdnation(idPatientNation);
+        Receiving.patientDomain.setIdethnic(idPatientEthnic);
+        Receiving.patientDomain.setIdjob(idPatientJob);
+        Receiving.patientDomain.setIsmarr(idPatientMarried);
+        Receiving.patientDomain.setFaname(edtParentName.getText().toString());
+        Receiving.patientDomain.setFacard(edtParentIde.getText().toString());
+
+        PatientAdrr patientAdrr = new PatientAdrr();
+        String address =
+                edtPatientStreet.getText() + " " +
+                        acpPatientWard.getText() + " " +
+                        acpPatientDistrict.getText() + " " +
+                        acpPatientProvince.getText();
+        patientAdrr.setAddresfull(address);
+        patientAdrr.setIddistric(idPatientDistrict);
+        patientAdrr.setIdprovin(idPatientProvince);
+        patientAdrr.setIdward(idPatientWard);
+        patientAdrr.setStreet(edtPatientStreet.getText().toString());
+        List<PatientAdrr> lstPatientAdrr = new ArrayList<>();
+        lstPatientAdrr.add(patientAdrr);
+        Receiving.patientDomain.setLstPatientAddr(lstPatientAdrr);
+
+        PatientIde patientIde = new PatientIde();
+        patientIde.setCardid(edtPatientIde.getText().toString());
+        List<PatientIde> lstPatientIde = new ArrayList<>();
+        lstPatientIde.add(patientIde);
+        Receiving.patientDomain.setLstPatientIde(lstPatientIde);
         return true;
     }
 
@@ -303,30 +389,38 @@ public class ReceivingInfo extends BaseFragment {
                     public void response(List<CateSharelDomain> list) {
                         switch (fieldName) {
                             case district:
-                                setupDistrict(list);
+                                lstPatientDistrict = list;
+                                setupDistrict(lstPatientDistrict);
                                 break;
                             case ward:
-                                setupWard(list);
+                                lstPatientWard = list;
+                                setupWard(lstPatientWard);
                                 break;
                             case job:
-                                setupJob(list);
+                                lstPatientJob = list;
+                                setupJob(lstPatientJob);
                                 break;
                             case provincial:
-                                setupProvince(list);
+                                lstPatientProvince = list;
+                                setupProvince(lstPatientProvince);
                                 break;
                             case nation:
-                                setupNation(list);
+                                lstPatientNation = list;
+                                setupNation(lstPatientNation);
                                 break;
                             case ethnic:
-                                setupEthnic(list);
+                                lstPatientEthnic = list;
+                                setupEthnic(lstPatientEthnic);
                                 break;
                             case marr:
-                                setupMarried(list);
+                                lstPatientMarried = list;
+                                setupMarried(lstPatientMarried);
                                 break;
                         }
                     }
                 });
     }
+
 
     @Override
     public void toolbarListener() {

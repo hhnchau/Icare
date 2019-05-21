@@ -15,8 +15,8 @@ public class PatientDomain implements Parcelable {
     private int sex;
     private int ismarr;
     private int yearbr;
-    private int monthbr;
-    private int daybr;
+    private Integer monthbr;
+    private Integer daybr;
     private String paport;
     private int idnation;
     private String namenation;
@@ -173,7 +173,7 @@ public class PatientDomain implements Parcelable {
         return monthbr;
     }
 
-    public void setMonthbr(int monthbr) {
+    public void setMonthbr(Integer monthbr) {
         this.monthbr = monthbr;
     }
 
@@ -181,7 +181,7 @@ public class PatientDomain implements Parcelable {
         return daybr;
     }
 
-    public void setDaybr(int daybr) {
+    public void setDaybr(Integer daybr) {
         this.daybr = daybr;
     }
 

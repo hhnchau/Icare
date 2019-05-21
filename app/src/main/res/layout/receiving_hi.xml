@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.constraint.Guideline
         android:id="@+id/guide"
@@ -14,48 +14,48 @@
     <android.support.v7.widget.CardView
         android:id="@+id/boximg"
         android:layout_width="wrap_content"
-        android:layout_margin="@dimen/dp_16"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
         app:cardElevation="@dimen/dp_1"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/box"
+        app:layout_constraintEnd_toEndOf="@id/guide"
         app:layout_constraintStart_toStartOf="@id/guide"
-        app:layout_constraintEnd_toEndOf="@id/guide">
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_16"
-        android:src="@drawable/bhyt"
-        android:contentDescription="@string/img_des" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:contentDescription="@string/img_des"
+            android:src="@drawable/bhyt" />
 
     </android.support.v7.widget.CardView>
 
     <ImageView
         android:layout_width="@dimen/dp_48"
         android:layout_height="@dimen/dp_48"
-        android:src="@drawable/ic_camera"
         android:alpha="0.7"
         android:contentDescription="@string/img_des"
-        app:layout_constraintTop_toBottomOf="@id/boximg"
+        android:elevation="2dp"
+        android:src="@drawable/ic_camera"
         app:layout_constraintBottom_toBottomOf="@id/boximg"
-        app:layout_constraintStart_toEndOf="@id/boximg"
         app:layout_constraintEnd_toEndOf="@id/boximg"
-        android:elevation="2dp"/>
+        app:layout_constraintStart_toEndOf="@id/boximg"
+        app:layout_constraintTop_toBottomOf="@id/boximg" />
 
     <LinearLayout
         android:id="@+id/box"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintTop_toBottomOf="@id/boximg"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boximg"
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
@@ -64,71 +64,210 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Số Thẻ BHYT" />
+            app:hint="@string/txt_insurance_code" />
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-            android:id="@+id/edtHiStart"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/boxDate"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Từ Ngày" />
+            android:orientation="horizontal">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-            android:id="@+id/edtHiEnd"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layoutDatetime"
+                style="@style/MyTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_insurance_start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/edtHiStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="datetime"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_52" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/icDateStart"
+                android:layout_width="@dimen/dp_48"
+                android:layout_height="@dimen/dp_48"
+                android:layout_marginTop="@dimen/dp_0"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:contentDescription="@string/img_des"
+                android:src="@mipmap/ic_date"
+                app:layout_constraintBottom_toBottomOf="@id/layoutDatetime"
+                app:layout_constraintEnd_toEndOf="@id/layoutDatetime"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="@id/layoutDatetime"
+                app:layout_constraintTop_toTopOf="@id/layoutDatetime" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Đến Ngày" />
+            android:orientation="horizontal">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-            android:id="@+id/edtHiObjectCode"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layoutDatetime1"
+                style="@style/MyTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_insurance_end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/edtHiEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="datetime"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_52" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/icDateEnd"
+                android:layout_width="@dimen/dp_48"
+                android:layout_height="@dimen/dp_48"
+                android:layout_marginTop="@dimen/dp_0"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:contentDescription="@string/img_des"
+                android:src="@mipmap/ic_date"
+                app:layout_constraintBottom_toBottomOf="@id/layoutDatetime1"
+                app:layout_constraintEnd_toEndOf="@id/layoutDatetime1"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="@id/layoutDatetime1"
+                app:layout_constraintTop_toTopOf="@id/layoutDatetime1" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInput"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Mã Nơi Đối Tượng Sinh Sống" />
+            android:hint="@string/txt_insurance_object">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-            android:id="@+id/edtHi5y"
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpHiObject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/dp_12" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_weight="1"
-            app:hint="Thời Gian Đủ 5 Năm" />
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layoutDatetime2"
+                style="@style/MyTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_52"
+                android:hint="@string/txt_insurance_5y"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/edtHi5y"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="datetime"
+                    android:padding="@dimen/dp_12" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/icDate5y"
+                android:layout_width="@dimen/dp_48"
+                android:layout_height="@dimen/dp_48"
+                android:layout_marginTop="@dimen/dp_0"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:contentDescription="@string/img_des"
+                android:src="@mipmap/ic_date"
+                app:layout_constraintBottom_toBottomOf="@id/layoutDatetime2"
+                app:layout_constraintEnd_toEndOf="@id/layoutDatetime2"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="@id/layoutDatetime2"
+                app:layout_constraintTop_toTopOf="@id/layoutDatetime2" />
+
+        </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_32"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintTop_toTopOf="@id/box"
-        app:layout_constraintStart_toStartOf="@id/guide"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide"
+        app:layout_constraintTop_toTopOf="@id/box"
         app:layout_constraintVertical_bias="0">
 
-        <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
-            android:id="@+id/edtHospitalName"
+        <android.support.design.widget.TextInputLayout
+            style="@style/MyTextInputMultiline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            android:layout_weight="1"
-            app:hints="Tên Bệnh Viện"
-            app:heights="@dimen/dp_176"/>
+            android:hint="@string/txt_hospital_name">
+
+            <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                android:id="@+id/acpHospitalName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_176"
+                android:completionThreshold="1"
+                android:dropDownVerticalOffset="0dp"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:padding="@dimen/dp_12"/>
+        </android.support.design.widget.TextInputLayout>
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
             android:id="@+id/edtHiAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            android:layout_weight="1"
-            app:hints="Địa Chỉ Thẻ BHYT"
-            app:heights="@dimen/dp_114"/>
+            app:heights="@dimen/dp_114"
+            app:hints="@string/txt_insurance_address" />
 
     </LinearLayout>
 

@@ -89,9 +89,8 @@ public class Receiving extends BaseFragment {
         ApiController.getInstance().getHiInfo(getActivity(), maThe, hoTen, ngaySinh, new Callback<HiDomain>() {
             @Override
             public void response(HiDomain hiDomain) {
-                hiLiveData.setHiLiveData(hiDomain);
                 if (hiDomain != null && hiDomain.getMaKetQua().equals("000"))
-                    Toast.makeText(getActivity(), "The OK", Toast.LENGTH_SHORT).show();
+                    hiLiveData.setHiLiveData(hiDomain);
                 else Toast.makeText(getActivity(), "Thẻ Không Hợp Lệ", Toast.LENGTH_SHORT).show();
             }
         });
@@ -110,7 +109,7 @@ public class Receiving extends BaseFragment {
             if (receivingBhi != null) validateBhi = receivingBhi.validate();
 
             if (!validateInfo || !validateHi || !validateBhi) {
-                Toast.makeText(getActivity(), "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -148,12 +147,7 @@ public class Receiving extends BaseFragment {
             if (requestCode == 1001) {
                 HiCard hiCard = data.getParcelableExtra("SCANNER");
                 if (hiCard != null) {
-                    HiDomain hiDomain = new HiDomain();
-                    hiDomain.setMaThe(hiCard.getManagerCode());
-                    hiDomain.setHoTen(hiCard.getName());
-                    hiDomain.setDiaChi(hiCard.getAddress());
-                    hiLiveData.setHiLiveData(hiDomain);
-                    //getHiInfo(hiCard.getManagerCode(), hiCard.getName(), hiCard.getBirthday());
+                    getHiInfo(hiCard.getManagerCode(), hiCard.getName(), hiCard.getBirthday());
                 }
             }
         }
