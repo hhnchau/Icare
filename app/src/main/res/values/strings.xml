@@ -92,7 +92,7 @@
 
     <string name="txt_price_insurance">Giá BHYT</string>
     <string name="txt_diagnose">Chuẩn đoán</string>
-    <string name="txt_diagnose_selected">Chọn Chuẩn Đooán</string>
+    <string name="txt_diagnose_selected">Chọn Chẩn Đoán</string>
     <string name="txt_diagnose_code">Mã ICD 10</string>
     <string name="txt_diagnose_name_en">Tên Tiếng Anh</string>
     <string name="txt_diagnose_name_vn">Tên Tiếng Việt</string>
