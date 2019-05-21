@@ -21,8 +21,8 @@
             android:id="@+id/cv3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_32"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/box"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,8 +32,7 @@
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_4"
-                android:layout_marginTop="@dimen/dp_4"
+                android:layout_marginStart="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_8"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="1"
@@ -42,9 +41,7 @@
             <ptt.vn.icaremobileapp.custom.MyInputText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_8"
-                android:layout_marginTop="@dimen/dp_4"
-                android:layout_marginEnd="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_12"
                 android:layout_marginBottom="@dimen/dp_4"
                 android:layout_weight="0.5"
                 app:hint="Đường Dùng" />
