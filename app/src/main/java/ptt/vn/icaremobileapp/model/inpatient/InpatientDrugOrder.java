@@ -18,8 +18,8 @@ public class InpatientDrugOrder implements Parcelable {
     private String unitusename;
     private int idroute;
     private String routename;
-    private float price;
-    private float total;
+    private long price;
+    private long total;
     private String usage;
     private String desc;
     private String qtymor;
@@ -60,8 +60,8 @@ public class InpatientDrugOrder implements Parcelable {
         unitusename = in.readString();
         idroute = in.readInt();
         routename = in.readString();
-        price = in.readFloat();
-        total = in.readFloat();
+        price = in.readLong();
+        total = in.readLong();
         usage = in.readString();
         desc = in.readString();
         qtymor = in.readString();
@@ -207,19 +207,19 @@ public class InpatientDrugOrder implements Parcelable {
         this.routename = routename;
     }
 
-    public float getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
-    public float getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 
@@ -396,8 +396,8 @@ public class InpatientDrugOrder implements Parcelable {
         dest.writeString(unitusename);
         dest.writeInt(idroute);
         dest.writeString(routename);
-        dest.writeFloat(price);
-        dest.writeFloat(total);
+        dest.writeDouble(price);
+        dest.writeDouble(total);
         dest.writeString(usage);
         dest.writeString(desc);
         dest.writeString(qtymor);

@@ -11,9 +11,9 @@ public class MapPriceServiceItemLDomain implements Parcelable {
     private String namehi;
     private String namehosp;
     private int unitid;
-    private float price;
-    private float pricehi;
-    private float difference;
+    private long price;
+    private long pricehi;
+    private long difference;
     private String descrp;
     private int active;
 
@@ -28,9 +28,9 @@ public class MapPriceServiceItemLDomain implements Parcelable {
         namehi = in.readString();
         namehosp = in.readString();
         unitid = in.readInt();
-        price = in.readFloat();
-        pricehi = in.readFloat();
-        difference = in.readFloat();
+        price = in.readLong();
+        pricehi = in.readLong();
+        difference = in.readLong();
         descrp = in.readString();
         active = in.readInt();
     }
@@ -44,9 +44,9 @@ public class MapPriceServiceItemLDomain implements Parcelable {
         dest.writeString(namehi);
         dest.writeString(namehosp);
         dest.writeInt(unitid);
-        dest.writeFloat(price);
-        dest.writeFloat(pricehi);
-        dest.writeFloat(difference);
+        dest.writeLong(price);
+        dest.writeLong(pricehi);
+        dest.writeLong(difference);
         dest.writeString(descrp);
         dest.writeInt(active);
     }
@@ -124,27 +124,27 @@ public class MapPriceServiceItemLDomain implements Parcelable {
         this.unitid = unitid;
     }
 
-    public float getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
-    public float getPricehi() {
+    public long getPricehi() {
         return pricehi;
     }
 
-    public void setPricehi(float pricehi) {
+    public void setPricehi(long pricehi) {
         this.pricehi = pricehi;
     }
 
-    public float getDifference() {
+    public long getDifference() {
         return difference;
     }
 
-    public void setDifference(float difference) {
+    public void setDifference(long difference) {
         this.difference = difference;
     }
 

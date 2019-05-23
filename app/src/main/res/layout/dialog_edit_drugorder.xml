@@ -86,7 +86,7 @@
 
 
                 <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                    android:id="@+id/edtActiveIngre"
+                    android:id="@+id/tvActiveIngre"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_52"
                     android:layout_marginStart="@dimen/dp_16"

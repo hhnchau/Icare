@@ -360,6 +360,7 @@ public class ReceivingInfo extends BaseFragment {
         Receiving.patientDomain.setFacard(edtParentIde.getText().toString());
 
         PatientAdrr patientAdrr = new PatientAdrr();
+        patientAdrr.setIdline(Utils.newGuid());
         String address =
                 edtPatientStreet.getText() + " " +
                         acpPatientWard.getText() + " " +
@@ -375,6 +376,7 @@ public class ReceivingInfo extends BaseFragment {
         Receiving.patientDomain.setLstPatientAddr(lstPatientAdrr);
 
         PatientIde patientIde = new PatientIde();
+        patientIde.setIdline(Utils.newGuid());
         patientIde.setCardid(edtPatientIde.getText().toString());
         List<PatientIde> lstPatientIde = new ArrayList<>();
         lstPatientIde.add(patientIde);

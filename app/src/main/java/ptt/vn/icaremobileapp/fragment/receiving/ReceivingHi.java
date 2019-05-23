@@ -216,6 +216,7 @@ public class ReceivingHi extends BaseFragment {
             }
 
             PatientHi patientHi = new PatientHi();
+            patientHi.setIdline(Utils.newGuid());
             patientHi.setNohi(edtHiCode.getText().toString());
             patientHi.setStrday(Utils.dateConvert(edtHiStart.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
             patientHi.setEndday(Utils.dateConvert(edtHiEnd.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));

@@ -22,7 +22,7 @@ public class PhaInventoryDomain implements Parcelable {
     private String namespecificat;
     private String nameactiveingre;
     private String nameunit;
-    private float price;
+    private long price;
     private String lotnumber;
     private String expirydate;
     private int ishi;
@@ -49,7 +49,7 @@ public class PhaInventoryDomain implements Parcelable {
         namespecificat = in.readString();
         nameactiveingre = in.readString();
         nameunit = in.readString();
-        price = in.readFloat();
+        price = in.readLong();
         lotnumber = in.readString();
         expirydate = in.readString();
         ishi = in.readInt();
@@ -195,11 +195,11 @@ public class PhaInventoryDomain implements Parcelable {
         this.nameunit = nameunit;
     }
 
-    public float getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
@@ -258,7 +258,7 @@ public class PhaInventoryDomain implements Parcelable {
         dest.writeString(namespecificat);
         dest.writeString(nameactiveingre);
         dest.writeString(nameunit);
-        dest.writeFloat(price);
+        dest.writeDouble(price);
         dest.writeString(lotnumber);
         dest.writeString(expirydate);
         dest.writeInt(ishi);

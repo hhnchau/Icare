@@ -116,7 +116,6 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
     }
 
     private void saveHappening(HappeningDomain happening) {
-        String json = new Gson().toJson(happening);
         ApiController.getInstance().saveHappening(getActivity(), happening, new Callback<HappeningDomain>() {
             @Override
             public void response(HappeningDomain happening) {

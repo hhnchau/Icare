@@ -117,12 +117,10 @@ public class Receiving extends BaseFragment {
             patientDomain.setSiterf(Constant.SITERF);
             patientDomain.setPatid(Utils.newGuid());
 
-            String json = new Gson().toJson(patientDomain);
-
             ApiController.getInstance().saveReceiving(getActivity(), patientDomain, new Callback<PatientDomain>() {
                 @Override
                 public void response(PatientDomain patientDomain) {
-
+                    Toast.makeText(getActivity(), "Đăng ký bệnh nhân thành công", Toast.LENGTH_LONG).show();
                 }
             });
         }

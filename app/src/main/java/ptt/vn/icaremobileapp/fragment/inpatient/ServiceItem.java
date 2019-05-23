@@ -120,6 +120,8 @@ public class ServiceItem extends BaseFragment {
                         lstInpatientServiceOrder.add(inpatientService);
                         adapterServiceItem.setItems(lstInpatientServiceOrder);
                         adapterServiceItem.notifyDataSetChanged();
+                    }else {
+                        Toast.makeText(getActivity(), "Đã tồn tại", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

@@ -3,6 +3,8 @@ package ptt.vn.icaremobileapp.api;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -333,6 +335,7 @@ public class ApiController {
         }
 
         //url = "http://172.16.0.21:7770/InpatientHappeningService/";
+        String json = new Gson().toJson(happening);
 
         Loading.getInstance().show(context);
 
@@ -763,7 +766,8 @@ public class ApiController {
             return;
         }
 
-        //url = "http://172.16.0.21:7770/InpatientHappeningService/";
+        //url = "http://172.16.0.21:7770/PatientService/";
+        String json = new Gson().toJson(patientDomain);
 
         Loading.getInstance().show(context);
 

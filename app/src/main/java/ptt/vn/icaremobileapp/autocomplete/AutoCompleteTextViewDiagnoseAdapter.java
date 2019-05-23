@@ -51,7 +51,7 @@ public class AutoCompleteTextViewDiagnoseAdapter extends ArrayAdapter<IcdDomain>
         final IcdDomain complete = getItem(position);
 
         if (complete != null) {
-            txt.setText(Utils.spannable(complete.getName(), chr));
+            txt.setText(Utils.spannable(complete.getCode()+" - "+complete.getName(), chr));
         }
 
         return convertView;

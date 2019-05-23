@@ -1,5 +1,7 @@
 package ptt.vn.icaremobileapp.utils;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
@@ -42,5 +44,36 @@ public class Helper {
                 return new String[]{"", "", datez[0]};
         }
         return null;
+    }
+
+    public static float convertString2Float(String number) {
+        if (TextUtils.isEmpty(number)) {
+            return 0;
+        }
+        String[] num = number.split("/");
+        if (num.length > 1) {
+            float num1 = Float.parseFloat(num[0]);
+            float num2 = Float.parseFloat(num[1]);
+            return num1 / num2;
+        } else return Float.parseFloat(number);
+    }
+
+    public static String calculateDrugTotal(String number, String mor, String aft, String din, String eve) {
+        if (!TextUtils.isEmpty(number)) {
+
+            float morning = convertString2Float(mor);
+            float after = convertString2Float(aft);
+            float dinner = convertString2Float(din);
+            float evening = convertString2Float(eve);
+
+
+            int num = Integer.parseInt(number.split("/")[0]);
+            float total = ((morning + after + dinner + evening) * num);
+            float residual = total - (int) total;
+            if (residual > 0) total = total + 1;
+
+            return String.valueOf((int) total);
+        }
+        return "";
     }
 }

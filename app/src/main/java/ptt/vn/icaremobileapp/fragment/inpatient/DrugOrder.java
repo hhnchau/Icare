@@ -36,6 +36,7 @@ import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryDomain;
+import ptt.vn.icaremobileapp.utils.Helper;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 import static ptt.vn.icaremobileapp.model.filter.FieldName.routedrug;
@@ -362,32 +363,15 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
         String number = edtDrugNumber.getText().toString();
         if (!TextUtils.isEmpty(number)) {
 
-            float morning = convertString2Float(edtDrugMorning.getText().toString());
-            float after = convertString2Float(edtDrugAfter.getText().toString());
-            float dinner = convertString2Float(edtDrugDinner.getText().toString());
-            float evening = convertString2Float(edtDrugEvening.getText().toString());
+            String morning = edtDrugMorning.getText().toString();
+            String after = edtDrugAfter.getText().toString();
+            String dinner = edtDrugDinner.getText().toString();
+            String evening = edtDrugEvening.getText().toString();
 
-
-            int num = Integer.parseInt(number.split("/")[0]);
-            float total = ((morning + after + dinner + evening) * num);
-            float residual = total - (int) total;
-            if (residual > 0) total = total + 1;
-
-            edtDrugTotal.setText(String.valueOf((int) total));
+            edtDrugTotal.setText(Helper.calculateDrugTotal(number, morning, after, dinner, evening));
         }
     }
 
-    private float convertString2Float(String number) {
-        if (TextUtils.isEmpty(number)) {
-            return 0;
-        }
-        String[] num = number.split("/");
-        if (num.length > 1) {
-            float num1 = Float.parseFloat(num[0]);
-            float num2 = Float.parseFloat(num[1]);
-            return num1 / num2;
-        } else return Float.parseFloat(number);
-    }
 
     @Override
     public void onClick() {
@@ -452,7 +436,7 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
                 drugOrder.setQtynig(evening);
                 drugOrder.setQty(Float.parseFloat(total));
                 drugOrder.setQtyday(Integer.parseInt(number));
-                drugOrder.setTotal(phaInventoryDomain.getPrice() * Float.parseFloat(total));
+                drugOrder.setTotal(phaInventoryDomain.getPrice() * Long.parseLong(total));
                 drugOrder.setDesc(
                         "Sáng: " + drugRoute.getName() + " " + drugOrder.getQtymor() + " " + drugOrder.getIdunitname() + ", " +
                                 "Trưa:" + drugRoute.getName() + " " + drugOrder.getQtyaft() + " " + drugOrder.getIdunitname() + ", " +
@@ -463,6 +447,9 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
                 lstDrugOrder.add(drugOrder);
                 adapterDrugOrder.setItems(lstDrugOrder);
                 adapterDrugOrder.notifyDataSetChanged();
+                acpDrug.setText("");
+            } else {
+                Toast.makeText(getActivity(), "Thuốc dã tồn tại", Toast.LENGTH_SHORT).show();
             }
         }
     }

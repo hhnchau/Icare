@@ -10,8 +10,8 @@ public class InpatientServiceOrder implements Parcelable {
     private int idmedexa;
     private int idservice;
     private int qty;
-    private float price;
-    private float pricehi;
+    private long price;
+    private long pricehi;
     private String docoder;
     private String dateapp;
     private int ishi;
@@ -37,8 +37,8 @@ public class InpatientServiceOrder implements Parcelable {
         idmedexa = in.readInt();
         idservice = in.readInt();
         qty = in.readInt();
-        price = in.readFloat();
-        pricehi = in.readFloat();
+        price = in.readLong();
+        pricehi = in.readLong();
         docoder = in.readString();
         dateapp = in.readString();
         ishi = in.readInt();
@@ -61,8 +61,8 @@ public class InpatientServiceOrder implements Parcelable {
         dest.writeInt(idmedexa);
         dest.writeInt(idservice);
         dest.writeInt(qty);
-        dest.writeFloat(price);
-        dest.writeFloat(pricehi);
+        dest.writeLong(price);
+        dest.writeLong(pricehi);
         dest.writeString(docoder);
         dest.writeString(dateapp);
         dest.writeInt(ishi);
@@ -142,19 +142,19 @@ public class InpatientServiceOrder implements Parcelable {
         this.qty = qty;
     }
 
-    public float getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
-    public float getPricehi() {
+    public long getPricehi() {
         return pricehi;
     }
 
-    public void setPricehi(float pricehi) {
+    public void setPricehi(long pricehi) {
         this.pricehi = pricehi;
     }
 

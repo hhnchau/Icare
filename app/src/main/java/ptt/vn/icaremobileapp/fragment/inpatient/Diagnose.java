@@ -80,6 +80,8 @@ public class Diagnose extends BaseFragment {
                         lstDiagnose.add(diagnose);
                         adapterDiagnose.setItems(lstDiagnose);
                         adapterDiagnose.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getActivity(), "Đã tồn tại", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -141,11 +143,26 @@ public class Diagnose extends BaseFragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 public void run() {
                                     setupDiagnose(listIcd);
+                                    syncIcd(listIcd);
                                 }
                             });
                         }
                     }
                 });
+    }
+
+    private void syncIcd(List<IcdDomain> lstIcd) {
+        if (lstDiagnose != null) {
+            for (InpatientDiagnose diagnose : lstDiagnose)
+                for (IcdDomain icd : lstIcd)
+                    if (diagnose.getIdicd() == icd.getId()) {
+                        diagnose.setCode(icd.getCode());
+                        break;
+                    }
+
+
+            adapterDiagnose.notifyDataSetChanged();
+        }
     }
 
     public void deleteDiagnose(HappeningDomain happening, final int p) {
