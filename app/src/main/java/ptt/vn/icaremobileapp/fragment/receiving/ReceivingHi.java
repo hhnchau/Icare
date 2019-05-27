@@ -79,23 +79,23 @@ public class ReceivingHi extends BaseFragment {
 
     private void updateView(HiDomain hiDomain) {
         if (hiDomain != null) {
-            if (!TextUtils.isEmpty(hiDomain.getMaThe()))
+            if (!TextUtils.isEmpty(hiDomain.getMaThe()) && edtHiCode != null)
                 edtHiCode.setText(hiDomain.getMaThe());
-            if (!TextUtils.isEmpty(hiDomain.getGtTheTu()))
+            if (!TextUtils.isEmpty(hiDomain.getGtTheTu()) && edtHiStart != null)
                 edtHiStart.setText(hiDomain.getGtTheTu());
-            if (!TextUtils.isEmpty(hiDomain.getGtTheDen()))
+            if (!TextUtils.isEmpty(hiDomain.getGtTheDen()) && edtHiEnd != null)
                 edtHiEnd.setText(hiDomain.getGtTheDen());
-            if (!TextUtils.isEmpty(hiDomain.getMaKV())) {
+            if (!TextUtils.isEmpty(hiDomain.getMaKV()) && acpHiObject != null) {
                 acpHiObject.setText(hiDomain.getMaKV());
                 idHiObject = Helper.getIdByName(lstHiObject, hiDomain.getMaKV());
             }
-            if (!TextUtils.isEmpty(hiDomain.getNgayDu5Nam()))
+            if (!TextUtils.isEmpty(hiDomain.getNgayDu5Nam()) && edtHi5y != null)
                 edtHi5y.setText(hiDomain.getNgayDu5Nam());
-            if (!TextUtils.isEmpty(hiDomain.getMaDKBDMoi())) {
+            if (!TextUtils.isEmpty(hiDomain.getMaDKBDMoi()) && acpHospitalName != null) {
                 acpHospitalName.setText(hiDomain.getMaDKBDMoi());
                 idHospitalName = Helper.getIdByName(lstHospitalName, hiDomain.getMaDKBDMoi());
             }
-            if (!TextUtils.isEmpty(hiDomain.getDiaChi()))
+            if (!TextUtils.isEmpty(hiDomain.getDiaChi()) && edtHiAddress != null)
                 edtHiAddress.setText(hiDomain.getDiaChi());
         }
     }

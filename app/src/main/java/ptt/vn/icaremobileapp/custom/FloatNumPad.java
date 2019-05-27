@@ -23,20 +23,20 @@ import java.util.Arrays;
 import ptt.vn.icaremobileapp.R;
 
 
-public class NumPad {
+public class FloatNumPad {
 
-    private static NumPad instance = null;
+    private static FloatNumPad instance = null;
 
-    public static NumPad getInstance(Context context) {
+    public static FloatNumPad getInstance(Context context) {
         if (instance == null) {
-            instance = new NumPad(context);
+            instance = new FloatNumPad(context);
         }
         return instance;
     }
 
     private final FloatingKeyboard floatingKeyboard;
 
-    private NumPad(Context context) {
+    private FloatNumPad(Context context) {
         floatingKeyboard = new FloatingKeyboard(context);
     }
 

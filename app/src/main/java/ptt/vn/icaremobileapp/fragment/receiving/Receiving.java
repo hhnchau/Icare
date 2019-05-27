@@ -145,7 +145,7 @@ public class Receiving extends BaseFragment {
             if (requestCode == 1001) {
                 HiCard hiCard = data.getParcelableExtra("SCANNER");
                 if (hiCard != null) {
-                    getHiInfo(hiCard.getManagerCode(), hiCard.getName(), hiCard.getBirthday());
+                    getHiInfo(hiCard.getSn(), hiCard.getName(), hiCard.getBirthday());
                 }
             }
         }

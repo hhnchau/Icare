@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -19,6 +21,7 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable;
+import ptt.vn.icaremobileapp.custom.MyNumPad;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDrugOrder;
 import ptt.vn.icaremobileapp.utils.Utils;
@@ -73,6 +76,13 @@ public class DialogEditDrugOrder {
                 }
             });
 
+            final MyNumPad myNumPad = dialog.findViewById(R.id.padMorning);
+            myNumPad.setOnListener(new MyNumPad.OnListener() {
+                @Override
+                public void onKey(CharSequence chr) {
+                    Toast.makeText(context, chr, Toast.LENGTH_SHORT).show();
+                }
+            });
 
             MyInputTextOutlineDisable tvDrug = dialog.findViewById(R.id.tvDrug);
             tvDrug.setValues(inpatientDrugOrder.getNamedrug());
@@ -81,95 +91,70 @@ public class DialogEditDrugOrder {
 
             edtDrugMorning = dialog.findViewById(R.id.edtDrugMorning);
             edtDrugMorning.setText(inpatientDrugOrder.getQtymor());
-            edtDrugMorning.registerNumPadKeyboard(new MyInputTextOutline.OnLostFocus() {
+            edtDrugMorning.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public void onLost() {
-                    calculation();
-                }
-            });
-            edtDrugMorning.setOnLostFocusListener(new MyInputTextOutline.OnLostFocus() {
-                @Override
-                public void onLost() {
-                    calculation();
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+
+                    } else {
+                        calculation();
+                        Toast.makeText(context, "close", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
 
             edtDrugAfter = dialog.findViewById(R.id.edtDrugAfter);
             edtDrugAfter.setText(inpatientDrugOrder.getQtyaft());
-            edtDrugAfter.registerNumPadKeyboard(new MyInputTextOutline.OnLostFocus() {
-                @Override
-                public void onLost() {
-                    calculation();
-                }
-            });
             edtDrugAfter.setOnLostFocusListener(new MyInputTextOutline.OnLostFocus() {
                 @Override
                 public void onLost() {
                     calculation();
+                    Toast.makeText(context, "lost", Toast.LENGTH_SHORT).show();
+                    myNumPad.show();
                 }
             });
 
             edtDrugDinner = dialog.findViewById(R.id.edtDrugDinner);
             edtDrugDinner.setText(inpatientDrugOrder.getQtydin());
-            edtDrugDinner.registerNumPadKeyboard(new MyInputTextOutline.OnLostFocus() {
-                @Override
-                public void onLost() {
-                    calculation();
-                }
-            });
             edtDrugDinner.setOnLostFocusListener(new MyInputTextOutline.OnLostFocus() {
                 @Override
                 public void onLost() {
                     calculation();
+                    Toast.makeText(context, "lost", Toast.LENGTH_SHORT).show();
                 }
             });
 
 
             edtDrugEvening = dialog.findViewById(R.id.edtDrugEvening);
             edtDrugEvening.setText(inpatientDrugOrder.getQtynig());
-            edtDrugEvening.registerNumPadKeyboard(new MyInputTextOutline.OnLostFocus() {
-                @Override
-                public void onLost() {
-                    calculation();
-                }
-            });
             edtDrugEvening.setOnLostFocusListener(new MyInputTextOutline.OnLostFocus() {
                 @Override
                 public void onLost() {
                     calculation();
+                    Toast.makeText(context, "lost", Toast.LENGTH_SHORT).show();
                 }
             });
 
 
             edtDrugNumber = dialog.findViewById(R.id.edtDrugNumber);
             edtDrugNumber.setText(String.valueOf(inpatientDrugOrder.getQty()));
-            edtDrugNumber.registerNumPadKeyboard(new MyInputTextOutline.OnLostFocus() {
-                @Override
-                public void onLost() {
-                    calculation();
-                }
-            });
             edtDrugNumber.setOnLostFocusListener(new MyInputTextOutline.OnLostFocus() {
                 @Override
                 public void onLost() {
                     calculation();
+                    Toast.makeText(context, "lost", Toast.LENGTH_SHORT).show();
                 }
             });
 
 
             edtDrugTotal = dialog.findViewById(R.id.edtDrugTotal);
             edtDrugTotal.setText(String.valueOf(inpatientDrugOrder.getTotal()));
-            edtDrugTotal.registerNumPadKeyboard(new MyInputTextOutline.OnLostFocus() {
-                @Override
-                public void onLost() {
-                    calculation();
-                }
-            });
             edtDrugTotal.setOnLostFocusListener(new MyInputTextOutline.OnLostFocus() {
                 @Override
                 public void onLost() {
                     calculation();
+                    Toast.makeText(context, "lost", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -193,6 +178,7 @@ public class DialogEditDrugOrder {
                     if (onClickListener != null)
                         onClickListener.onClickListener();
                     dialog.dismiss();
+
                 }
             });
         }

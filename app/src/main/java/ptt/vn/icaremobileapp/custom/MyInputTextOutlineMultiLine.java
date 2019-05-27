@@ -113,7 +113,7 @@ public class MyInputTextOutlineMultiLine extends LinearLayout {
             @Override
             public void onClick(View v) {
                 ((InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(v.getWindowToken(), 0);
-                NumPad.getInstance(context).show(myAutoCompleteTextView, new NumPad.OnDoneListener() {
+                FloatNumPad.getInstance(context).show(myAutoCompleteTextView, new FloatNumPad.OnDoneListener() {
                     @Override
                     public void onDone() {
                         onLostFocus.onLost();

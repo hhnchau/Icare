@@ -88,13 +88,13 @@ public class ReceivingInfo extends BaseFragment {
 
     private void updateView(HiDomain hiDomain) {
         if (hiDomain != null) {
-            if (!TextUtils.isEmpty(hiDomain.getHoTen()))
+            if (!TextUtils.isEmpty(hiDomain.getHoTen()) && edtPatientName != null)
                 edtPatientName.setText(hiDomain.getHoTen());
-            if (!TextUtils.isEmpty(hiDomain.getGioiTinh())) {
+            if (!TextUtils.isEmpty(hiDomain.getGioiTinh()) && acpPatientSex != null) {
                 acpPatientSex.setText(hiDomain.getGioiTinh());
                 idPatientSex = Helper.getIdByName(lstPatientSex, hiDomain.getGioiTinh());
             }
-            if (!TextUtils.isEmpty(hiDomain.getNgaySinh()))
+            if (!TextUtils.isEmpty(hiDomain.getNgaySinh()) && edtPatientBirthday != null)
                 edtPatientBirthday.setText(hiDomain.getNgaySinh());
         }
     }

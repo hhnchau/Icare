@@ -127,9 +127,11 @@ public class Dashboard extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Dashboard1 f1 = (Dashboard1) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard1.class.getName());
-                            if (f1 != null) {
-                                f1.updateData(i, i1, i2, i3);
+                            if (getActivity().getSupportFragmentManager() != null) {
+                                Dashboard1 f1 = (Dashboard1) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard1.class.getName());
+                                if (f1 != null) {
+                                    f1.updateData(i, i1, i2, i3);
+                                }
                             }
                         }
                     });
@@ -157,9 +159,11 @@ public class Dashboard extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Dashboard2 f2 = (Dashboard2) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard2.class.getName());
-                            if (f2 != null) {
-                                f2.updateData(ii, ii1, ii2, ii3);
+                            if (getActivity().getSupportFragmentManager() != null) {
+                                Dashboard2 f2 = (Dashboard2) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard2.class.getName());
+                                if (f2 != null) {
+                                    f2.updateData(ii, ii1, ii2, ii3);
+                                }
                             }
                         }
                     });
@@ -187,9 +191,11 @@ public class Dashboard extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Dashboard3 f3 = (Dashboard3) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard3.class.getName());
-                            if (f3 != null) {
-                                f3.updateData(iii, iii1, iii2, iii3);
+                            if (getActivity().getSupportFragmentManager() != null) {
+                                Dashboard3 f3 = (Dashboard3) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard3.class.getName());
+                                if (f3 != null) {
+                                    f3.updateData(iii, iii1, iii2, iii3);
+                                }
                             }
                         }
                     });
@@ -214,9 +220,11 @@ public class Dashboard extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Dashboard4 f4 = (Dashboard4) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard4.class.getName());
-                            if (f4 != null) {
-                                f4.updateData(iiii);
+                            if (getActivity().getSupportFragmentManager() != null) {
+                                Dashboard4 f4 = (Dashboard4) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard4.class.getName());
+                                if (f4 != null) {
+                                    f4.updateData(iiii);
+                                }
                             }
                         }
                     });
@@ -241,9 +249,11 @@ public class Dashboard extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Dashboard5 f5 = (Dashboard5) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard5.class.getName());
-                            if (f5 != null) {
-                                f5.updateData(iiiii * 100000);
+                            if (getActivity().getSupportFragmentManager() != null) {
+                                Dashboard5 f5 = (Dashboard5) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard5.class.getName());
+                                if (f5 != null) {
+                                    f5.updateData(iiiii * 100000);
+                                }
                             }
                         }
                     });
@@ -268,9 +278,11 @@ public class Dashboard extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Dashboard6 f6 = (Dashboard6) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard6.class.getName());
-                            if (f6 != null) {
-                                f6.updateData(iiiiii);
+                            if (getActivity().getSupportFragmentManager() != null) {
+                                Dashboard6 f6 = (Dashboard6) getActivity().getSupportFragmentManager().findFragmentByTag(Dashboard6.class.getName());
+                                if (f6 != null) {
+                                    f6.updateData(iiiiii);
+                                }
                             }
                         }
                     });

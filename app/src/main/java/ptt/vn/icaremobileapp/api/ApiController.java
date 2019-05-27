@@ -709,7 +709,7 @@ public class ApiController {
 
     @SuppressWarnings("unchecked")
     public void getHiInfo(final Context context, final String maThe, final String hoTen, final String ngaySinh, final Callback callback) {
-        String url = MyApplication.getUrl(Service.ACCOUNT);
+        String url = MyApplication.getUrl(Service.BHYT);
         if (url == null) {
             Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
             //return;
