@@ -16,8 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-import com.google.gson.Gson;
-
 import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.MainActivity;
 import ptt.vn.icaremobileapp.R;
@@ -189,6 +187,7 @@ public class Receiving extends BaseFragment {
 
     @Override
     public void onDestroy() {
+        patientDomain = null;
         new Handler().post(new Runnable() {
             public void run() {
                 if (getActivity() != null)

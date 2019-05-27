@@ -45,6 +45,11 @@ public class Toolbaruz {
                 toolbarLeft.setImageResource(R.drawable.ic_menu);
                 toolbarRight.setImageResource(R.drawable.ic_qr);
                 break;
+            case REGISTER:
+                toolbarTile.setText(context.getString(R.string.screen_register));
+                toolbarLeft.setImageResource(R.drawable.ic_menu);
+                toolbarRight.setImageResource(0);
+                break;
         }
     }
 }

@@ -136,6 +136,7 @@ public class Instruction extends BaseFragment implements MyButton.OnListener {
 
     @Override
     public void onDestroy() {
+        happeningDomain = null;
         Fragmentuz.removeFragment(lstFragment, fragmentManager);
         super.onDestroy();
     }

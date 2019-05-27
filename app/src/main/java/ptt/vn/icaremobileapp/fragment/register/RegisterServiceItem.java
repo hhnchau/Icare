@@ -1,4 +1,4 @@
-package ptt.vn.icaremobileapp.fragment.inpatient;
+package ptt.vn.icaremobileapp.fragment.register;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,26 +21,28 @@ import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
-import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
-import ptt.vn.icaremobileapp.model.filter.Objectez;
-import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
-import ptt.vn.icaremobileapp.model.register.RegisterDomain;
-import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewServiceItemAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
+import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
+import ptt.vn.icaremobileapp.model.filter.Objectez;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
+import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemLDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
 import ptt.vn.icaremobileapp.storage.Storage;
+import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.utils.Utils;
 
-public class ServiceItem extends BaseFragment {
+
+public class RegisterServiceItem extends BaseFragment {
     private View view;
     private List<ServiceItemDomain> lstServiceItem;
     private ServiceItemAdapter adapterServiceItem;
 
-    private List<MapPriceServiceItemLDomain> lstMapPriceServiceItem= new ArrayList<>();
+    private List<MapPriceServiceItemLDomain> lstMapPriceServiceItem = new ArrayList<>();
 
     private List<InpatientServiceOrder> lstInpatientServiceOrder = new ArrayList<>();
 
@@ -49,12 +51,10 @@ public class ServiceItem extends BaseFragment {
     private int offset = 0;
     private int limit = 1000;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.serviceitem, container, false);
-
+        view = inflater.inflate(R.layout.register_serviceitem, container, false);
         if (Instruction.happeningDomain != null)
             lstInpatientServiceOrder = Instruction.happeningDomain.getLstInpatientServiceOrder();
 

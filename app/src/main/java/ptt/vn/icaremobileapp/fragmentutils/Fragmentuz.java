@@ -22,6 +22,10 @@ import ptt.vn.icaremobileapp.fragment.inpatient.ThamKham;
 import ptt.vn.icaremobileapp.fragment.receiving.Receiving;
 import ptt.vn.icaremobileapp.fragment.receiving.ReceivingHi;
 import ptt.vn.icaremobileapp.fragment.receiving.ReceivingInfo;
+import ptt.vn.icaremobileapp.fragment.register.Register;
+import ptt.vn.icaremobileapp.fragment.register.RegisterInfo;
+import ptt.vn.icaremobileapp.fragment.register.RegisterReceive;
+import ptt.vn.icaremobileapp.fragment.register.RegisterServiceItem;
 
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
@@ -128,7 +132,6 @@ public class Fragmentuz {
                 return new Dashboard();
             case RECEIVING:
                 return new Receiving();
-
             case THAM_KHAM:
                 return new ThamKham();
             case SERVICE_ITEM:
@@ -143,10 +146,18 @@ public class Fragmentuz {
                 return new Happening();
             case RESOLVED:
                 return new Resolved();
-            case RECEIVING_ONE:
+            case RECEIVING_HI:
                 return new ReceivingHi();
-            case RECEIVING_TWO:
+            case RECEIVING_INFO:
                 return new ReceivingInfo();
+            case REGISTER:
+                return new Register();
+            case REGISTER_INFO:
+                return new RegisterInfo();
+            case REGISTER_RECEIVE:
+                return new RegisterReceive();
+            case REGISTER_SERVICEITEM:
+                return new RegisterServiceItem();
 
         }
         return null;

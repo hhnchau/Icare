@@ -128,6 +128,7 @@
     <string name="screen_dashboard">DASHBOARD</string>
     <string name="screen_inpatient">NỘI TRÚ</string>
     <string name="screen_receiving">TIẾP NHẬN</string>
+    <string name="screen_register">ĐĂNG KÝ</string>
     <string name="screen_inpatient_list">DS NỘI TRÚ</string>
     <string name="screen_inpatient_happening">DIỄN BIẾN</string>
     <string name="screen_inpatient_instruction">Y LỆNH</string>
@@ -138,6 +139,9 @@
     <string name="tab_diagnose">Chẩn đoán</string>
     <string name="tab_happening">Diễn biến</string>
     <string name="tab_resolve">Xử Trí</string>
+    <string name="tab_info">Thông Tin</string>
+    <string name="tab_receive">Tiếp Nhận</string>
+
 
     <string name="txt_err_drug">Vui lòng chọn thuốc</string>
     <string name="txt_err_number">Vui lòng chọn số ngày</string>

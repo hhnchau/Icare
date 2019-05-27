@@ -25,7 +25,7 @@ import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 public class HappeningFrame extends BaseFragment {
     private View view;
     private FragmentManager fragmentManager;
-    private List<Fragmentoz> lstFragment;
+    private List<Fragmentoz> lstFragment = new ArrayList<>();
     private InpatientDomain inpatient;
     private MyTabButton myTabButton;
 
@@ -33,7 +33,6 @@ public class HappeningFrame extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.happening_frame, container, false);
-        lstFragment = new ArrayList<>();
         initView();
 
         if (getArguments() != null)

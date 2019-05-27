@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+        android:id="@+id/acServiceItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:background="@drawable/border_white_text"
+        android:drawableStart="@drawable/ic_assign"
+        android:drawablePadding="@dimen/dp_8"
+        android:hint="@string/txt_service_selected"
+        android:elevation="@dimen/dp_1"
+        android:maxLines="1"
+        android:paddingStart="@dimen/dp_32"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_8"
+        android:textColorHint="@color/gr"
+        android:textSize="@dimen/sp_16"
+        android:dropDownVerticalOffset="0dp"
+        android:completionThreshold="1"
+        app:layout_constraintBottom_toTopOf="@id/rcv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/acServiceItem" />
+
+</android.support.constraint.ConstraintLayout>

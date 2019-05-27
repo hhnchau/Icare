@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         lstDrawer.add(new DrawerModel(Fragmentez.DASHBOARD, R.drawable.ic_dash, getString(R.string.screen_dashboard)));
         lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT, R.drawable.ic_ipt, getString(R.string.screen_inpatient)));
         lstDrawer.add(new DrawerModel(Fragmentez.RECEIVING, R.drawable.ic_ipt, getString(R.string.screen_receiving)));
+        lstDrawer.add(new DrawerModel(Fragmentez.REGISTER, R.drawable.ic_ipt, getString(R.string.screen_register)));
 
         ListView drawerList = findViewById(R.id.drawerList);
         final DrawerAdapter drawerAdapter = new DrawerAdapter(this, lstDrawer);
@@ -131,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                             case RECEIVING:
                                 Fragmentuz.replaceFragment(fragmentManager, Fragmentez.RECEIVING, false, R.id.mainFrame, null, Directionez.NEXT);
                                 Toolbaruz.setToolbar(MainActivity.this, Fragmentez.RECEIVING, toolbarTitle, toolbarLeft, toolbarRight);
+                                break;
+                            case REGISTER:
+                                Fragmentuz.replaceFragment(fragmentManager, Fragmentez.REGISTER, false, R.id.mainFrame, null, Directionez.NEXT);
+                                Toolbaruz.setToolbar(MainActivity.this, Fragmentez.REGISTER, toolbarTitle, toolbarLeft, toolbarRight);
                                 break;
                         }
 
