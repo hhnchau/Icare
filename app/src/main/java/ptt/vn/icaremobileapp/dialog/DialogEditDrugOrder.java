@@ -76,7 +76,7 @@ public class DialogEditDrugOrder {
                 }
             });
 
-            final MyNumPad myNumPad = dialog.findViewById(R.id.padMorning);
+            final MyNumPad myNumPad = dialog.findViewById(R.id.pad);
             myNumPad.setOnListener(new MyNumPad.OnListener() {
                 @Override
                 public void onKey(CharSequence chr) {

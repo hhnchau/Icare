@@ -248,60 +248,14 @@
                     app:textSize="@dimen/sp_10" />
 
 
-                <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/padMorning"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/edtDrugMorning"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugMorning"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugMorning" />
 
                 <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/padAfter"
+                    android:id="@+id/pad"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/edtDrugAfter"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugAfter"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugAfter" />
-
-                <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/padDinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/edtDrugDinner"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugDinner"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugDinner" />
-
-                <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/padEvening"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/edtDrugEvening"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugEvening"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugEvening" />
-
-                <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/padNumber"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/edtDrugNumber"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugNumber"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugNumber" />
-
-                <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/padTotal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/edtDrugTotal"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugTotal"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugTotal" />
-
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/edtDrugAfter"
+                    app:layout_constraintStart_toStartOf="@id/edtDrugAfter"/>
 
             </android.support.constraint.ConstraintLayout>
 
