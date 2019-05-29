@@ -20,6 +20,21 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_48"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_12"
+            android:text="Thông Tin Bệnh Nhân"
+            android:textSize="@dimen/sp_18"
+            android:textColor="@color/text_color"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gr" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,6 +48,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0">
+
+
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutline
                 android:id="@+id/edtPatientCode"

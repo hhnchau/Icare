@@ -103,12 +103,14 @@
         <item name="android:clickable">true</item>
         <item name="android:gravity">center</item>
         <item name="android:scaleType">centerInside</item>
+        <item name="android:elevation">2dp</item>
         <item name="android:background">@drawable/keyboard_button_background</item>
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
 
     <style name="keyboard_number_button" parent="keyboard_button">
         <item name="android:tag">number_button</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
