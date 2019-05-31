@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.BaseFragment;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;

@@ -1,4 +1,4 @@
-package ptt.vn.icaremobileapp;
+package ptt.vn.icaremobileapp.activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,11 +13,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.CompositeManager;
 import ptt.vn.icaremobileapp.custom.MyButton;
-import ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable;
 import ptt.vn.icaremobileapp.model.account.AccountDomain;
 import ptt.vn.icaremobileapp.storage.Storage;
 

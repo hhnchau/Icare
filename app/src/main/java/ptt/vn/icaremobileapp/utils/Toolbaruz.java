@@ -50,6 +50,11 @@ public class Toolbaruz {
                 toolbarLeft.setImageResource(R.drawable.ic_menu);
                 toolbarRight.setImageResource(0);
                 break;
+            case PATIENT_LIST:
+                toolbarTile.setText(context.getString(R.string.screen_patient_list));
+                toolbarLeft.setImageResource(R.drawable.ic_menu);
+                toolbarRight.setImageResource(0);
+                break;
         }
     }
 }

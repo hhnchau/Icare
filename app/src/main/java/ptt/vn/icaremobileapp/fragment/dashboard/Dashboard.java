@@ -14,14 +14,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ptt.vn.icaremobileapp.BaseFragment;
 import ptt.vn.icaremobileapp.R;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard1;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard2;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard3;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard4;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard5;
-import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard6;
 
 public class Dashboard extends Fragment {
     private TextView header1, header2, header3, header4;

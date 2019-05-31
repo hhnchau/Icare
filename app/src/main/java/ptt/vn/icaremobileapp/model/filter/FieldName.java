@@ -26,5 +26,11 @@ public enum FieldName {
     company,
     livpla,
     marr,
-    hospital
+    hospital,
+    fullname,
+    phone,
+    yearbr,
+    addresfull,
+    nohi,
+    cardid
 }

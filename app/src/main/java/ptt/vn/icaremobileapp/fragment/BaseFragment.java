@@ -1,4 +1,4 @@
-package ptt.vn.icaremobileapp;
+package ptt.vn.icaremobileapp.fragment;
 
 import android.support.v4.app.Fragment;
 

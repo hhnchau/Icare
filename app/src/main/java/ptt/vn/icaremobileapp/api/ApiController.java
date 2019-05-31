@@ -41,7 +41,9 @@ import ptt.vn.icaremobileapp.model.patient.PatientResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientSave;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
 import ptt.vn.icaremobileapp.model.pharmacy.ResultResponse;
+import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterResponse;
+import ptt.vn.icaremobileapp.model.register.RegisterSave;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.MapResultResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
@@ -56,6 +58,7 @@ import static ptt.vn.icaremobileapp.model.filter.Method.GetInvDrug;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetListPatient;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetPriceList;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetRegisterbyIdlink;
+import static ptt.vn.icaremobileapp.model.filter.Method.SearchPatient;
 
 
 /**
@@ -231,6 +234,60 @@ public class ApiController {
     }
 
     @SuppressWarnings("unchecked")
+    public void getPatientByFilter(final Context context, final Map<String, Object> map, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.PAT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.fullname, Operation.Equals, DataTypeOfValue.String, map.get(FieldName.fullname.name())));
+        lstPara.add(new Para(FieldName.phone, Operation.Equals, DataTypeOfValue.String, map.get(FieldName.phone.name())));
+        lstPara.add(new Para(FieldName.yearbr, Operation.Equals, DataTypeOfValue.Int32, map.get(FieldName.yearbr.name())));
+        lstPara.add(new Para(FieldName.addresfull, Operation.Equals, DataTypeOfValue.String, map.get(FieldName.addresfull.name())));
+        lstPara.add(new Para(FieldName.nohi, Operation.Equals, DataTypeOfValue.String, map.get(FieldName.nohi.name())));
+        lstPara.add(new Para(FieldName.cardid, Operation.Equals, DataTypeOfValue.String, map.get(FieldName.cardid.name())));
+
+        //FilterModel filterModel = new FilterModel(0, 10000, SearchPatient, lstPara);
+        //String json = new Gson().toJson(filterModel);
+
+        CompositeManager.add(Api.apiService.getPatientByFilter(url + "filter", new FilterModel(0, 10000, SearchPatient, lstPara))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<PatientResponse>() {
+
+                    @Override
+                    public void onNext(PatientResponse patientModel) {
+                        if (patientModel.getCode() == 0 && aCallback != null)
+                            aCallback.response(patientModel.getData());
+                        else
+                            MyLog.print(context, String.valueOf(patientModel.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getPatientByFilter(context, map, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
     public void getRegisterByIdLink(final Context context, final List<InpatientDomain> lstInpatient, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.REG);
         if (url == null) {
@@ -244,7 +301,7 @@ public class ApiController {
         //lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
         for (InpatientDomain item : lstInpatient)
             lstPara.add(new Para(FieldName.idlink, Operation.Equals, DataTypeOfValue.Guid, item.getIdlink()));
-
+        String s = new FilterModel(0, 10000, GetRegisterbyIdlink, lstPara).toString();
         CompositeManager.add(Api.apiService.getRegisterByIdLink(url + "filter", new FilterModel(0, 10000, GetRegisterbyIdlink, lstPara).toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -792,6 +849,53 @@ public class ApiController {
                             @Override
                             public void request() {
                                 saveReceiving(context, patientDomain, callback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void saveRegister(final Context context, final RegisterDomain registerDomain, final Callback callback) {
+        String url = MyApplication.getUrl(Service.REG);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //url = "http://172.16.0.21:7770/RegisterService/";
+        String json = new Gson().toJson(registerDomain);
+
+        Loading.getInstance().show(context);
+
+        CompositeManager.add(Api.apiService.saveRegister(url, registerDomain)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RegisterSave>() {
+
+                    @Override
+                    public void onNext(RegisterSave save) {
+                        if (save.getCode() == 0 && callback != null)
+                            callback.response(save.getData());
+                        else
+                            MyLog.print(context, String.valueOf(save.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                saveRegister(context, registerDomain, callback);
                             }
                         });
 

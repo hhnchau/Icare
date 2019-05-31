@@ -19,13 +19,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.BaseFragment;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.autocomplete.AutoCompleteTextViewAdapter;
 import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
-import ptt.vn.icaremobileapp.custom.MyInputText;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;

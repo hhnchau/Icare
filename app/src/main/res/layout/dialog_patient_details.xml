@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_32">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dp_4"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="@dimen/dp_2"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16">
+
+                <LinearLayout
+                    android:id="@+id/box1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_28"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@id/tvAddr"
+                    app:layout_constraintEnd_toStartOf="@id/box2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="Mã Bệnh Nhân"
+                        app:value="1234567809" />
+
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvBirthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:layout_marginBottom="@dimen/dp_16"
+                        app:label="Ngày Sinh"
+                        app:value="20/12/1988" />
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvIde"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="CMND"
+                        app:value="0201234434" />
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvHi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="BHYT"
+                        app:value="DN4790205214731" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/box2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/dp_24"
+                    android:layout_marginStart="@dimen/dp_56"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    app:layout_constraintBottom_toTopOf="@id/tvAddr"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/box1"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="Số ĐT"
+                        app:value="090123456789" />
+
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:layout_marginBottom="@dimen/dp_16"
+                        app:label="Giới Tính"
+                        app:value="Nam" />
+
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvJob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="Nghề Nghiệp"
+                        app:value="Văn Phòng" />
+
+
+                    <ptt.vn.icaremobileapp.custom.MyTextView
+                        android:id="@+id/tvBhi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="BHTN"
+                        app:value="TN12312323233" />
+
+                </LinearLayout>
+
+                <ptt.vn.icaremobileapp.custom.MyTextView
+                    android:id="@+id/tvAddr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:label="Địa Chỉ"
+                    app:value="481A Điện Biên Phủ - P25 - Bình Thạnh - HCM"
+                    app:layout_constraintStart_toStartOf="@id/box1"
+                    app:layout_constraintEnd_toEndOf="@id/box2"
+                    app:layout_constraintBottom_toTopOf="@id/tvDetail"
+                    app:layout_constraintTop_toBottomOf="@id/box1"/>
+
+                <TextView
+                    android:id="@+id/tvEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sửa Thông Tin"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintStart_toStartOf="@id/tvAddr"
+                    app:layout_constraintEnd_toEndOf="@id/tvAddr"
+                    app:layout_constraintTop_toBottomOf="@id/tvAddr"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="1"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_32"
+            app:cardBackgroundColor="@color/blue"
+            app:cardCornerRadius="@dimen/dp_4"
+            android:elevation="@dimen/dp_8"
+            app:layout_constraintBottom_toTopOf="@id/cv"
+            app:layout_constraintEnd_toEndOf="@id/cv"
+            app:layout_constraintStart_toStartOf="@id/cv"
+            app:layout_constraintTop_toTopOf="@id/cv">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:gravity="center"
+                android:text="Nguyễn Văn BS"
+                android:padding="@dimen/dp_12"
+                android:textColor="@color/wh"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.CardView>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>
