@@ -1,22 +1,18 @@
 package ptt.vn.icaremobileapp.fragment.inpatient;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.BaseFragment;
-import ptt.vn.icaremobileapp.MainActivity;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.alert.MyAlert;
 import ptt.vn.icaremobileapp.api.ACallback;

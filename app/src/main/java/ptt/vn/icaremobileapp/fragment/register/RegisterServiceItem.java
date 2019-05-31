@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.BaseFragment;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.ServiceItemAdapter;
 import ptt.vn.icaremobileapp.alert.MyAlert;

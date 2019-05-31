@@ -3,6 +3,11 @@ package ptt.vn.icaremobileapp.model.register;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
+import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
+
 public class RegisterDomain implements Parcelable {
     private int siterf;
     private String patid;
@@ -36,6 +41,13 @@ public class RegisterDomain implements Parcelable {
     private String userup;
     private String timeup;
     private String computer;
+
+    private List<RegisterHi> lstRegisterHi;
+    private List<RegisterServiceOrder>lstRegServiceOrder;
+    private List<InpatientDiagnose> lstInpatientDiagnose;
+    //private lstClinicQueueMedexa;
+    //private lstHistoryRegisters;
+    //private lstHistoryRegServiceOrders;
 
     public RegisterDomain() {
     }
@@ -73,6 +85,53 @@ public class RegisterDomain implements Parcelable {
         userup = in.readString();
         timeup = in.readString();
         computer = in.readString();
+        lstRegisterHi = in.createTypedArrayList(RegisterHi.CREATOR);
+        lstRegServiceOrder = in.createTypedArrayList(RegisterServiceOrder.CREATOR);
+        lstInpatientDiagnose = in.createTypedArrayList(InpatientDiagnose.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
+        dest.writeString(patid);
+        dest.writeString(idlink);
+        dest.writeString(hosnum);
+        dest.writeString(idaddr);
+        dest.writeString(idide);
+        dest.writeString(idbhi);
+        dest.writeString(patcode);
+        dest.writeString(regdate);
+        dest.writeString(purpos);
+        dest.writeInt(typrec);
+        dest.writeInt(formco);
+        dest.writeInt(rfdoctor);
+        dest.writeInt(introd);
+        dest.writeInt(idobject);
+        dest.writeInt(pricelist);
+        dest.writeInt(promotions);
+        dest.writeString(emplocode);
+        dest.writeInt(relationsh);
+        dest.writeString(symptoms);
+        dest.writeInt(roomservice);
+        dest.writeInt(idmedexa);
+        dest.writeInt(typeexamination);
+        dest.writeInt(status);
+        dest.writeInt(isemergency);
+        dest.writeString(attributes);
+        dest.writeInt(active);
+        dest.writeString(usercr);
+        dest.writeString(timecr);
+        dest.writeString(userup);
+        dest.writeString(timeup);
+        dest.writeString(computer);
+        dest.writeTypedList(lstRegisterHi);
+        dest.writeTypedList(lstRegServiceOrder);
+        dest.writeTypedList(lstInpatientDiagnose);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<RegisterDomain> CREATOR = new Creator<RegisterDomain>() {
@@ -343,44 +402,27 @@ public class RegisterDomain implements Parcelable {
         this.computer = computer;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public List<RegisterHi> getLstRegisterHi() {
+        return lstRegisterHi;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(siterf);
-        dest.writeString(patid);
-        dest.writeString(idlink);
-        dest.writeString(hosnum);
-        dest.writeString(idaddr);
-        dest.writeString(idide);
-        dest.writeString(idbhi);
-        dest.writeString(patcode);
-        dest.writeString(regdate);
-        dest.writeString(purpos);
-        dest.writeInt(typrec);
-        dest.writeInt(formco);
-        dest.writeInt(rfdoctor);
-        dest.writeInt(introd);
-        dest.writeInt(idobject);
-        dest.writeInt(pricelist);
-        dest.writeInt(promotions);
-        dest.writeString(emplocode);
-        dest.writeInt(relationsh);
-        dest.writeString(symptoms);
-        dest.writeInt(roomservice);
-        dest.writeInt(idmedexa);
-        dest.writeInt(typeexamination);
-        dest.writeInt(status);
-        dest.writeInt(isemergency);
-        dest.writeString(attributes);
-        dest.writeInt(active);
-        dest.writeString(usercr);
-        dest.writeString(timecr);
-        dest.writeString(userup);
-        dest.writeString(timeup);
-        dest.writeString(computer);
+    public void setLstRegisterHi(List<RegisterHi> lstRegisterHi) {
+        this.lstRegisterHi = lstRegisterHi;
+    }
+
+    public List<RegisterServiceOrder> getLstRegServiceOrder() {
+        return lstRegServiceOrder;
+    }
+
+    public void setLstRegServiceOrder(List<RegisterServiceOrder> lstRegServiceOrder) {
+        this.lstRegServiceOrder = lstRegServiceOrder;
+    }
+
+    public List<InpatientDiagnose> getLstInpatientDiagnose() {
+        return lstInpatientDiagnose;
+    }
+
+    public void setLstInpatientDiagnose(List<InpatientDiagnose> lstInpatientDiagnose) {
+        this.lstInpatientDiagnose = lstInpatientDiagnose;
     }
 }

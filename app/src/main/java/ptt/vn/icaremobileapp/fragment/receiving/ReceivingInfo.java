@@ -1,7 +1,6 @@
 package ptt.vn.icaremobileapp.fragment.receiving;
 
 import android.app.DatePickerDialog;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -14,13 +13,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.BaseFragment;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;

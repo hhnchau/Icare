@@ -28,6 +28,7 @@
     <string name="txt_delete_success">Xóa Thông Tin Thành Công</string>
     <string name="txt_login_fail">Sai Tên Đăng Nhập Hoặc Mật Khẩu</string>
     <string name="txt_not_available">Đối Tượng Không Phù Hợp</string>
+    <string name="txt_fill_blank">Vui Lòng Nhập Thông Tin Tìm Kiếm</string>
 
     <string name="txt_patient_address">Địa Chỉ</string>
     <string name="txt_patient_code">Mã Bệnh Nhân</string>
@@ -124,11 +125,13 @@
     <string name="txt_drug_total">Tổng Cộng</string>
     <string name="txt_drug_reason">Lý Do</string>
     <string name="btn_drug_add">THÊM</string>
+    <string name="btn_search">TÌM KIẾM</string>
 
     <string name="screen_dashboard">DASHBOARD</string>
     <string name="screen_inpatient">NỘI TRÚ</string>
     <string name="screen_receiving">TIẾP NHẬN</string>
     <string name="screen_register">ĐĂNG KÝ</string>
+    <string name="screen_patient_list">DS BỆNH NHÂN</string>
     <string name="screen_inpatient_list">DS NỘI TRÚ</string>
     <string name="screen_inpatient_happening">DIỄN BIẾN</string>
     <string name="screen_inpatient_instruction">Y LỆNH</string>

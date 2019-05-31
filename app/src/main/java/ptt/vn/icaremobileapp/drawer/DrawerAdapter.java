@@ -84,5 +84,9 @@ public class DrawerAdapter extends BaseAdapter {
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
+
+    public void setItem(int item) {
+        this.item = item;
+    }
 }
 

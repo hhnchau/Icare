@@ -16,12 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-import ptt.vn.icaremobileapp.BaseFragment;
-import ptt.vn.icaremobileapp.MainActivity;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
+import ptt.vn.icaremobileapp.activity.MainActivity;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.custom.MyButton;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.model.hi.HiCard;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
@@ -56,7 +57,8 @@ public class Receiving extends BaseFragment {
         btnSave.setOnSelectedListener(new MyButton.OnListener() {
             @Override
             public void onClick() {
-                onSave();
+                //onSave();
+                ((MainActivity) getActivity()).gotoFragment(Fragmentez.PATIENT_LIST, null);
             }
         });
 

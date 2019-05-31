@@ -7,5 +7,6 @@ public enum Method {
     GetInvDrug,
     GetPriceList,
     GetAccount,
-    GetRegisterbyIdlink
+    GetRegisterbyIdlink,
+    SearchPatient
 }

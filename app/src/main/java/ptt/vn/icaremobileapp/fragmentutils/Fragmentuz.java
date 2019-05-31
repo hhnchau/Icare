@@ -26,6 +26,7 @@ import ptt.vn.icaremobileapp.fragment.register.Register;
 import ptt.vn.icaremobileapp.fragment.register.RegisterInfo;
 import ptt.vn.icaremobileapp.fragment.register.RegisterReceive;
 import ptt.vn.icaremobileapp.fragment.register.RegisterServiceItem;
+import ptt.vn.icaremobileapp.fragment.search.PatientList;
 
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
@@ -158,6 +159,8 @@ public class Fragmentuz {
                 return new RegisterReceive();
             case REGISTER_SERVICEITEM:
                 return new RegisterServiceItem();
+            case PATIENT_LIST:
+                return new PatientList();
 
         }
         return null;

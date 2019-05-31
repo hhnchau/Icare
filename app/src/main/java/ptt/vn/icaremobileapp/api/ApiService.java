@@ -3,6 +3,7 @@ package ptt.vn.icaremobileapp.api;
 import io.reactivex.Observable;
 import ptt.vn.icaremobileapp.model.account.AccountResponse;
 import ptt.vn.icaremobileapp.model.common.CateShareResponse;
+import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.hi.HiResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
@@ -17,7 +18,9 @@ import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientSave;
 import ptt.vn.icaremobileapp.model.pharmacy.PhaInventoryResponse;
+import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterResponse;
+import ptt.vn.icaremobileapp.model.register.RegisterSave;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemResponse;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemResponse;
 import ptt.vn.icaremobileapp.model.sysapi.SysApiModel;
@@ -45,6 +48,10 @@ public interface ApiService {
 
     @GET()
     Observable<PatientResponse> getPatientByPatId(@Url String url, @Header("Content") String filterModel);
+
+    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
+    @POST()
+    Observable<PatientResponse> getPatientByFilter(@Url String url, @Body FilterModel filterModel);
 
     @GET()
     Observable<RegisterResponse> getRegisterByIdLink(@Url String url, @Header("Content") String filterModel);
@@ -82,47 +89,9 @@ public interface ApiService {
     @POST()
     Observable<PatientSave> saveReceiving(@Url String url, @Body PatientDomain patientDomain);
 
-
-
-
-    @GET("/InpatientService/filter")
-    Observable<Object> getTest(@Header("Content") String filterModel);
-
-
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/PatientServices/executelist/GetNew")
-    Observable<Object> getNew(@Body Object param);
-
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/PatientServices/execute/Save")
-    Observable<Object> savePatient(@Body Object form);
-
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/PatientServices/executelist/GetList")
-    Observable<Object> getList(@Body Object param);
-
-
-    /*REGISTER*/
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/RegisterServices/executelist/Get")
-    Observable<Object> getRegister(@Body Object param);
-
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/RegisterServices/executelist/GetLoadForm")
-    Observable<Object> getLoadForm(@Body Object param);
-
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/RegisterServices/executelist/GetDetail")
-    Observable<Object> getDetail(@Body Object param);
-
-    @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
-    @POST("/RegisterServices/execute/Save")
-    Observable<Object> saveRegister(@Body Object register);
-
-
-    /*HISTORY*/
-    @GET()
-    Observable<Object> getHistoryPatientOnHQ(@Url String url, @Header("intSiteRef") int intSiteRef, @Header("intPatID") int intPatID, @Header("strCMND") String strCMND, @Header("strBHYT") String strBHYT);
+    @POST()
+    Observable<RegisterSave> saveRegister(@Url String url, @Body RegisterDomain registerDomain);
 
 }
 
