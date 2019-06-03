@@ -1,101 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-        android:id="@+id/edtPatientName"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/gr"
-        app:hint="@string/txt_patient_name"
-        app:layout_constraintBottom_toTopOf="@id/edtPatientAddr"
-        app:layout_constraintEnd_toStartOf="@id/edtPatientPhone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
-
-    <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-        android:id="@+id/edtPatientPhone"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColorHint="@color/gr"
-        app:hint="@string/txt_patient_phone"
-        app:layout_constraintBottom_toBottomOf="@id/edtPatientName"
-        app:layout_constraintEnd_toStartOf="@id/edtPatientBirthday"
-        app:layout_constraintStart_toEndOf="@id/edtPatientName"
-        app:layout_constraintTop_toTopOf="@id/edtPatientName" />
-
-    <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-        android:id="@+id/edtPatientBirthday"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColorHint="@color/gr"
-        app:hint="@string/txt_patient_birthday"
-        app:layout_constraintBottom_toBottomOf="@id/edtPatientName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/edtPatientPhone"
-        app:layout_constraintTop_toTopOf="@id/edtPatientName" />
-
-    <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-        android:id="@+id/edtPatientAddr"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/gr"
-        app:hint="@string/txt_patient_address"
-        app:layout_constraintBottom_toTopOf="@id/edtPatientIde"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_0"
+        app:cardCornerRadius="@dimen/dp_8"
+        android:elevation="@dimen/dp_2"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toTopOf="@+id/rcvPatientList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPatientName" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-        android:id="@+id/edtPatientIde"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/gr"
-        app:hint="@string/txt_patient_ide"
-        app:layout_constraintBottom_toTopOf="@id/rcvPatientList"
-        app:layout_constraintEnd_toStartOf="@id/edtPatientHi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPatientAddr" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ptt.vn.icaremobileapp.custom.MyInputTextOutline
-        android:id="@+id/edtPatientHi"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColorHint="@color/gr"
-        app:hint="@string/txt_insurance_code"
-        app:layout_constraintBottom_toBottomOf="@id/edtPatientIde"
-        app:layout_constraintEnd_toStartOf="@id/btnFind"
-        app:layout_constraintStart_toEndOf="@id/edtPatientIde"
-        app:layout_constraintTop_toTopOf="@id/edtPatientIde" />
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtPatientName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:textColorHint="@color/gr"
+                app:hint="@string/txt_patient_name"
+                app:layout_constraintBottom_toTopOf="@id/edtPatientAddr"
+                app:layout_constraintEnd_toStartOf="@id/edtPatientPhone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
 
-    <ptt.vn.icaremobileapp.custom.MyButton
-        android:id="@+id/btnFind"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:backgroundColor="@drawable/button_background"
-        app:layout_constraintBottom_toBottomOf="@id/edtPatientIde"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/edtPatientHi"
-        app:layout_constraintTop_toTopOf="@id/edtPatientIde"
-        app:padding="@dimen/dp_10"
-        app:text="@string/btn_search"
-        app:textColor="@color/wh"
-        app:textSize="@dimen/sp_10" />
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtPatientPhone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:textColorHint="@color/gr"
+                app:hint="@string/txt_patient_phone"
+                app:layout_constraintBottom_toBottomOf="@id/edtPatientName"
+                app:layout_constraintEnd_toStartOf="@id/edtPatientBirthday"
+                app:layout_constraintStart_toEndOf="@id/edtPatientName"
+                app:layout_constraintTop_toTopOf="@id/edtPatientName" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtPatientBirthday"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:textColorHint="@color/gr"
+                app:hint="@string/txt_patient_birthday"
+                app:layout_constraintBottom_toBottomOf="@id/edtPatientName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/edtPatientPhone"
+                app:layout_constraintTop_toTopOf="@id/edtPatientName" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtPatientAddr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:textColorHint="@color/gr"
+                app:hint="@string/txt_patient_address"
+                app:layout_constraintBottom_toTopOf="@id/edtPatientIde"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edtPatientName" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtPatientIde"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:textColorHint="@color/gr"
+                app:hint="@string/txt_patient_ide"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/edtPatientName"
+                app:layout_constraintStart_toStartOf="@id/edtPatientName"
+                app:layout_constraintTop_toBottomOf="@id/edtPatientAddr" />
+
+            <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                android:id="@+id/edtPatientHi"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textColorHint="@color/gr"
+                app:hint="@string/txt_insurance_code"
+                app:layout_constraintBottom_toBottomOf="@id/edtPatientIde"
+                app:layout_constraintEnd_toEndOf="@id/edtPatientPhone"
+                app:layout_constraintStart_toStartOf="@id/edtPatientPhone"
+                app:layout_constraintTop_toTopOf="@id/edtPatientIde" />
+
+            <ptt.vn.icaremobileapp.custom.MyButton
+                android:id="@+id/btnFind"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:backgroundColor="@drawable/button_background"
+                app:layout_constraintBottom_toBottomOf="@id/edtPatientIde"
+                app:layout_constraintEnd_toEndOf="@id/edtPatientBirthday"
+                app:layout_constraintStart_toStartOf="@id/edtPatientBirthday"
+                app:layout_constraintTop_toTopOf="@id/edtPatientIde"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_2"
+                app:text="@string/btn_search"
+                app:textColor="@color/wh"
+                app:textSize="@dimen/sp_10" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcvPatientList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_0"
         android:background="@color/bg"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPatientName"
-        app:layout_constraintVertical_bias="0" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv" />
 </android.support.constraint.ConstraintLayout>
+

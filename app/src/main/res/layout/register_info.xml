@@ -21,6 +21,7 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_48"
@@ -28,14 +29,24 @@
             android:layout_marginBottom="@dimen/dp_12"
             android:text="Thông Tin Bệnh Nhân"
             android:textSize="@dimen/sp_18"
-            android:textColor="@color/text_color"/>
+            android:textColor="@color/text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/view"/>
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/gr" />
+            android:background="@color/gr"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/box1"/>
 
         <LinearLayout
+            android:id="@+id/box1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_32"
@@ -46,9 +57,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guide"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
             app:layout_constraintVertical_bias="0">
-
 
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutline
@@ -233,7 +243,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guide"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
             app:layout_constraintVertical_bias="0">
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutline
