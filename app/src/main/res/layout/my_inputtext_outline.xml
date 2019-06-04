@@ -14,6 +14,6 @@
         android:inputType="text"
         android:paddingStart="@dimen/dp_16"
         android:paddingEnd="@dimen/dp_16"
-        android:textSize="@dimen/sp_16"
+        android:textSize="@dimen/sp_18"
     />
 </android.support.design.widget.TextInputLayout>

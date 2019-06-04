@@ -4,7 +4,7 @@
     android:id="@+id/frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_32">
+    android:padding="@dimen/dp_64">
 
 
     <android.support.constraint.ConstraintLayout
@@ -19,7 +19,7 @@
             android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/dp_4"
+            app:cardCornerRadius="@dimen/dp_8"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_28"
-                    android:layout_marginStart="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginBottom="@dimen/dp_8"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toTopOf="@id/tvAddr"
@@ -61,7 +61,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:layout_marginBottom="@dimen/dp_16"
                         app:label="Ngày Sinh"
                         app:value="20/12/1988" />
 
@@ -69,6 +68,7 @@
                         android:id="@+id/tvIde"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
                         app:label="CMND"
                         app:value="0201234434" />
 
@@ -76,6 +76,7 @@
                         android:id="@+id/tvHi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
                         app:label="BHYT"
                         app:value="DN4790205214731" />
 
@@ -86,13 +87,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="@dimen/dp_24"
+
                     android:layout_marginStart="@dimen/dp_56"
-                    android:layout_marginBottom="@dimen/dp_8"
-                    app:layout_constraintBottom_toTopOf="@id/tvAddr"
+
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/box1"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@id/box1"
+                    app:layout_constraintBottom_toBottomOf="@id/box1">
 
                     <ptt.vn.icaremobileapp.custom.MyTextView
                         android:id="@+id/tvPhone"
@@ -107,7 +109,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:layout_marginBottom="@dimen/dp_16"
                         app:label="Giới Tính"
                         app:value="Nam" />
 
@@ -116,6 +117,7 @@
                         android:id="@+id/tvJob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
                         app:label="Nghề Nghiệp"
                         app:value="Văn Phòng" />
 
@@ -124,6 +126,7 @@
                         android:id="@+id/tvBhi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
                         app:label="BHTN"
                         app:value="TN12312323233" />
 
@@ -135,6 +138,7 @@
                     android:layout_height="wrap_content"
                     app:label="Địa Chỉ"
                     app:value="481A Điện Biên Phủ - P25 - Bình Thạnh - HCM"
+                    android:layout_marginTop="@dimen/dp_16"
                     app:layout_constraintStart_toStartOf="@id/box1"
                     app:layout_constraintEnd_toEndOf="@id/box2"
                     app:layout_constraintBottom_toTopOf="@id/tvDetail"
@@ -160,8 +164,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_32"
-            android:layout_marginEnd="@dimen/dp_32"
+            android:layout_marginStart="@dimen/dp_48"
+            android:layout_marginEnd="@dimen/dp_48"
             app:cardBackgroundColor="@color/blue"
             app:cardCornerRadius="@dimen/dp_4"
             android:elevation="@dimen/dp_8"
