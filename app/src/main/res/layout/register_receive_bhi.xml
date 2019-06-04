@@ -70,19 +70,19 @@
                         android:padding="@dimen/dp_12" />
                 </android.support.design.widget.TextInputLayout>
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     app:hint="@string/txt_insurance_start" />
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     app:hint="@string/txt_insurance_end" />
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLineDisable
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:heights="@dimen/dp_84"
@@ -100,13 +100,13 @@
                 app:layout_constraintStart_toEndOf="@id/box1"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLineDisable
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:heights="@dimen/dp_176"
                     app:hints="@string/txt_insurance_company_bought" />
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLineDisable
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:heights="@dimen/dp_176"

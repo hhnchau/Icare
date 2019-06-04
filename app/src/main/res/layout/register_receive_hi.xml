@@ -90,7 +90,7 @@
                         android:padding="@dimen/dp_12" />
                 </android.support.design.widget.TextInputLayout>
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceStart"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -98,7 +98,7 @@
                     android:layout_weight="1"
                     app:hint="@string/txt_insurance_start" />
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceRatio"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -106,7 +106,7 @@
                     android:layout_weight="1"
                     app:hint="@string/txt_insurance_ratio" />
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceRoutes"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -162,14 +162,14 @@
                         android:padding="@dimen/dp_12" />
                 </android.support.design.widget.TextInputLayout>
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceEnd"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     app:hint="@string/txt_insurance_end" />
 
-                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLineDisable
                     android:id="@+id/tvInsurancePlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
