@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         lstDrawer.add(new DrawerModel(Fragmentez.INPATIENT, R.drawable.ic_ipt, getString(R.string.screen_inpatient)));
         lstDrawer.add(new DrawerModel(Fragmentez.RECEIVING, R.drawable.ic_ipt, getString(R.string.screen_receiving)));
         lstDrawer.add(new DrawerModel(Fragmentez.REGISTER, R.drawable.ic_ipt, getString(R.string.screen_register)));
+        lstDrawer.add(new DrawerModel(Fragmentez.PATIENT_LIST, R.drawable.ic_ipt, getString(R.string.screen_patient_list)));
 
         ListView drawerList = findViewById(R.id.drawerList);
         drawerAdapter = new DrawerAdapter(this, lstDrawer);

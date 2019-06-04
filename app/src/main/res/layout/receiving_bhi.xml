@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.constraint.Guideline
         android:id="@+id/guide"
@@ -14,103 +14,103 @@
     <android.support.v7.widget.CardView
         android:id="@+id/boximg"
         android:layout_width="wrap_content"
-        android:layout_margin="@dimen/dp_16"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
         app:cardElevation="@dimen/dp_1"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/box"
+        app:layout_constraintEnd_toEndOf="@id/guide"
         app:layout_constraintStart_toStartOf="@id/guide"
-        app:layout_constraintEnd_toEndOf="@id/guide">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_16"
-            android:src="@drawable/bhyt"
-            android:contentDescription="@string/img_des" />
+            android:contentDescription="@string/img_des"
+            android:src="@drawable/bhyt" />
 
     </android.support.v7.widget.CardView>
 
     <ImageView
         android:layout_width="@dimen/dp_48"
         android:layout_height="@dimen/dp_48"
-        android:src="@drawable/ic_camera"
         android:alpha="0.7"
         android:contentDescription="@string/img_des"
-        app:layout_constraintTop_toBottomOf="@id/boximg"
+        android:elevation="2dp"
+        android:src="@drawable/ic_camera"
         app:layout_constraintBottom_toBottomOf="@id/boximg"
-        app:layout_constraintStart_toEndOf="@id/boximg"
         app:layout_constraintEnd_toEndOf="@id/boximg"
-        android:elevation="2dp"/>
+        app:layout_constraintStart_toEndOf="@id/boximg"
+        app:layout_constraintTop_toBottomOf="@id/boximg" />
 
     <LinearLayout
         android:id="@+id/box"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintTop_toBottomOf="@id/boximg"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boximg"
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            app:hint="Số Thẻ BHTN" />
+            app:hint="@string/txt_insurance_code_bhi" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            app:hint="Từ Ngày" />
+            app:hint="@string/txt_insurance_start" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutline
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            app:hint="Đến Ngày" />
+            app:hint="@string/txt_insurance_end" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            app:hints="Tên Công Ty BH"
-            app:heights="@dimen/dp_114"/>
+            app:heights="@dimen/dp_114"
+            app:hints="@string/txt_insurance_company" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_32"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintTop_toTopOf="@id/box"
-        app:layout_constraintStart_toStartOf="@id/guide"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide"
+        app:layout_constraintTop_toTopOf="@id/box"
         app:layout_constraintVertical_bias="0">
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            app:hints="Tên Công Ty Mua BH"
-            app:heights="@dimen/dp_176"/>
+            app:heights="@dimen/dp_176"
+            app:hints="@string/txt_insurance_company_bought" />
 
         <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            app:hints="Địa Chỉ Công Ty Mua BH"
-            app:heights="@dimen/dp_114"/>
+            app:heights="@dimen/dp_114"
+            app:hints="@string/txt_insurance_company_bought_address" />
 
     </LinearLayout>
 

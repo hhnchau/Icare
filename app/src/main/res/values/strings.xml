@@ -50,6 +50,7 @@
     <string name="txt_insurance_start">Từ Ngày</string>
     <string name="txt_insurance_end">Đến Ngày</string>
     <string name="txt_insurance_init">Mã ĐK.KCBBĐ</string>
+    <string name="txt_insurance_place">Nơi ĐK.KCBBĐ</string>
     <string name="txt_insurance_object">Mã Nơi ĐT Sinh Sống</string>
     <string name="txt_insurance_5y">Thời Gian Đủ 5 Năm</string>
     <string name="txt_hospital_name">Tên Bệnh Viện</string>
@@ -61,6 +62,11 @@
     <string name="txt_ward">Phường Xã</string>
     <string name="txt_job">Nghề Nghiệp</string>
     <string name="txt_married">Hôn Nhân</string>
+
+    <string name="txt_insurance_code_bhi">Số BHTN</string>
+    <string name="txt_insurance_company">Tên CTY BH</string>
+    <string name="txt_insurance_company_bought">Tên CTY Mua BH</string>
+    <string name="txt_insurance_company_bought_address">ĐC CTY Mua BH</string>
 
     <string name="txt_doctor">Bác Sĩ</string>
     <string name="txt_circuit">Mạch</string>
@@ -111,7 +117,6 @@
     <string name="txt_resolved_date_discharged">Ngày Xuất viện</string>
     <string name="txt_resolved_advice">Lời Dặn</string>
 
-
     <string name="txt_drug_name">Tên Thuốc</string>
     <string name="txt_drug_activeingre">Hoạt Chất</string>
     <string name="txt_drug_type">Loại</string>
@@ -145,7 +150,6 @@
     <string name="tab_info">Thông Tin</string>
     <string name="tab_receive">Tiếp Nhận</string>
 
-
     <string name="txt_err_drug">Vui lòng chọn thuốc</string>
     <string name="txt_err_number">Vui lòng chọn số ngày</string>
 
@@ -159,5 +163,23 @@
     <string name="txt_service_selected">Chọn Dịch Vụ</string>
     <string name="txt_service_name">Tên dịch vụ</string>
     <string name="txt_select">Chọn</string>
+
+    <string name="title_info">THÔNG TIN BỆNH NHÂN</string>
+    <string name="title_hi">BẢO HIỂM Y TẾ</string>
+    <string name="title_bhi">BẢO HIỂM TƯ NHÂN</string>
+    <string name="txt_symptom">Triệu Chứng</string>
+    <string name="txt_discount">Chiết Khấu</string>
+    <string name="txt_receive_type">Loại Tiếp Nhận</string>
+    <string name="txt_place_introduce">Nơi Giới Thiệu</string>
+    <string name="txt_price_type">Loại Giá</string>
+    <string name="txt_object_receive">Đối Tượng Tiếp Nhận</string>
+    <string name="txt_formality">Hình Thức</string>
+    <string name="txt_document">Chứng Từ</string>
+    <string name="txt_document_type">Loại Chứng Từ</string>
+    <string name="txt_insurance_routes">Tuyến Bảo Hiểm</string>
+    <string name="txt_insurance_ratio">Tỉ Lệ</string>
+    <string name="txt_other_source">Nguồn Khác</string>
+
+
 
 </resources>

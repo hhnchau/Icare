@@ -57,8 +57,7 @@ public class Receiving extends BaseFragment {
         btnSave.setOnSelectedListener(new MyButton.OnListener() {
             @Override
             public void onClick() {
-                //onSave();
-                ((MainActivity) getActivity()).gotoFragment(Fragmentez.PATIENT_LIST, null);
+                onSave();
             }
         });
 

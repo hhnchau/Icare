@@ -31,6 +31,7 @@ import ptt.vn.icaremobileapp.fragment.search.PatientList;
 public class Fragmentuz {
     public static final String BUNDLE_KEY_INPATIENT = "INPATIENT";
     public static final String BUNDLE_KEY_HAPPENING = "HAPPENING";
+    public static final String BUNDLE_KEY_PATIENT = "PATIENT";
 
     public static void replaceFragment(FragmentManager fragmentManager, Fragmentez fzg, boolean backStack, int frame, Bundle bundle, Directionez direction) {
 

@@ -43,7 +43,7 @@
                         android:layout_marginStart="@dimen/dp_48"
                         android:layout_marginTop="@dimen/dp_12"
                         android:layout_marginBottom="@dimen/dp_12"
-                        android:text="Thông Tin Bệnh Nhân"
+                        android:text="@string/title_info"
                         android:textSize="@dimen/sp_18"
                         android:textColor="@color/text_color"/>
 
@@ -86,7 +86,7 @@
                         android:layout_marginStart="@dimen/dp_48"
                         android:layout_marginTop="@dimen/dp_12"
                         android:layout_marginBottom="@dimen/dp_12"
-                        android:text="Bảo Hiểm Y Tế"
+                        android:text="@string/title_hi"
                         android:textSize="@dimen/sp_18"
                         android:textColor="@color/text_color"/>
 
@@ -127,7 +127,7 @@
                         android:layout_marginStart="@dimen/dp_48"
                         android:layout_marginTop="@dimen/dp_12"
                         android:layout_marginBottom="@dimen/dp_12"
-                        android:text="Bảo Hiểm Tư Nhân"
+                        android:text="@string/title_bhi"
                         android:textSize="@dimen/sp_18"
                         android:textColor="@color/text_color"/>
 

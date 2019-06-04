@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_48"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_12"
+            android:text="@string/title_bhi"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gr"
+            app:layout_constraintBottom_toTopOf="@id/box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view">
+
+            <LinearLayout
+                android:id="@+id/box1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/box2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/MyTextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:hint="@string/txt_insurance_code_bhi">
+
+                    <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:completionThreshold="1"
+                        android:dropDownVerticalOffset="0dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:padding="@dimen/dp_12" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:hint="@string/txt_insurance_start" />
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutline
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:hint="@string/txt_insurance_end" />
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:heights="@dimen/dp_84"
+                    app:hints="@string/txt_insurance_company" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/box2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/box1"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:heights="@dimen/dp_176"
+                    app:hints="@string/txt_insurance_company_bought" />
+
+                <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:heights="@dimen/dp_176"
+                    app:hints="@string/txt_insurance_company_bought_address" />
+
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

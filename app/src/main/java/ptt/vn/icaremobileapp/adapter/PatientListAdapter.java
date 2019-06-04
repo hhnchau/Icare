@@ -14,7 +14,6 @@ import java.util.List;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
 import ptt.vn.icaremobileapp.dialog.DialogPatientDetails;
-import ptt.vn.icaremobileapp.model.patient.PatientAdrr;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.utils.Utils;
 

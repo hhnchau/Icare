@@ -18,15 +18,17 @@ import java.util.List;
 import java.util.Map;
 
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.activity.MainActivity;
 import ptt.vn.icaremobileapp.adapter.PatientListAdapter;
 import ptt.vn.icaremobileapp.api.ACallback;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.custom.MyButton;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutline;
 import ptt.vn.icaremobileapp.fragment.BaseFragment;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
-import ptt.vn.icaremobileapp.utils.Constant;
 
 public class PatientList extends BaseFragment {
     private View view;
@@ -92,7 +94,7 @@ public class PatientList extends BaseFragment {
         adapter.setOnItemClick(new PatientListAdapter.OnItemClick() {
             @Override
             public void onClick(PatientDomain patientDomain) {
-
+                gotoFragment(patientDomain);
             }
         });
     }
@@ -110,5 +112,13 @@ public class PatientList extends BaseFragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void gotoFragment(PatientDomain patientDomain) {
+        if (getActivity() != null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Fragmentuz.BUNDLE_KEY_PATIENT, patientDomain);
+            ((MainActivity) getActivity()).gotoFragment(Fragmentez.REGISTER, null);
+        }
     }
 }

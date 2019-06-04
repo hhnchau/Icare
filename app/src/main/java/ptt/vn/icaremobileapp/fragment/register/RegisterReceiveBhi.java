@@ -7,19 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.fragment.BaseFragment;
 
-
-public class RegisterInfo extends BaseFragment {
+public class RegisterReceiveBhi extends BaseFragment {
     private View view;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.register_info, container, false);
-
+        view = inflater.inflate(R.layout.register_receive_bhi, container, false);
 
 
         return view;

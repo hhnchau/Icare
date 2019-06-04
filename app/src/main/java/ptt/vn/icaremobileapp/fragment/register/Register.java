@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ptt.vn.icaremobileapp.fragment.search.PatientList;
 import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ApiController;
@@ -24,8 +23,10 @@ import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterHi;
+import ptt.vn.icaremobileapp.model.register.RegisterServiceOrder;
 import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.utils.Utils;
 
@@ -35,34 +36,22 @@ public class Register extends BaseFragment {
     private FragmentManager fragmentManager;
     private List<Fragmentoz> lstFragment = new ArrayList<>();
 
+    private PatientDomain patientDomain;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.register, container, false);
-        String s = "";
         if (getArguments() != null)
-            s = getArguments().getString("A", "a");
-
-        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-
+            patientDomain = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_PATIENT);
 
         MyButton btnSave = view.findViewById(R.id.btnSave);
         btnSave.setOnSelectedListener(new MyButton.OnListener() {
             @Override
             public void onClick() {
-                //onSave();
-//                DialogPatientList.getInstance().show(getActivity(), new DialogPatientList.OnClickListener() {
-//                    @Override
-//                    public void onPatient() {
-//                        Toast.makeText(getActivity(), "Hello", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-                startActivity(new Intent(getActivity(), PatientList.class));
-
+                onSave();
             }
         });
-
 
         setupTabButton();
         toolbarListener();
@@ -79,21 +68,21 @@ public class Register extends BaseFragment {
             lst.add(getString(R.string.tab_service_item));
             myTabButton.setContent(lst);
             myTabButton.setActive(MyTabButton.TAB1);
-            //final Bundle bundle = new Bundle();
-            //bundle.putParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT, inpatient);
+            final Bundle bundle = new Bundle();
+            bundle.putParcelable(Fragmentuz.BUNDLE_KEY_PATIENT, patientDomain);
 
             //Set Default
-            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_INFO, false, R.id.frameRegister, null, Directionez.NEXT);
+            Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_INFO, false, R.id.frameRegister, bundle, Directionez.NEXT);
             myTabButton.setOnToggleSelectedListener(new MyTabButton.OnToggledListener() {
                 @Override
                 public void onTab(int tab) {
                     if (getActivity() != null) {
                         switch (tab) {
                             case MyTabButton.TAB1:
-                                Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_INFO, false, R.id.frameRegister, null, Directionez.NEXT);
+                                Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_INFO, false, R.id.frameRegister, bundle, Directionez.NEXT);
                                 break;
                             case MyTabButton.TAB2:
-                                Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_RECEIVE, false, R.id.frameRegister, null, Directionez.NEXT);
+                                Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_RECEIVE, false, R.id.frameRegister, bundle, Directionez.NEXT);
                                 break;
                             case MyTabButton.TAB3:
                                 Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_SERVICEITEM, false, R.id.frameRegister, null, Directionez.NEXT);
@@ -138,6 +127,9 @@ public class Register extends BaseFragment {
             lstRegisterHi.add(registerHi);
 
             registerDomain.setLstRegisterHi(lstRegisterHi);
+
+            List<RegisterServiceOrder> lstServiceOrder = new ArrayList<>();
+            registerDomain.setLstRegServiceOrder(lstServiceOrder);
 
 
             ApiController.getInstance().saveRegister(getActivity(), registerDomain, new Callback<RegisterDomain>() {
