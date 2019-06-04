@@ -2,11 +2,13 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:id="@+id/title"
@@ -47,6 +49,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:layout_marginBottom="@dimen/dp_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/box2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,9 +61,8 @@
                 <android.support.design.widget.TextInputLayout
                     style="@style/MyTextInput"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1"
                     android:hint="@string/txt_insurance_code">
 
                     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
@@ -74,9 +79,8 @@
                 <android.support.design.widget.TextInputLayout
                     style="@style/MyTextInput"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1"
                     android:hint="@string/txt_document_type">
 
                     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
@@ -93,25 +97,22 @@
                 <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceStart"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1"
                     app:hint="@string/txt_insurance_start" />
 
                 <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceRatio"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1"
                     app:hint="@string/txt_insurance_ratio" />
 
                 <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceRoutes"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1"
                     app:hint="@string/txt_insurance_routes" />
 
             </LinearLayout>
@@ -121,16 +122,18 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_32"
+                app:layout_constraintBottom_toBottomOf="@id/box1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/box1"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@id/box1">
 
                 <android.support.design.widget.TextInputLayout
                     style="@style/MyTextInput"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:hint="@string/txt_other_source">
 
                     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
@@ -147,8 +150,8 @@
                 <android.support.design.widget.TextInputLayout
                     style="@style/MyTextInput"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:hint="@string/txt_document">
 
                     <ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView
@@ -165,15 +168,16 @@
                 <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
                     android:id="@+id/tvInsuranceEnd"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
                     app:hint="@string/txt_insurance_end" />
 
                 <ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLineDisable
                     android:id="@+id/tvInsurancePlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:heights="@dimen/dp_84"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:heights="@dimen/dp_114"
                     app:hints="@string/txt_insurance_place" />
             </LinearLayout>
 

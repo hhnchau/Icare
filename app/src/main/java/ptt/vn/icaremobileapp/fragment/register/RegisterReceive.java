@@ -1,6 +1,5 @@
 package ptt.vn.icaremobileapp.fragment.register;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -30,7 +29,7 @@ public class RegisterReceive extends BaseFragment {
         frgHi = new RegisterReceiveHi();
         frgBhi = new RegisterReceiveBhi();
 
-        replaceFragment(frgBhi);
+        replaceFragment(frgHi);
 
         return view;
     }
