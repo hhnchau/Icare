@@ -32,5 +32,11 @@ public enum FieldName {
     yearbr,
     addresfull,
     nohi,
-    cardid
+    cardid,
+    formco,
+    typrec,
+    priorityobject,
+    pricelist,
+    introd,
+    status
 }

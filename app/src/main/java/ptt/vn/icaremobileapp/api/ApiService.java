@@ -3,6 +3,7 @@ package ptt.vn.icaremobileapp.api;
 import io.reactivex.Observable;
 import ptt.vn.icaremobileapp.model.account.AccountResponse;
 import ptt.vn.icaremobileapp.model.common.CateShareResponse;
+import ptt.vn.icaremobileapp.model.discount.DiscountResponse;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.hi.HiResponse;
@@ -77,6 +78,9 @@ public interface ApiService {
 
     @GET()
     Observable<MapPriceServiceItemResponse> getMapPriceServiceItem(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<DiscountResponse> getDiscountList(@Url String url);
 
     @GET()
     Observable<AccountResponse> login(@Url String url, @Header("Content") String filterModel);

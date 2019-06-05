@@ -6,8 +6,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.widget.EditText;
+
+import java.lang.reflect.Method;
 
 import ptt.vn.icaremobileapp.R;
 
@@ -136,6 +140,22 @@ public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatA
 
     public void setValue(String value) {
         this.setText(value);
+    }
+
+    public void keyboardClose(){
+        // Disable standard keyboard hard way
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.setShowSoftInputOnFocus(false);
+        } else {
+            //For sdk versions [14-20]
+            try {
+                final Method method = EditText.class.getMethod("setShowSoftInputOnFocus", boolean.class);
+                method.setAccessible(true);
+                method.invoke(this, false);
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
 
     @Override

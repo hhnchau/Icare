@@ -118,7 +118,7 @@ public class PatientList extends BaseFragment {
         if (getActivity() != null) {
             Bundle bundle = new Bundle();
             bundle.putParcelable(Fragmentuz.BUNDLE_KEY_PATIENT, patientDomain);
-            ((MainActivity) getActivity()).gotoFragment(Fragmentez.REGISTER, null);
+            ((MainActivity) getActivity()).gotoFragment(Fragmentez.REGISTER, bundle);
         }
     }
 }

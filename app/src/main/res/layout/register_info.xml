@@ -188,7 +188,7 @@
             app:layout_constraintVertical_bias="0">
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientName"
+                android:id="@+id/tvPatientName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -204,7 +204,7 @@
                 app:hint="@string/txt_married" />
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientPhone"
+                android:id="@+id/tvPatientPhone"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -212,7 +212,7 @@
                 app:hint="@string/txt_patient_phone" />
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientEthnic"
+                android:id="@+id/tvPatientEthnic"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -221,7 +221,7 @@
 
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientDistrict"
+                android:id="@+id/tvPatientDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -229,7 +229,7 @@
                 app:hint="@string/txt_district" />
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientStreet"
+                android:id="@+id/tvPatientStreet"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -237,7 +237,7 @@
                 app:hint="@string/txt_patient_street" />
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientIde"
+                android:id="@+id/tvPatientIde"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -245,7 +245,7 @@
                 app:hint="@string/txt_patient_ide" />
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtPatientEmail"
+                android:id="@+id/tvPatientEmail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
@@ -253,7 +253,7 @@
                 app:hint="@string/txt_patient_email" />
 
             <ptt.vn.icaremobileapp.custom.MyInputTextOutlineDisable
-                android:id="@+id/edtParentIde"
+                android:id="@+id/tvParentIde"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"

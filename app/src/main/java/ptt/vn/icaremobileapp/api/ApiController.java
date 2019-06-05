@@ -21,6 +21,7 @@ import ptt.vn.icaremobileapp.log.MyLog;
 import ptt.vn.icaremobileapp.model.account.AccountResponse;
 import ptt.vn.icaremobileapp.model.common.CateShareResponse;
 import ptt.vn.icaremobileapp.model.common.CateSharehDomain;
+import ptt.vn.icaremobileapp.model.discount.DiscountResponse;
 import ptt.vn.icaremobileapp.model.filter.DataTypeOfValue;
 import ptt.vn.icaremobileapp.model.filter.FieldName;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
@@ -55,6 +56,7 @@ import static ptt.vn.icaremobileapp.model.filter.Method.GetAccount;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetHappeningInDepartment;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInpatientInDepartment;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInvDrug;
+import static ptt.vn.icaremobileapp.model.filter.Method.GetList;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetListPatient;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetPriceList;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetRegisterbyIdlink;
@@ -571,6 +573,91 @@ public class ApiController {
                     }
                 }));
     }
+
+    @SuppressWarnings("unchecked")
+    public void getPriceListServiceItem(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.SERVITEM);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.siterf, Operation.Equals, DataTypeOfValue.Int64, Constant.SITERF));
+        lstPara.add(new Para(FieldName.active, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
+        lstPara.add(new Para(FieldName.status, Operation.Equals, DataTypeOfValue.Int64, Constant.ACTIVE));
+        CompositeManager.add(Api.apiService.getMapPriceServiceItem(url + "filter", new FilterModel(0, 10000, GetList, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<MapPriceServiceItemResponse>() {
+
+                    @Override
+                    public void onNext(MapPriceServiceItemResponse response) {
+                        if (response.getCode() == 0 && aCallback != null) {
+                            List<MapResultResponse> resultResponse = response.getData();
+                            if (resultResponse != null && resultResponse.size() > 0)
+                                aCallback.response(resultResponse.get(0).getResult());
+                            else
+                                MyLog.print(context, String.valueOf(response.getCode()));
+                        } else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getPriceListServiceItem(context, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getDiscountList(final Context context, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.DISCOUNT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+
+        CompositeManager.add(Api.apiService.getDiscountList(url + "0/0/1000")
+                .subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<DiscountResponse>() {
+                    @Override
+                    public void onNext(DiscountResponse response) {
+                        if (response.getCode() == 0 && aCallback != null)
+                            aCallback.response(response.getData());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
 
     @SuppressWarnings("unchecked")
     public void getPhaInventory(final Context context, final int _offset, final int _limit, final int _idStore, final int _isHi, final ACallback aCallback) {

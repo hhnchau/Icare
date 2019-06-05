@@ -1,7 +1,7 @@
 package ptt.vn.icaremobileapp.fragment.register;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -23,7 +23,6 @@ import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
-import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterHi;
 import ptt.vn.icaremobileapp.model.register.RegisterServiceOrder;
@@ -36,14 +35,14 @@ public class Register extends BaseFragment {
     private FragmentManager fragmentManager;
     private List<Fragmentoz> lstFragment = new ArrayList<>();
 
-    private PatientDomain patientDomain;
+    public static RegisterDomain registerDomain = new RegisterDomain();
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.register, container, false);
-        if (getArguments() != null)
-            patientDomain = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_PATIENT);
 
         MyButton btnSave = view.findViewById(R.id.btnSave);
         btnSave.setOnSelectedListener(new MyButton.OnListener() {
@@ -69,7 +68,8 @@ public class Register extends BaseFragment {
             myTabButton.setContent(lst);
             myTabButton.setActive(MyTabButton.TAB1);
             final Bundle bundle = new Bundle();
-            bundle.putParcelable(Fragmentuz.BUNDLE_KEY_PATIENT, patientDomain);
+            if (getArguments() != null)
+                bundle.putParcelable(Fragmentuz.BUNDLE_KEY_PATIENT, getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_PATIENT));
 
             //Set Default
             Fragmentuz.addFragment(lstFragment, fragmentManager, Fragmentez.REGISTER_INFO, false, R.id.frameRegister, bundle, Directionez.NEXT);
@@ -111,13 +111,15 @@ public class Register extends BaseFragment {
 //                return;
 //            }
 
-            RegisterDomain registerDomain = new RegisterDomain();
+
             registerDomain.setActive(Constant.ACTIVE);
             registerDomain.setSiterf(Constant.SITERF);
             registerDomain.setIdlink(Utils.newGuid());
-            //registerDomain.setPatcode();
-            //registerDomain.setPatid();
-            //registerDomain.setPurpos();
+
+
+            //registerDomain.setPatcode(patientDomain.getPatcode());
+            //registerDomain.setPatid(patientDomain.getPatid());
+            //registerDomain.setPurpos("NgoaiTRu");
             //registerDomain.setIdaddr();
             //registerDomain.setIdide();
 
@@ -148,7 +150,14 @@ public class Register extends BaseFragment {
 
     @Override
     public void onDestroyView() {
-        Fragmentuz.removeFragment(lstFragment, fragmentManager);
+        registerDomain = null;
+        new Handler().post(new Runnable() {
+            public void run() {
+                if (getActivity() != null)
+                    Fragmentuz.removeFragment(lstFragment, fragmentManager);
+            }
+        });
+
         super.onDestroyView();
     }
 }
