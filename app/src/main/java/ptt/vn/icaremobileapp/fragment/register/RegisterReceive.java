@@ -50,7 +50,7 @@ public class RegisterReceive extends BaseFragment {
         frgHi = new RegisterReceiveHi();
         frgBhi = new RegisterReceiveBhi();
 
-        replaceFragment(frgBhi);
+        replaceFragment(frgHi);
 
         getCateShare(formco);
         getCateShare(typrec);
