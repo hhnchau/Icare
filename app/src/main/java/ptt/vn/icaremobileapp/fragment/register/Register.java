@@ -24,8 +24,6 @@ import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentoz;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
-import ptt.vn.icaremobileapp.model.register.RegisterHi;
-import ptt.vn.icaremobileapp.model.register.RegisterServiceOrder;
 import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.utils.Utils;
 
@@ -36,7 +34,6 @@ public class Register extends BaseFragment {
     private List<Fragmentoz> lstFragment = new ArrayList<>();
 
     public static RegisterDomain registerDomain = new RegisterDomain();
-
 
 
     @Nullable
@@ -96,43 +93,37 @@ public class Register extends BaseFragment {
 
     public void onSave() {
         if (getActivity() != null) {
-//            boolean validateInfo = false;
-//            boolean validateHi = false;
-//            boolean validateBhi = false;
-//            ReceivingInfo receivingInfo = (ReceivingInfo) getActivity().getSupportFragmentManager().findFragmentByTag(ReceivingInfo.class.getName());
-//            if (receivingInfo != null) validateInfo = receivingInfo.validate();
-//            ReceivingHi receivingHi = (ReceivingHi) getActivity().getSupportFragmentManager().findFragmentByTag(ReceivingHi.class.getName());
-//            if (receivingHi != null) validateHi = receivingHi.validate();
-//            ReceivingBhi receivingBhi = (ReceivingBhi) getActivity().getSupportFragmentManager().findFragmentByTag(ReceivingBhi.class.getName());
-//            if (receivingBhi != null) validateBhi = receivingBhi.validate();
-//
-//            if (!validateInfo || !validateHi || !validateBhi) {
-//                Toast.makeText(getActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
+            boolean validateInfo = false;
+            boolean validateReceive = false;
+            boolean validateHi = false;
+            boolean validateBhi;
+            boolean validateService = false;
+            RegisterInfo registerInfo = (RegisterInfo) getActivity().getSupportFragmentManager().findFragmentByTag(RegisterInfo.class.getName());
+            if (registerInfo != null) validateInfo = registerInfo.validate();
+            RegisterReceive registerReceive = (RegisterReceive) getActivity().getSupportFragmentManager().findFragmentByTag(RegisterReceive.class.getName());
+            if (registerReceive != null) validateReceive = registerReceive.validate();
+            RegisterReceiveHi registerReceiveHi = (RegisterReceiveHi) getActivity().getSupportFragmentManager().findFragmentByTag(RegisterReceiveHi.class.getName());
+            if (registerReceiveHi != null && registerReceiveHi.isVisible())
+                validateHi = registerReceiveHi.validate();
+            RegisterReceiveBhi registerReceiveBhi = (RegisterReceiveBhi) getActivity().getSupportFragmentManager().findFragmentByTag(RegisterReceiveBhi.class.getName());
+            if (registerReceiveBhi != null && registerReceiveBhi.isVisible())
+                validateBhi = registerReceiveBhi.validate();
+            else validateBhi = true;
+            RegisterServiceItem registerServiceItem = (RegisterServiceItem) getActivity().getSupportFragmentManager().findFragmentByTag(RegisterServiceItem.class.getName());
+            if (registerServiceItem != null)
+                validateService = registerServiceItem.validate();
 
+            if (!validateInfo || !validateReceive || !validateHi || !validateBhi || !validateService) {
+                Toast.makeText(getActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             registerDomain.setActive(Constant.ACTIVE);
             registerDomain.setSiterf(Constant.SITERF);
             registerDomain.setIdlink(Utils.newGuid());
-
-
-            //registerDomain.setPatcode(patientDomain.getPatcode());
-            //registerDomain.setPatid(patientDomain.getPatid());
-            //registerDomain.setPurpos("NgoaiTRu");
-            //registerDomain.setIdaddr();
-            //registerDomain.setIdide();
-
-            RegisterHi registerHi = new RegisterHi();
-            //registerHi.setIdline();
-            List<RegisterHi> lstRegisterHi = new ArrayList<>();
-            lstRegisterHi.add(registerHi);
-
-            registerDomain.setLstRegisterHi(lstRegisterHi);
-
-            List<RegisterServiceOrder> lstServiceOrder = new ArrayList<>();
-            registerDomain.setLstRegServiceOrder(lstServiceOrder);
-
+            registerDomain.setRegdate(Utils.getCurrentDate(Utils.ddMMyyyyTHHmmss));
+            //registerDomain.setTypeexamination(25458);
+            //registerDomain.setIdpriob(25508);
 
             ApiController.getInstance().saveRegister(getActivity(), registerDomain, new Callback<RegisterDomain>() {
                 @Override

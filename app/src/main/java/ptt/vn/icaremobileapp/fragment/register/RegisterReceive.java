@@ -1,7 +1,9 @@
 package ptt.vn.icaremobileapp.fragment.register;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.api.ACallback;
@@ -22,10 +25,18 @@ import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.custom.MyInputTextOutlineMultiLine;
 import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
+import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
 import ptt.vn.icaremobileapp.model.discount.DiscountHDomain;
 import ptt.vn.icaremobileapp.model.filter.FieldName;
+import ptt.vn.icaremobileapp.model.filter.Objectez;
+import ptt.vn.icaremobileapp.model.patient.PatientBHi;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
+import ptt.vn.icaremobileapp.model.patient.PatientHi;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemHDomain;
+import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemLDomain;
+import ptt.vn.icaremobileapp.model.shared.HiLiveData;
+import ptt.vn.icaremobileapp.model.shared.PriceLiveData;
 import ptt.vn.icaremobileapp.utils.Utils;
 
 import static ptt.vn.icaremobileapp.model.filter.FieldName.formco;
@@ -40,18 +51,26 @@ public class RegisterReceive extends BaseFragment {
     private View view;
     private RegisterReceiveHi frgHi;
     private RegisterReceiveBhi frgBhi;
-    private MyAutoCompleteTextView acpFormality, acpPriorityObject, acpPriceType, acpPlaceIntroduce, acpReceiveType, acpPatientObject, acpDiscount;
     private MyInputTextOutlineMultiLine edtSymptom;
+    private MyAutoCompleteTextView acpFormality, acpPriorityObject, acpPriceType, acpPlaceIntroduce, acpReceiveType, acpPatientObject, acpDiscount;
+    private int idFormality, idPriorityObject, idPriceType, idPlaceIntroduce, idReceiveType, idPatientObject, idDiscount;
+    private PriceLiveData priceLiveData;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.register_receive, container, false);
+        if (getActivity() != null)
+            priceLiveData = ViewModelProviders.of(getActivity()).get(PriceLiveData.class);
+        edtSymptom = view.findViewById(R.id.edtSymptom);
         frgHi = new RegisterReceiveHi();
         frgBhi = new RegisterReceiveBhi();
-
-        replaceFragment(frgHi);
-
+        Bundle bundle = new Bundle();
+        if (getArguments() != null) {
+            bundle.putParcelable(Fragmentuz.BUNDLE_KEY_PATIENT, getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_PATIENT));
+            frgHi.setArguments(bundle);
+            frgBhi.setArguments(bundle);
+        }
         getCateShare(formco);
         getCateShare(typrec);
         getCateShare(regobject);
@@ -76,6 +95,24 @@ public class RegisterReceive extends BaseFragment {
         }
     }
 
+    private void removeFragment() {
+        if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .remove(frgHi)
+                    .remove(frgBhi)
+                    .commit();
+    }
+
+    private void handleFragment(int idObject) {
+        if (idObject == Objectez.DICHVU.getValue()) {
+            removeFragment();
+        } else if (idObject == Objectez.BHYT.getValue()) {
+            if (frgHi != null) replaceFragment(frgHi);
+        } else if (idObject == Objectez.BHTN.getValue()) {
+            if (frgBhi != null) replaceFragment(frgBhi);
+        }
+    }
+
     private void setupFormality(List<CateSharelDomain> lst) {
         if (getActivity() != null) {
             acpFormality = view.findViewById(R.id.acpFormality);
@@ -85,7 +122,7 @@ public class RegisterReceive extends BaseFragment {
             acpFormality.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //idHospitalName = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    idFormality = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
                 }
             });
 
@@ -109,7 +146,7 @@ public class RegisterReceive extends BaseFragment {
             acpReceiveType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //idHospitalName = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    idReceiveType = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
                 }
             });
 
@@ -133,7 +170,8 @@ public class RegisterReceive extends BaseFragment {
             acpPatientObject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //idHospitalName = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    idPatientObject = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    handleFragment(idPatientObject);
                 }
             });
 
@@ -181,7 +219,8 @@ public class RegisterReceive extends BaseFragment {
             acpPriceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //idHospitalName = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    idPriceType = ((MapPriceServiceItemHDomain) parent.getItemAtPosition(position)).getId();
+                    getMapPriceServiceItem(0, 10000, idPriceType);
                 }
             });
 
@@ -205,7 +244,7 @@ public class RegisterReceive extends BaseFragment {
             acpPlaceIntroduce.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //idHospitalName = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    idPlaceIntroduce = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
                 }
             });
 
@@ -229,7 +268,7 @@ public class RegisterReceive extends BaseFragment {
             acpDiscount.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //idHospitalName = ((CateSharelDomain) parent.getItemAtPosition(position)).getIdline();
+                    idDiscount = ((DiscountHDomain) parent.getItemAtPosition(position)).getIdline();
                 }
             });
 
@@ -302,44 +341,69 @@ public class RegisterReceive extends BaseFragment {
             });
     }
 
+    private void getMapPriceServiceItem(int _offset, int _limit, int _idPrice) {
+        ApiController.getInstance().getMapPriceServiceItem(getActivity(), _offset, _limit, _idPrice,
+                new ACallback<MapPriceServiceItemLDomain>() {
+                    @Override
+                    public void response(List<MapPriceServiceItemLDomain> list) {
+                        priceLiveData.setPriceLiveData(list);
+                    }
+                });
+    }
+
     public boolean validate() {
         boolean validate = true;
-//        if (!TextUtils.isEmpty(edtHiCode.getText())) {
-//            if (TextUtils.isEmpty(edtHiStart.getText())) {
-//                edtHiStart.setError(".");
-//                validate = false;
-//            }
-//            if (TextUtils.isEmpty(edtHiEnd.getText())) {
-//                edtHiEnd.setError(".");
-//                validate = false;
-//            }
-//
-//            if (TextUtils.isEmpty(acpHospitalName.getText())) {
-//                acpHospitalName.setError(".");
-//                validate = false;
-//            }
-//
-//            if (TextUtils.isEmpty(acpHiObject.getText())) {
-//                acpHiObject.setError(".");
-//                validate = false;
-//            }
-//
-//            PatientHi patientHi = new PatientHi();
-//            patientHi.setIdline(Utils.newGuid());
-//            patientHi.setNohi(edtHiCode.getText().toString());
-//            patientHi.setStrday(Utils.dateConvert(edtHiStart.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
-//            patientHi.setEndday(Utils.dateConvert(edtHiEnd.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
-//            patientHi.setIdlivpla(idHiObject);
-//            patientHi.setIdhospital(idHospitalName);
-//            patientHi.setAddres(edtHiAddress.getText().toString());
-//            patientHi.setTime5y(Utils.dateConvert(edtHi5y.getText().toString(), Utils.ddMMyyyyHHmm, Utils.ddMMyyyyTHHmmss));
-//
-//            List<PatientHi> lstPatientHi = new ArrayList<>();
-//            lstPatientHi.add(patientHi);
-//            Receiving.patientDomain.setLstPatientHi(lstPatientHi);
-//        }
 
-        return validate;
+        if (TextUtils.isEmpty(acpFormality.getText())) {
+            acpFormality.setError(".");
+            validate = false;
+        }
+        if (TextUtils.isEmpty(acpPriorityObject.getText())) {
+            acpPriorityObject.setError(".");
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(acpPriceType.getText())) {
+            acpPriceType.setError(".");
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(acpPlaceIntroduce.getText())) {
+            acpPlaceIntroduce.setError(".");
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(acpReceiveType.getText())) {
+            acpReceiveType.setError(".");
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(acpPatientObject.getText())) {
+            acpPatientObject.setError(".");
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(acpDiscount.getText())) {
+            acpDiscount.setError(".");
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(edtSymptom.getText())) {
+            edtSymptom.setError(".");
+            validate = false;
+        }
+
+        if (!validate) return false;
+
+        Register.registerDomain.setTyprec(idReceiveType);
+        Register.registerDomain.setFormco(idFormality);
+        Register.registerDomain.setIntrod(idPlaceIntroduce);
+        Register.registerDomain.setIdobject(idPatientObject);
+        Register.registerDomain.setPricelist(idPriceType);
+        Register.registerDomain.setPromotions(idDiscount);
+        Register.registerDomain.setSymptoms(edtSymptom.getText().toString());
+
+        return true;
     }
 
     @Override

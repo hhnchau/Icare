@@ -3,6 +3,7 @@ package ptt.vn.icaremobileapp.fragment.register;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
+import ptt.vn.icaremobileapp.model.filter.Purpose;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
+import ptt.vn.icaremobileapp.utils.Utils;
 
 
 public class RegisterInfo extends BaseFragment {
@@ -42,14 +45,14 @@ public class RegisterInfo extends BaseFragment {
     private void setView(PatientDomain patientDomain) {
         if (patientDomain != null) {
             edtPatientCode.setText(patientDomain.getHospcode());
-            tvPatientSex.setValues(patientDomain.getSex() + "");
-            tvPatientBirthday.setValues(patientDomain.getBirthday());
+            tvPatientSex.setValues(patientDomain.getGender());
+            tvPatientBirthday.setValues(Utils.dateConvert(patientDomain.getBirthday(), Utils.ddMMyyyyTHHmmss, Utils.ddMMyyyy));
             tvPatientNation.setValues(patientDomain.getNamenation());
             tvPatientJob.setValues(patientDomain.getNamejob());
             tvPatientPassport.setValues(patientDomain.getPaport());
             tvParentName.setValues(patientDomain.getFaname());
             tvPatientName.setValues(patientDomain.getPATIENTNAME());
-            tvPatientMarried.setValues(patientDomain.getIsmarr() + "");
+            tvPatientMarried.setValues(patientDomain.getMarried());
             tvPatientPhone.setValues(patientDomain.getPhone());
             tvPatientEthnic.setValues(patientDomain.getNameethnic());
             tvPatientEmail.setValues(patientDomain.getEmail());
@@ -98,6 +101,19 @@ public class RegisterInfo extends BaseFragment {
         if (getActivity() != null) {
             ((MainActivity) getActivity()).gotoFragment(Fragmentez.PATIENT_LIST, null);
         }
+    }
+
+    public boolean validate() {
+        if (patientDomain == null) return false;
+        Register.registerDomain.setPatcode(patientDomain.getPatcode());
+        Register.registerDomain.setPatid(patientDomain.getPatid());
+        Register.registerDomain.setPurpos(Purpose.NgoaiTru.name());
+        if (patientDomain.getLstPatientAddr() != null && patientDomain.getLstPatientAddr().size() > 0)
+            Register.registerDomain.setIdaddr(patientDomain.getLstPatientAddr().get(0).getIdline());
+        if (patientDomain.getLstPatientIde() != null && patientDomain.getLstPatientIde().size() > 0)
+            Register.registerDomain.setIdide(patientDomain.getLstPatientIde().get(0).getIdline());
+
+        return true;
     }
 
     @Override

@@ -28,6 +28,7 @@ import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.filter.Operation;
 import ptt.vn.icaremobileapp.model.filter.Para;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.hi.HiRatioOtherResponse;
 import ptt.vn.icaremobileapp.model.hi.HiResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
@@ -53,12 +54,14 @@ import ptt.vn.icaremobileapp.model.sysapi.UrlModel;
 import ptt.vn.icaremobileapp.utils.Constant;
 
 import static ptt.vn.icaremobileapp.model.filter.Method.GetAccount;
+import static ptt.vn.icaremobileapp.model.filter.Method.GetCardBHYT;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetHappeningInDepartment;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInpatientInDepartment;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInvDrug;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetList;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetListPatient;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetPriceList;
+import static ptt.vn.icaremobileapp.model.filter.Method.GetRatio;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetRegisterbyIdlink;
 import static ptt.vn.icaremobileapp.model.filter.Method.SearchPatient;
 
@@ -658,7 +661,6 @@ public class ApiController {
                 }));
     }
 
-
     @SuppressWarnings("unchecked")
     public void getPhaInventory(final Context context, final int _offset, final int _limit, final int _idStore, final int _isHi, final ACallback aCallback) {
         String url = MyApplication.getUrl(Service.OCLINIC);
@@ -903,6 +905,98 @@ public class ApiController {
     }
 
     @SuppressWarnings("unchecked")
+    public void getHiRatio(final Context context, final String patid, final String nohi, final int typeexamination, final Callback callback) {
+        String url = MyApplication.getUrl(Service.REG);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.patid, Operation.Equals, DataTypeOfValue.Guid, patid));
+        lstPara.add(new Para(FieldName.typeexamination, Operation.Equals, DataTypeOfValue.Int32, typeexamination));
+        lstPara.add(new Para(FieldName.nohi, Operation.Equals, DataTypeOfValue.String, nohi));
+        CompositeManager.add(Api.apiService.getHiRatio(url + "filter", new FilterModel(0, 1000, GetRatio, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RegisterResponse>() {
+
+                    @Override
+                    public void onNext(RegisterResponse response) {
+                        if (response.getCode() == 0 && response.getData().size() > 0 && callback != null)
+                            callback.response(response.getData().get(0));
+                        else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getHiRatio(context, patid, nohi, typeexamination, callback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getHiRatioOther(final Context context, final String nohi, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.RETAOTHER);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.code, Operation.Equals, DataTypeOfValue.String, nohi.toUpperCase()));
+        CompositeManager.add(Api.apiService.getHiRatioOther(url + "filter", new FilterModel(0, 1000, GetCardBHYT, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<HiRatioOtherResponse>() {
+
+                    @Override
+                    public void onNext(HiRatioOtherResponse response) {
+                        if (response.getCode() == 0 && aCallback != null)
+                            aCallback.response(response.getData());
+                        else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getHiRatioOther(context, nohi, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
     public void saveReceiving(final Context context, final PatientDomain patientDomain, final Callback callback) {
         String url = MyApplication.getUrl(Service.PAT);
         if (url == null) {
@@ -1009,6 +1103,5 @@ public class ApiController {
             }
         });
     }
-
 
 }

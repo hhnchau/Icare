@@ -115,7 +115,7 @@ public class Fragmentuz {
 
                 transaction
                         .setCustomAnimations(enter, exit)
-                        .add(frame, frg)
+                        .add(frame, frg, frg.getClass().getName())
                         .commit();
                 lstFragment.add(new Fragmentoz(fzg, frg));
             }

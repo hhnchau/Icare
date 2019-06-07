@@ -1,5 +1,7 @@
 package ptt.vn.icaremobileapp.fragment.register;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import ptt.vn.icaremobileapp.adapter.RegisterServiceOrderAdapter;
 import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.adapter.ServiceItemAdapter;
@@ -26,12 +29,17 @@ import ptt.vn.icaremobileapp.autocomplete.MyAutoCompleteTextView;
 import ptt.vn.icaremobileapp.fragment.inpatient.Instruction;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
+import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
+import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.register.RegisterDomain;
+import ptt.vn.icaremobileapp.model.register.RegisterServiceOrder;
 import ptt.vn.icaremobileapp.model.serviceitem.MapPriceServiceItemLDomain;
 import ptt.vn.icaremobileapp.model.serviceitem.ServiceItemDomain;
+import ptt.vn.icaremobileapp.model.shared.HiLiveData;
+import ptt.vn.icaremobileapp.model.shared.PriceLiveData;
 import ptt.vn.icaremobileapp.storage.Storage;
 import ptt.vn.icaremobileapp.utils.Constant;
 import ptt.vn.icaremobileapp.utils.Utils;
@@ -40,35 +48,35 @@ import ptt.vn.icaremobileapp.utils.Utils;
 public class RegisterServiceItem extends BaseFragment {
     private View view;
     private List<ServiceItemDomain> lstServiceItem;
-    private ServiceItemAdapter adapterServiceItem;
+    private RegisterServiceOrderAdapter adapterServiceItem;
+
+    private List<RegisterServiceOrder> lstRegisterServiceOrder = new ArrayList<>();
 
     private List<MapPriceServiceItemLDomain> lstMapPriceServiceItem = new ArrayList<>();
 
-    private List<InpatientServiceOrder> lstInpatientServiceOrder = new ArrayList<>();
-
-    private InpatientDomain inpatient;
 
     private int offset = 0;
     private int limit = 1000;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getActivity() != null) {
+            PriceLiveData priceLiveData = ViewModelProviders.of(getActivity()).get(PriceLiveData.class);
+            priceLiveData.getPriceLiveData().observe(getActivity(), new Observer<List<MapPriceServiceItemLDomain>>() {
+                @Override
+                public void onChanged(@Nullable List<MapPriceServiceItemLDomain> list) {
+                    lstMapPriceServiceItem = list;
+                }
+            });
+        }
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.register_serviceitem, container, false);
-        if (Instruction.happeningDomain != null)
-            lstInpatientServiceOrder = Instruction.happeningDomain.getLstInpatientServiceOrder();
-
-        if (getArguments() != null) {
-            inpatient = getArguments().getParcelable(Fragmentuz.BUNDLE_KEY_INPATIENT);
-            if (inpatient != null) {
-                RegisterDomain register = inpatient.getRegister();
-                if (register != null) {
-                    /*Get Price*/
-                    getMapPriceServiceItem(offset, limit, register.getPricelist());
-                }
-            }
-        }
-
 
         setupListServiceItem();
 
@@ -90,38 +98,35 @@ public class RegisterServiceItem extends BaseFragment {
                     ServiceItemDomain serviceItemDomain = (ServiceItemDomain) parent.getItemAtPosition(position);
 
                     boolean exist = false;
-                    for (InpatientServiceOrder item : lstInpatientServiceOrder)
-                        if (item.getIdservice() == serviceItemDomain.getId()) {
+                    for (RegisterServiceOrder item : lstRegisterServiceOrder)
+                        if (item.getIdservitem() == serviceItemDomain.getId()) {
                             exist = true;
                             break;
                         }
 
                     if (!exist) {
-                        InpatientServiceOrder inpatientService = new InpatientServiceOrder();
-                        inpatientService.setActive(Constant.ACTIVE);
-                        inpatientService.setIdline(Utils.newGuid());
-                        inpatientService.setIdhappening(Utils.newGuid());
-                        inpatientService.setNamehi(serviceItemDomain.getNamehi());
-                        inpatientService.setUnitid(serviceItemDomain.getUnitid());
-                        inpatientService.setNameunit(serviceItemDomain.getNameunit());
-                        inpatientService.setIshi(serviceItemDomain.getIshi());
-                        inpatientService.setDescrp(serviceItemDomain.getDescrp());
-                        inpatientService.setCode(serviceItemDomain.getCode());
-                        inpatientService.setNamehosp(serviceItemDomain.getNamehosp());
-                        inpatientService.setIdservice(serviceItemDomain.getId());
-                        inpatientService.setDocoder(Storage.getInstance(getActivity()).getUserName());
-
-                        inpatientService.setQty(1);
+                        RegisterServiceOrder registerServiceOrder = new RegisterServiceOrder();
+                        registerServiceOrder.setPatid(Utils.newGuid());
+                        registerServiceOrder.setIdline(Utils.newGuid());
+                        registerServiceOrder.setDateorder(Utils.getCurrentDate(Utils.ddMMyyyyTHHmmss));
+                        registerServiceOrder.setDateapp(Utils.getCurrentDate(Utils.ddMMyyyyTHHmmss));
+                        registerServiceOrder.setIdservitem(serviceItemDomain.getId());
+                        registerServiceOrder.setServcode(serviceItemDomain.getCode());
+                        registerServiceOrder.setServname(serviceItemDomain.getNamehosp());
+                        registerServiceOrder.setNameunit(serviceItemDomain.getNameunit());
+                        registerServiceOrder.setQty(1);
+                        registerServiceOrder.setIshi(serviceItemDomain.getIshi());
                         for (MapPriceServiceItemLDomain price : lstMapPriceServiceItem)
                             if (serviceItemDomain.getId() == price.getIdservice()) {
-                                inpatientService.setPrice(price.getPrice());
-                                inpatientService.setPricehi(price.getPricehi());
+                                registerServiceOrder.setPrice(price.getPrice());
+                                registerServiceOrder.setPricehi(price.getPricehi());
                             }
 
-                        lstInpatientServiceOrder.add(inpatientService);
-                        adapterServiceItem.setItems(lstInpatientServiceOrder);
+                        lstRegisterServiceOrder.add(registerServiceOrder);
+                        adapterServiceItem.setItems(lstRegisterServiceOrder);
                         adapterServiceItem.notifyDataSetChanged();
-                    }else {
+
+                    } else {
                         Toast.makeText(getActivity(), "Đã tồn tại", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -142,9 +147,9 @@ public class RegisterServiceItem extends BaseFragment {
         rcv.setHasFixedSize(true);
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         //rcv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        adapterServiceItem = new ServiceItemAdapter(lstInpatientServiceOrder);
+        adapterServiceItem = new RegisterServiceOrderAdapter(lstRegisterServiceOrder);
         rcv.setAdapter(adapterServiceItem);
-        adapterServiceItem.setOnItemClick(new ServiceItemAdapter.OnItemClick() {
+        adapterServiceItem.setOnItemClick(new RegisterServiceOrderAdapter.OnItemClick() {
             @Override
             public void onDelete(final int p) {
                 if (getActivity() != null) {
@@ -154,10 +159,10 @@ public class RegisterServiceItem extends BaseFragment {
                             /*
                              * DELETE
                              **/
-                            InpatientServiceOrder inpatientService = lstInpatientServiceOrder.get(p);
-                            inpatientService.setActive(Constant.DELETE);
-                            if (Instruction.happeningDomain != null)
-                                deleteService(Instruction.happeningDomain, p);
+//                            InpatientServiceOrder inpatientService = lstRegisterServiceOrder.get(p);
+//                            inpatientService.setActive(Constant.DELETE);
+//                            if (Instruction.happeningDomain != null)
+//                                deleteService(Instruction.happeningDomain, p);
                         }
 
                         @Override
@@ -175,24 +180,24 @@ public class RegisterServiceItem extends BaseFragment {
 
             @Override
             public void onIsHi(int p) {
-                InpatientServiceOrder inpatientService = lstInpatientServiceOrder.get(p);
+                RegisterServiceOrder inpatientService = lstRegisterServiceOrder.get(p);
 
-                if (inpatient.getNameObject().equals(Objectez.BHYT.name()) && lstServiceItem != null) {
-                    for (ServiceItemDomain service : lstServiceItem)
-                        if (service.getId() == inpatientService.getIdservice()) {
-                            if (service.getIshi() == Objectez.DICHVU.ordinal())
-                                Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
-                            else {
-                                inpatientService.setIshi(inpatientService.getIshi() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
-                                lstInpatientServiceOrder.set(p, inpatientService);
-                                adapterServiceItem.notifyItemChanged(p);
-                            }
-
-                            break;
-                        }
-                } else {
-                    Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
-                }
+//                if (inpatient.getNameObject().equals(Objectez.BHYT.name()) && lstServiceItem != null) {
+//                    for (ServiceItemDomain service : lstServiceItem)
+//                        if (service.getId() == inpatientService.getIdservitem()) {
+//                            if (service.getIshi() == Objectez.DICHVU.ordinal())
+//                                Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+//                            else {
+//                                inpatientService.setIshi(inpatientService.getIshi() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
+//                                lstRegisterServiceOrder.set(p, inpatientService);
+//                                adapterServiceItem.notifyItemChanged(p);
+//                            }
+//
+//                            break;
+//                        }
+//                } else {
+//                    Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
@@ -212,7 +217,7 @@ public class RegisterServiceItem extends BaseFragment {
                                     setupServiceItem(lstServiceItem);
 
                                     /*Join Happening To Service*/
-                                    updateListService(lstServiceItem);
+                                    //updateListService(lstServiceItem);
                                 }
                             });
                         }
@@ -220,37 +225,28 @@ public class RegisterServiceItem extends BaseFragment {
                 });
     }
 
-    private void getMapPriceServiceItem(int _offset, int _limit, int _idPrice) {
-        ApiController.getInstance().getMapPriceServiceItem(getActivity(), _offset, _limit, _idPrice,
-                new ACallback<MapPriceServiceItemLDomain>() {
-                    @Override
-                    public void response(List<MapPriceServiceItemLDomain> list) {
-                        lstMapPriceServiceItem = list;
-                    }
-                });
-    }
 
     private void updateListService(List<ServiceItemDomain> listServiceItem) {
 
-        if (lstInpatientServiceOrder != null && lstInpatientServiceOrder.size() > 0 && listServiceItem != null && listServiceItem.size() > 0) {
-            for (InpatientServiceOrder inpatientService : lstInpatientServiceOrder) {
+        if (lstRegisterServiceOrder != null && lstRegisterServiceOrder.size() > 0 && listServiceItem != null && listServiceItem.size() > 0) {
+            for (RegisterServiceOrder inpatientService : lstRegisterServiceOrder) {
                 for (ServiceItemDomain serviceItem : listServiceItem) {
-                    if (inpatientService.getIdservice() == serviceItem.getId()) {
+                    if (inpatientService.getIdservitem() == serviceItem.getId()) {
 
                         inpatientService.setNamehosp(serviceItem.getNamehosp());
-                        inpatientService.setCode(serviceItem.getCode());
-                        inpatientService.setUnitid(serviceItem.getUnitid());
+                        inpatientService.setServcode(serviceItem.getCode());
+                        //inpatientService.setUnitid(serviceItem.getUnitid());
                         inpatientService.setNameunit(serviceItem.getNameunit());
-                        inpatientService.setDescrp(serviceItem.getDescrp());
+                        //inpatientService.setDescrp(serviceItem.getDescrp());
                         inpatientService.setStatus(serviceItem.getStatus());
-                        inpatientService.setNamehi(serviceItem.getNamehi());
+                        inpatientService.setNamehosp(serviceItem.getNamehi());
 
                         break;
                     }
                 }
             }
 
-            adapterServiceItem.setItems(lstInpatientServiceOrder);
+            adapterServiceItem.setItems(lstRegisterServiceOrder);
             adapterServiceItem.notifyDataSetChanged();
 
         }
@@ -265,6 +261,12 @@ public class RegisterServiceItem extends BaseFragment {
                 Toast.makeText(getActivity(), getString(R.string.txt_delete_success), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public boolean validate() {
+        if (lstRegisterServiceOrder == null || lstRegisterServiceOrder.size() == 0) return false;
+        Register.registerDomain.setLstRegServiceOrder(lstRegisterServiceOrder);
+        return true;
     }
 
     @Override

@@ -13,5 +13,6 @@ public class Service {
     public static final String  ACCOUNT = "ACCOUNT";
     public static final String  BHYT = "BHYT";
     public static final String  DISCOUNT = "DISCOUNT";
+    public static final String  RETAOTHER = "RETAOTHER";
 }
 

@@ -6,6 +6,7 @@ import ptt.vn.icaremobileapp.model.common.CateShareResponse;
 import ptt.vn.icaremobileapp.model.discount.DiscountResponse;
 import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.hi.HiRatioOtherResponse;
 import ptt.vn.icaremobileapp.model.hi.HiResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
@@ -88,6 +89,12 @@ public interface ApiService {
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
     @POST()
     Observable<HiResponse> getHiInfo(@Url String url, @Body HiDomain hiDomain);
+
+    @GET()
+    Observable<RegisterResponse> getHiRatio(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<HiRatioOtherResponse> getHiRatioOther(@Url String url, @Header("Content") String filterModel);
 
     @Headers({"Content-Type: application/json; charset=UTF-8", "Accept: application/json"})
     @POST()

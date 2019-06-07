@@ -80,4 +80,8 @@ public class MyInputTextOutlineDisable extends LinearLayout {
         textInputLayout.setHint(hint);
     }
 
+    public CharSequence getText() {
+        return myAutoCompleteTextView.getText();
+    }
+
 }

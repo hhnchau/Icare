@@ -97,6 +97,12 @@ public class PatientDomain implements Parcelable {
         return "KXD";
     }
 
+    public String getMarried() {
+        if (ismarr == 0) return "Độc Thân";
+        if (ismarr == 1) return "Kết Hôn";
+        return "KXD";
+    }
+
     public int getSiterf() {
         return siterf;
     }

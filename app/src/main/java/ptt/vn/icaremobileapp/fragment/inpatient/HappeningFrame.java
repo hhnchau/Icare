@@ -110,6 +110,7 @@ public class HappeningFrame extends BaseFragment {
     @Override
     public void onDestroyView() {
         Fragmentuz.removeFragment(lstFragment, fragmentManager);
+        lstFragment.clear();
         super.onDestroyView();
     }
 }

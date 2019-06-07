@@ -1,6 +1,9 @@
 package ptt.vn.icaremobileapp.model.patient;
 
-public class PatientHi {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PatientHi implements Parcelable {
 
     private String idline;
 
@@ -34,6 +37,60 @@ public class PatientHi {
 
     public PatientHi() {
     }
+
+    protected PatientHi(Parcel in) {
+        idline = in.readString();
+        nohi = in.readString();
+        strday = in.readString();
+        endday = in.readString();
+        idhospital = in.readInt();
+        hospitalname = in.readString();
+        hospitalcode = in.readString();
+        addres = in.readString();
+        idlivpla = in.readInt();
+        namelivpla = in.readString();
+        time5y = in.readString();
+        imgpth = in.readString();
+        ratepay = in.readInt();
+        status = in.readInt();
+        image = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idline);
+        dest.writeString(nohi);
+        dest.writeString(strday);
+        dest.writeString(endday);
+        dest.writeInt(idhospital);
+        dest.writeString(hospitalname);
+        dest.writeString(hospitalcode);
+        dest.writeString(addres);
+        dest.writeInt(idlivpla);
+        dest.writeString(namelivpla);
+        dest.writeString(time5y);
+        dest.writeString(imgpth);
+        dest.writeInt(ratepay);
+        dest.writeInt(status);
+        dest.writeString(image);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<PatientHi> CREATOR = new Creator<PatientHi>() {
+        @Override
+        public PatientHi createFromParcel(Parcel in) {
+            return new PatientHi(in);
+        }
+
+        @Override
+        public PatientHi[] newArray(int size) {
+            return new PatientHi[size];
+        }
+    };
 
     public String getIdline() {
         return idline;

@@ -1,6 +1,9 @@
 package ptt.vn.icaremobileapp.model.patient;
 
-public class PatientIde {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PatientIde implements Parcelable {
     private String idline;
     private String cardid;
     private String daterg;
@@ -13,6 +16,44 @@ public class PatientIde {
     public PatientIde() {
     }
 
+
+    protected PatientIde(Parcel in) {
+        idline = in.readString();
+        cardid = in.readString();
+        daterg = in.readString();
+        place = in.readString();
+        imgpth = in.readString();
+        status = in.readInt();
+        image = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idline);
+        dest.writeString(cardid);
+        dest.writeString(daterg);
+        dest.writeString(place);
+        dest.writeString(imgpth);
+        dest.writeInt(status);
+        dest.writeString(image);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<PatientIde> CREATOR = new Creator<PatientIde>() {
+        @Override
+        public PatientIde createFromParcel(Parcel in) {
+            return new PatientIde(in);
+        }
+
+        @Override
+        public PatientIde[] newArray(int size) {
+            return new PatientIde[size];
+        }
+    };
 
     public String getIdline() {
         return idline;

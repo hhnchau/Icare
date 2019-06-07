@@ -9,5 +9,7 @@ public enum Method {
     GetList,
     GetAccount,
     GetRegisterbyIdlink,
-    SearchPatient
+    SearchPatient,
+    GetRatio,
+    GetCardBHYT
 }

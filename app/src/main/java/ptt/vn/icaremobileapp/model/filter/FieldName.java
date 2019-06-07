@@ -38,5 +38,8 @@ public enum FieldName {
     priorityobject,
     pricelist,
     introd,
-    status
+    status,
+    examination,
+    typeexamination,
+    code
 }

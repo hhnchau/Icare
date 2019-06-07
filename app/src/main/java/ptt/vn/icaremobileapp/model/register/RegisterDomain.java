@@ -32,6 +32,7 @@ public class RegisterDomain implements Parcelable {
     private int roomservice;
     private int idmedexa;
     private int typeexamination;
+    private int idpriob;
     private int status;
     private int isemergency;
     private String attributes;
@@ -76,6 +77,7 @@ public class RegisterDomain implements Parcelable {
         roomservice = in.readInt();
         idmedexa = in.readInt();
         typeexamination = in.readInt();
+        idpriob = in.readInt();
         status = in.readInt();
         isemergency = in.readInt();
         attributes = in.readString();
@@ -115,6 +117,7 @@ public class RegisterDomain implements Parcelable {
         dest.writeInt(roomservice);
         dest.writeInt(idmedexa);
         dest.writeInt(typeexamination);
+        dest.writeInt(idpriob);
         dest.writeInt(status);
         dest.writeInt(isemergency);
         dest.writeString(attributes);
@@ -328,6 +331,14 @@ public class RegisterDomain implements Parcelable {
 
     public void setTypeexamination(int typeexamination) {
         this.typeexamination = typeexamination;
+    }
+
+    public int getIdpriob() {
+        return idpriob;
+    }
+
+    public void setIdpriob(int idpriob) {
+        this.idpriob = idpriob;
     }
 
     public int getStatus() {

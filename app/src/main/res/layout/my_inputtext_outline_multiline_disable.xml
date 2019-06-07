@@ -12,6 +12,7 @@
         android:completionThreshold="1"
         android:imeOptions="actionDone"
         android:inputType="text|textMultiLine"
+        android:enabled="false"
         android:gravity="top"
         android:paddingStart="@dimen/dp_16"
         android:paddingEnd="@dimen/dp_16"
