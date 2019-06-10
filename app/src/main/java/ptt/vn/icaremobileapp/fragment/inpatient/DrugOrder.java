@@ -258,8 +258,8 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
             }
 
             @Override
-            public void onEdit(InpatientDrugOrder inpatientDrugOrder) {
-                DialogEditDrugOrder.getInstance().show(getActivity(), inpatientDrugOrder, new DialogEditDrugOrder.OnClickListener() {
+            public void onEdit(final InpatientDrugOrder inpatientDrugOrder) {
+                DialogEditDrugOrder.getInstance().show(getActivity(), inpatientDrugOrder, lstAutoDrugRoute, lstDrugUnitUse, new DialogEditDrugOrder.OnClickListener() {
                     @Override
                     public void onClickListener() {
                         adapterDrugOrder.notifyDataSetChanged();
@@ -385,7 +385,6 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
                 return;
             }
             String type = acpHappeningType.getText().toString();
-            String route = acpDrugRoute.getText().toString();
             String morning = edtDrugMorning.getText().toString();
             String after = edtDrugAfter.getText().toString();
             String dinner = edtDrugDinner.getText().toString();
@@ -425,10 +424,16 @@ public class DrugOrder extends BaseFragment implements MyButton.OnListener, MyIn
                     drugOrder.setPrice(phaInventoryDomain.getPrice());
                     drugOrder.setInsurance(phaInventoryDomain.getIshi());
                 }
-                if (drugRoute != null) drugOrder.setIdroute(drugRoute.getIdline());
+                if (drugRoute != null) {
+                    drugOrder.setRoutename(drugRoute.getName());
+                    drugOrder.setIdroute(drugRoute.getIdline());
+                }
 
 
-                if (drugUnitUse != null) drugOrder.setIdunituse(drugUnitUse.getIdline());
+                if (drugUnitUse != null) {
+                    drugOrder.setUnitusename(drugUnitUse.getName());
+                    drugOrder.setIdunituse(drugUnitUse.getIdline());
+                }
 
                 drugOrder.setQtymor(morning);
                 drugOrder.setQtyaft(after);

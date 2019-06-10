@@ -250,15 +250,6 @@
                     app:textSize="@dimen/sp_10" />
 
 
-
-                <ptt.vn.icaremobileapp.custom.MyNumPad
-                    android:id="@+id/pad"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:layout_constraintTop_toBottomOf="@id/edtDrugAfter"
-                    app:layout_constraintStart_toStartOf="@id/edtDrugAfter"/>
-
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>

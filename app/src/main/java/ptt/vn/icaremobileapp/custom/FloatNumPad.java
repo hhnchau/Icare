@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,21 +104,28 @@ public class FloatNumPad {
         floatingKeyboard.setOnListener(new OnListener() {
             @Override
             public void onKey(CharSequence chr) {
-                if (view instanceof EditText)
+                if (view instanceof EditText) {
+                    Editable editable = ((EditText) view).getText();
+                    int start = ((EditText) view).getSelectionStart();
+                    int end = ((EditText) view).getSelectionEnd();
                     if (chr.equals(activityContext.getString(R.string.btn_clear))) {
-                        String text = ((EditText) view).getText().toString();
-                        int length = text.length();
-                        if (length > 0) {
-                            ((EditText) view).setText(text.substring(0, length - 1));
-                            ((EditText) view).setSelection(((EditText) view).getText().length());
+                        if (editable != null && start > 0) {
+                            editable.delete(start - 1, start);
+                        } else if (editable != null && start != end) {
+                            editable.delete(start, end);
                         }
                     } else if (chr.equals(activityContext.getString(R.string.btn_done))) {
                         onDoneListener.onDone();
                         floatingKeyboard.remove();
-                    } else ((EditText) view).append(chr);
+                    } else {
+                        if (start != end) {
+                            editable.delete(start, end);
+                        }
+                        editable.insert(start, chr);
+                    }
+                }
             }
         });
-
     }
 
     public void hide() {

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -31,6 +32,12 @@ public class MyInputTextOutline extends LinearLayout {
     private int inputType;
 
     public interface OnLostFocus {
+        void onLost();
+    }
+
+    public interface OnChangeFocus {
+        void onHas();
+
         void onLost();
     }
 
@@ -105,6 +112,17 @@ public class MyInputTextOutline extends LinearLayout {
         });
     }
 
+    public void setOnChangeFocusListener(final OnChangeFocus onChangeFocus) {
+        myAutoCompleteTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (onChangeFocus != null)
+                    if (hasFocus) onChangeFocus.onHas();
+                    else onChangeFocus.onLost();
+            }
+        });
+    }
+
     public void registerNumPadKeyboard(final OnLostFocus onLostFocus) {
         myAutoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,8 +155,36 @@ public class MyInputTextOutline extends LinearLayout {
         myAutoCompleteTextView.setInputType(myAutoCompleteTextView.getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
     }
 
+    public void keyboardClose() {
+        // Disable standard keyboard hard way
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            myAutoCompleteTextView.setShowSoftInputOnFocus(false);
+        } else {
+            //For sdk versions [14-20]
+            try {
+                final Method method = EditText.class.getMethod("setShowSoftInputOnFocus", boolean.class);
+                method.setAccessible(true);
+                method.invoke(this, false);
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+    }
+
     public CharSequence getText() {
         return myAutoCompleteTextView.getText();
+    }
+
+    public Editable getEditable() {
+        return myAutoCompleteTextView.getText();
+    }
+
+    public int getSelectionStart() {
+        return myAutoCompleteTextView.getSelectionStart();
+    }
+
+    public int getSelectionEnd() {
+        return myAutoCompleteTextView.getSelectionEnd();
     }
 
 }
