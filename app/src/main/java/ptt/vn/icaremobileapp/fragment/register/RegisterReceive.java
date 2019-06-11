@@ -53,7 +53,8 @@ public class RegisterReceive extends BaseFragment {
     private RegisterReceiveBhi frgBhi;
     private MyInputTextOutlineMultiLine edtSymptom;
     private MyAutoCompleteTextView acpFormality, acpPriorityObject, acpPriceType, acpPlaceIntroduce, acpReceiveType, acpPatientObject, acpDiscount;
-    private int idFormality, idPriorityObject, idPriceType, idPlaceIntroduce, idReceiveType, idPatientObject, idDiscount;
+    private int idFormality, idPriorityObject, idPriceType, idPlaceIntroduce, idReceiveType, idDiscount;
+    public static int idPatientObject;
     private PriceLiveData priceLiveData;
 
     @Nullable
@@ -409,5 +410,11 @@ public class RegisterReceive extends BaseFragment {
     @Override
     public void toolbarListener() {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        idPatientObject = 0;
+        super.onDestroyView();
     }
 }

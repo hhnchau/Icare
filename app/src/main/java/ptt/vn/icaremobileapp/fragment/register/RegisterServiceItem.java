@@ -159,10 +159,7 @@ public class RegisterServiceItem extends BaseFragment {
                             /*
                              * DELETE
                              **/
-//                            InpatientServiceOrder inpatientService = lstRegisterServiceOrder.get(p);
-//                            inpatientService.setActive(Constant.DELETE);
-//                            if (Instruction.happeningDomain != null)
-//                                deleteService(Instruction.happeningDomain, p);
+                            adapterServiceItem.removeItem(p);
                         }
 
                         @Override
@@ -180,24 +177,24 @@ public class RegisterServiceItem extends BaseFragment {
 
             @Override
             public void onIsHi(int p) {
-                RegisterServiceOrder inpatientService = lstRegisterServiceOrder.get(p);
+                RegisterServiceOrder registerServiceOrder = lstRegisterServiceOrder.get(p);
 
-//                if (inpatient.getNameObject().equals(Objectez.BHYT.name()) && lstServiceItem != null) {
-//                    for (ServiceItemDomain service : lstServiceItem)
-//                        if (service.getId() == inpatientService.getIdservitem()) {
-//                            if (service.getIshi() == Objectez.DICHVU.ordinal())
-//                                Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
-//                            else {
-//                                inpatientService.setIshi(inpatientService.getIshi() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
-//                                lstRegisterServiceOrder.set(p, inpatientService);
-//                                adapterServiceItem.notifyItemChanged(p);
-//                            }
-//
-//                            break;
-//                        }
-//                } else {
-//                    Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
-//                }
+                if (RegisterReceive.idPatientObject == Objectez.BHYT.getValue() && lstServiceItem != null) {
+                    for (ServiceItemDomain service : lstServiceItem)
+                        if (service.getId() == registerServiceOrder.getIdservitem()) {
+                            if (service.getIshi() == Objectez.DICHVU.ordinal())
+                                Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+                            else {
+                                registerServiceOrder.setIshi(registerServiceOrder.getIshi() == Constant.ACTIVE ? Constant.DEACTIVE : Constant.ACTIVE);
+                                lstRegisterServiceOrder.set(p, registerServiceOrder);
+                                adapterServiceItem.notifyItemChanged(p);
+                            }
+
+                            break;
+                        }
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.txt_not_available), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -18,9 +18,9 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.custom.MyTextView;
+import ptt.vn.icaremobileapp.dialog.DialogEditRegisterServiceItem;
 import ptt.vn.icaremobileapp.dialog.DialogEditServiceItem;
 import ptt.vn.icaremobileapp.model.filter.Objectez;
-import ptt.vn.icaremobileapp.model.inpatient.InpatientServiceOrder;
 import ptt.vn.icaremobileapp.model.register.RegisterServiceOrder;
 import ptt.vn.icaremobileapp.tooltip.MyTooltip;
 import ptt.vn.icaremobileapp.utils.Constant;
@@ -86,12 +86,12 @@ public class RegisterServiceOrderAdapter extends RecyclerView.Adapter<RegisterSe
             @Override
             public void onClick(View v) {
                 if (onItemClick != null) {
-//                    DialogEditServiceItem.getInstance().show(context, serviceItem, new DialogEditServiceItem.OnClickListener() {
-//                        @Override
-//                        public void onClickListener() {
-//                            notifyDataSetChanged();
-//                        }
-//                    });
+                    DialogEditRegisterServiceItem.getInstance().show(context, serviceItem, new DialogEditRegisterServiceItem.OnClickListener() {
+                        @Override
+                        public void onClickListener() {
+                            notifyDataSetChanged();
+                        }
+                    });
                 }
             }
         });
@@ -106,7 +106,7 @@ public class RegisterServiceOrderAdapter extends RecyclerView.Adapter<RegisterSe
             }
         });
 
-        holder.tvName.setText((serviceItem.getServcode() + " - " + serviceItem.getNamehosp()));
+        holder.tvName.setText((serviceItem.getServcode() + " - " + serviceItem.getServname()));
         holder.tvDoctor.setText(serviceItem.getDocoder());
         holder.tvUnit.setValues(serviceItem.getNameunit());
         holder.tvPrice.setValues(Utils.formatCurrency(serviceItem.getPrice()));
