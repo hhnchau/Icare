@@ -1,20 +1,19 @@
 package ptt.vn.icaremobileapp.fragment.receiving;
 
-import android.Manifest;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import ptt.vn.icaremobileapp.fragment.BaseFragment;
 import ptt.vn.icaremobileapp.activity.MainActivity;
@@ -22,16 +21,13 @@ import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.api.ApiController;
 import ptt.vn.icaremobileapp.api.Callback;
 import ptt.vn.icaremobileapp.custom.MyButton;
-import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.model.hi.HiCard;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.shared.HiLiveData;
-import ptt.vn.icaremobileapp.scanner.Scanner;
 import ptt.vn.icaremobileapp.utils.Constant;
+import ptt.vn.icaremobileapp.utils.Helper;
 import ptt.vn.icaremobileapp.utils.Utils;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class Receiving extends BaseFragment {
@@ -126,49 +122,25 @@ public class Receiving extends BaseFragment {
     }
 
     private void startScanner() {
-        if (getActivity() != null) {
-            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                //Request
-                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1000);
-            } else {
-                //Start Application
-                onScanner();
-            }
-        }
+        IntentIntegrator.forSupportFragment(this).setPrompt("").setOrientationLocked(false).setBeepEnabled(true).initiateScan();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1001) {
-                HiCard hiCard = data.getParcelableExtra("SCANNER");
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null && getActivity() != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                HiCard hiCard = Helper.parseQr(result.getContents());
                 if (hiCard != null) {
                     getHiInfo(hiCard.getSn(), hiCard.getName(), hiCard.getBirthday());
                 }
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1000:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //Start Application
-                    onScanner();
-                } else {
-                    Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_SHORT).show();
-                }
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
-
-    private void onScanner() {
-        startActivityForResult(new Intent(getActivity(), Scanner.class), 1001);
-    }
-
 
     @Override
     public void toolbarListener() {

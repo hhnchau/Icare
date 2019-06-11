@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import java.util.List;
 
 import ptt.vn.icaremobileapp.model.common.CateSharelDomain;
+import ptt.vn.icaremobileapp.model.hi.HiCard;
 
 public class Helper {
     public static int getIdByName(List<CateSharelDomain> list, String name) {
@@ -75,5 +76,43 @@ public class Helper {
             return String.valueOf((int) total);
         }
         return "";
+    }
+
+    public static HiCard parseQr(String qr) {
+        String[] dataParse = qr.split("\\|");
+
+        HiCard hiCard = new HiCard();
+        if (dataParse.length > 0)
+            hiCard.setSn(dataParse[0]);
+        if (dataParse.length > 1)
+            hiCard.setName(Utils.convertHexStrToUnicode(dataParse[1]));
+        if (dataParse.length > 2)
+            hiCard.setBirthday(dataParse[2]);
+        if (dataParse.length > 3)
+            hiCard.setGender(Integer.parseInt(dataParse[3]));
+        if (dataParse.length > 4)
+            hiCard.setAddress(Utils.convertHexStrToUnicode(dataParse[4]));
+        if (dataParse.length > 5)
+            hiCard.setFirstRegistration(dataParse[5]);
+        if (dataParse.length > 6)
+            hiCard.setStartDate(dataParse[6]);
+        if (dataParse.length > 7)
+            hiCard.setEndDate(dataParse[7]);
+        if (dataParse.length > 8)
+            hiCard.setReleaseDate(dataParse[8]);
+        if (dataParse.length > 9)
+            hiCard.setManagerCode(dataParse[9]);
+        if (dataParse.length > 10)
+            hiCard.setParentName(Utils.convertHexStrToUnicode(dataParse[10]));
+        if (dataParse.length > 11)
+            hiCard.setObjectCode(dataParse[11]);
+        if (dataParse.length > 12)
+            hiCard.setTimeOver5Year(dataParse[12]);
+        if (dataParse.length > 13)
+            hiCard.setStringTest(dataParse[13]);
+        if (dataParse.length > 14)
+            hiCard.setCharEnd(dataParse[14]);
+
+        return hiCard;
     }
 }
