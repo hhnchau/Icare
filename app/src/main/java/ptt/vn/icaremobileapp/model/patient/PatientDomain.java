@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import java.util.List;
 
+import ptt.vn.icaremobileapp.model.hi.HiDomain;
+
 public class PatientDomain implements Parcelable {
     private int siterf;
     private String patid;
@@ -41,6 +43,7 @@ public class PatientDomain implements Parcelable {
     private List<PatientBHi> lstPatientBhi;
     private List<PatientHi> lstPatientHi;
     private List<PatientIde> lstPatientIde;
+    private HiDomain healthInsurance;
 
     public PatientDomain() {
     }
@@ -55,8 +58,16 @@ public class PatientDomain implements Parcelable {
         sex = in.readInt();
         ismarr = in.readInt();
         yearbr = in.readInt();
-        monthbr = in.readInt();
-        daybr = in.readInt();
+        if (in.readByte() == 0) {
+            monthbr = null;
+        } else {
+            monthbr = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            daybr = null;
+        } else {
+            daybr = in.readInt();
+        }
         paport = in.readString();
         idnation = in.readInt();
         namenation = in.readString();
@@ -77,6 +88,66 @@ public class PatientDomain implements Parcelable {
         computer = in.readString();
         PATIENTNAME = in.readString();
         birthday = in.readString();
+        lstPatientAddr = in.createTypedArrayList(PatientAdrr.CREATOR);
+        lstPatientBhi = in.createTypedArrayList(PatientBHi.CREATOR);
+        lstPatientHi = in.createTypedArrayList(PatientHi.CREATOR);
+        lstPatientIde = in.createTypedArrayList(PatientIde.CREATOR);
+        healthInsurance = in.readParcelable(HiDomain.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(siterf);
+        dest.writeString(patid);
+        dest.writeString(patcode);
+        dest.writeString(hospcode);
+        dest.writeString(firstname);
+        dest.writeString(lastname);
+        dest.writeInt(sex);
+        dest.writeInt(ismarr);
+        dest.writeInt(yearbr);
+        if (monthbr == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(monthbr);
+        }
+        if (daybr == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(daybr);
+        }
+        dest.writeString(paport);
+        dest.writeInt(idnation);
+        dest.writeString(namenation);
+        dest.writeInt(idjob);
+        dest.writeString(namejob);
+        dest.writeInt(idethnic);
+        dest.writeString(nameethnic);
+        dest.writeString(email);
+        dest.writeString(phone);
+        dest.writeString(faname);
+        dest.writeString(facard);
+        dest.writeString(attributes);
+        dest.writeInt(active);
+        dest.writeString(usercr);
+        dest.writeString(timecr);
+        dest.writeString(userup);
+        dest.writeString(timeup);
+        dest.writeString(computer);
+        dest.writeString(PATIENTNAME);
+        dest.writeString(birthday);
+        dest.writeTypedList(lstPatientAddr);
+        dest.writeTypedList(lstPatientBhi);
+        dest.writeTypedList(lstPatientHi);
+        dest.writeTypedList(lstPatientIde);
+        dest.writeParcelable(healthInsurance, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<PatientDomain> CREATOR = new Creator<PatientDomain>() {
@@ -383,43 +454,11 @@ public class PatientDomain implements Parcelable {
         this.lstPatientIde = lstPatientIde;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public HiDomain getHealthInsurance() {
+        return healthInsurance;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(siterf);
-        dest.writeString(patid);
-        dest.writeString(patcode);
-        dest.writeString(hospcode);
-        dest.writeString(firstname);
-        dest.writeString(lastname);
-        dest.writeInt(sex);
-        dest.writeInt(ismarr);
-        dest.writeInt(yearbr);
-        dest.writeInt(monthbr);
-        dest.writeInt(daybr);
-        dest.writeString(paport);
-        dest.writeInt(idnation);
-        dest.writeString(namenation);
-        dest.writeInt(idjob);
-        dest.writeString(namejob);
-        dest.writeInt(idethnic);
-        dest.writeString(nameethnic);
-        dest.writeString(email);
-        dest.writeString(phone);
-        dest.writeString(faname);
-        dest.writeString(facard);
-        dest.writeString(attributes);
-        dest.writeInt(active);
-        dest.writeString(usercr);
-        dest.writeString(timecr);
-        dest.writeString(userup);
-        dest.writeString(timeup);
-        dest.writeString(computer);
-        dest.writeString(PATIENTNAME);
-        dest.writeString(birthday);
+    public void setHealthInsurance(HiDomain healthInsurance) {
+        this.healthInsurance = healthInsurance;
     }
 }

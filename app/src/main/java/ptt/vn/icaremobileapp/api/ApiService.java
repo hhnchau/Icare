@@ -8,13 +8,12 @@ import ptt.vn.icaremobileapp.model.filter.FilterModel;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.hi.HiRatioOtherResponse;
 import ptt.vn.icaremobileapp.model.hi.HiResponse;
+import ptt.vn.icaremobileapp.model.history.HistoryClinicResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningSave;
-import ptt.vn.icaremobileapp.model.inpatient.InpatientDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientResponse;
-import ptt.vn.icaremobileapp.model.medexa.MedexaHDomain;
 import ptt.vn.icaremobileapp.model.medexa.MedexaResponse;
 import ptt.vn.icaremobileapp.model.patient.PatientDomain;
 import ptt.vn.icaremobileapp.model.patient.PatientResponse;
@@ -92,6 +91,12 @@ public interface ApiService {
 
     @GET()
     Observable<RegisterResponse> getHiRatio(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<RegisterResponse> getHistoryRegister(@Url String url, @Header("Content") String filterModel);
+
+    @GET()
+    Observable<HistoryClinicResponse> getHistoryClinic(@Url String url, @Header("Content") String filterModel);
 
     @GET()
     Observable<HiRatioOtherResponse> getHiRatioOther(@Url String url, @Header("Content") String filterModel);

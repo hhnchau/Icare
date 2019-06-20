@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -76,8 +77,8 @@ public class PatientList extends BaseFragment {
                 map.put(FieldName.phone.name(), TextUtils.isEmpty(edtPatientPhone.getText().toString()) ? null : edtPatientPhone.getText().toString());
                 map.put(FieldName.yearbr.name(), TextUtils.isEmpty(edtPatientBirthday.getText().toString()) ? null : edtPatientBirthday.getText().toString());
                 map.put(FieldName.addresfull.name(), TextUtils.isEmpty(edtPatientAddr.getText().toString()) ? null : edtPatientAddr.getText().toString());
-                map.put(FieldName.nohi.name(), TextUtils.isEmpty(edtPatientIde.getText().toString()) ? null : edtPatientIde.getText().toString());
-                map.put(FieldName.cardid.name(), TextUtils.isEmpty(edtPatientHi.getText().toString()) ? null : edtPatientHi.getText().toString());
+                map.put(FieldName.nohi.name(), TextUtils.isEmpty(edtPatientHi.getText().toString()) ? null : edtPatientHi.getText().toString());
+                map.put(FieldName.cardid.name(), TextUtils.isEmpty(edtPatientIde.getText().toString()) ? null : edtPatientIde.getText().toString());
 
                 getPatientListByFilter(map);
             }

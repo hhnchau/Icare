@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">ICareMobileApp</string>
 
+    <string-array name="history_clinic_group">
+        <item>@string/txt_history_biological</item>
+        <item>@string/txt_history_reason</item>
+        <item>@string/txt_history_diagnose</item>
+        <item>@string/txt_history_drug</item>
+        <item>@string/txt_history_service</item>
+    </string-array>
+    <string name="txt_history_biological">Sinh Hiệu Trước Đây</string>
+    <string name="txt_history_reason">Lý Do Vào Viện</string>
+    <string name="txt_history_diagnose">Chẩn Đoán Trước Đây</string>
+    <string name="txt_history_drug">Thuốc Đã Sử Dụng</string>
+    <string name="txt_history_service">CLS Đã Thực Hiện</string>
+
+
     <string name="number_zero">0</string>
     <string name="number_one">1</string>
     <string name="number_two">2</string>
@@ -87,7 +101,8 @@
     <string name="txt_datetime">Ngày Giờ</string>
     <string name="txt_delete_happening">Xóa Diễn Biến Bệnh</string>
 
-    <string name="txt_serviceitem_code">Mã Chỉ Định</string>
+    <string name="txt_serviceitem_code">Mã Dịch Vụ</string>
+    <string name="txt_serviceitem_name">Tên Dịch Vụ</string>
     <string name="txt_serviceitem_select">Chọn Chỉ Định</string>
     <string name="txt_unit">Đơn Vị Tính</string>
     <string name="txt_unit_use">Đơn Vị Dùng</string>
@@ -96,6 +111,10 @@
     <string name="txt_note">Ghi Chú</string>
     <string name="txt_total">Thành Tiền</string>
     <string name="txt_surcharge">Phụ Thu</string>
+
+    <string name="txt_register_code">Mã Đăng Ký</string>
+    <string name="txt_register_date">Ngày Đăng Ký</string>
+    <string name="txt_register_object">Đối Tượng</string>
 
     <string name="txt_price_insurance">Giá BHYT</string>
     <string name="txt_diagnose">Chuẩn đoán</string>
@@ -136,8 +155,9 @@
     <string name="screen_inpatient">NỘI TRÚ</string>
     <string name="screen_receiving">TIẾP NHẬN</string>
     <string name="screen_register">ĐĂNG KÝ</string>
-    <string name="screen_patient_list">DS BỆNH NHÂN</string>
-    <string name="screen_inpatient_list">DS NỘI TRÚ</string>
+    <string name="screen_patient_list">DS. BỆNH NHÂN</string>
+    <string name="screen_patient_history">LS. BỆNH NHÂN</string>
+    <string name="screen_inpatient_list">DS. NỘI TRÚ</string>
     <string name="screen_inpatient_happening">DIỄN BIẾN</string>
     <string name="screen_inpatient_instruction">Y LỆNH</string>
     <string name="tab_tham_kham">Thăm khám</string>
@@ -149,6 +169,8 @@
     <string name="tab_resolve">Xử Trí</string>
     <string name="tab_info">Thông Tin</string>
     <string name="tab_receive">Tiếp Nhận</string>
+    <string name="tab_history_register">LS. Đăng Ký</string>
+    <string name="tab_history_clinic">LS. Khám Bệnh</string>
 
     <string name="txt_err_drug">Vui lòng chọn thuốc</string>
     <string name="txt_err_number">Vui lòng chọn số ngày</string>
@@ -156,9 +178,8 @@
     <string name="txt_medexa">Chuyên Khoa</string>
     <string name="txt_medexa_selected">Chọn Chuyên Khoa</string>
 
-    <string name="item_menu_edit">Chỉnh sửa</string>
-    <string name="item_menu_copy">Copy</string>
-    <string name="item_menu_delete">Xóa</string>
+    <string name="item_menu_date_filter">Theo Ngày</string>
+    <string name="item_menu_group_filter">Theo Nhóm</string>
 
     <string name="txt_service_selected">Chọn Dịch Vụ</string>
     <string name="txt_service_name">Tên dịch vụ</string>
@@ -180,7 +201,6 @@
     <string name="txt_insurance_routes">Tuyến Bảo Hiểm</string>
     <string name="txt_insurance_ratio">Tỉ Lệ</string>
     <string name="txt_other_source">Nguồn Khác</string>
-
 
 
 </resources>

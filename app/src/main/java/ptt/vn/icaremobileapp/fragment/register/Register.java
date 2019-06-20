@@ -50,7 +50,6 @@ public class Register extends BaseFragment {
         });
 
         setupTabButton();
-        toolbarListener();
         return view;
     }
 

@@ -152,7 +152,7 @@ public class Receiving extends BaseFragment {
                 }
 
                 @Override
-                public void right() {
+                public void right(View v) {
                     startScanner();
                 }
             });

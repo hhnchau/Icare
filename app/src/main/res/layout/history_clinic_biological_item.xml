@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginStart="@dimen/dp_64">
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1.5"
+        app:label="@string/txt_datetime"
+        android:visibility="gone"/>
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvCircuits"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1"
+        app:label="@string/txt_circuit" />
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvBloodMax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1"
+        app:label="@string/txt_blomin_max" />
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvBloodMin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1"
+        app:label="@string/txt_blomin_min" />
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1"
+        app:label="@string/txt_temper" />
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvHeartbeat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1"
+        app:label="@string/txt_heartb" />
+
+    <ptt.vn.icaremobileapp.custom.MyTextView
+        android:id="@+id/tvWeights"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_weight="1"
+        app:label="@string/txt_weight" />
+
+</LinearLayout>

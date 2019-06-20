@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.text.SpannableString;
@@ -36,6 +37,10 @@ public class Utils {
     public static final String ddMMyyyyHHmm = "dd/MM/yyyy HH:mm";
     public static final String ddMMyyyyTHHmmss = "yyyy-MM-dd'T'HH:mm:ss";
 
+
+    public static boolean checkLollipop() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
 
     public static String dateConvert(String date, String requestFormat, String responseFormat) {
         if (date != null) {

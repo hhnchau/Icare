@@ -13,6 +13,7 @@
     <color name="disable">#e0e0e0</color>
     <color name="bg">#f4f4f4</color>
     <color name="wh">#ffffff</color>
+    <color name="wh_50p">#e9e9e9</color>
     <color name="gr">#bdbdbd</color>
     <color name="bk">#000000</color>
     <color name="bk_85p">#C5000000</color>

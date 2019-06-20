@@ -11,5 +11,7 @@ public enum Method {
     GetRegisterbyIdlink,
     SearchPatient,
     GetRatio,
-    GetCardBHYT
+    GetCardBHYT,
+    GetHistoryRegister,
+    GetHistoryOfMedicalExamination
 }

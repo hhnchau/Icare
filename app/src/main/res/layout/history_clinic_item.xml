@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_8"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dp_4"
+        android:elevation="@dimen/dp_2"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <!--Header-->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_84"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="2"
+                android:text="@string/txt_happening"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:lines="1"
+                android:text="31/05/2019"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ic_expand"
+                app:layout_constraintStart_toStartOf="@id/guide"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_expand"
+                android:layout_width="@dimen/ic_50"
+                android:layout_height="@dimen/ic_50"
+                android:layout_marginEnd="@dimen/dp_32"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/img_des"
+                android:src="@drawable/ic_arrow_drop_down"
+                app:layout_constraintBottom_toBottomOf="@id/tvDoctor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvDoctor"
+                app:layout_constraintTop_toTopOf="@id/tvDoctor" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guide"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <!--Detail-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcvChild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

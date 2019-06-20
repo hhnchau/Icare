@@ -5,7 +5,8 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-import ptt.vn.icaremobileapp.model.hi.HiDomain;
+import ptt.vn.icaremobileapp.model.history.HistoryRegisterDomain;
+import ptt.vn.icaremobileapp.model.history.HistoryRegisterServiceOrderDomain;
 import ptt.vn.icaremobileapp.model.inpatient.InpatientDiagnose;
 
 public class RegisterDomain implements Parcelable {
@@ -47,8 +48,8 @@ public class RegisterDomain implements Parcelable {
     private List<RegisterServiceOrder>lstRegServiceOrder;
     private List<InpatientDiagnose> lstInpatientDiagnose;
     //private lstClinicQueueMedexa;
-    //private lstHistoryRegisters;
-    //private lstHistoryRegServiceOrders;
+    private List<HistoryRegisterDomain> lstHistoryRegisters;
+    private List<HistoryRegisterServiceOrderDomain> lstHistoryRegServiceOrders;
 
     public RegisterDomain() {
     }
@@ -90,6 +91,8 @@ public class RegisterDomain implements Parcelable {
         lstRegisterHi = in.createTypedArrayList(RegisterHi.CREATOR);
         lstRegServiceOrder = in.createTypedArrayList(RegisterServiceOrder.CREATOR);
         lstInpatientDiagnose = in.createTypedArrayList(InpatientDiagnose.CREATOR);
+        lstHistoryRegisters = in.createTypedArrayList(HistoryRegisterDomain.CREATOR);
+        lstHistoryRegServiceOrders = in.createTypedArrayList(HistoryRegisterServiceOrderDomain.CREATOR);
     }
 
     @Override
@@ -130,6 +133,8 @@ public class RegisterDomain implements Parcelable {
         dest.writeTypedList(lstRegisterHi);
         dest.writeTypedList(lstRegServiceOrder);
         dest.writeTypedList(lstInpatientDiagnose);
+        dest.writeTypedList(lstHistoryRegisters);
+        dest.writeTypedList(lstHistoryRegServiceOrders);
     }
 
     @Override
@@ -435,5 +440,21 @@ public class RegisterDomain implements Parcelable {
 
     public void setLstInpatientDiagnose(List<InpatientDiagnose> lstInpatientDiagnose) {
         this.lstInpatientDiagnose = lstInpatientDiagnose;
+    }
+
+    public List<HistoryRegisterDomain> getLstHistoryRegisters() {
+        return lstHistoryRegisters;
+    }
+
+    public void setLstHistoryRegisters(List<HistoryRegisterDomain> lstHistoryRegisters) {
+        this.lstHistoryRegisters = lstHistoryRegisters;
+    }
+
+    public List<HistoryRegisterServiceOrderDomain> getLstHistoryRegServiceOrders() {
+        return lstHistoryRegServiceOrders;
+    }
+
+    public void setLstHistoryRegServiceOrders(List<HistoryRegisterServiceOrderDomain> lstHistoryRegServiceOrders) {
+        this.lstHistoryRegServiceOrders = lstHistoryRegServiceOrders;
     }
 }

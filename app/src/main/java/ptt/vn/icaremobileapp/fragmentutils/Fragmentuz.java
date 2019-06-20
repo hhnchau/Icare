@@ -9,6 +9,9 @@ import java.util.List;
 
 import ptt.vn.icaremobileapp.R;
 import ptt.vn.icaremobileapp.fragment.dashboard.Dashboard;
+import ptt.vn.icaremobileapp.fragment.history.History;
+import ptt.vn.icaremobileapp.fragment.history.HistoryClinic;
+import ptt.vn.icaremobileapp.fragment.history.HistoryRegister;
 import ptt.vn.icaremobileapp.fragment.inpatient.Diagnose;
 import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrder;
 import ptt.vn.icaremobileapp.fragment.inpatient.DrugOrderOutside;
@@ -162,6 +165,12 @@ public class Fragmentuz {
                 return new RegisterServiceItem();
             case PATIENT_LIST:
                 return new PatientList();
+            case HISTORY:
+                return new History();
+            case HISTORY_REGISTER:
+                return new HistoryRegister();
+            case HISTORY_CLINIC:
+                return new HistoryClinic();
 
         }
         return null;

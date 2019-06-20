@@ -30,6 +30,7 @@ import ptt.vn.icaremobileapp.model.filter.Para;
 import ptt.vn.icaremobileapp.model.hi.HiDomain;
 import ptt.vn.icaremobileapp.model.hi.HiRatioOtherResponse;
 import ptt.vn.icaremobileapp.model.hi.HiResponse;
+import ptt.vn.icaremobileapp.model.history.HistoryClinicResponse;
 import ptt.vn.icaremobileapp.model.icd.IcdResponse;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningDomain;
 import ptt.vn.icaremobileapp.model.inpatient.HappeningResponse;
@@ -56,6 +57,8 @@ import ptt.vn.icaremobileapp.utils.Constant;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetAccount;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetCardBHYT;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetHappeningInDepartment;
+import static ptt.vn.icaremobileapp.model.filter.Method.GetHistoryOfMedicalExamination;
+import static ptt.vn.icaremobileapp.model.filter.Method.GetHistoryRegister;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInpatientInDepartment;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetInvDrug;
 import static ptt.vn.icaremobileapp.model.filter.Method.GetList;
@@ -236,6 +239,58 @@ public class ApiController {
                         Loading.getInstance().hide();
                     }
                 }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getPatientByQr(final Context context, final String maThe, final String hoTen, final String ngaySinh, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.PAT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//        //Loading.getInstance().show(context);
+//        final List<Para> lstPara = new ArrayList<>();
+//        lstPara.add(new Para(FieldName.mathe, Operation.Equals, DataTypeOfValue.String,  maThe));
+//        lstPara.add(new Para(FieldName.hoten, Operation.Equals, DataTypeOfValue.String, hoTen));
+//        lstPara.add(new Para(FieldName.ngaySinh, Operation.Equals, DataTypeOfValue.String,  ngaySinh));
+//
+//        FilterModel f = new FilterModel(0, 10000, GetPatientByQR, lstPara);
+//        String json = new Gson().toJson(f);
+//
+//
+//        CompositeManager.add(Api.apiService.getPatientByQr(url + "filter", new FilterModel(0, 10000, GetPatientByQR, lstPara).toString())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(new DisposableObserver<PatientResponse>() {
+//
+//                    @Override
+//                    public void onNext(PatientResponse patientModel) {
+//                        if (patientModel.getCode() == 0 && aCallback != null)
+//                            aCallback.response(patientModel.getData());
+//                        else
+//                            MyLog.print(context, String.valueOf(patientModel.getCode()));
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Loading.getInstance().hide();
+//
+//                        connectAgain(context, new OnRetry() {
+//                            @Override
+//                            public void request() {
+//                                getPatientByQr(context, maThe, hoTen, ngaySinh, aCallback);
+//                            }
+//                        });
+//
+//                        MyLog.print(context, e.getMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Loading.getInstance().hide();
+//                    }
+//                }));
     }
 
     @SuppressWarnings("unchecked")
@@ -947,6 +1002,96 @@ public class ApiController {
                     @Override
                     public void onComplete() {
                         //Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getHistoryRegister(final Context context, final String patid, final Callback callback) {
+        String url = MyApplication.getUrl(Service.REG);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.patid, Operation.Equals, DataTypeOfValue.Guid, patid));
+        CompositeManager.add(Api.apiService.getHistoryRegister(url + "filter", new FilterModel(0, 1000, GetHistoryRegister, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RegisterResponse>() {
+
+                    @Override
+                    public void onNext(RegisterResponse response) {
+                        if (response.getCode() == 0 && response.getData().size() > 0 && callback != null)
+                            callback.response(response.getData().get(0));
+                        else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getHistoryRegister(context, patid, callback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
+                    }
+                }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public void getHistoryClinic(final Context context, final String patid, final ACallback aCallback) {
+        String url = MyApplication.getUrl(Service.PAT);
+        if (url == null) {
+            Toast.makeText(context, context.getString(R.string.txt_service_not_found), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Loading.getInstance().show(context);
+        final List<Para> lstPara = new ArrayList<>();
+        lstPara.add(new Para(FieldName.patid, Operation.Equals, DataTypeOfValue.Guid, patid));
+        CompositeManager.add(Api.apiService.getHistoryClinic(url + "filter", new FilterModel(0, 1000, GetHistoryOfMedicalExamination, lstPara).toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<HistoryClinicResponse>() {
+
+                    @Override
+                    public void onNext(HistoryClinicResponse response) {
+                        if (response.getCode() == 0 && response.getData().size() > 0 && aCallback != null)
+                            aCallback.response(response.getData());
+                        else
+                            MyLog.print(context, String.valueOf(response.getCode()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Loading.getInstance().hide();
+
+                        connectAgain(context, new OnRetry() {
+                            @Override
+                            public void request() {
+                                getHistoryClinic(context, patid, aCallback);
+                            }
+                        });
+
+                        MyLog.print(context, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Loading.getInstance().hide();
                     }
                 }));
     }

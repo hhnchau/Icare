@@ -29,7 +29,7 @@ import ptt.vn.icaremobileapp.fragment.receiving.Receiving;
 import ptt.vn.icaremobileapp.fragmentutils.Directionez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentez;
 import ptt.vn.icaremobileapp.fragmentutils.Fragmentuz;
-import ptt.vn.icaremobileapp.utils.Toolbaruz;
+import ptt.vn.icaremobileapp.fragmentutils.Toolbaruz;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         lstDrawer.add(new DrawerModel(Fragmentez.RECEIVING, R.drawable.ic_ipt, getString(R.string.screen_receiving)));
         lstDrawer.add(new DrawerModel(Fragmentez.REGISTER, R.drawable.ic_ipt, getString(R.string.screen_register)));
         lstDrawer.add(new DrawerModel(Fragmentez.PATIENT_LIST, R.drawable.ic_ipt, getString(R.string.screen_patient_list)));
+        lstDrawer.add(new DrawerModel(Fragmentez.HISTORY, R.drawable.ic_ipt, getString(R.string.screen_patient_history)));
 
         ListView drawerList = findViewById(R.id.drawerList);
         drawerAdapter = new DrawerAdapter(this, lstDrawer);
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         toolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onToolbarListener != null) onToolbarListener.right();
+                if (onToolbarListener != null) onToolbarListener.right(v);
             }
         });
     }
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     public interface OnToolbarListener {
         void left(String frgName);
 
-        void right();
+        void right(View v);
     }
 
     private OnToolbarListener onToolbarListener;
@@ -169,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
         handleFragment(frg, bundle);
         drawerAdapter.setItem(getItemMenu(frg));
         drawerAdapter.notifyDataSetChanged();
+    }
+
+    public void toolbarIcon( int drawable){
+        toolbarRight.setImageResource(drawable);
     }
 
     private void handleFragment(final Fragmentez frg, final Bundle bundle) {
@@ -198,6 +203,10 @@ public class MainActivity extends AppCompatActivity {
                     case PATIENT_LIST:
                         Fragmentuz.replaceFragment(fragmentManager, Fragmentez.PATIENT_LIST, false, R.id.mainFrame, bundle, Directionez.NEXT);
                         Toolbaruz.setToolbar(MainActivity.this, Fragmentez.PATIENT_LIST, toolbarTitle, toolbarLeft, toolbarRight);
+                        break;
+                    case HISTORY:
+                        Fragmentuz.replaceFragment(fragmentManager, Fragmentez.HISTORY, false, R.id.mainFrame, bundle, Directionez.NEXT);
+                        Toolbaruz.setToolbar(MainActivity.this, Fragmentez.HISTORY, toolbarTitle, toolbarLeft, toolbarRight);
                         break;
                 }
 
